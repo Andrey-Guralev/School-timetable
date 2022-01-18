@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreclassesRequest extends FormRequest
+class StoreFileTimetableRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,13 @@ class StoreclassesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        if(\Auth::check() and \Auth::user()->type >= 3) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -24,7 +30,7 @@ class StoreclassesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'file' => 'required'
         ];
     }
 }

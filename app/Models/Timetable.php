@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Schedule extends Model
+class Timetable extends Model
 {
     use HasFactory;
 
@@ -18,6 +18,9 @@ class Schedule extends Model
         'room_1',
         'room_2'
     ];
+
+    protected $table = 'timetable';
+
 
     public function Teacher(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

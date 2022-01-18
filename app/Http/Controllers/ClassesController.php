@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\classes;
-use App\Http\Requests\StoreclassesRequest;
-use App\Http\Requests\UpdateclassesRequest;
+use App\Http\Requests\StoreClassesRequest;
+use App\Http\Requests\UpdateClassesRequest;
 
 class ClassesController extends Controller
 {
@@ -31,10 +31,10 @@ class ClassesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreclassesRequest  $request
+     * @param  \App\Http\Requests\StoreClassesRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreclassesRequest $request)
+    public function store(StoreClassesRequest $request)
     {
         //
     }
@@ -64,11 +64,11 @@ class ClassesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateclassesRequest  $request
+     * @param  \App\Http\Requests\UpdateClassesRequest  $request
      * @param  \App\Models\classes  $classes
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateclassesRequest $request, classes $classes)
+    public function update(UpdateClassesRequest $request, classes $classes)
     {
         //
     }

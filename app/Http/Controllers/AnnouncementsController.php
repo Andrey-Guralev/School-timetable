@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
-use App\Http\Requests\StoreannouncementsRequest;
-use App\Http\Requests\UpdateannouncementsRequest;
+use App\Http\Requests\StoreAnnouncementsRequest;
+use App\Http\Requests\UpdateAnnouncementsRequest;
 
 class AnnouncementsController extends Controller
 {
@@ -31,10 +31,10 @@ class AnnouncementsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreannouncementsRequest  $request
+     * @param  \App\Http\Requests\StoreAnnouncementsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreannouncementsRequest $request)
+    public function store(StoreAnnouncementsRequest $request)
     {
         //
     }
@@ -64,11 +64,11 @@ class AnnouncementsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateannouncementsRequest  $request
+     * @param  \App\Http\Requests\UpdateAnnouncementsRequest  $request
      * @param  \App\Models\Announcement  $announcements
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateannouncementsRequest $request, Announcement $announcements)
+    public function update(UpdateAnnouncementsRequest $request, Announcement $announcements)
     {
         //
     }

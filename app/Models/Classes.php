@@ -19,9 +19,9 @@ class Classes extends Model
         return $this->hasMany(Announcements::class);
     }
 
-    public function Schedule(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function Timetable(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Timetable::class);
     }
 
     public function Students(): \Illuminate\Database\Eloquent\Relations\HasMany

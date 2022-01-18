@@ -15,9 +15,9 @@ class Teachers extends Model
         'class_id'
     ];
 
-    public function Schedule(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function Timetable(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Timetable::class);
     }
 
     public function User(): \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -19,8 +19,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'first_name',
+        'second_name',
+        'middle_name',
         'email',
         'password',
+        'type',
     ];
 
     /**
@@ -41,6 +45,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * @var mixed
+     */
 
     public function Announcements(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
