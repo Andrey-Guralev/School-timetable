@@ -82,7 +82,7 @@ class TimetableController extends Controller
             }
             $weekday++;
         }
-        dd(Timetable::all());
+        return redirect()->back();
     }
 
     public function storeForm() {

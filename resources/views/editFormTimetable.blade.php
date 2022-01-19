@@ -1,3 +1,4 @@
+@php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -6,8 +7,8 @@
     </x-slot>
 
     <x-container>
-        <h3 class="text-2xl">Изменения расписания, {{ $class->number }}{{ $class->letter }}</h3>
-        <div class="ml-4">
+        <h3 class="text-2xl mb-4">Изменения расписания, {{ $class->number }}{{ $class->letter }}</h3>
+        <div class="mx-4">
             <div class="">
                 <form enctype="multipart/form-data" action="{{ route('storeFileTimetable', ['class_id' => $class->id]) }}" class="" method="POST">
                     @csrf
@@ -30,10 +31,42 @@
                     </div>
                 </div>
             </div>
-        <div class="ml-4">
-            <div class="">
-                <form action="">
-
+        <div class="mx-4">
+            <div>
+                <form action="" class="min-w-full flex justify-between flex-wrap">
+                    @for($i = 0; $i < 6; $i++)
+                        <div class="py-2 inline-block w-1/2 sm:px-6 lg:px-5">
+                            <div class="shadow overflow-hidden border-b border-gray-300 sm:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-100">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            {{ $weekdays[$i] }}
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200" >
+                                        @php($s = 1)
+                                        @foreach($tt->where('weekday', $i) as $t)
+                                                <tr class="bg-white">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between">
+                                                        <div class="lesson flex items-center">{{$s}}. <input type="text" value="{{ $t->lesson }}" class="shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></div>
+                                                        <div class="rooms flex"><input type="text" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md"><input type="text" class="ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md"></div>
+                                                        <button class="delete"></button>
+                                                    </td>
+                                                </tr>
+                                            @php($s++)
+                                        @endforeach
+                                        <tr class="bg-white">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between">
+                                                Добавить урок
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    @endfor
                 </form>
             </div>
         </div>
