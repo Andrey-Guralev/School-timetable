@@ -33,7 +33,9 @@
             </div>
         <div class="mx-4">
             <div>
-                <form action="" class="min-w-full flex justify-between flex-wrap">
+                <form action="{{ route('storeFormTimetable', ['class_id' => $class->id]) }}" method="POST" class="min-w-full flex justify-between flex-wrap">
+                    @method('POST')
+                    @csrf
                     @for($i = 0; $i < 6; $i++)
                         <div class="py-2 inline-block w-1/2 sm:px-6 lg:px-5">
                             <div class="shadow overflow-hidden border-b border-gray-300 sm:rounded-lg">
@@ -50,16 +52,19 @@
                                         @foreach($tt->where('weekday', $i) as $t)
                                                 <tr class="bg-white">
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between">
-                                                        <div class="lesson flex items-center">{{$s}}. <input type="text" value="{{ $t->lesson }}" class="shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></div>
-                                                        <div class="rooms flex"><input type="text" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md"><input type="text" class="ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md"></div>
-                                                        <button class="delete"></button>
+                                                        <div class="lesson flex items-center">{{$s}}. &nbsp; <input type="text" name="lesson-{{ $i }}-{{ $s }}" value="{{ $t->lesson }}" data-type="lesson" data-weekday="{{ $i }}" data-number="{{ $s }}" class="shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></div>
+                                                        <div class="rooms flex">
+                                                            <input type="text" name="room1-{{ $i }}-{{ $s }}" value="{{ $t->room_1 }}" data-type="room1"  data-weekday="{{ $i }}" data-number="{{ $s }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md">
+                                                            <input type="text" name="room2-{{ $i }}-{{ $s }}" value="{{ $t->room_2 }}" data-type="room2"  data-weekday="{{ $i }}" data-number="{{ $s }}" class="ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md"></div>
+
                                                     </td>
                                                 </tr>
                                             @php($s++)
                                         @endforeach
                                         <tr class="bg-white">
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between">
-                                                Добавить урок
+                                                <button type="button" id="{{ 'btn-' . $i }}">Добавить урок</button>
+                                                <button class="delete">Удалить последний урок</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -67,6 +72,9 @@
                             </div>
                         </div>
                     @endfor
+                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        Сохранить
+                    </button>
                 </form>
             </div>
         </div>
