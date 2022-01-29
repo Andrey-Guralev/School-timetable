@@ -5549,9 +5549,10 @@ var numberInput = document.getElementById('number-input');
 var letterInput = document.getElementById('letter-input');
 var closeButton = document.getElementById('close-button');
 var saveButton = document.getElementById('save-button');
+var deleteButton = document.getElementById('delete-button');
 var background = document.querySelector('.opacity-class');
 var classButtons = document.querySelectorAll('.class-button');
-var id, url;
+var id, saveUrl, deleteUrl;
 var error;
 
 function openModal(e) {
@@ -5559,7 +5560,8 @@ function openModal(e) {
   var classNumber = button.dataset.number;
   var classLetter = button.dataset.letter;
   id = button.dataset.id;
-  url = button.dataset.url;
+  saveUrl = button.dataset.saveUrl;
+  deleteUrl = button.dataset.deleteUrl;
   numberInput.value = classNumber;
   letterInput.value = classLetter;
   modal.classList.remove('hidden');
@@ -5573,25 +5575,47 @@ function saveClass(e) {
   e.preventDefault();
   var number = numberInput.value;
   var letter = letterInput.value;
-  axios.patch(url, {
+  axios.patch(saveUrl, {
     'id': id,
     'number': number,
     'letter': letter
   }).then(function (response) {
     // console.log(response.data);
     // location.reload();
-    updatePage(number, letter);
+    updatePageBeforeSave(number, letter);
   })["catch"](function (e) {
     console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
     error = e;
   });
 }
 
-function updatePage(number, letter) {
+function updatePageBeforeSave(number, letter) {
   var button = document.querySelector('.id-' + id);
-  var str = String(number + letter);
-  console.log(str);
-  button.replaceWith(String(str));
+  button.removeAttribute('data-number');
+  button.setAttribute('data-number', number);
+  button.removeAttribute('data-letter');
+  button.setAttribute('data-letter', letter);
+  button.innerHTML = '';
+  button.innerHTML = String(number + letter);
+  closeModal();
+}
+
+function deleteClass() {
+  if (!confirm('Точно удалить класс?')) {
+    return;
+  }
+
+  axios["delete"](deleteUrl).then(function (response) {
+    updatePageBeforeDelete();
+  })["catch"](function (e) {
+    console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
+    error = e;
+  });
+}
+
+function updatePageBeforeDelete(number, letter) {
+  var button = document.querySelector('.id-' + id);
+  button.remove();
   closeModal();
 }
 
@@ -5602,6 +5626,7 @@ function init() {
   background.addEventListener('click', closeModal);
   closeButton.addEventListener('click', closeModal);
   saveButton.addEventListener('click', saveClass);
+  deleteButton.addEventListener('click', deleteClass);
 }
 
 init();

@@ -30,8 +30,10 @@ class ClassesController extends Controller
     }
 
 
-    public function destroy(classes $classes)
+    public function destroy($id)
     {
-        //
+        $class = Classes::find($id);
+
+        $class->delete();
     }
 }

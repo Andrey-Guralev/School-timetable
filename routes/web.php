@@ -22,7 +22,8 @@ Route::middleware(['auth', 'manager'])->group(function () {         //Маршр
     Route::Post('/timetable/edit/{class_id}/form', [\App\Http\Controllers\TimetableController::class, 'storeForm'])->name('storeFormTimetable');
 
     Route::get('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'edit'])->name('editClasses');
-    Route::patch('classes/edit', [\App\Http\Controllers\ClassesController::class, 'update'])->name('updateClasses');
+    Route::patch('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'update'])->name('updateClasses');
+    Route::delete('/classes/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('destroyClasses');
 });
 
 
