@@ -7,13 +7,18 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateClassesRequest extends FormRequest
 {
     /**
+     * @var mixed
+     */
+    private $number;
+
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**

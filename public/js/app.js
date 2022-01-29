@@ -5497,6 +5497,10 @@ if (window.location.pathname.indexOf('timetable/edit/') === 1) {
   __webpack_require__(/*! ./editForm */ "./resources/js/editForm.js");
 }
 
+if (window.location.pathname.indexOf('classes/edit') === 1) {
+  __webpack_require__(/*! ./editClasses */ "./resources/js/editClasses.js");
+}
+
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
@@ -5534,6 +5538,76 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/editClasses.js":
+/*!*************************************!*\
+  !*** ./resources/js/editClasses.js ***!
+  \*************************************/
+/***/ (() => {
+
+var modal = document.getElementById('modal');
+var numberInput = document.getElementById('number-input');
+var letterInput = document.getElementById('letter-input');
+var closeButton = document.getElementById('close-button');
+var saveButton = document.getElementById('save-button');
+var background = document.querySelector('.opacity-class');
+var classButtons = document.querySelectorAll('.class-button');
+var id, url;
+var error;
+
+function openModal(e) {
+  var button = e.target;
+  var classNumber = button.dataset.number;
+  var classLetter = button.dataset.letter;
+  id = button.dataset.id;
+  url = button.dataset.url;
+  numberInput.value = classNumber;
+  letterInput.value = classLetter;
+  modal.classList.remove('hidden');
+}
+
+function closeModal() {
+  modal.classList.add('hidden');
+}
+
+function saveClass(e) {
+  e.preventDefault();
+  var number = numberInput.value;
+  var letter = letterInput.value;
+  axios.patch(url, {
+    'id': id,
+    'number': number,
+    'letter': letter
+  }).then(function (response) {
+    // console.log(response.data);
+    // location.reload();
+    updatePage(number, letter);
+  })["catch"](function (e) {
+    console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
+    error = e;
+  });
+}
+
+function updatePage(number, letter) {
+  var button = document.querySelector('.id-' + id);
+  var str = String(number + letter);
+  console.log(str);
+  button.replaceWith(String(str));
+  closeModal();
+}
+
+function init() {
+  classButtons.forEach(function (elem) {
+    elem.addEventListener('click', openModal);
+  });
+  background.addEventListener('click', closeModal);
+  closeButton.addEventListener('click', closeModal);
+  saveButton.addEventListener('click', saveClass);
+}
+
+init();
+
+/***/ }),
+
 /***/ "./resources/js/editForm.js":
 /*!**********************************!*\
   !*** ./resources/js/editForm.js ***!
@@ -5546,8 +5620,6 @@ function addForms(e) {
   var prevTr = tableRows[tableRows.length - 2];
   var number = Number(prevTr.childNodes[1].childNodes[1].childNodes[0].nodeValue.substr(0, 2)) + 1;
   var lessonInput = prevTr.childNodes[1].childNodes[1].childNodes[1];
-  var room1Input = prevTr.childNodes[1].childNodes[3].childNodes[1];
-  var room2Input = prevTr.childNodes[1].childNodes[3].childNodes[3];
   var weekday = lessonInput.dataset.weekday;
   console.log(number);
 

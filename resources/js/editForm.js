@@ -5,8 +5,6 @@ function addForms(e) {
     let prevTr = tableRows[tableRows.length - 2]
     let number = Number(prevTr.childNodes[1].childNodes[1].childNodes[0].nodeValue.substr(0, 2)) + 1;
     let lessonInput = prevTr.childNodes[1].childNodes[1].childNodes[1];
-    let room1Input = prevTr.childNodes[1].childNodes[3].childNodes[1];
-    let room2Input = prevTr.childNodes[1].childNodes[3].childNodes[3];
     let weekday = lessonInput.dataset.weekday;
 
     console.log(number)

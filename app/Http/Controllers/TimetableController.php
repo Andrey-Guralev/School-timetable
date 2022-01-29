@@ -7,6 +7,7 @@ use App\Http\Requests\StoreFormTimetableRequest;
 use App\Models\Classes;
 use App\Models\Timetable;
 use App\Http\Requests\UpdateTimetableRequest;
+use Cassandra\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
