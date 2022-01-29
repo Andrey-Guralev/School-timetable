@@ -16,7 +16,7 @@ use phpDocumentor\Reflection\Types\Collection;
 class TimetableController extends Controller
 {
     public function edit() {
-        $classes = Classes::all();
+        $classes = Classes::all()->sortByDesc('number');
 
         return view('editTimetable', compact('classes'));
     }

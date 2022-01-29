@@ -10,9 +10,21 @@ use DebugBar\DebugBar;
 class ClassesController extends Controller
 {
 
+    public function store(StoreClassesRequest $request)
+    {
+        $class = new Classes();
+
+        $class->number = $request->number;
+        $class->letter = $request->letter;
+
+        $class->save();
+
+        return response(['rId' => $class->id], '200');
+    }
+
     public function edit(classes $classes)
     {
-        $classes = Classes::all();
+        $classes = Classes::all()->sortByDesc('number');
 
         return view('editClasses', compact('classes'));
     }

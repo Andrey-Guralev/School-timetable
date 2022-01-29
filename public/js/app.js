@@ -5544,44 +5544,59 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
   \*************************************/
 /***/ (() => {
 
-var modal = document.getElementById('modal');
-var numberInput = document.getElementById('number-input');
-var letterInput = document.getElementById('letter-input');
-var closeButton = document.getElementById('close-button');
-var saveButton = document.getElementById('save-button');
-var deleteButton = document.getElementById('delete-button');
-var background = document.querySelector('.opacity-class');
+var editModal = {
+  modal: document.getElementById('modal'),
+  numberInput: document.getElementById('number-input'),
+  letterInput: document.getElementById('letter-input'),
+  closeButton: document.getElementById('close-button'),
+  saveButton: document.getElementById('save-button'),
+  deleteButton: document.getElementById('delete-button'),
+  background: document.querySelector('.opacity-class')
+};
+var createModal = {
+  modal: document.getElementById('create-modal'),
+  numberInput: document.getElementById('create-number-input'),
+  letterInput: document.getElementById('create-letter-input'),
+  closeButton: document.getElementById('create-close-button'),
+  createButton: document.getElementById('create-button'),
+  background: document.querySelector('.create-opacity-class')
+};
 var classButtons = document.querySelectorAll('.class-button');
-var id, saveUrl, deleteUrl;
+var createButton = document.getElementById('create-btn');
+var id, saveUrl, deleteUrl, createUrl, deleteUrlE, saveUrlE;
 var error;
 
-function openModal(e) {
+function openEditModal(e) {
   var button = e.target;
   var classNumber = button.dataset.number;
   var classLetter = button.dataset.letter;
   id = button.dataset.id;
   saveUrl = button.dataset.saveUrl;
   deleteUrl = button.dataset.deleteUrl;
-  numberInput.value = classNumber;
-  letterInput.value = classLetter;
-  modal.classList.remove('hidden');
+  editModal.numberInput.value = classNumber;
+  editModal.letterInput.value = classLetter;
+  editModal.modal.classList.remove('hidden');
 }
 
-function closeModal() {
-  modal.classList.add('hidden');
+function closeEditModal() {
+  editModal.modal.classList.add('hidden');
 }
 
 function saveClass(e) {
   e.preventDefault();
-  var number = numberInput.value;
-  var letter = letterInput.value;
+  var number = editModal.numberInput.value;
+  var letter = editModal.letterInput.value;
+
+  if (!number || !letter) {
+    alert('Оба поля должны быть заполнены');
+    return;
+  }
+
   axios.patch(saveUrl, {
     'id': id,
     'number': number,
     'letter': letter
   }).then(function (response) {
-    // console.log(response.data);
-    // location.reload();
     updatePageBeforeSave(number, letter);
   })["catch"](function (e) {
     console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
@@ -5597,7 +5612,7 @@ function updatePageBeforeSave(number, letter) {
   button.setAttribute('data-letter', letter);
   button.innerHTML = '';
   button.innerHTML = String(number + letter);
-  closeModal();
+  closeEditModal();
 }
 
 function deleteClass() {
@@ -5605,6 +5620,7 @@ function deleteClass() {
     return;
   }
 
+  console.log(deleteUrl);
   axios["delete"](deleteUrl).then(function (response) {
     updatePageBeforeDelete();
   })["catch"](function (e) {
@@ -5616,20 +5632,74 @@ function deleteClass() {
 function updatePageBeforeDelete(number, letter) {
   var button = document.querySelector('.id-' + id);
   button.remove();
-  closeModal();
+  closeEditModal();
+}
+
+function openCreateModal() {
+  createUrl = createModal.modal.dataset.createUrl;
+  createModal.modal.classList.remove('hidden');
+}
+
+function closeCreateModal() {
+  createModal.modal.classList.add('hidden');
+}
+
+function createClass(e) {
+  e.preventDefault();
+  var number = createModal.numberInput.value;
+  var letter = createModal.letterInput.value;
+
+  if (!number || !letter) {
+    alert('Оба поля должны быть заполнены');
+    return;
+  }
+
+  axios.post(createUrl, {
+    'number': number,
+    'letter': letter
+  }).then(function (response) {
+    updatePageBeforeCreate(response.data.rId, number, letter);
+  })["catch"](function (e) {
+    console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
+    error = e;
+  });
+}
+
+function updatePageBeforeCreate(rId, number, letter) {
+  document.querySelector('.classes').insertAdjacentHTML('afterbegin', "\n         <button type=\"button\" class=\"class-button id-".concat(rId, " text-blue-600 mr-4\" data-id=\"").concat(rId, "\" data-number=\"").concat(number, "\" data-letter=\"").concat(letter, "\" data-save-url=\"").concat(saveUrlE, "\" data-delete-url=\"").concat(deleteUrlE + '/' + rId, "\">\n                   ").concat(number + letter, "\n        </button>\n    "));
+  document.querySelector('.id-' + rId).addEventListener('click', openEditModal);
+  closeCreateModal();
 }
 
 function init() {
+  deleteUrlE = document.location.protocol + '//' + document.location.host + '/classes';
+  saveUrlE = document.querySelector('.classes').dataset.saveUrl;
+  console.log(deleteUrlE);
   classButtons.forEach(function (elem) {
-    elem.addEventListener('click', openModal);
+    elem.addEventListener('click', openEditModal);
   });
-  background.addEventListener('click', closeModal);
-  closeButton.addEventListener('click', closeModal);
-  saveButton.addEventListener('click', saveClass);
-  deleteButton.addEventListener('click', deleteClass);
+  editModal.background.addEventListener('click', closeEditModal);
+  editModal.closeButton.addEventListener('click', closeEditModal);
+  editModal.saveButton.addEventListener('click', saveClass);
+  editModal.deleteButton.addEventListener('click', deleteClass);
+  createButton.addEventListener('click', openCreateModal);
+  createModal.closeButton.addEventListener('click', closeCreateModal);
+  createModal.background.addEventListener('click', closeCreateModal);
+  createModal.createButton.addEventListener('click', createClass);
 }
 
 init();
+/* const editModal = document.getElementById('modal');
+ const numberInput = document.getElementById('number-input');
+ const letterInput = document.getElementById('letter-input');
+ const closeButton = document.getElementById('close-button');
+ const saveButton = document.getElementById('save-button');
+ const deleteButton = document.getElementById('delete-button');
+ const background = document.querySelector('.opacity-class'); */
+// const createModal = document.getElementById('modal');
+// const createNumberInput = document.getElementById('number-input');
+// const createLetterInput = document.getElementById('letter-input');
+// const createCloseButton = document.getElementById('close-button');
 
 /***/ }),
 

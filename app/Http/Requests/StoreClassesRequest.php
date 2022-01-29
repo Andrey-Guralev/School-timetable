@@ -13,7 +13,7 @@ class StoreClassesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class StoreClassesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'number' => 'numeric|integer',
+            'letter' => 'string'
         ];
     }
 }
