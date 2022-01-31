@@ -1,3 +1,10 @@
+@php
+    if (session('class')) {
+        $class = \App\Models\Classes::find(session('class'));
+    }
+@endphp
+
+
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,10 +56,32 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
-            @else
+            @elseif(session('class'))
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                <div>
+                                    {{ $class->number }}{{ $class->letter }}
+                                </div>
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('classLogout')">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                </div>            @else
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                    <a href="{{ route('login') }}" class="pr-4">Войти</a>
-                    <a href="{{ route('register') }}">Зарегистрироваться</a>
+                    <a href="{{ route('classesLogin') }}" class="pr-4">Войти в класс</a>
+                    <a href="{{ route('login') }}" class="pr-4">Войти в аккаунт</a>
                 </div>
             @endauth
             <!-- Hamburger -->
@@ -69,12 +98,6 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
-
         <!-- Responsive Settings Options -->
         @auth
             <div class="pt-4 pb-1 border-t border-gray-200">
@@ -97,6 +120,21 @@
                 </div>
             </div>
 
-        @endauth
+        @elseif(session('class'))
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="px-4">
+                    <div class="font-medium text-base text-gray-800">
+                        {{ $class->number }}{{ $class->letter }}
+                    </div>
+                </div>
+
+                <div class="mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('classLogout')">
+                        {{ __('Logout') }}
+                    </x-responsive-nav-link>
+                </div>
+            </div>
+
+        @endif
     </div>
 </nav>

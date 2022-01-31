@@ -14,6 +14,7 @@ class Classes extends Model
         'letter'
     ];
 
+
     public function Announcement(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Announcements::class);

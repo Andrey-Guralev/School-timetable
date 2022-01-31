@@ -17,6 +17,7 @@ class CreateClassesTable extends Migration
             $table->id();
             $table->integer('number');
             $table->string('letter');
+            $table->string('password')->unique();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@
         </div>
         <div class="ml-8 flex classes" data-save-url="{{ route('updateClasses') }}">
             @foreach($classes as $class)
-                <button type="button" class="class-button id-{{ $class->id }} text-blue-600 mr-4" data-id="{{ $class->id }}" data-number="{{ $class->number }}" data-letter="{{ $class->letter }}" data-save-url="{{ route('updateClasses') }}" data-delete-url="{{ route('destroyClasses', ['class_id' => $class->id]) }}">
+                <button type="button" class="class-button id-{{ $class->id }} text-blue-600 mr-4" data-id="{{ $class->id }}" data-number="{{ $class->number }}" data-letter="{{ $class->letter }}" data-save-url="{{ route('updateClasses') }}" data-delete-url="{{ route('destroyClasses', ['class_id' => $class->id]) }}" data-password="{{ $class->password }}">
                     {{ $class->number }}{{ $class->letter }}
                 </button>
             @endforeach
@@ -33,7 +33,7 @@
                 <form>
                     <div>
                         <div class="head flex justify-between mb-2">
-                            <h2>Изменить класс</h2>
+                            <h2 class="text-2xl">Изменить класс</h2>
                             <button type="button" id="close-button" class="close">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -41,7 +41,9 @@
                         <div class="flex">
                             <input type="text" id="number-input" class="number w-3/12 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
                             <input type="text" id="letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
+
                         </div>
+                        <h2 class="text-xl" id="password-str"></h2>
                     </div>
                     <div class="mt-5 sm:mt-6 flex justify-between">
                         <button type="button" id="delete-button" class=" w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm">
@@ -62,7 +64,7 @@
                 <div class="absolute inset-0 bg-gray-500 opacity-75">
                 </div>
             </div>
-            <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <div class="modal-content inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                 <form>
                     <div>
                         <div class="head flex justify-between mb-2">

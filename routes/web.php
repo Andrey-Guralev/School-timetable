@@ -27,6 +27,9 @@ Route::get('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'ed
 Route::patch('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'update'])->name('updateClasses');
 Route::delete('/classes/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('destroyClasses');
 
+Route::get('/classes/login', [\App\Http\Controllers\ClassesController::class, 'loginPage'])->name('classesLoginPage');
+Route::post('/classes/login', [\App\Http\Controllers\ClassesController::class, 'login'])->name('classesLogin');
+Route::get('/classes/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->name('classLogout');
 
 
 require __DIR__.'/auth.php';

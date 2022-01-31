@@ -2,6 +2,7 @@ let editModal = {
     modal:          document.getElementById('modal'),
     numberInput:    document.getElementById('number-input'),
     letterInput:    document.getElementById('letter-input'),
+    passwordStr:    document.getElementById('password-str'),
     closeButton:    document.getElementById('close-button'),
     saveButton:     document.getElementById('save-button'),
     deleteButton:   document.getElementById('delete-button'),
@@ -11,6 +12,7 @@ let editModal = {
 
 let createModal = {
     modal: document.getElementById('create-modal'),
+    modal_content: document.querySelector('.modal-content'),
     numberInput: document.getElementById('create-number-input'),
     letterInput: document.getElementById('create-letter-input'),
     closeButton: document.getElementById('create-close-button'),
@@ -21,7 +23,7 @@ let createModal = {
 const classButtons = document.querySelectorAll('.class-button');
 const createButton = document.getElementById('create-btn');
 
-let id, saveUrl, deleteUrl, createUrl, deleteUrlE, saveUrlE;
+let id, saveUrl, deleteUrl, createUrl, deleteUrlE, saveUrlE, password;
 let error;
 
 function openEditModal(e) {
@@ -30,10 +32,12 @@ function openEditModal(e) {
     let classLetter = button.dataset.letter;
     id = button.dataset.id;
     saveUrl = button.dataset.saveUrl;
-    deleteUrl = button.dataset.deleteUrl
+    deleteUrl = button.dataset.deleteUrl;
+    password = button.dataset.password
 
     editModal.numberInput.value = classNumber;
     editModal.letterInput.value = classLetter;
+    editModal.passwordStr.innerHTML = "Пароль: " + password;
 
     editModal.modal.classList.remove('hidden');
 }
@@ -92,7 +96,7 @@ function deleteClass() {
 
 }
 
-function updatePageBeforeDelete(number, letter) {
+function updatePageBeforeDelete() {
     let button = document.querySelector('.id-' + id);
     button.remove();
 
@@ -120,14 +124,16 @@ function createClass(e) {
     }
 
     axios.post(createUrl, {'number': number, 'letter': letter}).then(response => {
-        updatePageBeforeCreate(response.data.rId, number, letter);
+        console.log(response.data)
+        updatePageBeforeCreate(response.data.rId, number, letter, response.data.pass);
     }).catch(e => {
         console.error(`Какая-то ошибка: ${e}`);
         error = e;
     });
 }
 
-function updatePageBeforeCreate(rId, number, letter) {
+function updatePageBeforeCreate(rId, number, letter, password) {
+    console.log(password)
     document.querySelector('.classes').insertAdjacentHTML('afterbegin', `
          <button type="button" class="class-button id-${ rId } text-blue-600 mr-4" data-id="${ rId }" data-number="${ number }" data-letter="${ letter }" data-save-url="${ saveUrlE }" data-delete-url="${ deleteUrlE + '/' + rId }">
                    ${number + letter}
@@ -136,7 +142,27 @@ function updatePageBeforeCreate(rId, number, letter) {
 
     document.querySelector('.id-' + rId).addEventListener('click', openEditModal);
 
-    closeCreateModal();
+    createModal.modal_content.innerHTML = '';
+    createModal.modal_content.insertAdjacentHTML('beforeend', `
+            <div>
+                <div class="head flex justify-between mb-2">
+                    <h1 class="text-2xl">Пароль для класса:</h1>
+                </div>
+                <div class="flex ml-4">
+                    <h2 class="text-1xl">
+                        ${password}
+                    </h2>
+                </div>
+            </div>
+            <div class="mt-5 sm:mt-6 flex justify-end">
+                <button type="button" id="close-button-c" class="close w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                    Выйти
+                </button>
+            </div>
+    `)
+
+    document.getElementById('close-button-c').addEventListener('click', closeCreateModal);
+
 }
 
 function init() {
@@ -163,6 +189,7 @@ function init() {
 }
 
 init();
+
 
 /* const editModal = document.getElementById('modal');
  const numberInput = document.getElementById('number-input');

@@ -4,22 +4,16 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreClassesRequest extends FormRequest
+class classLoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function authorize()
     {
-        if(\Auth::check() and \Auth::user()->type >= 3) {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return true;
     }
 
     /**
@@ -27,11 +21,11 @@ class StoreClassesRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'number' => 'numeric|integer',
-            'letter' => 'string'
+            'password' => 'required|string',
+            'class' => 'numeric|integer'
         ];
     }
 }
