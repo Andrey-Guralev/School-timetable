@@ -30,8 +30,8 @@ class StoreClassesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'number' => 'numeric|integer',
-            'letter' => 'string'
+            'number' => 'numeric|integer|required',
+            'letter' => 'string|required'
         ];
     }
 }

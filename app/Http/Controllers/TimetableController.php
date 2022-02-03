@@ -6,15 +6,11 @@ use App\Http\Requests\StoreFileTimetableRequest;
 use App\Http\Requests\StoreFormTimetableRequest;
 use App\Models\Classes;
 use App\Models\Timetable;
-use App\Http\Requests\UpdateTimetableRequest;
-use Cassandra\Time;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
-use phpDocumentor\Reflection\Types\Collection;
 
 class TimetableController extends Controller
 {
+
     public function edit() {
         $classes = Classes::all()->sortByDesc('number');
 
@@ -28,7 +24,7 @@ class TimetableController extends Controller
         return view('editFormTimetable', compact('tt', 'class'));
     }
 
-    public function storeFile(StoreFileTimetableRequest $request, $class_id)
+    public function storeFile(StoreFileTimetableRequest $request, $class_id): \Illuminate\Http\RedirectResponse
     {
         $col = Timetable::where('class_id', $class_id)->get();
 
@@ -36,8 +32,11 @@ class TimetableController extends Controller
             $item->delete();
         }
 
-
         $originText = File::get($request->file('file')); //TODO: Разобраться с кодировками
+
+        if (mb_detect_encoding($originText, 'utf-8', true) != true) {
+            $originText = mb_convert_encoding($originText, 'utf-8', 'cp1251');
+        }
 
         $text = str_replace(array("\r\n", "\r", "\n"), '  ', $originText);
         $text = explode('        ', $text);
@@ -95,7 +94,7 @@ class TimetableController extends Controller
         return redirect()->back();
     }
 
-    public function storeForm(StoreFormTimetableRequest $request, $class_id)
+    public function storeForm(StoreFormTimetableRequest $request, $class_id): \Illuminate\Http\RedirectResponse
     {
         $col = Timetable::where('class_id', $class_id)->get();
 

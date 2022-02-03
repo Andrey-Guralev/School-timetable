@@ -21,7 +21,7 @@ let createModal = {
 }
 
 const classButtons = document.querySelectorAll('.class-button');
-const createButton = document.getElementById('create-btn');
+const createBtn = document.getElementById('create-btn');
 
 let id, saveUrl, deleteUrl, createUrl, deleteUrlE, saveUrlE, password;
 let error;
@@ -85,8 +85,6 @@ function deleteClass() {
         return;
     }
 
-    console.log(deleteUrl)
-
     axios.delete(deleteUrl).then(response => {
         updatePageBeforeDelete();
     }).catch(e => {
@@ -109,14 +107,39 @@ function openCreateModal() {
 }
 
 function closeCreateModal() {
+    createModal.modal_content.innerHTML = '';
+    createModal.modal_content.insertAdjacentHTML('beforeend', `
+        <form>
+                    <div>
+                        <div class="head flex justify-between mb-2">
+                            <h2>Создать класс</h2>
+                            <button type="button" id="create-close-button" class="close">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="flex">
+                            <input type="text" id="create-number-input" class="number w-3/12 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
+                            <input type="text" id="create-letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
+                        </div>
+                    </div>
+                    <div class="mt-5 sm:mt-6 flex justify-end">
+                        <button type="submit" id="create-button" class="create w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm">
+                            Создать
+                        </button>
+                    </div>
+                </form>
+    `)
+
+    document.getElementById('create-button').addEventListener('click', createClass);
+
     createModal.modal.classList.add('hidden');
 }
 
 function createClass(e) {
     e.preventDefault()
 
-    let number = createModal.numberInput.value;
-    let letter = createModal.letterInput.value;
+    let number = document.getElementById('create-number-input').value;
+    let letter = document.getElementById('create-letter-input').value;
 
     if (!number || !letter ) {
         alert('Оба поля должны быть заполнены');
@@ -124,7 +147,6 @@ function createClass(e) {
     }
 
     axios.post(createUrl, {'number': number, 'letter': letter}).then(response => {
-        console.log(response.data)
         updatePageBeforeCreate(response.data.rId, number, letter, response.data.pass);
     }).catch(e => {
         console.error(`Какая-то ошибка: ${e}`);
@@ -133,7 +155,6 @@ function createClass(e) {
 }
 
 function updatePageBeforeCreate(rId, number, letter, password) {
-    console.log(password)
     document.querySelector('.classes').insertAdjacentHTML('afterbegin', `
          <button type="button" class="class-button id-${ rId } text-blue-600 mr-4" data-id="${ rId }" data-number="${ number }" data-letter="${ letter }" data-save-url="${ saveUrlE }" data-delete-url="${ deleteUrlE + '/' + rId }">
                    ${number + letter}
@@ -162,14 +183,11 @@ function updatePageBeforeCreate(rId, number, letter, password) {
     `)
 
     document.getElementById('close-button-c').addEventListener('click', closeCreateModal);
-
 }
 
 function init() {
     deleteUrlE = document.location.protocol + '//' + document.location.host + '/classes';
     saveUrlE = document.querySelector('.classes').dataset.saveUrl;
-
-    console.log(deleteUrlE)
 
     classButtons.forEach(function (elem) {
         elem.addEventListener('click', openEditModal);
@@ -181,7 +199,7 @@ function init() {
     editModal.saveButton.addEventListener('click', saveClass);
     editModal.deleteButton.addEventListener('click', deleteClass);
 
-    createButton.addEventListener('click', openCreateModal);
+    createBtn.addEventListener('click', openCreateModal);
     createModal.closeButton.addEventListener('click', closeCreateModal);
     createModal.background.addEventListener('click', closeCreateModal);
 
@@ -190,15 +208,3 @@ function init() {
 
 init();
 
-
-/* const editModal = document.getElementById('modal');
- const numberInput = document.getElementById('number-input');
- const letterInput = document.getElementById('letter-input');
- const closeButton = document.getElementById('close-button');
- const saveButton = document.getElementById('save-button');
- const deleteButton = document.getElementById('delete-button');
- const background = document.querySelector('.opacity-class'); */
-// const createModal = document.getElementById('modal');
-// const createNumberInput = document.getElementById('number-input');
-// const createLetterInput = document.getElementById('letter-input');
-// const createCloseButton = document.getElementById('close-button');

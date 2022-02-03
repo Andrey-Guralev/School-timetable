@@ -5564,7 +5564,7 @@ var createModal = {
   background: document.querySelector('.create-opacity-class')
 };
 var classButtons = document.querySelectorAll('.class-button');
-var createButton = document.getElementById('create-btn');
+var createBtn = document.getElementById('create-btn');
 var id, saveUrl, deleteUrl, createUrl, deleteUrlE, saveUrlE, password;
 var error;
 
@@ -5624,7 +5624,6 @@ function deleteClass() {
     return;
   }
 
-  console.log(deleteUrl);
   axios["delete"](deleteUrl).then(function (response) {
     updatePageBeforeDelete();
   })["catch"](function (e) {
@@ -5645,13 +5644,16 @@ function openCreateModal() {
 }
 
 function closeCreateModal() {
+  createModal.modal_content.innerHTML = '';
+  createModal.modal_content.insertAdjacentHTML('beforeend', "\n        <form>\n                    <div>\n                        <div class=\"head flex justify-between mb-2\">\n                            <h2>\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043A\u043B\u0430\u0441\u0441</h2>\n                            <button type=\"button\" id=\"create-close-button\" class=\"close\">\n                                <i class=\"fas fa-times\"></i>\n                            </button>\n                        </div>\n                        <div class=\"flex\">\n                            <input type=\"text\" id=\"create-number-input\" class=\"number w-3/12 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md\" placeholder=\"\u0426\u0438\u0444\u0440\u0430\" required>\n                            <input type=\"text\" id=\"create-letter-input\" class=\"letter w-3/12 ml-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md\" placeholder=\"\u0411\u0443\u043A\u0432\u0430\" required>\n                        </div>\n                    </div>\n                    <div class=\"mt-5 sm:mt-6 flex justify-end\">\n                        <button type=\"submit\" id=\"create-button\" class=\"create w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm\">\n                            \u0421\u043E\u0437\u0434\u0430\u0442\u044C\n                        </button>\n                    </div>\n                </form>\n    ");
+  document.getElementById('create-button').addEventListener('click', createClass);
   createModal.modal.classList.add('hidden');
 }
 
 function createClass(e) {
   e.preventDefault();
-  var number = createModal.numberInput.value;
-  var letter = createModal.letterInput.value;
+  var number = document.getElementById('create-number-input').value;
+  var letter = document.getElementById('create-letter-input').value;
 
   if (!number || !letter) {
     alert('Оба поля должны быть заполнены');
@@ -5662,7 +5664,6 @@ function createClass(e) {
     'number': number,
     'letter': letter
   }).then(function (response) {
-    console.log(response.data);
     updatePageBeforeCreate(response.data.rId, number, letter, response.data.pass);
   })["catch"](function (e) {
     console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
@@ -5671,7 +5672,6 @@ function createClass(e) {
 }
 
 function updatePageBeforeCreate(rId, number, letter, password) {
-  console.log(password);
   document.querySelector('.classes').insertAdjacentHTML('afterbegin', "\n         <button type=\"button\" class=\"class-button id-".concat(rId, " text-blue-600 mr-4\" data-id=\"").concat(rId, "\" data-number=\"").concat(number, "\" data-letter=\"").concat(letter, "\" data-save-url=\"").concat(saveUrlE, "\" data-delete-url=\"").concat(deleteUrlE + '/' + rId, "\">\n                   ").concat(number + letter, "\n        </button>\n    "));
   document.querySelector('.id-' + rId).addEventListener('click', openEditModal);
   createModal.modal_content.innerHTML = '';
@@ -5682,7 +5682,6 @@ function updatePageBeforeCreate(rId, number, letter, password) {
 function init() {
   deleteUrlE = document.location.protocol + '//' + document.location.host + '/classes';
   saveUrlE = document.querySelector('.classes').dataset.saveUrl;
-  console.log(deleteUrlE);
   classButtons.forEach(function (elem) {
     elem.addEventListener('click', openEditModal);
   });
@@ -5690,24 +5689,13 @@ function init() {
   editModal.closeButton.addEventListener('click', closeEditModal);
   editModal.saveButton.addEventListener('click', saveClass);
   editModal.deleteButton.addEventListener('click', deleteClass);
-  createButton.addEventListener('click', openCreateModal);
+  createBtn.addEventListener('click', openCreateModal);
   createModal.closeButton.addEventListener('click', closeCreateModal);
   createModal.background.addEventListener('click', closeCreateModal);
   createModal.createButton.addEventListener('click', createClass);
 }
 
 init();
-/* const editModal = document.getElementById('modal');
- const numberInput = document.getElementById('number-input');
- const letterInput = document.getElementById('letter-input');
- const closeButton = document.getElementById('close-button');
- const saveButton = document.getElementById('save-button');
- const deleteButton = document.getElementById('delete-button');
- const background = document.querySelector('.opacity-class'); */
-// const createModal = document.getElementById('modal');
-// const createNumberInput = document.getElementById('number-input');
-// const createLetterInput = document.getElementById('letter-input');
-// const createCloseButton = document.getElementById('close-button');
 
 /***/ }),
 
