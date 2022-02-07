@@ -22,6 +22,11 @@
                                 Изменить расписание
                             </x-nav-link>
                         @endif
+                            @if(Auth::user()->type >= 4)
+                            <x-nav-link :href="route('adminUsers')" :active="request()->routeIs('adminUsers')">
+                                Пользователи
+                            </x-nav-link>
+                        @endif
                     @endauth
                 </div>
             </div>
@@ -44,13 +49,16 @@
 
                         <x-slot name="content">
                             <!-- Authentication -->
+                            <x-dropdown-link :href="route('userEdit')">
+                                Редактировать профиль
+                            </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
                                 <x-dropdown-link :href="route('logout')"
                                                  onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    Выйти
                                 </x-dropdown-link>
                             </form>
                         </x-slot>

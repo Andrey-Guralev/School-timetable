@@ -22,14 +22,24 @@ Route::middleware(['auth', 'manager'])->group(function () {         //Маршр
     Route::Post('/timetable/edit/{class_id}/form', [\App\Http\Controllers\TimetableController::class, 'storeForm'])->name('storeFormTimetable');
 });
 
-Route::post('/classes', [\App\Http\Controllers\ClassesController::class, 'store'])->name('storeClasses');
-Route::get('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'edit'])->name('editClasses');
-Route::patch('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'update'])->name('updateClasses');
-Route::delete('/classes/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('destroyClasses');
+Route::middleware(['auth', 'manager'])->group(function () {         //Маршруты связанные с созданием и редактированием классов
+    Route::post('/classes', [\App\Http\Controllers\ClassesController::class, 'store'])->name('storeClasses');
+    Route::get('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'edit'])->name('editClasses');
+    Route::patch('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'update'])->name('updateClasses');
+    Route::delete('/classes/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('destroyClasses');
+});
 
-Route::get('/classes/login', [\App\Http\Controllers\ClassesController::class, 'loginPage'])->name('classesLoginPage');
-Route::post('/classes/login', [\App\Http\Controllers\ClassesController::class, 'login'])->name('classesLogin');
-Route::get('/classes/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->name('classLogout');
+Route::prefix('classes')->group(function () {               //Маршруты связанные с аутентификацией в классы
+    Route::get('/login', [\App\Http\Controllers\ClassesController::class, 'loginPage'])->name('classesLoginPage');
+    Route::post('/login', [\App\Http\Controllers\ClassesController::class, 'login'])->name('classesLogin');
+    Route::get('/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->name('classLogout');
+});
+
+Route::get('/users', [\App\Http\Controllers\adminController::class, 'indexUsers'])->name('adminUsers');
+Route::get('/user/{id}/{type}', [\App\Http\Controllers\adminController::class, 'changeUserType'])->name('changeUserType');
+
+Route::get('/user/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('userEdit');
+Route::post('/user/store', [\App\Http\Controllers\UserController::class, 'store'])->name('userStore');
 
 
 require __DIR__.'/auth.php';

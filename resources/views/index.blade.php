@@ -40,14 +40,14 @@
 
     @auth
         <x-container>
-            <h1 class="text-2xl font-medium f">Расписние</h1>
+            <h1 class="text-2xl font-medium">Расписние</h1>
             <div>
                 <a href="#"></a>
                 <a href="#"></a>
                 <a href="#"></a>
-                @if(Auth::user()->type == 2)
-                    Расписание для учителя
-                @endif
+{{--                @if(Auth::user()->type == 2) --}}
+{{--                    Расписание для учителя --}}
+{{--                @endif --}}
             </div>
         </x-container>
     @endauth

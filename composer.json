@@ -1,7 +1,13 @@
 {
-    "name": "laravel/laravel",
+    "name": "andrey-guralev/timetable",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "",
+    "authors": [
+        {
+            "name": "Andrey Guralev",
+            "email": "andrey.guralev00@gmail.com"
+        }
+    ],
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
