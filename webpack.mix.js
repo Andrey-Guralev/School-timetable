@@ -18,7 +18,9 @@ mix.js('resources/js/app.js', 'public/js')
             require('postcss-import'),
             require('tailwindcss'),
         ]
-    });
+    })
+    .copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
+
 
 // mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
 //     require('postcss-import'),

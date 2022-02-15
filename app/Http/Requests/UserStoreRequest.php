@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserStoreRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *

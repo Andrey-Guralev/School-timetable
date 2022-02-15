@@ -21,7 +21,5 @@ class Manager
         } else {
             return redirect()->route('index');
         }
-
-
     }
 }

@@ -35,11 +35,21 @@ Route::prefix('classes')->group(function () {               //Маршруты �
     Route::get('/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->name('classLogout');
 });
 
-Route::get('/users', [\App\Http\Controllers\adminController::class, 'indexUsers'])->name('adminUsers');
-Route::get('/user/{id}/{type}', [\App\Http\Controllers\adminController::class, 'changeUserType'])->name('changeUserType');
+Route::middleware('admin')->group(function () {
+    Route::get('/users', [\App\Http\Controllers\adminController::class, 'indexUsers'])->name('adminUsers');
+    Route::get('/user/{id}/{type}', [\App\Http\Controllers\adminController::class, 'changeUserType'])->name('changeUserType');
+});
 
 Route::get('/user/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('userEdit');
 Route::post('/user/store', [\App\Http\Controllers\UserController::class, 'store'])->name('userStore');
+
+Route::prefix('announcements')->group(function () {
+    Route::get('/', [\App\Http\Controllers\AnnouncementsController::class, 'index'])->middleware('admin')->name('announcementsIndex');
+    Route::get('/create', [\App\Http\Controllers\AnnouncementsController::class, 'create'])->middleware('auth')->name('announcementsCreate');
+    Route::get('/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'show'])->name('announcementShow');
+    Route::post('/create', [\App\Http\Controllers\AnnouncementsController::class, 'store'])->middleware('auth')->name('announcementsStore');
+});
+
 
 
 require __DIR__.'/auth.php';

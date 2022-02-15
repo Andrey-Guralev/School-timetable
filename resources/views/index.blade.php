@@ -6,11 +6,11 @@
     </x-slot>
 
     @if(isset($timetable) && session('class'))
-        <x-container class="flex flex-wrap">
+        <x-container class="lg:flex lg:flex-wrap sm:block">
             @php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
             @for($i = 0; $i < 6; $i++)
-                <div class="py-2 inline-block w-1/2 sm:px-6 lg:px-5">
-                    <div class="shadow overflow-hidden border-b border-gray-300 sm:rounded-lg">
+                <div class="py-2 inline-block sm:px-6 sm:w-full lg:w-1/2 lg:px-5">
+                    <div class="shadow border-b border-gray-300 ">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-100">
                             <tr>

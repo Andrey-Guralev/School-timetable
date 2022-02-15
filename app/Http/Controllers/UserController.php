@@ -28,5 +28,6 @@ class UserController extends Controller
         $user->save();
 
         return redirect(RouteServiceProvider::HOME);
+
     }
 }

@@ -156,7 +156,7 @@ function createClass(e) {
 
 function updatePageBeforeCreate(rId, number, letter, password) {
     document.querySelector('.classes').insertAdjacentHTML('afterbegin', `
-         <button type="button" class="class-button id-${ rId } text-blue-600 mr-4" data-id="${ rId }" data-number="${ number }" data-letter="${ letter }" data-save-url="${ saveUrlE }" data-delete-url="${ deleteUrlE + '/' + rId }">
+         <button type="button" class="class-button id-${ rId } text-blue-600 mr-4" data-id="${ rId }" data-number="${ number }" data-letter="${ letter }" data-save-url="${ saveUrlE }" data-delete-url="${ deleteUrlE + '/' + rId }" data-password="${ password }">
                    ${number + letter}
         </button>
     `);

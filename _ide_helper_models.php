@@ -70,23 +70,25 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\RingSchedule
+ *
+ * @method static \Database\Factories\RingScheduleFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule query()
+ */
+	class RingSchedule extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Students
  *
- * @property int $id
- * @property int $user_id
- * @property int $class_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User|null $User
  * @method static \Database\Factories\StudentsFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Students newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Students newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Students query()
- * @method static \Illuminate\Database\Eloquent\Builder|Students whereClassId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Students whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Students whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Students whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Students whereUserId($value)
  */
 	class Students extends \Eloquent {}
 }
@@ -95,12 +97,6 @@ namespace App\Models{
 /**
  * App\Models\Teachers
  *
- * @property int $id
- * @property int $user_id
- * @property string|null $lesson
- * @property int $class_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $Timetable
  * @property-read int|null $timetable_count
  * @property-read \App\Models\User|null $User
@@ -108,12 +104,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Teachers newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teachers newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teachers query()
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers whereClassId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers whereLesson($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers whereUserId($value)
  */
 	class Teachers extends \Eloquent {}
 }
@@ -132,8 +122,8 @@ namespace App\Models{
  * @property string|null $room_2
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Classes|null $Class
- * @property-read \App\Models\Teachers|null $Teacher
+ * @property-read \App\Models\Classes $Class
+ * @property-read \App\Models\Teachers $Teacher
  * @method static \Database\Factories\TimetableFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newQuery()

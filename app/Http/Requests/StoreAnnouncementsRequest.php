@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAnnouncementsRequest extends FormRequest
@@ -13,6 +14,10 @@ class StoreAnnouncementsRequest extends FormRequest
      */
     public function authorize()
     {
+        if (\Auth::check()) {
+            return true;
+        }
+
         return false;
     }
 
@@ -24,7 +29,15 @@ class StoreAnnouncementsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|string',
+            'main_text' => 'required|string',
+            'type' => 'required|string'
         ];
+    }
+
+    protected function prepareForValidation() {
+        $this->merge([
+           'main_text' => strip_tags($this->main_text, '<p><strong><em><span><ol><li><ul>'),
+        ]);
     }
 }

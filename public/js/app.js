@@ -5501,6 +5501,10 @@ if (window.location.pathname.indexOf('classes/edit') === 1) {
   __webpack_require__(/*! ./editClasses */ "./resources/js/editClasses.js");
 }
 
+if (window.location.pathname.indexOf('announcements/create') === 1) {
+  __webpack_require__(/*! ./createAnnouncements */ "./resources/js/createAnnouncements.js");
+}
+
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
@@ -5535,6 +5539,32 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/createAnnouncements.js":
+/*!*********************************************!*\
+  !*** ./resources/js/createAnnouncements.js ***!
+  \*********************************************/
+/***/ (() => {
+
+function tinyMceInit() {
+  tinymce.init({
+    selector: '#main-text',
+    plugins: 'link lists',
+    menubar: '',
+    toolbar: 'undo redo | bold italic underline | link | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist',
+    height: 400,
+    toolbar_mode: 'sliding',
+    language: 'ru'
+  });
+}
+
+function init() {
+  tinyMceInit();
+}
+
+init();
 
 /***/ }),
 
@@ -5672,7 +5702,7 @@ function createClass(e) {
 }
 
 function updatePageBeforeCreate(rId, number, letter, password) {
-  document.querySelector('.classes').insertAdjacentHTML('afterbegin', "\n         <button type=\"button\" class=\"class-button id-".concat(rId, " text-blue-600 mr-4\" data-id=\"").concat(rId, "\" data-number=\"").concat(number, "\" data-letter=\"").concat(letter, "\" data-save-url=\"").concat(saveUrlE, "\" data-delete-url=\"").concat(deleteUrlE + '/' + rId, "\">\n                   ").concat(number + letter, "\n        </button>\n    "));
+  document.querySelector('.classes').insertAdjacentHTML('afterbegin', "\n         <button type=\"button\" class=\"class-button id-".concat(rId, " text-blue-600 mr-4\" data-id=\"").concat(rId, "\" data-number=\"").concat(number, "\" data-letter=\"").concat(letter, "\" data-save-url=\"").concat(saveUrlE, "\" data-delete-url=\"").concat(deleteUrlE + '/' + rId, "\" data-password=\"").concat(password, "\">\n                   ").concat(number + letter, "\n        </button>\n    "));
   document.querySelector('.id-' + rId).addEventListener('click', openEditModal);
   createModal.modal_content.innerHTML = '';
   createModal.modal_content.insertAdjacentHTML('beforeend', "\n            <div>\n                <div class=\"head flex justify-between mb-2\">\n                    <h1 class=\"text-2xl\">\u041F\u0430\u0440\u043E\u043B\u044C \u0434\u043B\u044F \u043A\u043B\u0430\u0441\u0441\u0430:</h1>\n                </div>\n                <div class=\"flex ml-4\">\n                    <h2 class=\"text-1xl\">\n                        ".concat(password, "\n                    </h2>\n                </div>\n            </div>\n            <div class=\"mt-5 sm:mt-6 flex justify-end\">\n                <button type=\"button\" id=\"close-button-c\" class=\"close w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm\">\n                    \u0412\u044B\u0439\u0442\u0438\n                </button>\n            </div>\n    "));
@@ -5709,17 +5739,17 @@ function addForms(e) {
   var tr = e.target.parentNode;
   var tableRows = tr.parentNode.parentNode.rows;
   var prevTr = tableRows[tableRows.length - 2];
-  var number = Number(prevTr.childNodes[1].childNodes[1].childNodes[0].nodeValue.substr(0, 2)) + 1;
-  var lessonInput = prevTr.childNodes[1].childNodes[1].childNodes[1];
-  var weekday = lessonInput.dataset.weekday;
-  console.log(number);
 
-  if (tableRows.length !== 1) {
-    prevTr.insertAdjacentHTML('afterend', "\n             <tr class=\"bg-white\">\n                 <td class=\"px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between\">\n                     <div class=\"lesson flex items-center\">".concat(number, ". &nbsp; <input type=\"text\" name=\"lesson-").concat(weekday, "-").concat(number, "\"  data-type=\"lesson\" data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md\"></div>\n                     <div class=\"rooms flex\">\n                         <input type=\"text\" name=\"room1-").concat(weekday, "-").concat(number, "\" value=\"\" data-type=\"room1\"  data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\">\n                         <input type=\"text\" name=\"room2-").concat(weekday, "-").concat(number, "\" value=\"\" data-type=\"room2\"  data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\"></div>\n                 </td>\n             </tr>\n        "));
+  if (tableRows.length === 1) {
+    var i = tr.parentNode;
+    i.insertAdjacentHTML('beforebegin', "\n         <tr class=\"bg-white\">\n             <td class=\"px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between\">\n                 <div class=\"lesson flex items-center\">1. &nbsp; <input type=\"text\" name=\"lesson-".concat(weekday, "-1\"  data-type=\"lesson\" data-weekday=\"").concat(weekday, "\" data-number=\"1\" class=\"shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md\"></div>\n                 <div class=\"rooms flex\">\n                     <input type=\"text\" name=\"room1-").concat(weekday, "-1\" value=\"\" data-type=\"room1\"  data-weekday=\"").concat(weekday, "\" data-number=\"1\" class=\"shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\">\n                     <input type=\"text\" name=\"room2-").concat(weekday, "-1\" value=\"\" data-type=\"room2\"  data-weekday=\"").concat(weekday, "\" data-number=\"1\" class=\"ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\"></div>\n             </td>\n         </tr>\n    "));
     return;
   }
 
-  tr.insertAdjacentHTML('beforebegin', "\n         <tr class=\"bg-white\">\n             <td class=\"px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between\">\n                 <div class=\"lesson flex items-center\">1. &nbsp; <input type=\"text\" name=\"lesson-".concat(weekday, "-1\"  data-type=\"lesson\" data-weekday=\"").concat(weekday, "\" data-number=\"1\" class=\"shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md\"></div>\n                 <div class=\"rooms flex\">\n                     <input type=\"text\" name=\"room1-").concat(weekday, "-1\" value=\"\" data-type=\"room1\"  data-weekday=\"").concat(weekday, "\" data-number=\"1\" class=\"shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\">\n                     <input type=\"text\" name=\"room2-").concat(weekday, "-1\" value=\"\" data-type=\"room2\"  data-weekday=\"").concat(weekday, "\" data-number=\"1\" class=\"ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\"></div>\n             </td>\n         </tr>\n    "));
+  var number = Number(prevTr.childNodes[1].childNodes[1].childNodes[0].nodeValue.substr(0, 2)) + 1;
+  var lessonInput = prevTr.childNodes[1].childNodes[1].childNodes[1];
+  var weekday = lessonInput.dataset.weekday;
+  prevTr.insertAdjacentHTML('afterend', "\n             <tr class=\"bg-white\">\n                 <td class=\"px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between\">\n                     <div class=\"lesson flex items-center\">".concat(number, ". &nbsp; <input type=\"text\" name=\"lesson-").concat(weekday, "-").concat(number, "\"  data-type=\"lesson\" data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md\"></div>\n                     <div class=\"rooms flex\">\n                         <input type=\"text\" name=\"room1-").concat(weekday, "-").concat(number, "\" value=\"\" data-type=\"room1\"  data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\">\n                         <input type=\"text\" name=\"room2-").concat(weekday, "-").concat(number, "\" value=\"\" data-type=\"room2\"  data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\"></div>\n                 </td>\n             </tr>\n        "));
 }
 
 function deleteForms(e) {

@@ -6,6 +6,7 @@ use App\Http\Requests\classLoginRequest;
 use App\Models\classes;
 use App\Http\Requests\StoreClassesRequest;
 use App\Http\Requests\UpdateClassesRequest;
+use App\Models\Timetable;
 use App\Providers\RouteServiceProvider;
 use DebugBar\DebugBar;
 use Illuminate\Support\Facades\Hash;
@@ -51,7 +52,11 @@ class ClassesController extends Controller
     {
         $class = Classes::find($id);
 
+        Timetable::where('class_id', $id)->delete();
+
         $class->delete();
+
+
 
         return response('', 200);
     }

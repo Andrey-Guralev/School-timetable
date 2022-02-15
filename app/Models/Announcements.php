@@ -10,6 +10,7 @@ class Announcements extends Model
     use HasFactory;
 
     protected $fillable = [
+        'title',
         'text',
         'type',
         'author_id',
@@ -17,7 +18,7 @@ class Announcements extends Model
     ];
 
     public function Classes() {
-        return $this->belongsTo(Classes::class);
+        return $this->belongsTo(Classes::class, 'class_id');
     }
 
     public function Author() {

@@ -21,11 +21,17 @@
                             <x-nav-link :href="route('editTimetable')" :active="request()->routeIs('editTimetable')">
                                 Изменить расписание
                             </x-nav-link>
+                            <x-nav-link :href="route('editClasses')" :active="request()->routeIs('editClasses')">
+                                Изменить классы
+                            </x-nav-link>
                         @endif
                             @if(Auth::user()->type >= 4)
-                            <x-nav-link :href="route('adminUsers')" :active="request()->routeIs('adminUsers')">
-                                Пользователи
-                            </x-nav-link>
+                                <x-nav-link :href="route('adminUsers')" :active="request()->routeIs('adminUsers')">
+                                    Пользователи
+                                </x-nav-link>
+                                <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
+                                    Обьявления
+                                </x-nav-link>
                         @endif
                     @endauth
                 </div>

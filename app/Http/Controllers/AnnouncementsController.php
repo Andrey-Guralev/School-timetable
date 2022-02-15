@@ -2,85 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Announcement;
+use App\Models\Announcements;
 use App\Http\Requests\StoreAnnouncementsRequest;
 use App\Http\Requests\UpdateAnnouncementsRequest;
+use App\Models\Classes;
 
 class AnnouncementsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $announcements = Announcements::select(['id', 'title', 'text', 'type', 'class_id'])->with('Classes')->get();
+
+        return view('announcements.announcementsIndex', compact('announcements'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function show($id)
+    {
+        dd('show');
+    }
+
     public function create()
     {
-        //
+        $classes = Classes::all();
+
+        return view('announcements.announcementsCreate', compact('classes'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreAnnouncementsRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreAnnouncementsRequest $request)
     {
-        //
+        $announcement = new Announcements();
+
+        $announcement->title = $request->title;
+        $announcement->text = $request->main_text;
+
+        if ($request->type == 'school')
+        {
+            $announcement->type = '1';
+        }
+        else
+        {
+            $announcement->type = '0';
+            $announcement->class_id = $request->type;
+        }
+
+        $announcement->author_id = \Auth::user()->id;
+
+        $announcement->save();
+
+        return redirect()->route('announcementsIndex');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Announcement  $announcements
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Announcement $announcements)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Announcement  $announcements
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Announcement $announcements)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateAnnouncementsRequest  $request
-     * @param  \App\Models\Announcement  $announcements
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateAnnouncementsRequest $request, Announcement $announcements)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Announcement  $announcements
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Announcement $announcements)
-    {
-        //
-    }
 }
