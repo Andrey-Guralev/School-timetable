@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\classLoginRequest;
-use App\Models\classes;
+use App\Models\Classes;
 use App\Http\Requests\StoreClassesRequest;
 use App\Http\Requests\UpdateClassesRequest;
 use App\Models\Timetable;
