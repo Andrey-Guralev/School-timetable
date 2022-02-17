@@ -5501,8 +5501,8 @@ if (window.location.pathname.indexOf('classes/edit') === 1) {
   __webpack_require__(/*! ./editClasses */ "./resources/js/editClasses.js");
 }
 
-if (window.location.pathname.indexOf('announcements/create') === 1) {
-  __webpack_require__(/*! ./createAnnouncements */ "./resources/js/createAnnouncements.js");
+if (window.location.pathname.indexOf('announcements/create') === 1 || window.location.pathname.indexOf('announcements/edit') === 1) {
+  __webpack_require__(/*! ./formAnnouncements */ "./resources/js/formAnnouncements.js");
 }
 
 
@@ -5539,32 +5539,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/createAnnouncements.js":
-/*!*********************************************!*\
-  !*** ./resources/js/createAnnouncements.js ***!
-  \*********************************************/
-/***/ (() => {
-
-function tinyMceInit() {
-  tinymce.init({
-    selector: '#main-text',
-    plugins: 'link lists',
-    menubar: '',
-    toolbar: 'undo redo | bold italic underline | link | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist',
-    height: 400,
-    toolbar_mode: 'sliding',
-    language: 'ru'
-  });
-}
-
-function init() {
-  tinyMceInit();
-}
-
-init();
 
 /***/ }),
 
@@ -5772,6 +5746,32 @@ function init() {
   deleteButtons.forEach(function (element, i, arr) {
     element.addEventListener('click', deleteForms);
   });
+}
+
+init();
+
+/***/ }),
+
+/***/ "./resources/js/formAnnouncements.js":
+/*!*******************************************!*\
+  !*** ./resources/js/formAnnouncements.js ***!
+  \*******************************************/
+/***/ (() => {
+
+function tinyMceInit() {
+  tinymce.init({
+    selector: '#main-text',
+    plugins: 'link lists',
+    menubar: '',
+    toolbar: 'undo redo | bold italic underline | link | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist',
+    height: 400,
+    toolbar_mode: 'sliding',
+    language: 'ru'
+  });
+}
+
+function init() {
+  tinyMceInit();
 }
 
 init();

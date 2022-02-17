@@ -15,6 +15,7 @@ namespace App\Models{
  * App\Models\Announcements
  *
  * @property int $id
+ * @property string $title
  * @property string $text
  * @property int $type
  * @property int $author_id
@@ -32,6 +33,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Announcements whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcements whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcements whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Announcements whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcements whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcements whereUpdatedAt($value)
  */
@@ -114,7 +116,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $lesson
- * @property int $teacher_id
+ * @property int|null $teacher_id
  * @property int $class_id
  * @property int $number
  * @property int $weekday
@@ -122,8 +124,7 @@ namespace App\Models{
  * @property string|null $room_2
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Classes $Class
- * @property-read \App\Models\Teachers $Teacher
+ * @property-read \App\Models\User|null $Teacher
  * @method static \Database\Factories\TimetableFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newQuery()
@@ -152,14 +153,16 @@ namespace App\Models{
  * @property string|null $second_name
  * @property string|null $middle_name
  * @property int $type
+ * @property int|null $class_id
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Students|null $Students
- * @property-read \App\Models\Teachers|null $Teachers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Announcements[] $Announcements
+ * @property-read int|null $announcements_count
+ * @property-read \App\Models\Classes|null $Class
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
@@ -168,6 +171,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)

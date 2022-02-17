@@ -14,7 +14,7 @@ class AnnouncementsFactory extends Factory
     public function definition()
     {
         return [
-            //
+
         ];
     }
 }

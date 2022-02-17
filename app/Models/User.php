@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
+        'class_id'
     ];
 
     /**
@@ -51,16 +52,11 @@ class User extends Authenticatable
 
     public function Announcements(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Announcement::class);
+        return $this->hasMany(Announcements::class);
     }
 
-    public function Students(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasOne(Students::class);
-    }
-
-    public function Teachers(): \Illuminate\Database\Eloquent\Relations\HasOne
-    {
-        return $this->hasOne(Teachers::class);
+        return $this->belongsTo(Classes::class);
     }
 }

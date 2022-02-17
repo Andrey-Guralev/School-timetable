@@ -24,11 +24,11 @@ class Timetable extends Model
 
     public function Teacher(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Teachers::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(Classes::class);
-    }
+//    public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+//    {
+//        return $this->belongsTo(Classes::class);
+//    }
 }

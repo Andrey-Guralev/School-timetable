@@ -16,14 +16,14 @@ class TimetableController extends Controller
     public function edit() {
         $classes = Classes::all()->sortByDesc('number');
 
-        return view('editTimetable', compact('classes'));
+        return view('timetable.editTimetable', compact('classes'));
     }
 
     public function editForm($class_id) {
         $tt = Timetable::where('class_id', $class_id)->get();
         $class = Classes::find($class_id);
 
-        return view('editFormTimetable', compact('tt', 'class'));
+        return view('timetable.editFormTimetable', compact('tt', 'class'));
     }
 
     public function storeFile(StoreFileTimetableRequest $request, $class_id): \Illuminate\Http\RedirectResponse
@@ -69,12 +69,10 @@ class TimetableController extends Controller
                 $room = '';
             }
 
-
             $col = Timetable::where('class_id', $class_id)
                 ->where('number', $number)
                 ->where('weekday', $weekday)
                 ->firstOrNew();
-
 
                 $col->lesson        = $lesson;
                 $col->teacher_id    = 1; //TODO: Переделать
@@ -149,12 +147,10 @@ class TimetableController extends Controller
         foreach ($ar as $weekday=>$val) {
             foreach ($val as $number=>$lesson) {
 
-                $col = Timetable::where('class_id', $class_id)->where('number', $number-1)->where('weekday', $weekday)->first();
-
-                if (!$col)
-                {
-                    $col = new Timetable();
-                }
+                $col = Timetable::where('class_id', $class_id)
+                    ->where('number', $number-1)
+                    ->where('weekday', $weekday)
+                    ->firstOrNew();
 
                 if ($lesson[0] == null ) {
                     $col->delete();

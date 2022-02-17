@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\Controller::class, 'index'])->name('index');
+Route::get('/', [\App\Http\Controllers\indexController::class, 'index'])->name('index');
 
 Route::middleware(['auth', 'manager'])->group(function () {         //Маршруты связанные с редактированием расписания
     Route::get('/timetable/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');
@@ -30,9 +30,9 @@ Route::middleware(['auth', 'manager'])->group(function () {         //Маршр
 });
 
 Route::prefix('classes')->group(function () {               //Маршруты связанные с аутентификацией в классы
-    Route::get('/login', [\App\Http\Controllers\ClassesController::class, 'loginPage'])->name('classesLoginPage');
-    Route::post('/login', [\App\Http\Controllers\ClassesController::class, 'login'])->name('classesLogin');
-    Route::get('/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->name('classLogout');
+    Route::get('/login', [\App\Http\Controllers\ClassesController::class, 'loginPage'])->middleware('guest')->name('classesLoginPage');
+    Route::post('/login', [\App\Http\Controllers\ClassesController::class, 'login'])->middleware('guest')->name('classesLogin');
+    Route::get('/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->middleware('guest')->name('classLogout');
 });
 
 Route::middleware('admin')->group(function () {
@@ -44,10 +44,14 @@ Route::get('/user/edit', [\App\Http\Controllers\UserController::class, 'edit'])-
 Route::post('/user/store', [\App\Http\Controllers\UserController::class, 'store'])->name('userStore');
 
 Route::prefix('announcements')->group(function () {
-    Route::get('/', [\App\Http\Controllers\AnnouncementsController::class, 'index'])->middleware('admin')->name('announcementsIndex');
+    Route::get('/', [\App\Http\Controllers\AnnouncementsController::class, 'index'])->middleware('auth')->name('announcementsIndex');
     Route::get('/create', [\App\Http\Controllers\AnnouncementsController::class, 'create'])->middleware('auth')->name('announcementsCreate');
     Route::get('/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'show'])->name('announcementShow');
     Route::post('/create', [\App\Http\Controllers\AnnouncementsController::class, 'store'])->middleware('auth')->name('announcementsStore');
+    Route::post('/edit/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'update'])->middleware('auth')->name('announcementsUpdate');
+    Route::get('/edit/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'edit'])->middleware('auth')->name('announcementsEdit');
+    Route::delete('/delete/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'delete'])->middleware('auth')->name('announcementsDelete');
+
 });
 
 

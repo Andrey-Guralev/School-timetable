@@ -6,7 +6,7 @@
         <div class="">
             <form action="{{ route('announcementsStore') }}" method="POST">
                 @csrf
-                <x-announcement-form :classes="$classes"></x-announcement-form>
+                <x-announcement-form :classes="$classes" :announcement="$announcement"></x-announcement-form>
             </form>
         </div>
     </x-container>

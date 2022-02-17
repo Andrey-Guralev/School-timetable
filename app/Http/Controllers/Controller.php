@@ -12,14 +12,4 @@ use Ramsey\Uuid\Type\Time;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function index() {
-        if (session('class')) {
-            $timetable = Timetable::where('class_id', session('class'))->get();
-            return view('index', compact('timetable'));
-        }
-
-        return view('index');
-    }
-
 }

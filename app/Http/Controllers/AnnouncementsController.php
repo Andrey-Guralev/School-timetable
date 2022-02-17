@@ -6,29 +6,42 @@ use App\Models\Announcements;
 use App\Http\Requests\StoreAnnouncementsRequest;
 use App\Http\Requests\UpdateAnnouncementsRequest;
 use App\Models\Classes;
+use Illuminate\Http\Request;
 
 class AnnouncementsController extends Controller
 {
+
+
+
     public function index()
     {
-        $announcements = Announcements::select(['id', 'title', 'text', 'type', 'class_id'])->with('Classes')->get();
+        $announcements = Announcements::select(['id', 'title', 'text', 'type', 'class_id'])->with('Classes')->get()->sortDesc();
 
         return view('announcements.announcementsIndex', compact('announcements'));
     }
 
     public function show($id)
     {
-        dd('show');
+        $announcement = Announcements::find($id);
+
+        return view('announcements.announcementsShow', compact('announcement'));
     }
 
     public function create()
     {
-        $classes = Classes::all();
+        if (\Auth::user()->type >=3)
+        {
+            $classes = Classes::all();
+        }
+        elseif(\Auth::user()->type == 2)
+        {
+            $classes = Classes::where('id', \Auth::user()->class_id)->get();
+        }
 
         return view('announcements.announcementsCreate', compact('classes'));
     }
 
-    public function store(StoreAnnouncementsRequest $request)
+    public function store(StoreAnnouncementsRequest $request): \Illuminate\Http\RedirectResponse
     {
         $announcement = new Announcements();
 
@@ -52,4 +65,25 @@ class AnnouncementsController extends Controller
         return redirect()->route('announcementsIndex');
     }
 
+    public function edit($id)
+    {
+        $classes = Classes::all();
+
+        $announcement = Announcements::find($id);
+
+        return view('announcements.announcementsEdit', compact('classes', 'announcement'));
+    }
+
+    public function delete($id): \Illuminate\Http\RedirectResponse
+    {
+        $an = Announcements::find($id);
+
+        if (!$an) {
+            return redirect()->route('announcementsIndex')->with('error', 'Такого обьявления не существует');
+        }
+
+        $an->delete();
+
+        return redirect()->route('announcementsIndex');
+    }
 }

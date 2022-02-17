@@ -29,10 +29,12 @@
                                 <x-nav-link :href="route('adminUsers')" :active="request()->routeIs('adminUsers')">
                                     Пользователи
                                 </x-nav-link>
+                            @endif
+                            @if(Auth::user()->type >= 2)
                                 <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
                                     Обьявления
                                 </x-nav-link>
-                        @endif
+                            @endif
                     @endauth
                 </div>
             </div>
@@ -119,6 +121,30 @@
                     <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
+
+                <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                    Расписание
+                </x-responsive-nav-link>
+                @auth
+                    @if(Auth::user()->type >= 3)
+                        <x-responsive-nav-link :href="route('editTimetable')" :active="request()->routeIs('editTimetable')">
+                            Изменить расписание
+                        </x-responsive-nav-link>
+                        <x-responsive-nav-link :href="route('editClasses')" :active="request()->routeIs('editClasses')">
+                            Изменить классы
+                        </x-responsive-nav-link>
+                    @endif
+                    @if(Auth::user()->type >= 4)
+                        <x-responsive-nav-link :href="route('adminUsers')" :active="request()->routeIs('adminUsers')">
+                            Пользователи
+                        </x-responsive-nav-link>
+                    @endif
+                    @if(Auth::user()->type >= 2)
+                        <x-responsive-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
+                            Обьявления
+                        </x-responsive-nav-link>
+                    @endif
+                @endauth
 
                 <div class="mt-3 space-y-1">
                     <!-- Authentication -->
