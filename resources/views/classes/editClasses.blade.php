@@ -14,7 +14,7 @@
                 Создать класс
             </button>
         </div>
-        <div class="ml-8 flex classes" data-save-url="{{ route('updateClasses') }}">
+        <div class="ml-8 flex classes flex-wrap" data-save-url="{{ route('updateClasses') }}">
             @foreach($classes as $class)
                 <button type="button" class="class-button id-{{ $class->id }} text-blue-600 mr-4" data-id="{{ $class->id }}" data-number="{{ $class->number }}" data-letter="{{ $class->letter }}" data-save-url="{{ route('updateClasses') }}" data-delete-url="{{ route('destroyClasses', ['class_id' => $class->id]) }}" data-password="{{ $class->password }}">
                     {{ $class->number }}{{ $class->letter }}
