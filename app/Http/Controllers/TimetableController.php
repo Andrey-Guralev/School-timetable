@@ -7,6 +7,8 @@ use App\Http\Requests\StoreFormTimetableRequest;
 use App\Models\Classes;
 use App\Models\Timetable;
 use Illuminate\Support\Facades\File;
+use function PHPUnit\Framework\throwException;
+use function React\Promise\all;
 
 class TimetableController extends Controller
 {
@@ -27,69 +29,63 @@ class TimetableController extends Controller
     public function storeFile(StoreFileTimetableRequest $request, $class_id): \Illuminate\Http\RedirectResponse
     {
         $col = Timetable::where('class_id', $class_id)->get();
+        foreach ($col as $item) { $item->delete(); }
 
-        foreach ($col as $item) {
-            $item->delete();
-        }
-
-        $originText = File::get($request->file('file')); //TODO: Разобраться с кодировками
-
-        if (mb_detect_encoding($originText, 'utf-8', true) != true) {
-            $originText = mb_convert_encoding($originText, 'utf-8', 'cp1251');
-        }
-
+        $originText = $request->text;
         $text = str_replace(array("\r\n", "\r", "\n"), '  ', $originText);
-        $text = explode('        ', $text);
-        unset($text[6]);
+        $text = explode('  ' ,$text);
 
+        $number = 0;
         $weekday = 0;
 
-        foreach ($text as $day)
+        foreach ($text as $string)
         {
-            $day = explode('  ', $day);
-
-            $number = 0;
-
-            foreach ($day as $s)
+            if ($number > 7)
             {
-                $s = substr($s, 3);
+                $number = 0;
+                $weekday++;
+            }
+            $number++;
 
-                if (strcmp($s,'_______') != 0) {
-                    $s = explode('(', $s);
-                    $s[1] = rtrim($s[1], ')');
+            if ($string == '') continue;
 
-                    $lesson = $s[0];
-                    $room = $s[1];
-                } else {
-                    $lesson = '_______';
-                    $room = null;
-                }
+            $s = substr($string, 3);
+            $s = explode('(', rtrim($s, ')'));
+
+            if ($s[0] != '_______')
+            {
+                $lesson = $s[0];
+                $room = $s[1];
 
                 if(iconv_strlen($room) > 4)
                 {
-                    $room = explode('/', $room);
+                    $room1 = mb_substr($room, 0, 4);
+                    $room2 = mb_substr($room, 5);
                 }
+            }
+            else
+            {
+                $lesson = '_______';
+                $room = '';
+            }
 
-                $col = Timetable::where('class_id', $class_id)->where('number', $number)->where('weekday', $weekday)->first();
 
-                if (!$col)
-                {
-                    $col = new Timetable();
-                }
+            $col = Timetable::where('class_id', $class_id)
+                ->where('number', $number)
+                ->where('weekday', $weekday)
+                ->firstOrNew();
+
 
                 $col->lesson        = $lesson;
                 $col->teacher_id    = 1; //TODO: Переделать
                 $col->class_id      = $class_id;
                 $col->number        = $number;
                 $col->weekday       = $weekday;
-                $col->room_1        = is_array($room) ? $room[0] : $room;
-                $col->room_2        = is_array($room) ? $room[1] : null;
+                $col->room_1        = $room1 ?? $room;
+                $col->room_2        = $room2 ?? null;
 
                 $col->save();
 
-                $number++;
-            }
-            $weekday++;
         }
         return redirect()->back();
     }
@@ -101,6 +97,7 @@ class TimetableController extends Controller
         foreach ($col as $item) {
             $item->delete();
         }
+
 
         $data = $request->all();
         unset($data["_method"]);
@@ -128,6 +125,7 @@ class TimetableController extends Controller
             if (!\Str::contains($key, $weekdays[$w])) {
                 $n = 0;
                 $w++;
+                continue;
             }
 
             if(\Str::contains($key, 'lesson')) {
@@ -142,6 +140,9 @@ class TimetableController extends Controller
             if(\Str::contains($key, 'room2')) {
                 $room2 = $value;
             }
+
+
+
             $ar[$w][$n] = [$lesson, $room1, $room2];
         }
 
