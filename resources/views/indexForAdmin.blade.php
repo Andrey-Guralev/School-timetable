@@ -8,7 +8,7 @@
         <div class="w-full">
             <h1 class="text-3xl">Здраствуйте, {{ Auth::user()->first_name ?? Auth::user()->name }} {{Auth::user()->second_name ?? ''}}</h1>
         </div>
-        @if(Auth::user()->class_id != null)
+        @if(Auth::user()->class_id != null && $timetable != null)
             <div class="w-full ml-2">
                 <h2 class="text-2xl">Расписние для вашего класса</h2>
             </div>

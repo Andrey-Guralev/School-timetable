@@ -34,6 +34,8 @@ class indexController extends Controller
         }
         elseif (\Auth::check() && \Auth::user()->type == 4) // Вывод для админа
         {
+            $timetable = null;
+
             if (\Auth::user()->class_id != null) {
                 $timetable = Timetable::where('class_id', \Auth::user()->class_id)->with('Teacher')->get();
             }
