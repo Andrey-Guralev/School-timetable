@@ -34,7 +34,12 @@ class indexController extends Controller
         }
         elseif (\Auth::check() && \Auth::user()->type == 4) // Вывод для админа
         {
+            if (\Auth::user()->class_id != null) {
+                $timetable = Timetable::where('class_id', \Auth::user()->class_id)->with('Teacher')->get();
+            }
+            $announcements = Announcements::with('Classes')->get()->sortDesc();
 
+            return view('indexForAdmin', compact('timetable', 'announcements'));
         }
 
         return view('indexForGuest')->with('error', 'Какая-то ошибка');
