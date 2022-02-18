@@ -2,36 +2,36 @@
 
 
     @auth
-        <x-container class="lg:flex lg:flex-wrap sm:block">
+        <x-container class="flex flex-wrap sm:w-full">
             <div class="block w-full">
-                <h2 class="text-3xl">Расписание для вашего класса ({{ Auth::user()->Class->number . Auth::user()->Class->letter }})</h2>
+                <h2 class="text-3xl">Расписание для вашего класса ({{ Auth::user()->Class->number  . Auth::user()->Class->letter }})</h2>
             </div>
             @php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
             @for($i = 0; $i < 6; $i++)
 {{--                <div class="py-2 inline-block sm:px-6 sm:w-full lg:w-1/2 lg:px-5">--}}
-                    <div class="my-2 inline-block w-full lg:w-6/12 p-3">
-                        <table class="min-w-full divide-y divide-gray-200 shadow border-b border-gray-300 ">
-                            <thead class="bg-gray-100">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ $weekdays[$i] }}
-                                </th>
+                 <div class="my-2 inline-block w-full lg:w-1/2 p-4 ">
+                    <table class="min-w-full divide-y divide-gray-200 shadow border-b border-gray-300 ">
+                        <thead class="bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {{ $weekdays[$i] }}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" >
+                        <?php $s = 1?>
+                        @foreach($timetable->where('weekday', $i) as $t)
+                            <tr class="bg-white">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between">
+                                    <span class="lesson">{{$s}}. {{ $t->lesson }}</span>
+                                    <span class="rooms">{{ $t->room_1 }}{{ $t->room_2 != null ? '/' . $t->room_2 : null}}</span>
+                                </td>
                             </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200" >
-                            <?php $s = 1?>
-                            @foreach($timetable->where('weekday', $i) as $t)
-                                <tr class="bg-white">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between">
-                                        <span class="lesson">{{$s}}. {{ $t->lesson }}</span>
-                                        <span class="rooms">{{ $t->room_1 }}{{ $t->room_2 != null ? '/' . $t->room_2 : null}}</span>
-                                    </td>
-                                </tr>
-                                <?php $s++ ?>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            <?php $s++ ?>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
 {{--                </div>--}}
             @endfor
         </x-container>

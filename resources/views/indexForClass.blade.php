@@ -5,11 +5,13 @@
         </h2>
     </x-slot>
 
+
     @if(isset($timetable) && session('class'))
+        <x-container class="flex flex-wrap sm:w-full">
         @php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
         @for($i = 0; $i < 6; $i++)
             {{--                <div class="py-2 inline-block sm:px-6 sm:w-full lg:w-1/2 lg:px-5">--}}
-            <div class="my-2 inline-block w-full lg:w-6/12 p-3">
+            <div class="my-2 inline-block w-full lg:w-1/2 p-4 ">
                 <table class="min-w-full divide-y divide-gray-200 shadow border-b border-gray-300 ">
                     <thead class="bg-gray-100">
                     <tr>
@@ -33,8 +35,9 @@
                 </table>
             </div>
             {{--                </div>--}}
-        @endfor
 
+        @endfor
+        </x-container>
         <x-container>
             <h1 class="text-3xl">Объявления</h1>
         </x-container>

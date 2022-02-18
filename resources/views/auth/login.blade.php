@@ -1,6 +1,14 @@
 <x-guest-layout>
     <x-auth-card>
 
+        <div class="head">
+            <h1 class="text-3xl font-bold">Вход</h1>
+        </div>
+
+        <a class="underline text-sm text-gray-600 hover:text-gray-900 mb-8" href="{{ route('index') }}">
+            Вернуться на главную
+        </a>
+
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 

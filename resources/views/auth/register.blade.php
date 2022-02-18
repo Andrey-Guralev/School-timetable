@@ -1,32 +1,49 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
 
-        <!-- Validation Errors -->
+    <x-auth-card>
+        <div class="head">
+            <h1 class="text-3xl font-bold">Регистрация</h1>
+        </div>
+
+        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('index') }}">
+            Вернуться на главную
+        </a>
+
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :alue="Имя" />
+            <div class="mt-4">
+                <x-label for="name" value="Имя пользователя" />
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
-            <!-- Email Address -->
+            <div class="mt-4">
+                <x-label for="second_name" value="Фамилия" />
+
+                <x-input id="second_name" class="block mt-1 w-full" type="text" name="second_name" :value="old('second_name')" required autofocus />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="first_name" value="Имя" />
+
+                <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="middle_name" value="Отчество" />
+
+                <x-input id="middle_name" class="block mt-1 w-full" type="text" name="middle_name" :value="old('middle_name')" autofocus />
+            </div>
+
             <div class="mt-4">
                 <x-label for="email" value="Email" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
-            <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" value="Пароль" />
 
@@ -36,7 +53,6 @@
                                 required autocomplete="new-password" />
             </div>
 
-            <!-- Confirm Password -->
             <div class="mt-4">
                 <x-label for="password_confirmation" value="Подтвердите пароль" />
 
