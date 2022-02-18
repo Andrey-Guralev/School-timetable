@@ -2,7 +2,7 @@
 
 
     @auth
-        <x-container class="flex flex-wrap sm:w-full">
+        <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">
             <div class="block w-full">
                 <h2 class="text-3xl">Расписание для вашего класса ({{ Auth::user()->Class->number  . Auth::user()->Class->letter }})</h2>
             </div>
@@ -34,7 +34,7 @@
                 </div>
 {{--                </div>--}}
             @endfor
-        </x-container>
+        </x-responsive-container>
     @endauth
 
         <x-container class="flex justify-between">

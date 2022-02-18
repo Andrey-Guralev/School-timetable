@@ -7,7 +7,7 @@
 
 
     @if(isset($timetable) && session('class'))
-        <x-container class="flex flex-wrap sm:w-full">
+        <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">
         @php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
         @for($i = 0; $i < 6; $i++)
             {{--                <div class="py-2 inline-block sm:px-6 sm:w-full lg:w-1/2 lg:px-5">--}}
@@ -37,7 +37,7 @@
             {{--                </div>--}}
 
         @endfor
-        </x-container>
+        </x-responsive-container>
         <x-container>
             <h1 class="text-3xl">Объявления</h1>
         </x-container>

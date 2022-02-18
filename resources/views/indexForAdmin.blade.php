@@ -4,7 +4,7 @@
 
         </h2>
     </x-slot>
-    <x-container class="lg:flex lg:flex-wrap sm:block">
+    <x-responsive-container class="lg:flex lg:flex-wrap sm:block lg:w-9/12 sm:w-full">
         <div class="w-full">
             <h1 class="text-3xl">Здраствуйте, {{ Auth::user()->first_name ?? Auth::user()->name }} {{Auth::user()->second_name ?? ''}}</h1>
         </div>
@@ -42,15 +42,15 @@
             @endfor
         @endif
 {{--        Расписание других классов--}}
-    </x-container>
+    </x-responsive-container>
 
-    <x-container class="flex justify-between">
+    <x-responsive-container class="flex justify-between  lg:w-9/12 sm:w-full">
         <h1 class="text-3xl">Объявления</h1>
         <a href="{{ route('announcementsCreate') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Добавить обьявление</a>
-    </x-container>
+    </x-responsive-container>
 
     @foreach($announcements as $announcement)
-        <x-container>
+        <x-responsive-container class="lg:w-9/12 sm:w-full">
             <div class="header">
                 <h2 class="title text-xl bold">
                     {{ $announcement->title }}
@@ -73,7 +73,7 @@
                     Читать
                 </a>
             </div>
-        </x-container>
+        </x-responsive-container>
     @endforeach
 
 </x-app-layout>
