@@ -1290,6 +1290,12 @@ function queueJob(job) {
     queue.push(job);
   queueFlush();
 }
+function dequeueJob(job) {
+  const index = queue.indexOf(job);
+  if (index !== -1) {
+    queue.splice(index, 1);
+  }
+}
 function queueFlush() {
   if (!flushing && !flushPending) {
     flushPending = true;
@@ -1883,6 +1889,7 @@ var directiveOrder = [
   "init",
   "for",
   "model",
+  "modelable",
   "transition",
   "show",
   "if",
@@ -2071,7 +2078,10 @@ function setStylesFromObject(el, value) {
   let previousStyles = {};
   Object.entries(value).forEach(([key, value2]) => {
     previousStyles[key] = el.style[key];
-    el.style.setProperty(kebabCase(key), value2);
+    if (!key.startsWith("--")) {
+      key = kebabCase(key);
+    }
+    el.style.setProperty(key, value2);
   });
   setTimeout(() => {
     if (el.style.length === 0) {
@@ -2660,7 +2670,7 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.8.1",
+  version: "3.9.0",
   flushAndStopDeferringMutations,
   disableEffectScheduling,
   setReactivityEngine,
@@ -2784,6 +2794,31 @@ magic("id", (el) => (name, key = null) => {
 
 // packages/alpinejs/src/magics/$el.js
 magic("el", (el) => el);
+
+// packages/alpinejs/src/directives/x-modelable.js
+directive("modelable", (el, {expression}, {effect: effect3, evaluate: evaluate2, evaluateLater: evaluateLater2}) => {
+  let func = evaluateLater2(expression);
+  let innerGet = () => {
+    let result;
+    func((i) => result = i);
+    return result;
+  };
+  let evaluateInnerSet = evaluateLater2(`${expression} = __placeholder`);
+  let innerSet = (val) => evaluateInnerSet(() => {
+  }, {scope: {__placeholder: val}});
+  let initialValue = innerGet();
+  if (el._x_modelable_hook)
+    initialValue = el._x_modelable_hook(initialValue);
+  innerSet(initialValue);
+  queueMicrotask(() => {
+    if (!el._x_model)
+      return;
+    let outerGet = el._x_model.get;
+    let outerSet = el._x_model.set;
+    effect3(() => innerSet(outerGet()));
+    effect3(() => outerSet(innerGet()));
+  });
+});
 
 // packages/alpinejs/src/directives/x-teleport.js
 directive("teleport", (el, {expression}, {cleanup}) => {
@@ -3258,6 +3293,9 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
     }
     for (let i = 0; i < removes.length; i++) {
       let key = removes[i];
+      if (!!lookup[key]._x_effects) {
+        lookup[key]._x_effects.forEach(dequeueJob);
+      }
       lookup[key].remove();
       lookup[key] = null;
       delete lookup[key];
@@ -3374,6 +3412,11 @@ directive("if", (el, {expression}, {effect: effect3, cleanup}) => {
     });
     el._x_currentIfEl = clone2;
     el._x_undoIf = () => {
+      walk(clone2, (node) => {
+        if (!!node._x_effects) {
+          node._x_effects.forEach(dequeueJob);
+        }
+      });
       clone2.remove();
       delete el._x_currentIfEl;
     };
@@ -5505,6 +5548,10 @@ if (window.location.pathname.indexOf('announcements/create') === 1 || window.loc
   __webpack_require__(/*! ./formAnnouncements */ "./resources/js/formAnnouncements.js");
 }
 
+if (window.location.pathname.indexOf('users') === 1) {
+  __webpack_require__(/*! ./editUsers */ "./resources/js/editUsers.js");
+}
+
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
@@ -5745,6 +5792,37 @@ function init() {
   var deleteButtons = document.querySelectorAll('.delete');
   deleteButtons.forEach(function (element, i, arr) {
     element.addEventListener('click', deleteForms);
+  });
+}
+
+init();
+
+/***/ }),
+
+/***/ "./resources/js/editUsers.js":
+/*!***********************************!*\
+  !*** ./resources/js/editUsers.js ***!
+  \***********************************/
+/***/ (() => {
+
+var input = document.querySelectorAll('#class');
+
+function updateClass(e) {
+  var Class = e.target.value;
+  var url = e.target.dataset.url;
+  var id = e.target.dataset.userId;
+  axios.post(url, {
+    'class': Class,
+    'id': id
+  }).then(function (response) {})["catch"](function (e) {
+    console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
+    error = e;
+  });
+}
+
+function init() {
+  input.forEach(function (value, key, parent) {
+    value.addEventListener('change', updateClass);
   });
 }
 

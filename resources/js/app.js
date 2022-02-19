@@ -13,6 +13,11 @@ if (window.location.pathname.indexOf('announcements/create') === 1 || window.loc
     require('./formAnnouncements');
 }
 
+if (window.location.pathname.indexOf('users') === 1) {
+    require('./editUsers');
+}
+
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;

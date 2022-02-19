@@ -38,6 +38,7 @@ Route::prefix('classes')->group(function () {               //Маршруты �
 Route::middleware('admin')->group(function () {
     Route::get('/users', [\App\Http\Controllers\adminController::class, 'indexUsers'])->name('adminUsers');
     Route::get('/user/{id}/{type}', [\App\Http\Controllers\adminController::class, 'changeUserType'])->name('changeUserType');
+    Route::post('/user/class', [\App\Http\Controllers\adminController::class, 'changeTeacherClass'])->name('changeTeacherClass');
 });
 
 Route::get('/user/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('userEdit');

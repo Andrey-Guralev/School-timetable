@@ -5,12 +5,14 @@
             <h1 class="text-3xl font-bold">Вход</h1>
         </div>
 
-        <a class="underline text-sm text-gray-600 hover:text-gray-900 mb-8" href="{{ route('index') }}">
-            Вернуться на главную
-        </a>
+        <div class="mb-2">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('index') }}">
+                Вернуться на главную
+            </a>
+        </div>
 
         <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        <x-auth-session-status class="mb-4 mt-4" :status="session('status')" />
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />

@@ -1,11 +1,11 @@
 <x-guest-layout>
 
     <x-auth-card>
-        <div class="head">
+        <div class="head mb-">
             <h1 class="text-3xl font-bold">Регистрация</h1>
         </div>
 
-        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('index') }}">
+        <a class="underline text-sm text-gray-600 hover:text-gray-900  my-4" href="{{ route('index') }}">
             Вернуться на главную
         </a>
 
@@ -51,6 +51,7 @@
                                 type="password"
                                 name="password"
                                 required autocomplete="new-password" />
+                <div class=""></div>
             </div>
 
             <div class="mt-4">

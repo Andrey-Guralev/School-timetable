@@ -79,12 +79,12 @@ class ClassesController extends Controller
             return redirect()->back()->with('error', 'Выбранный класс не существует');
         }
 
-        if ($class->password == $password) {
-            session(["class" => $class->id]);
-            return redirect(RouteServiceProvider::HOME)->with('success', 'Вы вощли в аккаунт');
-        } else {
-            return redirect()->back()->with('error', 'Неверный пароль');
-        }
+//        if ($class->password == $password) {
+        session(["class" => $class->id]);
+        return redirect(RouteServiceProvider::HOME)->with('success', 'Вы вощли в аккаунт');
+//        } else {
+//            return redirect()->back()->with('error', 'Неверный пароль');
+//        }
     }
 
     public function logout()
