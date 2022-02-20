@@ -80,7 +80,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex">
                                     <a href="{{ route('changeUserType', ["id" => $user->id, 'type' => 2]) }}" class="mr-2">Учитель</a>
-                                    <a href="{{ route('changeUserType', ["id" => $user->id, 'type' => 3]) }}" class="mr-2">Менеджер</a>
+{{--                                    <a href="{{ route('changeUserType', ["id" => $user->id, 'type' => 3]) }}" class="mr-2">Менеджер</a>--}}
                                     <a href="{{ route('changeUserType', ["id" => $user->id, 'type' => 4]) }}" class="mr-2">Админ</a>
                                 </td>
                             </tr>

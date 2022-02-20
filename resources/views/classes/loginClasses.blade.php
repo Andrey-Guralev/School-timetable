@@ -1,5 +1,16 @@
 <x-guest-layout>
     <x-auth-card>
+
+        <div class="head">
+            <h1 class="text-3xl font-bold">Вход в класс</h1>
+        </div>
+
+        <div class="mb-2">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('index') }}">
+                Вернуться на главную
+            </a>
+        </div>
+
         @if(session('error'))
             <div class="rounded-md bg-red-50 p-4">
                 <div class="flex items-center">
@@ -48,15 +59,15 @@
                 </div>
             </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" value="Пароль" />
+{{--            <!-- Password -->--}}
+{{--            <div class="mt-4">--}}
+{{--                <x-label for="password" value="Пароль" />--}}
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+{{--                <x-input id="password" class="block mt-1 w-full"--}}
+{{--                                type="password"--}}
+{{--                                name="password"--}}
+{{--                                required autocomplete="current-password" />--}}
+{{--            </div>--}}
             <div class="flex items-center justify-end mt-4">
                 <x-button class="ml-3">
                     {{ __('Login') }}

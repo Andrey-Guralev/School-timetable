@@ -1,11 +1,12 @@
 <x-app-layout>
     <x-container>
         <div class="header flex justify-between">
-            <h1 class="text-2xl">Создание объявлений</h1>
+            <h1 class="text-2xl">Изменение объявлений</h1>
         </div>
         <div class="">
-            <form action="{{ route('announcementsStore') }}" method="POST">
+            <form action="{{ route('announcementsUpdate', ['id' => $announcement->id]) }}" method="POST">
                 @csrf
+                <input type="hidden" name="prev_url" value="{{ url()->previous() }}">
                 <x-announcement-form :classes="$classes" :announcement="$announcement"></x-announcement-form>
             </form>
         </div>

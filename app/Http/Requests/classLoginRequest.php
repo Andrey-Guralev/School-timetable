@@ -24,7 +24,7 @@ class classLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'required|string',
+            'password' => 'string',
             'class' => 'numeric|integer'
         ];
     }

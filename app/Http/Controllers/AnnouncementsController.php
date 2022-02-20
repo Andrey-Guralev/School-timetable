@@ -6,6 +6,7 @@ use App\Models\Announcements;
 use App\Http\Requests\StoreAnnouncementsRequest;
 use App\Http\Requests\UpdateAnnouncementsRequest;
 use App\Models\Classes;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 
 class AnnouncementsController extends Controller
@@ -62,7 +63,7 @@ class AnnouncementsController extends Controller
 
         $announcement->save();
 
-        return redirect()->route('announcementsIndex');
+        return redirect($request->prev_url);
     }
 
     public function edit($id)
@@ -74,6 +75,31 @@ class AnnouncementsController extends Controller
         return view('announcements.announcementsEdit', compact('classes', 'announcement'));
     }
 
+    public function update(StoreAnnouncementsRequest $request, $id): \Illuminate\Http\RedirectResponse
+    {
+        $announcement = Announcements::find($id);
+
+        $announcement->title = $request->title;
+        $announcement->text = $request->main_text;
+
+        if ($request->type == 'school')
+        {
+            $announcement->type = '1';
+        }
+        else
+        {
+            $announcement->type = '0';
+            $announcement->class_id = $request->type;
+        }
+
+        $announcement->author_id = \Auth::user()->id;
+
+        $announcement->save();
+
+        return redirect($request->prev_url);
+    }
+
+
     public function delete($id): \Illuminate\Http\RedirectResponse
     {
         $an = Announcements::find($id);
@@ -84,6 +110,6 @@ class AnnouncementsController extends Controller
 
         $an->delete();
 
-        return redirect()->route('announcementsIndex');
+        return redirect()->back();
     }
 }

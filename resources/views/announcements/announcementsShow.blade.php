@@ -7,10 +7,13 @@
         </div>
         <div class="main ml-4">
             <p class="text">
-                {!! strip_tags($announcement->text, '<p><strong><em><span><ol><li><ul>') !!}
+                {!! strip_tags($announcement->text, '<p><strong><em><span><ol><li><ul><a>') !!}
             </p>
         </div>
         <div class="type text-gray-700 mt-4">
+            Автор: {{ $announcement->Author->second_name ?? $announcement->Author->name }} {{ $announcement->Author->first_name ?? '' }} {{ $announcement->Author->middle_name ?? '' }}
+        </div>
+        <div class="type text-gray-700">
             @if($announcement->type == 1)
                 Для всей школы
             @else
@@ -26,7 +29,7 @@
                     <form action="{{ route('announcementsDelete', ['id' => $announcement->id]) }}" method="POST">
                         @method("DELETE")
                         @csrf
-                        <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        <button type="submit" onclick="return confirm('Точно удалить объявление');" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                             Удалить
                         </button>
                     </form>

@@ -27,8 +27,8 @@ class Timetable extends Model
         return $this->belongsTo(User::class);
     }
 
-//    public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-//    {
-//        return $this->belongsTo(Classes::class);
-//    }
+    public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Classes::class);
+    }
 }

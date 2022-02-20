@@ -6,6 +6,7 @@
         <div class="">
             <form action="{{ route('announcementsStore') }}" method="POST">
                 @csrf
+                <input type="hidden" name="prev_url" value="{{ url()->previous() }}">
                 <x-announcement-form :classes="$classes"></x-announcement-form>
             </form>
         </div>

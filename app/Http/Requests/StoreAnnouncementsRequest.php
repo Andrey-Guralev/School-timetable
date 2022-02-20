@@ -37,7 +37,7 @@ class StoreAnnouncementsRequest extends FormRequest
 
     protected function prepareForValidation() {
         $this->merge([
-           'main_text' => strip_tags($this->main_text, '<p><strong><em><span><ol><li><ul>'),
+           'main_text' => strip_tags($this->main_text, '<p><strong><em><span><ol><li><ul><a>'),
         ]);
     }
 }
