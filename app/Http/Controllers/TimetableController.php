@@ -57,10 +57,12 @@ class TimetableController extends Controller
                 $lesson = $s[0];
                 $room = $s[1];
 
-                if(iconv_strlen($room) > 4)
+                if(iconv_strlen($room) > 5)
                 {
                     $room1 = mb_substr($room, 0, 4);
                     $room2 = mb_substr($room, 5);
+                } else {
+                    unset($room1, $room2);
                 }
             }
             else
