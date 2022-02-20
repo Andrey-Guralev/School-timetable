@@ -54,6 +54,11 @@ Route::prefix('announcements')->group(function () {
     Route::post('/edit/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'update'])->middleware('auth')->name('announcementsUpdate');
     Route::get('/edit/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'edit'])->middleware('auth')->name('announcementsEdit');
     Route::delete('/delete/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'delete'])->middleware('auth')->name('announcementsDelete');
+});
+
+Route::prefix('ring')->group(function () {
+    Route::post('/edit', [\App\Http\Controllers\RingScheduleController::class, 'update'])->middleware(['auth', 'admin'])->name('ringUpdate');
+    Route::get('/edit', [\App\Http\Controllers\RingScheduleController::class, 'edit'])->middleware(['auth', 'admin'])->name('ringEdit');
 
 });
 

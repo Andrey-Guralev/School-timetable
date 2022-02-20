@@ -35,6 +35,11 @@
                                     Обьявления
                                 </x-nav-link>
                             @endif
+{{--                            @if(Auth::user()->type >= 4)--}}
+{{--                                <x-nav-link :href="route('ringEdit')" :active="request()->routeIs('ringEdit')">--}}
+{{--                                    Расписание звонков--}}
+{{--                                </x-nav-link>--}}
+{{--                            @endif--}}
                     @endauth
                 </div>
             </div>

@@ -1,7 +1,12 @@
 <x-app-layout>
     <x-container>
+        <div class="mb-4">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('index') }}">
+                Вернуться на главную
+            </a>
+        </div>
         <div class="header">
-            <h2 class="title text-xl bold">
+            <h2 class="title text-3xl bold">
                 {{ $announcement->title }}
             </h2>
         </div>

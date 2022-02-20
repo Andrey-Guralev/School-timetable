@@ -13,15 +13,16 @@ class CreateRingSchedulesTable extends Migration
      */
     public function up()
     {
-//        Schema::create('ring_schedule', function (Blueprint $table) {
-//            $table->id();
-//
-//            $table->time('start-time');
-//            $table->time('end-time');
-//            $table->integer('type')->unique();
-//
-//            $table->timestamps();
-//        });
+        Schema::create('ring_schedule', function (Blueprint $table) {
+            $table->id();
+
+            $table->time('start-time');
+            $table->time('end-time');
+            $table->integer('number')->nullable();
+            $table->integer('type')->unique();
+
+            $table->timestamps();
+        });
     }
 
     /**
