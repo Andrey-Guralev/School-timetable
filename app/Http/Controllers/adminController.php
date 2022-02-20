@@ -30,7 +30,11 @@ class adminController extends Controller
     {
         $user = User::find($request->id);
 
-        $user->class_id = $request->class;
+        if ($request->class == 'null') {
+            $user->class_id = null;
+        } else {
+            $user->class_id = $request->class;
+        }
 
         $user->save();
 

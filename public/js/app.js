@@ -5628,8 +5628,8 @@ function openEditModal(e) {
   deleteUrl = button.dataset.deleteUrl;
   password = button.dataset.password;
   editModal.numberInput.value = classNumber;
-  editModal.letterInput.value = classLetter;
-  editModal.passwordStr.innerHTML = "Пароль: " + password;
+  editModal.letterInput.value = classLetter; // editModal.passwordStr.innerHTML = "Пароль: " + password;
+
   editModal.modal.classList.remove('hidden');
 }
 
@@ -5725,9 +5725,25 @@ function createClass(e) {
 function updatePageBeforeCreate(rId, number, letter, password) {
   document.querySelector('.classes').insertAdjacentHTML('afterbegin', "\n         <button type=\"button\" class=\"class-button id-".concat(rId, " text-blue-600 mr-4\" data-id=\"").concat(rId, "\" data-number=\"").concat(number, "\" data-letter=\"").concat(letter, "\" data-save-url=\"").concat(saveUrlE, "\" data-delete-url=\"").concat(deleteUrlE + '/' + rId, "\" data-password=\"").concat(password, "\">\n                   ").concat(number + letter, "\n        </button>\n    "));
   document.querySelector('.id-' + rId).addEventListener('click', openEditModal);
-  createModal.modal_content.innerHTML = '';
-  createModal.modal_content.insertAdjacentHTML('beforeend', "\n            <div>\n                <div class=\"head flex justify-between mb-2\">\n                    <h1 class=\"text-2xl\">\u041F\u0430\u0440\u043E\u043B\u044C \u0434\u043B\u044F \u043A\u043B\u0430\u0441\u0441\u0430:</h1>\n                </div>\n                <div class=\"flex ml-4\">\n                    <h2 class=\"text-1xl\">\n                        ".concat(password, "\n                    </h2>\n                </div>\n            </div>\n            <div class=\"mt-5 sm:mt-6 flex justify-end\">\n                <button type=\"button\" id=\"close-button-c\" class=\"close w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm\">\n                    \u0412\u044B\u0439\u0442\u0438\n                </button>\n            </div>\n    "));
-  document.getElementById('close-button-c').addEventListener('click', closeCreateModal);
+  createModal.modal_content.innerHTML = ''; // createModal.modal_content.insertAdjacentHTML('beforeend', `
+  //         <div>
+  //             <div class="head flex justify-between mb-2">
+  //                 <h1 class="text-2xl">Пароль для класса:</h1>
+  //             </div>
+  //             <div class="flex ml-4">
+  //                 <h2 class="text-1xl">
+  //                     ${password}
+  //                 </h2>
+  //             </div>
+  //         </div>
+  //         <div class="mt-5 sm:mt-6 flex justify-end">
+  //             <button type="button" id="close-button-c" class="close w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+  //                 Выйти
+  //             </button>
+  //         </div>
+  // `)
+
+  closeCreateModal(); // document.getElementById('close-button-c').addEventListener('click', closeCreateModal);
 }
 
 function init() {

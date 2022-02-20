@@ -37,7 +37,7 @@ function openEditModal(e) {
 
     editModal.numberInput.value = classNumber;
     editModal.letterInput.value = classLetter;
-    editModal.passwordStr.innerHTML = "Пароль: " + password;
+    // editModal.passwordStr.innerHTML = "Пароль: " + password;
 
     editModal.modal.classList.remove('hidden');
 }
@@ -164,25 +164,27 @@ function updatePageBeforeCreate(rId, number, letter, password) {
     document.querySelector('.id-' + rId).addEventListener('click', openEditModal);
 
     createModal.modal_content.innerHTML = '';
-    createModal.modal_content.insertAdjacentHTML('beforeend', `
-            <div>
-                <div class="head flex justify-between mb-2">
-                    <h1 class="text-2xl">Пароль для класса:</h1>
-                </div>
-                <div class="flex ml-4">
-                    <h2 class="text-1xl">
-                        ${password}
-                    </h2>
-                </div>
-            </div>
-            <div class="mt-5 sm:mt-6 flex justify-end">
-                <button type="button" id="close-button-c" class="close w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
-                    Выйти
-                </button>
-            </div>
-    `)
+    // createModal.modal_content.insertAdjacentHTML('beforeend', `
+    //         <div>
+    //             <div class="head flex justify-between mb-2">
+    //                 <h1 class="text-2xl">Пароль для класса:</h1>
+    //             </div>
+    //             <div class="flex ml-4">
+    //                 <h2 class="text-1xl">
+    //                     ${password}
+    //                 </h2>
+    //             </div>
+    //         </div>
+    //         <div class="mt-5 sm:mt-6 flex justify-end">
+    //             <button type="button" id="close-button-c" class="close w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+    //                 Выйти
+    //             </button>
+    //         </div>
+    // `)
 
-    document.getElementById('close-button-c').addEventListener('click', closeCreateModal);
+    closeCreateModal();
+
+    // document.getElementById('close-button-c').addEventListener('click', closeCreateModal);
 }
 
 function init() {

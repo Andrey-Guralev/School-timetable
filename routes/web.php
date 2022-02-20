@@ -41,8 +41,10 @@ Route::middleware('admin')->group(function () {
     Route::post('/user/class', [\App\Http\Controllers\adminController::class, 'changeTeacherClass'])->name('changeTeacherClass');
 });
 
-Route::get('/user/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('userEdit');
-Route::post('/user/store', [\App\Http\Controllers\UserController::class, 'store'])->name('userStore');
+Route::prefix('user')->middleware('auth')->group(function () {
+    Route::get('/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('userEdit');
+    Route::post('/store', [\App\Http\Controllers\UserController::class, 'store'])->name('userStore');
+});
 
 Route::prefix('announcements')->group(function () {
     Route::get('/', [\App\Http\Controllers\AnnouncementsController::class, 'index'])->middleware('auth')->name('announcementsIndex');
@@ -54,7 +56,5 @@ Route::prefix('announcements')->group(function () {
     Route::delete('/delete/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'delete'])->middleware('auth')->name('announcementsDelete');
 
 });
-
-
 
 require __DIR__.'/auth.php';
