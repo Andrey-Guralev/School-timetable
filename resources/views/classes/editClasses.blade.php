@@ -6,11 +6,11 @@
     </x-slot>
 
     <x-container>
-        <div class="header flex justify-between">
+        <div class="header flex justify-between items-center">
             <h3 class="text-xl font-medium">
                 Изменение классов
             </h3>
-            <button id="create-btn" class="w-2/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm">
+            <button id="create-btn" class="text-center h-8 w-2/12 mt-4 px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-800 hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Создать класс
             </button>
         </div>
@@ -21,7 +21,7 @@
                 </button>
             @endforeach
         </div>
-        <div class="explanation ml-8 mt-4 text-gray-600">* Чтобы изменить или удалить класс, надо на него нажать</div>
+        <div class="explanation ml-8 mt-4 text-gray-600">* Чтобы изменить или удалить класс, надо его выбрать</div>
     </x-container>
 
     <div class="modal hidden" id="modal">
@@ -40,8 +40,8 @@
                             </button>
                         </div>
                         <div class="flex">
-                            <input type="text" id="number-input" class="number w-3/12 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
-                            <input type="text" id="letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
+                            <input type="text" id="number-input" class="number w-3/12 shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
+                            <input type="text" id="letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
 
                         </div>
                         <h2 class="text-xl" id="password-str"></h2>
@@ -75,8 +75,8 @@
                             </button>
                         </div>
                         <div class="flex">
-                            <input type="text" id="create-number-input" class="number w-3/12 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
-                            <input type="text" id="create-letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
+                            <input type="text" id="create-number-input" class="number w-3/12 shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
+                            <input type="text" id="create-letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
                         </div>
                     </div>
                     <div class="mt-5 sm:mt-6 flex justify-end">

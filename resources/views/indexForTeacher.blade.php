@@ -4,7 +4,7 @@
     @auth
         <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">
             <div class="block w-full">
-                <h2 class="text-3xl">Расписание для вашего класса ({{ Auth::user()->Class->number  . Auth::user()->Class->letter }})</h2>
+                <h2 class="text-3xl">Расписание для вашего класса ({{ Auth::user()->Class->number ?? 'ошибка' }}{{ Auth::user()->Class->letter ?? '' }})</h2>
             </div>
             @php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
             @for($i = 0; $i < 6; $i++)
@@ -39,7 +39,7 @@
 
         <x-container class="flex justify-between">
             <h1 class="text-3xl">Объявления</h1>
-            <a href="{{ route('announcementsCreate') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Добавить обьявление</a>
+            <a href="{{ route('announcementsCreate') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900">Добавить обьявление</a>
         </x-container>
 
         @foreach($announcements as $announcement)
@@ -62,12 +62,12 @@
                     @endif
                 </div>
                 <div class="buttons mt-2">
-                    <a href="{{ route('announcementShow', ['id' => $announcement->id]) }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <a href="{{ route('announcementShow', ['id' => $announcement->id]) }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900">
                         Просмотреть
                     </a>
                     @auth()
                         @if($announcement->author_id == Auth::user()->id || Auth::user()->type > 4)
-                            <a href="{{ route('announcementsEdit', ['id' => $announcement->id]) }}" class="mr-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <a href="{{ route('announcementsEdit', ['id' => $announcement->id]) }}" class="mr-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900">
                                 Редактировать
                             </a>
                             <form action="{{ route('announcementsDelete', ['id' => $announcement->id]) }}" method="POST">

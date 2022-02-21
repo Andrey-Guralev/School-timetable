@@ -28,7 +28,7 @@
         <div class="buttons mt-2 flex">
             @auth()
                 @if($announcement->author_id == Auth::user()->id || Auth::user()->type > 4)
-                    <a href="{{ route('announcementsEdit', ['id' => $announcement->id]) }}" class="mr-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <a href="{{ route('announcementsEdit', ['id' => $announcement->id]) }}" class="mr-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">
                         Редактировать
                     </a>
                     <form action="{{ route('announcementsDelete', ['id' => $announcement->id]) }}" method="POST">

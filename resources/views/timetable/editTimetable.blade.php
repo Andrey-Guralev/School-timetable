@@ -19,7 +19,7 @@
                 </a>
             @endforeach
         </div>
-        <div class="explanation ml-8 mt-4 text-gray-600">* Чтобы изменить расписание, надо нажать на класс</div>
+        <div class="explanation ml-8 mt-4 text-gray-600">* Чтобы изменить расписание, надо выбрать класс</div>
 </x-container>
 
 </x-app-layout>

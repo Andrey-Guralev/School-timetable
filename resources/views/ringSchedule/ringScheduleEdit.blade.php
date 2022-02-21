@@ -7,7 +7,7 @@
             <form action="">
                 <div>
                     <label for="class_hour_day" class="block font-medium">День когда классный час</label>
-                    <select id="class_hour_day" name="class_hour_day" class="mt-1 block w-3/12 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                    <select id="class_hour_day" name="class_hour_day" class="mt-1 block w-3/12 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-900 focus:border-blue-900 sm:text-sm rounded-md">
                         <option value="null">Без классного часа</option>
                         <option value="0" selected>Понедельник</option> {{-- TODO: ПЕРЕДЕЛАТЬ --}}
                         <option value="2">Вторник</option>
@@ -47,14 +47,14 @@
                                                     {{ $i+1 }}
                                                 </td>
                                                 <td class="">
-                                                    <input type="time" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-1/2 sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="time" class="shadow-sm focus:ring-blue-900 focus:border-blue-900 block w-1/2 sm:text-sm border-gray-300 rounded-md">
                                                 </td>
                                                 <td class="">
-                                                    <input type="time" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-1/2 sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="time" class="shadow-sm focus:ring-blue-900 focus:border-blue-900 block w-1/2 sm:text-sm border-gray-300 rounded-md">
                                                 </td>
                                                 <td class="">
                                                     <div class="bg-white flex justify-start px-6">
-                                                        <button type="button" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" x-data="{ on: false }" aria-pressed="false" :aria-pressed="on.toString()" @click="on = !on" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'bg-blue-600': on, 'bg-gray-200': !(on) }">
+                                                        <button type="button" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900" x-data="{ on: false }" aria-pressed="false" :aria-pressed="on.toString()" @click="on = !on" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'bg-blue-600': on, 'bg-gray-200': !(on) }">
                                                             <span class="sr-only">Use setting</span>
                                                             <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200" x-state:on="Enabled" x-state:off="Not Enabled" :class="{ 'translate-x-5': on, 'translate-x-0': !(on) }"></span>
                                                         </button>
@@ -93,10 +93,10 @@
                                                     {{ $i+1 }}
                                                 </td>
                                                 <td class="">
-                                                    <input type="time" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-1/2 sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="time" class="shadow-sm focus:ring-blue-900 focus:border-blue-900 block w-1/2 sm:text-sm border-gray-300 rounded-md">
                                                 </td>
                                                 <td class="">
-                                                    <input type="time" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-1/2 sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="time" class="shadow-sm focus:ring-blue-900 focus:border-blue-900 block w-1/2 sm:text-sm border-gray-300 rounded-md">
                                                 </td>
                                             </tr>
                                         @endfor
@@ -131,10 +131,10 @@
                                                     {{ $i+1 }}
                                                 </td>
                                                 <td class="">
-                                                    <input type="time" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-1/2 sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="time" class="shadow-sm focus:ring-blue-900 focus:border-blue-900 block w-1/2 sm:text-sm border-gray-300 rounded-md">
                                                 </td>
                                                 <td class="">
-                                                    <input type="time" class="shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-1/2 sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="time" class="shadow-sm focus:ring-blue-900 focus:border-blue-900 block w-1/2 sm:text-sm border-gray-300 rounded-md">
                                                 </td>
                                             </tr>
                                         @endfor

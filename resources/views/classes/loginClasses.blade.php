@@ -50,7 +50,7 @@
             <div>
                 <div>
                     <label for="class" class="block text-sm font-medium text-gray-700">Класс</label>
-                    <select id="class" name="class" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-800 focus:border-blue-500 sm:text-sm rounded-md">
+                    <select id="class" name="class" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-800 focus:border-blue-700 sm:text-sm rounded-md">
                         <option value="">Выбрать</option>
                         @foreach($classes as $class)
                             <option value="{{ $class->id }}">{{ $class->number }}{{$class->letter}}</option>
