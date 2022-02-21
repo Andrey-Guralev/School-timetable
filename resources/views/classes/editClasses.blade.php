@@ -10,7 +10,7 @@
             <h3 class="text-xl font-medium">
                 Изменение классов
             </h3>
-            <button id="create-btn" class="text-center h-8 w-2/12 mt-4 px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-800 hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+            <button id="create-btn" class="text-center h-8 w-2/12  border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-800 hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Создать класс
             </button>
         </div>
