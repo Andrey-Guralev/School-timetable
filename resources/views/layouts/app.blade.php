@@ -22,7 +22,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div  class="min-h-screen bg-gray-100 shadow">
+        <div  class="min-h-screen shadow bg-gray-100" style="">
             @include('layouts.navigation')
 
 {{--            <!-- Page Heading -->--}}

@@ -7,7 +7,7 @@
                     Заголовок
                 </label>
                 <div class="mt-1 flex rounded-md shadow-sm">
-                    <input type="text" name="title" id="title" value="{{ $announcement->title ?? null }}" required class="flex-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full min-w-0 rounded-md sm:text-sm border-gray-300">
+                    <input type="text" name="title" id="title" value="{{ $announcement->title ?? null }}" required class="flex-1 focus:ring-blue-500 focus:border-blue-500 block w-full min-w-0 rounded-md sm:text-sm border-gray-300">
                 </div>
             </div>
 
@@ -30,7 +30,7 @@
                         $type = $announcement->type ?? null;
                         $class_id = $announcement->class_id ?? null;
                     @endphp
-                    <select id="type" name="type" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <select id="type" name="type" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
                         <option value="school" {{ $type == 0 ? 'selected' : ''}}>Для всей школы</option>
                         @foreach($classes as $class)
                             <option value="{{ $class->id }}" @if($type == 0 && $class_id == $class->id) selected @endif>Для {{ $class->number . $class->letter }}</option>

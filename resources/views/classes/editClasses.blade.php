@@ -40,8 +40,8 @@
                             </button>
                         </div>
                         <div class="flex">
-                            <input type="text" id="number-input" class="number w-3/12 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
-                            <input type="text" id="letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
+                            <input type="text" id="number-input" class="number w-3/12 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
+                            <input type="text" id="letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
 
                         </div>
                         <h2 class="text-xl" id="password-str"></h2>
@@ -75,8 +75,8 @@
                             </button>
                         </div>
                         <div class="flex">
-                            <input type="text" id="create-number-input" class="number w-3/12 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
-                            <input type="text" id="create-letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
+                            <input type="text" id="create-number-input" class="number w-3/12 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
+                            <input type="text" id="create-letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
                         </div>
                     </div>
                     <div class="mt-5 sm:mt-6 flex justify-end">

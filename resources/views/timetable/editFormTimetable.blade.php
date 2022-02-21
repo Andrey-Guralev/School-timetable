@@ -53,10 +53,15 @@
                                                 <tr class="bg-white">
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between">
                                                         <div class="lesson flex items-center">{{$s}}. &nbsp; <input type="text" name="lesson-{{ $i }}-{{ $s }}" value="{{ $t->lesson }}" data-type="lesson" data-weekday="{{ $i }}" data-number="{{ $s }}" class="shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></div>
+{{--                                                        <div class="teacher">--}}
+{{--                                                            <select type="text" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md">--}}
+{{--                                                                <option value="null">Нет учителя</option>--}}
+{{--                                                            </select>--}}
+{{--                                                        </div>--}}
                                                         <div class="rooms flex">
                                                             <input type="text" name="room1-{{ $i }}-{{ $s }}" value="{{ $t->room_1 }}" data-type="room1"  data-weekday="{{ $i }}" data-number="{{ $s }}" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md">
-                                                            <input type="text" name="room2-{{ $i }}-{{ $s }}" value="{{ $t->room_2 }}" data-type="room2"  data-weekday="{{ $i }}" data-number="{{ $s }}" class="ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md"></div>
-
+                                                            <input type="text" name="room2-{{ $i }}-{{ $s }}" value="{{ $t->room_2 }}" data-type="room2"  data-weekday="{{ $i }}" data-number="{{ $s }}" class="ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md">
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @php($s++)

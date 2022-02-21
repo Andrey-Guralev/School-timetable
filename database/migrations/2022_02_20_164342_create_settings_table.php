@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRingSchedulesTable extends Migration
+class CreateSettingsTable extends Migration
 {
 //    /**
 //     * Run the migrations.
@@ -13,13 +13,10 @@ class CreateRingSchedulesTable extends Migration
 //     */
 //    public function up()
 //    {
-//        Schema::create('ring_schedule', function (Blueprint $table) {
+//        Schema::create('settings', function (Blueprint $table) {
 //            $table->id();
 //
-//            $table->time('start-time');
-//            $table->time('end-time');
-//            $table->integer('number')->nullable();
-//            $table->integer('type')->unique();
+//            $table->integer('day_class_hour')->default(0);
 //
 //            $table->timestamps();
 //        });
@@ -32,6 +29,6 @@ class CreateRingSchedulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ring_schedule');
+        Schema::dropIfExists('settings');
     }
 }

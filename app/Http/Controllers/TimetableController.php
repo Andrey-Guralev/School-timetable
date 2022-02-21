@@ -46,7 +46,7 @@ class TimetableController extends Controller
                 $weekday++;
             }
             $number++;
-
+            
             if ($string == '') continue;
 
             $s = substr($string, 3);
@@ -77,7 +77,7 @@ class TimetableController extends Controller
                 ->firstOrNew();
 
                 $col->lesson        = $lesson;
-                $col->teacher_id    = 1; //TODO: Переделать
+                $col->teacher_id    = null; //TODO: Переделать
                 $col->class_id      = $class_id;
                 $col->number        = $number;
                 $col->weekday       = $weekday;
@@ -160,7 +160,7 @@ class TimetableController extends Controller
                 }
 
                 $col->lesson        = $lesson[0];
-                $col->teacher_id    = 1; //TODO: Переделать
+                $col->teacher_id    = null; //TODO: Переделать
                 $col->class_id      = $class_id;
                 $col->number        = $number-1;
                 $col->weekday       = $weekday;
