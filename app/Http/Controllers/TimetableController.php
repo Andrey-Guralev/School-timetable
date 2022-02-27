@@ -12,18 +12,26 @@ use function React\Promise\all;
 
 class TimetableController extends Controller
 {
+    public function getForClass($id)
+    {
+        $timetable = Timetable::where('class_id', $id)->get();
+        $classes = Classes::all();
+        $class = Classes::find($id);
+
+        return view('timetableForClass', compact('timetable', 'class', 'classes'));
+    }
 
     public function edit() {
         $classes = Classes::all()->sortByDesc('number');
 
-        return view('timetable.editTimetable', compact('classes'));
+        return view('admin.timetable.editTimetable', compact('classes'));
     }
 
     public function editForm($class_id) {
         $tt = Timetable::where('class_id', $class_id)->get();
         $class = Classes::find($class_id);
 
-        return view('timetable.editFormTimetable', compact('tt', 'class'));
+        return view('admin.timetable.editFormTimetable', compact('tt', 'class'));
     }
 
     public function storeFile(StoreFileTimetableRequest $request, $class_id): \Illuminate\Http\RedirectResponse
@@ -46,7 +54,7 @@ class TimetableController extends Controller
                 $weekday++;
             }
             $number++;
-            
+
             if ($string == '') continue;
 
             $s = substr($string, 3);
@@ -61,7 +69,9 @@ class TimetableController extends Controller
                 {
                     $room1 = mb_substr($room, 0, 4);
                     $room2 = mb_substr($room, 5);
-                } else {
+                }
+                else
+                {
                     unset($room1, $room2);
                 }
             }
@@ -77,7 +87,6 @@ class TimetableController extends Controller
                 ->firstOrNew();
 
                 $col->lesson        = $lesson;
-                $col->teacher_id    = null; //TODO: Переделать
                 $col->class_id      = $class_id;
                 $col->number        = $number;
                 $col->weekday       = $weekday;

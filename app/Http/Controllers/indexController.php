@@ -13,7 +13,7 @@ class indexController extends Controller
     {
         if (\Auth::guest() && !session('class')) // Вывод для не зарегистрированных пользователей
         {
-            return view('indexForGuest');
+            return view('index.indexForGuest');
         }
         elseif (\Auth::guest() && session('class')) // Вывод для классов
         {
@@ -21,15 +21,15 @@ class indexController extends Controller
 
             $announcements = Announcements::where('type', '1')->orWhere('class_id', session('class'))->get()->sortDesc();
 
-            return view('indexForClass', compact('timetable', 'announcements'));
+            return view('index.indexForClass', compact('timetable', 'announcements'));
         }
         elseif (\Auth::check() && \Auth::user()->type == 2) // Вывод для учителей
         {
-            $timetable = Timetable::where('teacher_id', \Auth::user()->class_id)->with('Teacher', 'Class')->get();
+//            $timetable = Timetable::where('teacher_id', \Auth::user()->class_id)->with('Teacher', 'Class')->get();
             $classes = Classes::all();
             $announcements = Announcements::where('type', '1')->orWhere('class_id', \Auth::user()->class_id)->get()->sortDesc();
 
-            return view('indexForTeacher', compact('timetable', 'announcements', 'classes'));
+            return view('index.indexForTeacher', compact( 'announcements', 'classes'));
         }
         elseif (\Auth::check() && \Auth::user()->type == 3) // Вывод для диспетчера
         {
@@ -39,17 +39,16 @@ class indexController extends Controller
         {
             $timetable = null;
 
-            if (\Auth::user()->class_id != null) {
-                $timetable = Timetable::where('teacher_id', \Auth::user()->id)->with('Class')->get();
-            }
+//            if (\Auth::user()->class_id != null) {
+//                $timetable = Timetable::where('teacher_id', \Auth::user()->id)->with('Class')->get();
+//            }
             $classes = Classes::all();
             $announcements = Announcements::with('Classes')->get()->sortDesc();
 
 
-            return view('indexForAdmin', compact(['timetable', 'announcements', 'classes']));
+            return view('index.indexForAdmin', compact(['timetable', 'announcements', 'classes']));
         }
 
         return view('indexForGuest')->with('error', 'Какая-то ошибка');
     }
-
 }

@@ -15,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\indexController::class, 'index'])->name('index');
 
-Route::middleware(['auth', 'manager'])->group(function () {         //Маршруты связанные с редактированием расписания
-    Route::get('/timetable/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');
-    Route::get('/timetable/edit/{class_id}', [\App\Http\Controllers\TimetableController::class, 'editForm'])->name('editFormTimetable');
-    Route::Post('/timetable/edit/{class_id}/file', [\App\Http\Controllers\TimetableController::class, 'storeFile'])->name('storeFileTimetable');
-    Route::Post('/timetable/edit/{class_id}/form', [\App\Http\Controllers\TimetableController::class, 'storeForm'])->name('storeFormTimetable');
+Route::prefix('timetable')->middleware(['auth', 'manager'])->group(function () {         //Маршруты связанные с редактированием расписания
+    Route::get('/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');
+    Route::get('/edit/{class_id}', [\App\Http\Controllers\TimetableController::class, 'editForm'])->name('editFormTimetable');
+    Route::Post('/edit/{class_id}/file', [\App\Http\Controllers\TimetableController::class, 'storeFile'])->name('storeFileTimetable');
+    Route::Post('/edit/{class_id}/form', [\App\Http\Controllers\TimetableController::class, 'storeForm'])->name('storeFormTimetable');
+});
+
+Route::prefix('timetable')->group(function () {                                         // Маршруты связанные с получением расписания
+    Route::get('/{id}', [\App\Http\Controllers\TimetableController::class, 'getForClass'])->middleware('auth')->name('timetableForClass');
 });
 
 Route::middleware(['auth', 'manager'])->group(function () {         //Маршруты связанные с созданием и редактированием классов
@@ -35,7 +39,7 @@ Route::prefix('classes')->group(function () {               //Маршруты �
     Route::get('/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->middleware('guest')->name('classLogout');
 });
 
-Route::middleware('admin')->group(function () {
+Route::middleware('Admin')->group(function () {
     Route::get('/users', [\App\Http\Controllers\adminController::class, 'indexUsers'])->name('adminUsers');
     Route::get('/user/{id}/{type}', [\App\Http\Controllers\adminController::class, 'changeUserType'])->name('changeUserType');
     Route::post('/user/class', [\App\Http\Controllers\adminController::class, 'changeTeacherClass'])->name('changeTeacherClass');
@@ -57,9 +61,8 @@ Route::prefix('announcements')->group(function () {
 });
 
 Route::prefix('ring')->group(function () {
-    Route::post('/edit', [\App\Http\Controllers\RingScheduleController::class, 'update'])->middleware(['auth', 'admin'])->name('ringUpdate');
-    Route::get('/edit', [\App\Http\Controllers\RingScheduleController::class, 'edit'])->middleware(['auth', 'admin'])->name('ringEdit');
-
+    Route::post('/edit', [\App\Http\Controllers\RingScheduleController::class, 'update'])->middleware(['auth', 'Admin'])->name('ringUpdate');
+    Route::get('/edit', [\App\Http\Controllers\RingScheduleController::class, 'edit'])->middleware(['auth', 'Admin'])->name('ringEdit');
 });
 
 require __DIR__.'/auth.php';

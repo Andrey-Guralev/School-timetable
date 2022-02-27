@@ -13,7 +13,7 @@ class adminController extends Controller
         $users = User::all();
         $classes = Classes::all();
 
-        return view('admin.adminUsers', compact('users', 'classes'));
+        return view('Admin.adminUsers', compact('users', 'classes'));
     }
 
     public function changeUserType($user, $type): \Illuminate\Http\RedirectResponse

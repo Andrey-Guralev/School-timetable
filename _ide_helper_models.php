@@ -22,7 +22,7 @@ namespace App\Models{
  * @property int|null $class_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User|null $Author
+ * @property-read \App\Models\User $Author
  * @property-read \App\Models\Classes|null $Classes
  * @method static \Database\Factories\AnnouncementsFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcements newModelQuery()
@@ -124,6 +124,7 @@ namespace App\Models{
  * @property string|null $room_2
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classes $Class
  * @property-read \App\Models\User|null $Teacher
  * @method static \Database\Factories\TimetableFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newModelQuery()
@@ -186,5 +187,17 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\settings
+ *
+ * @method static \Database\Factories\settingsFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|settings newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|settings newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|settings query()
+ */
+	class settings extends \Eloquent {}
 }
 

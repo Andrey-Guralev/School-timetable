@@ -29,4 +29,9 @@ class Classes extends Model
     {
         return $this->hasMany(Students::class);
     }
+
+    public function getFullName(): string
+    {
+        return $this->number . $this->letter;
+    }
 }

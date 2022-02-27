@@ -32,7 +32,7 @@ class ClassesController extends Controller
     {
         $classes = Classes::all()->sortByDesc('number');
 
-        return view('classes.editClasses', compact('classes'));
+        return view('admin.classes.editClasses', compact('classes'));
     }
 
     public function update(UpdateClassesRequest $request, classes $classes)
@@ -65,7 +65,7 @@ class ClassesController extends Controller
     {
         $classes = Classes::select(['id', 'number', 'letter'])->get();
 
-        return view('classes.loginClasses', compact('classes'));
+        return view('auth.loginClasses', compact('classes'));
     }
 
     public function login(classLoginRequest $request)
