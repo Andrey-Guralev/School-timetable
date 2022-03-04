@@ -5858,7 +5858,10 @@ function loadingFinish() {
   var classes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   // console.log('Загруженно')
   loadingMessage.innerHTML = 'Расписание загруженно';
-  errorMessage.innerHTML = 'Не удалось обновить расписание у классов: ' + classes;
+
+  if (classes[0]) {
+    errorMessage.innerHTML = 'Не удалось обновить расписание у классов: ' + classes;
+  }
 }
 
 function init() {
