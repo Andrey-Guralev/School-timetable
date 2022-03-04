@@ -186,7 +186,7 @@ class TimetableController extends Controller
         if (!empty($unknown)) {
             $unknown = json_encode($unknown);
         } else {
-            $unknown = null;
+            $unknown = 'null';
         }
 
         return response($unknown, 200);
