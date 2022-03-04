@@ -24,8 +24,8 @@ class CreateAnnouncementsTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('author_id')->references('id')->on('users');
-            $table->foreign('class_id')->references('id')->on('classes');
+//            $table->foreign('author_id')->references('id')->on('users');
+//            $table->foreign('class_id')->references('id')->on('classes');
         });
     }
 

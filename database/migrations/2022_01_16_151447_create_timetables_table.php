@@ -24,8 +24,8 @@ class CreateTimetablesTable extends Migration
             $table->string('room_2')->nullable();
             $table->timestamps();
 
-            $table->foreign('teacher_id')->references('id')->on('users');
-            $table->foreign('class_id')->references('id')->on('classes');
+//            $table->foreign('teacher_id')->references('id')->on('users');
+//            $table->foreign('class_id')->references('id')->on('classes');
 
         });
     }
