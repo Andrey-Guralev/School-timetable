@@ -37,7 +37,7 @@ function loadingFinish(classes = null) {
     // console.log('Загруженно')
     loadingMessage.innerHTML = 'Расписание загруженно';
 
-    if (classes !== 'null') {
+    if (classes) {
         errorMessage.innerHTML = 'Не удалось обновить расписание у классов: ' + classes;
     }
 }

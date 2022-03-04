@@ -5859,7 +5859,7 @@ function loadingFinish() {
   // console.log('Загруженно')
   loadingMessage.innerHTML = 'Расписание загруженно';
 
-  if (classes[0]) {
+  if (classes) {
     errorMessage.innerHTML = 'Не удалось обновить расписание у классов: ' + classes;
   }
 }
