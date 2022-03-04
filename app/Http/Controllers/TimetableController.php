@@ -142,7 +142,7 @@ class TimetableController extends Controller
 
         if ($res == true) {
 
-            $dirName = explode('/', $zip->getNameIndex(0))[0];
+//            $dirName = explode('/', $zip->getNameIndex(0))[0];
 
             $zip->extractTo('storage/public');
             $zip->close();
@@ -151,7 +151,7 @@ class TimetableController extends Controller
         }
 //
 
-//        $dirName = explode('/', \Storage::allDirectories('public')[0])[1];
+        $dirName = explode('/', \Storage::allDirectories('public')[0])[1];
 //
         $allFiles = \Storage::allFiles('public/' . $dirName);
         $unknown = [];
