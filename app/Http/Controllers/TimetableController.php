@@ -139,12 +139,22 @@ class TimetableController extends Controller
         $zip = new \ZipArchive();
         $res = $zip->open($request->archive);
 
+
         if ($res == true) {
 
 //            $dirName = explode('/', $zip->getNameIndex(0))[0];
 
-            $zip->extractTo('../storage/app/');
-            $zip->close();
+
+            if ($zip->numFiles > 3) {
+                \Storage::makeDirectory('/tt');
+
+                $zip->extractTo('../storage/app/tt/');
+                $zip->close();
+            } else {
+
+                $zip->extractTo('../storage/app/');
+                $zip->close();
+            }
         } else {
             return redirect()->back();
         }
