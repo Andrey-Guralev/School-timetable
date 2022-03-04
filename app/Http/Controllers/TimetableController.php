@@ -149,8 +149,6 @@ class TimetableController extends Controller
             return redirect()->back();
         }
 //
-        \Debugbar::info(\Storage::allDirectories(''));
-
         $dirName = \Storage::allDirectories('')[1];
 //
         $allFiles = \Storage::allFiles('public/' . $dirName);
