@@ -159,7 +159,7 @@ class TimetableController extends Controller
         foreach ($allFiles as $file)
         {
             $text = \Storage::get($file);
-            $className = explode('/', $file)[2];
+            $className = explode('/', $file)[1];
             $className = explode('.', $className)[0];
 
             $class = Classes::where('alias', $className)->get()->first();
