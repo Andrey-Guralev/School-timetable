@@ -141,15 +141,18 @@ class TimetableController extends Controller
         $res = $zip->open($request->archive);
 
         if ($res == true) {
-            $zip->extractTo('storage');
 
+            $dirName = explode('/', $zip->getNameIndex(0))[0];
+
+            $zip->extractTo('storage/public');
             $zip->close();
         } else {
             return redirect()->back();
         }
+//
 
-        $dirName = explode('/', \Storage::allDirectories('public')[0])[1];
-
+//        $dirName = explode('/', \Storage::allDirectories('public')[0])[1];
+//
         $allFiles = \Storage::allFiles('public/' . $dirName);
         $unknown = [];
         $parser = new TimetableParser();
