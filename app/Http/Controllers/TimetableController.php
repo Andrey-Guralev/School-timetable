@@ -148,8 +148,11 @@ class TimetableController extends Controller
             return redirect()->back();
         }
 
-        $dirName = explode('/', \Storage::allDirectories('public')[0])[1];
-        $allFiles = \Storage::allFiles('public/' . $dirName);
+        \Debugbar::info(\Storage::allDirectories());
+
+        $dirName = explode('\\', \Storage::allDirectories('public')[0])[1];
+
+        $allFiles = \Storage::allFiles('public\\' . $dirName);
         $unknown = [];
         $parser = new TimetableParser();
 
@@ -157,7 +160,7 @@ class TimetableController extends Controller
         foreach ($allFiles as $file)
         {
             $text = \Storage::get($file);
-            $className = explode('/', $file)[2];
+            $className = explode('\\', $file)[2];
             $className = explode('.', $className)[0];
 
             $class = Classes::where('alias', $className)->get()->first();
@@ -179,7 +182,7 @@ class TimetableController extends Controller
             $parser->parseAndSave($class, $text);
         }
 
-        \Storage::deleteDirectory('public/' . $dirName);
+        \Storage::deleteDirectory('public\\' . $dirName);
 
         $unknown = json_encode($unknown);
 
