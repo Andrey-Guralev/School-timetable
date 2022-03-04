@@ -8,7 +8,7 @@
         </div>
         <div class="ml-4 flex flex-wrap">
             @foreach($classes as $class)
-                <a href="{{ route('timetableForClass', ['id' => $class->id]) }}" class="mx-1 bg-blue-600 block h-8 px-2 flex justify-center items-center rounded text-white hover:bg-blue-700 transition">
+                <a href="{{ route('timetableForClass', ['id' => $class->id]) }}" class="mb-2 mx-1 bg-blue-600 block h-8 px-2 flex justify-center items-center rounded text-white hover:bg-blue-700 transition">
                     {{ $class->number }}{{ $class->letter }}
                 </a>
             @endforeach

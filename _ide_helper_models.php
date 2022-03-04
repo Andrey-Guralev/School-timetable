@@ -48,6 +48,7 @@ namespace App\Models{
  * @property int $number
  * @property string $letter
  * @property string $password
+ * @property string|null $alias
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Announcements[] $Announcement
@@ -60,6 +61,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Classes newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Classes newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Classes query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Classes whereAlias($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereLetter($value)

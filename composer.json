@@ -17,7 +17,9 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "tinymce/tinymce": "^5.10"
+        "tinymce/tinymce": "^5.10",
+        "ext-zip": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

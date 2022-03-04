@@ -17,6 +17,10 @@ if (window.location.pathname.indexOf('users') === 1) {
     require('./editUsers');
 }
 
+if (window.location.pathname.indexOf('timetable/edit') === 1) {
+    require('./editTimetable');
+}
+
 
 import Alpine from 'alpinejs';
 

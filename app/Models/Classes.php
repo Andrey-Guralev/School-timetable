@@ -11,7 +11,8 @@ class Classes extends Model
 
     protected $fillable = [
         'number',
-        'letter'
+        'letter',
+        'alias',
     ];
 
 

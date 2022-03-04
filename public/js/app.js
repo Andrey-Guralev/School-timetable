@@ -5552,6 +5552,10 @@ if (window.location.pathname.indexOf('users') === 1) {
   __webpack_require__(/*! ./editUsers */ "./resources/js/editUsers.js");
 }
 
+if (window.location.pathname.indexOf('timetable/edit') === 1) {
+  __webpack_require__(/*! ./editTimetable */ "./resources/js/editTimetable.js");
+}
+
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
@@ -5809,6 +5813,56 @@ function init() {
   deleteButtons.forEach(function (element, i, arr) {
     element.addEventListener('click', deleteForms);
   });
+}
+
+init();
+
+/***/ }),
+
+/***/ "./resources/js/editTimetable.js":
+/*!***************************************!*\
+  !*** ./resources/js/editTimetable.js ***!
+  \***************************************/
+/***/ (() => {
+
+var sendButton = document.getElementById('archive-send');
+var archiveInput = document.getElementById('archive-input');
+var loadingMessage = document.getElementById('loading-message');
+var errorMessage = document.getElementById('error-message');
+
+function send(e) {
+  e.preventDefault();
+  var url = sendButton.dataset.url;
+  var formData = new FormData();
+  formData.append("archive", archiveInput.files[0]);
+  axios.post(url, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    onUploadProgress: loading
+  }).then(function (response) {
+    console.log(response.data);
+    loadingFinish(response.data);
+  })["catch"](function (e) {
+    console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
+    error = e;
+  });
+}
+
+function loading() {
+  // console.log('Загрузка')
+  loadingMessage.innerHTML = 'Загрузка...';
+}
+
+function loadingFinish() {
+  var classes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  // console.log('Загруженно')
+  loadingMessage.innerHTML = 'Расписание загруженно';
+  errorMessage.innerHTML = 'Не удалось обновить расписание у классов: ' + classes;
+}
+
+function init() {
+  sendButton.addEventListener('click', send);
 }
 
 init();

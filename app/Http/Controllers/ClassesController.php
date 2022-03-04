@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Translit;
 use App\Http\Requests\classLoginRequest;
 use App\Models\Classes;
 use App\Http\Requests\StoreClassesRequest;
@@ -20,6 +21,7 @@ class ClassesController extends Controller
 
         $class->number = $request->number;
         $class->letter = $request->letter;
+        $class->alias = Translit::translitInEn($request->number . mb_strtolower($request->letter));
         $class->password = str_replace(['.', '/', "\\", ',', '\'', '"', ] ,'', substr(Hash::make($request->pasword), '10', '5'));
 
         $class->save();
@@ -41,6 +43,7 @@ class ClassesController extends Controller
 
         $class->number = $request->number;
         $class->letter = $request->letter;
+        $class->alias = Translit::translitInEn($request->number . mb_strtolower($request->letter));
 
         $class->save();
 
@@ -92,4 +95,5 @@ class ClassesController extends Controller
         session()->forget('class');
         return redirect(RouteServiceProvider::HOME);
     }
+
 }

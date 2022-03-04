@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\timetableParser;
+use App\Actions\Translit;
+use App\Http\Requests\StoreArchiveTimetableRequest;
 use App\Http\Requests\StoreFileTimetableRequest;
 use App\Http\Requests\StoreFormTimetableRequest;
 use App\Models\Classes;
 use App\Models\Timetable;
+use Dflydev\DotAccessData\Data;
+use http\Env\Response;
 use Illuminate\Support\Facades\File;
 use function PHPUnit\Framework\throwException;
 use function React\Promise\all;
@@ -21,13 +26,15 @@ class TimetableController extends Controller
         return view('timetableForClass', compact('timetable', 'class', 'classes'));
     }
 
-    public function edit() {
+    public function edit()
+    {
         $classes = Classes::all()->sortByDesc('number');
 
         return view('admin.timetable.editTimetable', compact('classes'));
     }
 
-    public function editForm($class_id) {
+    public function editForm($class_id)
+    {
         $tt = Timetable::where('class_id', $class_id)->get();
         $class = Classes::find($class_id);
 
@@ -36,66 +43,13 @@ class TimetableController extends Controller
 
     public function storeFile(StoreFileTimetableRequest $request, $class_id): \Illuminate\Http\RedirectResponse
     {
-        $col = Timetable::where('class_id', $class_id)->get();
-        foreach ($col as $item) { $item->delete(); }
+        $class = Classes::find($class_id);
 
-        $originText = $request->text;
-        $text = str_replace(array("\r\n", "\r", "\n"), '  ', $originText);
-        $text = explode('  ' ,$text);
+        Timetable::where('class_id', $class->id)->delete();
 
-        $number = 0;
-        $weekday = 0;
+        $parser = new TimetableParser();
+        $parser->parseAndSave($class, $request->text);
 
-        foreach ($text as $string)
-        {
-            if ($number > 7)
-            {
-                $number = 0;
-                $weekday++;
-            }
-            $number++;
-
-            if ($string == '') continue;
-
-            $s = substr($string, 3);
-            $s = explode('(', rtrim($s, ')'));
-
-            if ($s[0] != '_______')
-            {
-                $lesson = $s[0];
-                $room = $s[1];
-
-                if(iconv_strlen($room) > 5)
-                {
-                    $room1 = mb_substr($room, 0, 4);
-                    $room2 = mb_substr($room, 5);
-                }
-                else
-                {
-                    unset($room1, $room2);
-                }
-            }
-            else
-            {
-                $lesson = '_______';
-                $room = '';
-            }
-
-            $col = Timetable::where('class_id', $class_id)
-                ->where('number', $number)
-                ->where('weekday', $weekday)
-                ->firstOrNew();
-
-                $col->lesson        = $lesson;
-                $col->class_id      = $class_id;
-                $col->number        = $number;
-                $col->weekday       = $weekday;
-                $col->room_1        = $room1 ?? $room;
-                $col->room_2        = $room2 ?? null;
-
-                $col->save();
-
-        }
         return redirect()->back();
     }
 
@@ -123,8 +77,7 @@ class TimetableController extends Controller
             '-5-',
         ];
 
-        foreach ($data as $key=>$value)
-        {
+        foreach ($data as $key => $value) {
             static $w = 0;
             static $n = 0;
             static $lesson = null;
@@ -137,50 +90,100 @@ class TimetableController extends Controller
                 continue;
             }
 
-            if(\Str::contains($key, 'lesson')) {
+            if (\Str::contains($key, 'lesson')) {
                 $lesson = $value;
                 $n++;
             }
 
-            if(\Str::contains($key, 'room1')) {
+            if (\Str::contains($key, 'room1')) {
                 $room1 = $value;
             }
 
-            if(\Str::contains($key, 'room2')) {
+            if (\Str::contains($key, 'room2')) {
                 $room2 = $value;
             }
-
 
 
             $ar[$w][$n] = [$lesson, $room1, $room2];
         }
 
-        foreach ($ar as $weekday=>$val) {
-            foreach ($val as $number=>$lesson) {
+        foreach ($ar as $weekday => $val) {
+            foreach ($val as $number => $lesson) {
 
                 $col = Timetable::where('class_id', $class_id)
-                    ->where('number', $number-1)
+                    ->where('number', $number - 1)
                     ->where('weekday', $weekday)
                     ->firstOrNew();
 
-                if ($lesson[0] == null ) {
+                if ($lesson[0] == null) {
                     $col->delete();
                     continue;
                 }
 
-                $col->lesson        = $lesson[0];
-                $col->teacher_id    = null; //TODO: Переделать
-                $col->class_id      = $class_id;
-                $col->number        = $number-1;
-                $col->weekday       = $weekday;
-                $col->room_1        = $lesson[1];
-                $col->room_2        = $lesson[2];
+                $col->lesson = $lesson[0];
+                $col->teacher_id = null; //TODO: Переделать
+                $col->class_id = $class_id;
+                $col->number = $number - 1;
+                $col->weekday = $weekday;
+                $col->room_1 = $lesson[1];
+                $col->room_2 = $lesson[2];
 
                 $col->save();
             }
         }
 
         return redirect()->back();
+    }
+
+    public function storeArchive(StoreArchiveTimetableRequest $request)
+    {
+        $zip = new \ZipArchive();
+        $res = $zip->open($request->archive);
+
+        if ($res == true) {
+            $zip->extractTo('storage');
+
+            $zip->close();
+        } else {
+            return redirect()->back();
+        }
+
+        $dirName = explode('/', \Storage::allDirectories('public')[0])[1];
+        $allFiles = \Storage::allFiles('public/' . $dirName);
+        $unknown = [];
+        $parser = new TimetableParser();
+
+
+        foreach ($allFiles as $file)
+        {
+            $text = \Storage::get($file);
+            $className = explode('/', $file)[2];
+            $className = explode('.', $className)[0];
+
+            $class = Classes::where('alias', $className)->get()->first();
+
+            if (!$class)
+            {
+                $className = Translit::translitInRus($className);
+                $unknown[] = $className;
+
+                continue;
+            }
+
+            if (mb_detect_encoding($text, 'utf-8', true) != true) {
+                $text = mb_convert_encoding($text, 'utf-8', 'cp1251');
+            }
+
+            Timetable::where('class_id', $class->id)->delete();
+
+            $parser->parseAndSave($class, $text);
+        }
+
+        \Storage::deleteDirectory('public/' . $dirName);
+
+        $unknown = json_encode($unknown);
+
+        return response($unknown, 200);
     }
 
 }

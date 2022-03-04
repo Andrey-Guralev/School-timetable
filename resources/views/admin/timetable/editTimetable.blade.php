@@ -8,7 +8,7 @@
     <x-container>
         <div class="header flex justify-between">
             <h3 class="text-xl font-medium">
-                Классы
+                Выбрать класс для изменения расписания
             </h3>
 {{--            <a href="{{ route('editClasses') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Изменить классы</a>--}}
         </div>
@@ -20,6 +20,39 @@
             @endforeach
         </div>
         <div class="explanation ml-8 mt-4 text-gray-600">* Чтобы изменить расписание, надо выбрать класс</div>
-</x-container>
+        <div class="my-4">
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-center">
+                  <span class="px-2 bg-white text-sm text-gray-500">
+                    Или
+                  </span>
+                </div>
+            </div>
+        </div>
+        <div class="header flex justify-between">
+            <h3 class="text-xl font-medium">
+                Изменить для всех классов сразу
+            </h3>
+        </div>
+        <div id="error-message" class="mt-4 ml-8">
 
+        </div>
+        <div class="ml-8 mt-4">
+            <form action="{{ route('storeArchiveTimetable') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" id="archive-input" name="archive">
+                <div class="flex items-baseline">
+                    <button type="submit" data-url="{{ route('storeArchiveTimetable') }}" id="archive-send" class="flex mt-4 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Отправить
+                    </button>
+                    <span class="ml-4 " id="loading-message"></span>
+                </div>
+            </form>
+        </div>
+        <div class="explanation ml-8 mt-4 text-gray-600">* Необхадимо импортироваить zip архив</div>
+
+    </x-container>
 </x-app-layout>
