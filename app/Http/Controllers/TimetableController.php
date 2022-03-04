@@ -144,17 +144,15 @@ class TimetableController extends Controller
 
 //            $dirName = explode('/', $zip->getNameIndex(0))[0];
 
-
             if ($zip->numFiles > 3) {
                 \Storage::makeDirectory('/tt');
 
                 $zip->extractTo('../storage/app/tt/');
-                $zip->close();
-            } else {
-
+            } elseif($zip->numFiles == 1) {
                 $zip->extractTo('../storage/app/');
-                $zip->close();
             }
+
+            $zip->close();
         } else {
             return redirect()->back();
         }
@@ -191,7 +189,7 @@ class TimetableController extends Controller
             $parser->parseAndSave($class, $text);
         }
 
-        \Storage::deleteDirectory($dirName);
+//        \Storage::deleteDirectory($dirName);
 
         if (!empty($unknown)) {
             $unknown = json_encode($unknown);
