@@ -151,7 +151,7 @@ class TimetableController extends Controller
 //
         $dirName = \Storage::allDirectories('')[0];
 //
-        $allFiles = \Storage::allFiles('public/' . $dirName);
+        $allFiles = \Storage::allFiles($dirName);
         $unknown = [];
         $parser = new TimetableParser();
 
@@ -181,7 +181,7 @@ class TimetableController extends Controller
             $parser->parseAndSave($class, $text);
         }
 
-        \Storage::deleteDirectory('public/' . $dirName);
+        \Storage::deleteDirectory($dirName);
 
         if (!empty($unknown)) {
             $unknown = json_encode($unknown);
