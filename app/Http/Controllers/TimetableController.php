@@ -183,7 +183,11 @@ class TimetableController extends Controller
 
         \Storage::deleteDirectory('public/' . $dirName);
 
-        $unknown = json_encode($unknown);
+        if (!empty($unknown)) {
+            $unknown = json_encode($unknown);
+        } else {
+            $unknown = null;
+        }
 
         return response($unknown, 200);
     }
