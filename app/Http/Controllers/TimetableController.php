@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\timetableParser;
+use App\Actions\TimetableParser;
 use App\Actions\Translit;
 use App\Http\Requests\StoreArchiveTimetableRequest;
 use App\Http\Requests\StoreFileTimetableRequest;
@@ -10,7 +10,6 @@ use App\Http\Requests\StoreFormTimetableRequest;
 use App\Models\Classes;
 use App\Models\Timetable;
 use Dflydev\DotAccessData\Data;
-use http\Env\Response;
 use Illuminate\Support\Facades\File;
 use function PHPUnit\Framework\throwException;
 use function React\Promise\all;
@@ -142,16 +141,17 @@ class TimetableController extends Controller
 
         if ($res == true) {
 
-            $dirName = explode('/', $zip->getNameIndex(0))[0];
+//            $dirName = explode('/', $zip->getNameIndex(0))[0];
 
-            $zip->extractTo('storage/public');
+            $zip->extractTo('../storage/app/');
             $zip->close();
         } else {
             return redirect()->back();
         }
 //
+        \Debugbar::info(\Storage::allDirectories(''));
 
-//        $dirName = explode('/', \Storage::allDirectories('public')[0])[1];
+        $dirName = \Storage::allDirectories('')[1];
 //
         $allFiles = \Storage::allFiles('public/' . $dirName);
         $unknown = [];
