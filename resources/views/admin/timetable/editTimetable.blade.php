@@ -52,7 +52,7 @@
                 </div>
             </form>
         </div>
-        <div class="explanation ml-8 mt-4 text-gray-600">* Необхадимо импортироваить zip архив</div>
+        <div class="explanation ml-8 mt-4 text-gray-600">* Необходимо импортироваить zip архив</div>
 
     </x-container>
 </x-app-layout>
