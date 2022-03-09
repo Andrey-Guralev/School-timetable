@@ -47,7 +47,7 @@ class TimetableController extends Controller
         Timetable::where('class_id', $class->id)->delete();
 
         $parser = new TimetableParser();
-        $parser->parseAndSave($class, $request->text);
+        $parser->parseFile($class, $request->text);
 
         return redirect()->back();
     }
@@ -59,7 +59,6 @@ class TimetableController extends Controller
         foreach ($col as $item) {
             $item->delete();
         }
-
 
         $data = $request->all();
         unset($data["_method"]);
@@ -186,7 +185,7 @@ class TimetableController extends Controller
 
             Timetable::where('class_id', $class->id)->delete();
 
-            $parser->parseAndSave($class, $text);
+            $parser->parseFile($class, $text);
         }
 
         \Storage::deleteDirectory($dirName);

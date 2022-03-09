@@ -5780,6 +5780,8 @@ function addForms(e) {
   var tr = e.target.parentNode;
   var tableRows = tr.parentNode.parentNode.rows;
   var prevTr = tableRows[tableRows.length - 2];
+  var table = tr.parentNode.parentNode.parentNode;
+  var weekday = table.dataset.weekday;
 
   if (tableRows.length === 1) {
     var i = tr.parentNode;
@@ -5788,8 +5790,8 @@ function addForms(e) {
   }
 
   var number = Number(prevTr.childNodes[1].childNodes[1].childNodes[0].nodeValue.substr(0, 2)) + 1;
-  var lessonInput = prevTr.childNodes[1].childNodes[1].childNodes[1];
-  var weekday = lessonInput.dataset.weekday;
+  var lessonInput = prevTr.childNodes[1].childNodes[1].childNodes[1]; // let weekday = lessonInput.dataset.weekday;
+
   prevTr.insertAdjacentHTML('afterend', "\n             <tr class=\"bg-white\">\n                 <td class=\"px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between\">\n                     <div class=\"lesson flex items-center\">".concat(number, ". &nbsp; <input type=\"text\" name=\"lesson-").concat(weekday, "-").concat(number, "\"  data-type=\"lesson\" data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"shadow-sm focus:ring-indigo-500 focus:border indigo-500 block w-full sm:text-sm border-gray-300 rounded-md\"></div>\n                     <div class=\"rooms flex\">\n                         <input type=\"text\" name=\"room1-").concat(weekday, "-").concat(number, "\" value=\"\" data-type=\"room1\"  data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\">\n                         <input type=\"text\" name=\"room2-").concat(weekday, "-").concat(number, "\" value=\"\" data-type=\"room2\"  data-weekday=\"").concat(weekday, "\" data-number=\"").concat(number, "\" class=\"ml-4 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-16 sm:text-sm border-gray-300 rounded-md\"></div>\n                 </td>\n             </tr>\n        "));
 }
 

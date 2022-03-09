@@ -6,7 +6,7 @@ use App\Models\Timetable;
 
 class TimetableParser
 {
-    public function parseAndSave($class, $text)
+    public function parseFile($class, $text)
     {
         $text = str_replace(array("\r\n", "\r", "\n"), '  ', $text);
         $text = explode('  ', $text);

@@ -3,6 +3,8 @@ function addForms(e) {
     let tr = e.target.parentNode;
     let tableRows = tr.parentNode.parentNode.rows;
     let prevTr = tableRows[tableRows.length - 2]
+    let table = tr.parentNode.parentNode.parentNode;
+    let weekday = table.dataset.weekday
 
     if (tableRows.length === 1)
     {
@@ -24,7 +26,7 @@ function addForms(e) {
 
     let number = Number(prevTr.childNodes[1].childNodes[1].childNodes[0].nodeValue.substr(0, 2)) + 1;
     let lessonInput = prevTr.childNodes[1].childNodes[1].childNodes[1];
-    let weekday = lessonInput.dataset.weekday;
+    // let weekday = lessonInput.dataset.weekday;
 
     prevTr.insertAdjacentHTML('afterend', `
              <tr class="bg-white">
