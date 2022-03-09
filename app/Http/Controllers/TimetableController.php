@@ -10,6 +10,7 @@ use App\Http\Requests\StoreFormTimetableRequest;
 use App\Models\Classes;
 use App\Models\Timetable;
 use Dflydev\DotAccessData\Data;
+use http\Header\Parser;
 use Illuminate\Support\Facades\File;
 use function PHPUnit\Framework\throwException;
 use function React\Promise\all;
@@ -54,81 +55,13 @@ class TimetableController extends Controller
 
     public function storeForm(StoreFormTimetableRequest $request, $class_id): \Illuminate\Http\RedirectResponse
     {
-        $col = Timetable::where('class_id', $class_id)->get();
-
-        foreach ($col as $item) {
-            $item->delete();
-        }
+        Timetable::where('class_id', $class_id)->delete();
 
         $data = $request->all();
-        unset($data["_method"]);
-        unset($data["_token"]);
+        $class = Classes::find($class_id);
 
-        $ar = array();
-
-        $weekdays = [
-            '-0-',
-            '-1-',
-            '-2-',
-            '-3-',
-            '-4-',
-            '-5-',
-        ];
-
-        foreach ($data as $key => $value) {
-            static $w = 0;
-            static $n = 0;
-            static $lesson = null;
-            static $room1 = null;
-            static $room2 = null;
-
-            if (!\Str::contains($key, $weekdays[$w])) {
-                $n = 0;
-                $w++;
-                continue;
-            }
-
-            if (\Str::contains($key, 'lesson')) {
-                $lesson = $value;
-                $n++;
-            }
-
-            if (\Str::contains($key, 'room1')) {
-                $room1 = $value;
-            }
-
-            if (\Str::contains($key, 'room2')) {
-                $room2 = $value;
-            }
-
-
-            $ar[$w][$n] = [$lesson, $room1, $room2];
-        }
-
-        foreach ($ar as $weekday => $val) {
-            foreach ($val as $number => $lesson) {
-
-                $col = Timetable::where('class_id', $class_id)
-                    ->where('number', $number - 1)
-                    ->where('weekday', $weekday)
-                    ->firstOrNew();
-
-                if ($lesson[0] == null) {
-                    $col->delete();
-                    continue;
-                }
-
-                $col->lesson = $lesson[0];
-                $col->teacher_id = null; //TODO: Переделать
-                $col->class_id = $class_id;
-                $col->number = $number - 1;
-                $col->weekday = $weekday;
-                $col->room_1 = $lesson[1];
-                $col->room_2 = $lesson[2];
-
-                $col->save();
-            }
-        }
+        $parser = new TimetableParser();
+        $parser->parseForm($class, $data);
 
         return redirect()->back();
     }
