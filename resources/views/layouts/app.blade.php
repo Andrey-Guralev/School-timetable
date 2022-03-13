@@ -1,3 +1,9 @@
+<!--
+    Сайт сделал: Андрей Гуралев
+    Vk: https://vk.com/n11ckname
+    Github: https://github.com/Andrey-Guralev
+-->
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -24,13 +30,6 @@
     <body class="font-sans antialiased">
         <div  class="min-h-screen shadow bg-gray-100" style="">
             @include('layouts.navigation')
-
-{{--            <!-- Page Heading -->--}}
-{{--            <header class="bg-white shadow">--}}
-{{--                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">--}}
-{{--                    {{ $header }}--}}
-{{--                </div>--}}
-{{--            </header>--}}
 
             <!-- Page Content -->
             <main>

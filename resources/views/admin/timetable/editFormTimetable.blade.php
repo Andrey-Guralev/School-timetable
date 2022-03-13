@@ -1,11 +1,5 @@
 @php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-
-        </h2>
-    </x-slot>
-
     <x-container>
         <h3 class="text-2xl mb-4">Изменения расписания, {{ $class->number }}{{ $class->letter }}</h3>
         <div class="mx-4">

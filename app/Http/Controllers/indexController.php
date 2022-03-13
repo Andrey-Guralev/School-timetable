@@ -33,7 +33,7 @@ class indexController extends Controller
                 $types = [3, 4, 5];
             }
 
-            return view('index.indexForClass', compact('timetable', 'announcements', 'ringSchedule', 'types'));
+            return view('index.indexForClass', compact('timetable', 'announcements', 'ringSchedule', 'types', 'class'));
         }
         elseif (\Auth::check() && \Auth::user()->type == 2) // Вывод для учителей
         {

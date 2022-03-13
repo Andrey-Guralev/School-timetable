@@ -4,7 +4,7 @@
             <h1 class="text-2xl font-semibold">Пользователи</h1>
         </div>
         <div class="crud">
-            <div class="shadow overflow-hidden border-b border-gray-400 sm:rounded-lg mt-4">
+            <div class="shadow overflow-auto sm:overflow-hidden border-b border-gray-400 sm:rounded-lg mt-4">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                     <tr>

@@ -25,7 +25,7 @@
     </x-container>
 
     <div class="modal hidden" id="modal">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="flex sm:items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed opacity-class inset-0 transition-opacity" aria-hidden="true">
                 <div class="absolute inset-0 bg-gray-500 opacity-75">
                 </div>
@@ -69,12 +69,12 @@
     </div>
 
     <div class="modal hidden" id="create-modal" data-create-url="{{ route('storeClasses') }}">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed create-opacity-class inset-0 transition-opacity" aria-hidden="true">
+        <div class="flex sm:items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed create-opacity-class inset-0 transition-opacity">
                 <div class="absolute inset-0 bg-gray-500 opacity-75">
                 </div>
             </div>
-            <div class="modal-content inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <div  class="modal-content inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
                 <form>
                     <div>
                         <div class="head flex justify-between mb-2">

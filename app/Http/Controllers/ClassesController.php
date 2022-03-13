@@ -68,6 +68,10 @@ class ClassesController extends Controller
 
     public function loginPage()
     {
+        if (session('class')) {
+            session()->forget('class');
+        }
+
         $classes = Classes::select(['id', 'number', 'letter'])->get();
 
         return view('auth.loginClasses', compact('classes'));

@@ -661,11 +661,20 @@ select {
 .left-0 {
   left: 0px;
 }
+.left-1\/2 {
+  left: 50%;
+}
+.top-1\/2 {
+  top: 50%;
+}
 .z-0 {
   z-index: 0;
 }
 .z-50 {
   z-index: 50;
+}
+.m-auto {
+  margin: auto;
 }
 .my-4 {
   margin-top: 1rem;
@@ -749,6 +758,12 @@ select {
 }
 .-mt-px {
   margin-top: -1px;
+}
+.ml-6 {
+  margin-left: 1.5rem;
+}
+.mr-auto {
+  margin-right: auto;
 }
 .block {
   display: block;
@@ -977,6 +992,9 @@ select {
 .divide-gray-200 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-divide-opacity));
+}
+.overflow-auto {
+  overflow: auto;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -6328,8 +6346,24 @@ readers do not read off random characters that represent icons */
 }
 @media (min-width: 640px) {
 
+  .sm\:top-1\/2 {
+    top: 50%;
+  }
+
+  .sm\:left-0 {
+    left: 0px;
+  }
+
+  .sm\:top-0 {
+    top: 0px;
+  }
+
   .sm\:col-span-2 {
     grid-column: span 2 / span 2;
+  }
+
+  .sm\:m-auto {
+    margin: auto;
   }
 
   .sm\:my-8 {
@@ -6386,6 +6420,10 @@ readers do not read off random characters that represent icons */
     width: 100%;
   }
 
+  .sm\:w-1\/2 {
+    width: 50%;
+  }
+
   .sm\:max-w-sm {
     max-width: 24rem;
   }
@@ -6408,6 +6446,10 @@ readers do not read off random characters that represent icons */
 
   .sm\:items-start {
     align-items: flex-start;
+  }
+
+  .sm\:items-end {
+    align-items: flex-end;
   }
 
   .sm\:items-center {
@@ -6434,6 +6476,10 @@ readers do not read off random characters that represent icons */
     --tw-space-y-reverse: 0;
     margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
+  }
+
+  .sm\:overflow-hidden {
+    overflow: hidden;
   }
 
   .sm\:rounded-lg {
@@ -6465,6 +6511,10 @@ readers do not read off random characters that represent icons */
     padding-top: 0px;
   }
 
+  .sm\:pt-4 {
+    padding-top: 1rem;
+  }
+
   .sm\:align-middle {
     vertical-align: middle;
   }
@@ -6472,6 +6522,12 @@ readers do not read off random characters that represent icons */
   .sm\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
+  }
+}
+@media (min-width: 768px) {
+
+  .md\:w-full {
+    width: 100%;
   }
 }
 @media (min-width: 1024px) {
@@ -6482,6 +6538,10 @@ readers do not read off random characters that represent icons */
 
   .lg\:mt-1 {
     margin-top: 0.25rem;
+  }
+
+  .lg\:ml-6 {
+    margin-left: 1.5rem;
   }
 
   .lg\:flex {
@@ -6496,8 +6556,16 @@ readers do not read off random characters that represent icons */
     width: 75%;
   }
 
+  .lg\:w-full {
+    width: 100%;
+  }
+
   .lg\:flex-wrap {
     flex-wrap: wrap;
+  }
+
+  .lg\:items-center {
+    align-items: center;
   }
 
   .lg\:justify-between {
