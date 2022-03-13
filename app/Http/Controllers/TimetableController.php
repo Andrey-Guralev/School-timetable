@@ -8,12 +8,8 @@ use App\Http\Requests\StoreArchiveTimetableRequest;
 use App\Http\Requests\StoreFileTimetableRequest;
 use App\Http\Requests\StoreFormTimetableRequest;
 use App\Models\Classes;
+use App\Models\RingSchedule;
 use App\Models\Timetable;
-use Dflydev\DotAccessData\Data;
-use http\Header\Parser;
-use Illuminate\Support\Facades\File;
-use function PHPUnit\Framework\throwException;
-use function React\Promise\all;
 
 class TimetableController extends Controller
 {
@@ -22,8 +18,16 @@ class TimetableController extends Controller
         $timetable = Timetable::where('class_id', $id)->get();
         $classes = Classes::all();
         $class = Classes::find($id);
+        $ringSchedule = RingSchedule::where('shift', $class->shift)->get();
+        $types = 0;
 
-        return view('timetableForClass', compact('timetable', 'class', 'classes'));
+        if ($class->shift == 0) {
+            $types = [0, 1, 2];
+        } elseif ($class->shift == 1) {
+            $types = [3, 4, 5];
+        }
+
+        return view('timetableForClass', compact('timetable', 'class', 'classes', 'ringSchedule', 'types'));
     }
 
     public function edit()

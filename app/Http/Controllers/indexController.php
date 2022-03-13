@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Announcements;
 use App\Models\Classes;
+use App\Models\RingSchedule;
 use App\Models\Timetable;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,18 @@ class indexController extends Controller
 
             $announcements = Announcements::where('type', '1')->orWhere('class_id', session('class'))->get()->sortDesc();
 
-            return view('index.indexForClass', compact('timetable', 'announcements'));
+            $class = Classes::find(session('class'));
+
+            $ringSchedule = RingSchedule::where('shift', $class->shift)->get();
+            $types = 0;
+
+            if ($class->shift == 0) {
+                $types = [0, 1, 2];
+            } elseif ($class->shift == 1) {
+                $types = [3, 4, 5];
+            }
+
+            return view('index.indexForClass', compact('timetable', 'announcements', 'ringSchedule', 'types'));
         }
         elseif (\Auth::check() && \Auth::user()->type == 2) // Вывод для учителей
         {
@@ -38,10 +50,6 @@ class indexController extends Controller
         elseif (\Auth::check() && \Auth::user()->type == 4) // Вывод для админа
         {
             $timetable = null;
-
-//            if (\Auth::user()->class_id != null) {
-//                $timetable = Timetable::where('teacher_id', \Auth::user()->id)->with('Class')->get();
-//            }
             $classes = Classes::all();
             $announcements = Announcements::with('Classes')->get()->sortDesc();
 

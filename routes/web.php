@@ -40,7 +40,7 @@ Route::prefix('classes')->group(function () {               //Маршруты �
     Route::get('/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->middleware('guest')->name('classLogout');
 });
 
-Route::middleware('Admin')->group(function () {
+Route::middleware(['auth', 'Admin'])->group(function () {
     Route::get('/users', [\App\Http\Controllers\adminController::class, 'indexUsers'])->name('adminUsers');
     Route::get('/user/{id}/{type}', [\App\Http\Controllers\adminController::class, 'changeUserType'])->name('changeUserType');
     Route::post('/user/class', [\App\Http\Controllers\adminController::class, 'changeTeacherClass'])->name('changeTeacherClass');

@@ -35,11 +35,11 @@
                                     Обьявления
                                 </x-nav-link>
                             @endif
-{{--                            @if(Auth::user()->type >= 4)--}}
-{{--                                <x-nav-link :href="route('ringEdit')" :active="request()->routeIs('ringEdit')">--}}
-{{--                                    Расписание звонков--}}
-{{--                                </x-nav-link>--}}
-{{--                            @endif--}}
+                            @if(Auth::user()->type >= 4)
+                                <x-nav-link :href="route('ringEdit')" :active="request()->routeIs('ringEdit')">
+                                    Расписание звонков
+                                </x-nav-link>
+                            @endif
                     @endauth
                 </div>
             </div>
@@ -175,7 +175,7 @@
 
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('classLogout')">
-                        {{ __('Logout') }}
+                        Выйти
                     </x-responsive-nav-link>
                 </div>
             </div>

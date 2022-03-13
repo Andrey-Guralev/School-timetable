@@ -22,6 +22,7 @@ class ClassesController extends Controller
         $class->number = $request->number;
         $class->letter = $request->letter;
         $class->alias = Translit::translitInEn($request->number . mb_strtolower($request->letter));
+        $class->shift = $request->shift;
         $class->password = str_replace(['.', '/', "\\", ',', '\'', '"', ] ,'', substr(Hash::make($request->pasword), '10', '5'));
 
         $class->save();
@@ -44,6 +45,7 @@ class ClassesController extends Controller
         $class->number = $request->number;
         $class->letter = $request->letter;
         $class->alias = Translit::translitInEn($request->number . mb_strtolower($request->letter));
+        $class->shift = $request->shift;
 
         $class->save();
 

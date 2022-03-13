@@ -42,7 +42,16 @@
                         <div class="flex">
                             <input type="text" id="number-input" class="number w-3/12 shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
                             <input type="text" id="letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
-
+                        </div>
+                        <div class="flex flex-col mt-2">
+                            <div class="">
+                                <label for="first-shift">Первая смена</label>
+                                <input type="radio" name="edit_shift" id="first-shift" value="0" checked>
+                            </div>
+                            <div class="">
+                                <label for="second-shift">Вторая смена</label>
+                                <input type="radio" name="edit_shift" value="1" id="second-shift">
+                            </div>
                         </div>
                         <h2 class="text-xl" id="password-str"></h2>
                     </div>
@@ -77,6 +86,16 @@
                         <div class="flex">
                             <input type="text" id="create-number-input" class="number w-3/12 shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
                             <input type="text" id="create-letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-blue-700 focus:border-blue-700 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
+                        </div>
+                        <div class="flex flex-col mt-2">
+                            <div class="">
+                                <label for="first-shift">Первая смена</label>
+                                <input type="radio" name="create_shift" id="first-shift" value="0" checked>
+                            </div>
+                            <div class="">
+                                <label for="second-shift">Вторая смена</label>
+                                <input type="radio" name="create_shift" value="1" id="second-shift">
+                            </div>
                         </div>
                     </div>
                     <div class="mt-5 sm:mt-6 flex justify-end">

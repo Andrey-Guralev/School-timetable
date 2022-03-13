@@ -7,7 +7,7 @@ let editModal = {
     saveButton:     document.getElementById('save-button'),
     deleteButton:   document.getElementById('delete-button'),
     background:     document.querySelector('.opacity-class'),
-
+    shiftRadio:     document.getElementsByName('edit_shift'),
 }
 
 let createModal = {
@@ -18,6 +18,7 @@ let createModal = {
     closeButton: document.getElementById('create-close-button'),
     createButton: document.getElementById('create-button'),
     background: document.querySelector('.create-opacity-class'),
+    shiftRadio:     document.getElementsByName('create_shift'),
 }
 
 const classButtons = document.querySelectorAll('.class-button');
@@ -30,14 +31,24 @@ function openEditModal(e) {
     let button = e.target;
     let classNumber = button.dataset.number;
     let classLetter = button.dataset.letter;
+    let shift = button.dataset.shift;
+
     id = button.dataset.id;
     saveUrl = button.dataset.saveUrl;
     deleteUrl = button.dataset.deleteUrl;
-    password = button.dataset.password
+    password = button.dataset.password;
+
 
     editModal.numberInput.value = classNumber;
     editModal.letterInput.value = classLetter;
-    // editModal.passwordStr.innerHTML = "Пароль: " + password;
+
+    if (shift == 0) {
+        editModal.shiftRadio[0].setAttribute('checked', true);
+        editModal.shiftRadio[1].removeAttribute('checked');
+    } else {
+        editModal.shiftRadio[0].removeAttribute('checked');
+        editModal.shiftRadio[1].setAttribute('checked', true);
+    }
 
     editModal.modal.classList.remove('hidden');
 }
@@ -51,6 +62,15 @@ function saveClass(e) {
 
     let number = editModal.numberInput.value;
     let letter = editModal.letterInput.value;
+    let shift = 0;
+
+
+    for (let i=0; i < editModal.shiftRadio.length; i++) {
+        if (editModal.shiftRadio[i].checked) {
+            shift = i;
+        }
+    }
+
 
     if (!number || !letter) {
         alert('Оба поля должны быть заполнены');
@@ -58,21 +78,24 @@ function saveClass(e) {
     }
 
 
-    axios.patch(saveUrl, {'id':  id,'number': number, 'letter': letter}).then(response => {
-        updatePageBeforeSave(number, letter);
+    axios.patch(saveUrl, {'id':  id,'number': number, 'letter': letter, 'shift': shift}).then(response => {
+        updatePageBeforeSave(number, letter, shift);
     }).catch(e => {
         console.error(`Какая-то ошибка: ${e}`);
         error = e;
     });
 }
 
-function updatePageBeforeSave(number, letter) {
+function updatePageBeforeSave(number, letter, shift) {
     let button = document.querySelector('.id-' + id);
 
     button.removeAttribute('data-number');
     button.setAttribute('data-number', number);
     button.removeAttribute('data-letter');
     button.setAttribute('data-letter', letter);
+    button.removeAttribute('data-shift');
+    button.setAttribute('data-shift', shift);
+
 
     button.innerHTML = ''
     button.innerHTML = String(number + letter)
@@ -121,6 +144,16 @@ function closeCreateModal() {
                             <input type="text" id="create-number-input" class="number w-3/12 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Цифра" required>
                             <input type="text" id="create-letter-input" class="letter w-3/12 ml-2 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Буква" required>
                         </div>
+                        <div class="flex flex-col mt-2">
+                            <div class="">
+                                <label for="first-shift">Первая смена</label>
+                                <input type="radio" name="create_shift" id="first-shift" value="0" checked>
+                            </div>
+                            <div class="">
+                                <label for="second-shift">Вторая смена</label>
+                                <input type="radio" name="create_shift" value="1" id="second-shift">
+                            </div>
+                        </div>
                     </div>
                     <div class="mt-5 sm:mt-6 flex justify-end">
                         <button type="submit" id="create-button" class="create w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:text-sm">
@@ -140,23 +173,30 @@ function createClass(e) {
 
     let number = document.getElementById('create-number-input').value;
     let letter = document.getElementById('create-letter-input').value;
+    let shift = 0;
+
+    for (let i=0; i < createModal.shiftRadio.length; i++) {
+        if (createModal.shiftRadio[i].checked) {
+            shift = i;
+        }
+    }
 
     if (!number || !letter ) {
         alert('Оба поля должны быть заполнены');
         return;
     }
 
-    axios.post(createUrl, {'number': number, 'letter': letter}).then(response => {
-        updatePageBeforeCreate(response.data.rId, number, letter, response.data.pass);
+    axios.post(createUrl, {'number': number, 'letter': letter, 'shift': shift}).then(response => {
+        updatePageBeforeCreate(response.data.rId, number, letter, response.data.pass, shift);
     }).catch(e => {
         console.error(`Какая-то ошибка: ${e}`);
         error = e;
     });
 }
 
-function updatePageBeforeCreate(rId, number, letter, password) {
+function updatePageBeforeCreate(rId, number, letter, password, shift) {
     document.querySelector('.classes').insertAdjacentHTML('afterbegin', `
-         <button type="button" class="class-button id-${ rId } text-blue-600 mr-4" data-id="${ rId }" data-number="${ number }" data-letter="${ letter }" data-save-url="${ saveUrlE }" data-delete-url="${ deleteUrlE + '/' + rId }" data-password="${ password }">
+         <button type="button" class="class-button id-${ rId } text-blue-600 mr-4" data-id="${ rId }" data-number="${ number }" data-letter="${ letter }" data-save-url="${ saveUrlE }" data-delete-url="${ deleteUrlE + '/' + rId }" data-password="${ password }" data-shift="${ shift }">
                    ${number + letter}
         </button>
     `);
@@ -164,23 +204,6 @@ function updatePageBeforeCreate(rId, number, letter, password) {
     document.querySelector('.id-' + rId).addEventListener('click', openEditModal);
 
     createModal.modal_content.innerHTML = '';
-    // createModal.modal_content.insertAdjacentHTML('beforeend', `
-    //         <div>
-    //             <div class="head flex justify-between mb-2">
-    //                 <h1 class="text-2xl">Пароль для класса:</h1>
-    //             </div>
-    //             <div class="flex ml-4">
-    //                 <h2 class="text-1xl">
-    //                     ${password}
-    //                 </h2>
-    //             </div>
-    //         </div>
-    //         <div class="mt-5 sm:mt-6 flex justify-end">
-    //             <button type="button" id="close-button-c" class="close w-5/12 inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
-    //                 Выйти
-    //             </button>
-    //         </div>
-    // `)
 
     closeCreateModal();
 

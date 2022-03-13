@@ -23,10 +23,26 @@
                     <tbody class="bg-white divide-y divide-gray-200" >
                     <?php $s = 1?>
                     @foreach($timetable->where('weekday', $i) as $t)
+                        <?php
+                        if($i == 0) {
+                            $type = $types[0];
+                        } elseif ($i == 5) {
+                            $type = $types[2];
+                        } else {
+                            $type = $types[1];
+                        }
+                        ?>
                         <tr class="bg-white">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 flex justify-between">
-                                <span class="lesson">{{$s}}. {{ $t->lesson }}</span>
-                                <span class="rooms">{{ $t->room_1 }}{{ $t->room_2 != null ? '/' . $t->room_2 : null}}</span>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <div class="flex justify-between">
+                                    <span class="lesson">{{$s}}. {{ $t->lesson }}</span>
+                                    <span class="rooms">{{ $t->room_1 }}{{ $t->room_2 != null ? '/' . $t->room_2 : null}}</span>
+                                </div>
+                                @if($ringSchedule)
+                                    <div class="ml-3 text-gray-600">
+                                        {{ substr($ringSchedule->where('type', $type)->where('number', $s)->first()->start_time ?? '', 0, 5) }}-{{ substr($ringSchedule->where('type', $type)->where('number', $s)->first()->end_time ?? '', 0, 5) }}
+                                    </div>
+                                @endif
                             </td>
                         </tr>
                         <?php $s++ ?>
@@ -38,12 +54,12 @@
 
         @endfor
         </x-responsive-container>
-        <x-container>
+        <x-responsive-container class="sm:w-full lg:w-9/12">
             <h1 class="text-3xl">Объявления</h1>
-        </x-container>
+        </x-responsive-container>
 
         @foreach($announcements as $announcement)
-            <x-container>
+            <x-responsive-container class="sm:w-full lg:w-9/12">
                 <div class="header">
                     <h2 class="title text-xl bold">
                         {{ $announcement->title }}
@@ -66,7 +82,7 @@
                         Просмотреть
                     </a>
                 </div>
-            </x-container>
+            </x-responsive-container>
         @endforeach
     @endif
 </x-app-layout>
