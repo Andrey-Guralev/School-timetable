@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\RingScheduleHandler;
-use App\Models\ringSchedule;
+use App\Models\RingSchedule;
 use App\Http\Requests\UpdateringScheduleRequest;
 
 class RingScheduleController extends Controller
