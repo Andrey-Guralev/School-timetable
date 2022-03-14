@@ -258,10 +258,10 @@
                                                 {{ $i }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                <input value="{{ $rings->where('type', 4)->where('number', $i)->first()->start_time ?? ''}}" type="time" name="sec_start_time_sunday_{{ $i }}" class="ml-4 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                                <input value="{{ $rings->where('type', 5)->where('number', $i)->first()->start_time ?? ''}}" type="time" name="sec_start_time_sunday_{{ $i }}" class="ml-4 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                <input value="{{ $rings->where('type', 4)->where('number', $i)->first()->end_time ?? '' }}" type="time" name="sec_end_time_sunday_{{ $i }}" class="ml-4 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                                <input value="{{ $rings->where('type', 5)->where('number', $i)->first()->end_time ?? '' }}" type="time" name="sec_end_time_sunday_{{ $i }}" class="ml-4 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                                             </td>
                                         </tr>
                                     @endfor
