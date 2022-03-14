@@ -24,7 +24,7 @@
                     <?php $s = 1?>
                     @foreach($timetable->where('weekday', $i) as $t)
                         <?php
-                            if ($class->shift = 0) {
+                            if ($class->shift == 0) {
                                 if($i == 0) {
                                     $type = $types[0];
                                 } elseif ($i == 5) {
@@ -32,7 +32,7 @@
                                 } else {
                                     $type = $types[1];
                                 }
-                            } else {
+                            } elseif ($class->shift == 1) {
                                 if ($i == 0) {
                                     $type = $types[0];
                                 } elseif ($i == 5) {
