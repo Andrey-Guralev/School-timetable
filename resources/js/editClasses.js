@@ -64,13 +64,11 @@ function saveClass(e) {
     let letter = editModal.letterInput.value;
     let shift = 0;
 
-
     for (let i=0; i < editModal.shiftRadio.length; i++) {
         if (editModal.shiftRadio[i].checked) {
             shift = i;
         }
     }
-
 
     if (!number || !letter) {
         alert('Оба поля должны быть заполнены');

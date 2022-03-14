@@ -13,6 +13,7 @@ class Classes extends Model
         'number',
         'letter',
         'alias',
+        'shift',
     ];
 
 
