@@ -30,7 +30,7 @@ class indexController extends Controller
             if ($class->shift == 0) {
                 $types = [0, 1, 2];
             } elseif ($class->shift == 1) {
-                $types = [3, 4, 5];
+                $types = [3, 4, 5, 6];
             }
 
             return view('index.indexForClass', compact('timetable', 'announcements', 'ringSchedule', 'types', 'class'));

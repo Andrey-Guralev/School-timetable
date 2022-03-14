@@ -22,7 +22,7 @@ namespace App\Models{
  * @property int|null $class_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\User $Author
+ * @property-read \App\Models\User|null $Author
  * @property-read \App\Models\Classes|null $Classes
  * @method static \Database\Factories\AnnouncementsFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Announcements newModelQuery()
@@ -49,6 +49,7 @@ namespace App\Models{
  * @property string $letter
  * @property string $password
  * @property string|null $alias
+ * @property int|null $shift
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Announcements[] $Announcement
@@ -67,6 +68,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereLetter($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Classes whereShift($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereUpdatedAt($value)
  */
 	class Classes extends \Eloquent {}
@@ -76,10 +78,26 @@ namespace App\Models{
 /**
  * App\Models\RingSchedule
  *
+ * @property int $id
+ * @property string|null $start_time
+ * @property string|null $end_time
+ * @property int|null $number
+ * @property int|null $type
+ * @property int $shift
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\RingScheduleFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereEndTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereShift($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereUpdatedAt($value)
  */
 	class RingSchedule extends \Eloquent {}
 }
@@ -126,7 +144,7 @@ namespace App\Models{
  * @property string|null $room_2
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Classes $Class
+ * @property-read \App\Models\Classes|null $Class
  * @property-read \App\Models\User|null $Teacher
  * @method static \Database\Factories\TimetableFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newModelQuery()

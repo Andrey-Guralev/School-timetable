@@ -24,14 +24,26 @@
                     <?php $s = 1?>
                     @foreach($timetable->where('weekday', $i) as $t)
                         <?php
-                        if($i == 0) {
-                            $type = $types[0];
-                        } elseif ($i == 5) {
-                            $type = $types[2];
-                        } else {
-                            $type = $types[1];
-                        }
-                        ?>
+                            if ($class->shift = 0) {
+                                if($i == 0) {
+                                    $type = $types[0];
+                                } elseif ($i == 5) {
+                                    $type = $types[2];
+                                } else {
+                                    $type = $types[1];
+                                }
+                            } else {
+                                if ($i == 0) {
+                                    $type = $types[0];
+                                } elseif ($i == 5) {
+                                    $type = $types[2];
+                                } elseif ($i == 4) {
+                                    $type = $types[3];
+                                } else {
+                                    $type = $types[1];
+                                }
+                            }
+                            ?>
                         <tr class="bg-white">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                 <div class="flex justify-between">

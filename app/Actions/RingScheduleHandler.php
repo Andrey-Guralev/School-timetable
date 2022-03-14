@@ -17,6 +17,7 @@ class RingScheduleHandler
             'sec_monday' => 3,
             'sec_regular_day' => 4,
             'sec_sunday' => 5,
+            'sec_class_hour' => 6
         ];
 
         foreach ($data as $key => $value)
@@ -139,6 +140,36 @@ class RingScheduleHandler
                         $ring->number = $number;
                         $ring->end_time = $value;
                         $ring->type = $types['sec_monday'];
+                        $ring->shift = 1;
+
+                        $ring->save();
+                    }
+                }
+
+                if (\Str::contains($key, 'class_hour'))
+                {
+                    if (\Str::contains($key, 'start'))
+                    {
+                        $number = \Str::substr($key, -1, 1);
+
+                        $ring = RingSchedule::where('number', $number)->where('type', $types['sec_class_hour'])->firstOrNew();
+
+                        $ring->number = $number;
+                        $ring->start_time = $value;
+                        $ring->type = $types['sec_class_hour'];
+                        $ring->shift = 1;
+
+                        $ring->save();
+                    }
+                    if (\Str::contains($key, 'end'))
+                    {
+                        $number = \Str::substr($key, -1, 1);
+
+                        $ring = RingSchedule::where('number', $number)->where('type', $types['sec_class_hour'])->firstOrNew();
+
+                        $ring->number = $number;
+                        $ring->end_time = $value;
+                        $ring->type = $types['sec_class_hour'];
                         $ring->shift = 1;
 
                         $ring->save();

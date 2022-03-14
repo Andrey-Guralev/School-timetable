@@ -9,9 +9,7 @@ use App\Http\Requests\StoreClassesRequest;
 use App\Http\Requests\UpdateClassesRequest;
 use App\Models\Timetable;
 use App\Providers\RouteServiceProvider;
-use DebugBar\DebugBar;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
 
 class ClassesController extends Controller
 {
@@ -41,7 +39,6 @@ class ClassesController extends Controller
     public function update(UpdateClassesRequest $request, classes $classes)
     {
         $class = Classes::find($request->id);
-
         $class->number = $request->number;
         $class->letter = $request->letter;
         $class->alias = Translit::translitInEn($request->number . mb_strtolower($request->letter));
@@ -60,8 +57,6 @@ class ClassesController extends Controller
         Timetable::where('class_id', $id)->delete();
 
         $class->delete();
-
-
 
         return response('', 200);
     }

@@ -19,7 +19,7 @@
                     <h1 class="text-2xl">Для 1 смены:</h1>
                     <div class="tables ml-4">
                         <div class="">
-                            <h2 class="text-xl mb-2">Понеденльник</h2>
+                            <h2 class="text-xl mb-2">День с классным часом</h2>
                             <div class="shadow overflow-hidden border-b border-gray-400 sm:rounded-lg mt-2">
                                 <table class="monday min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
@@ -130,6 +130,41 @@
                     <h1 class="text-2xl">Для 2 смены:</h1>
                     <div class="tables ml-4">
                         <div class="">
+                            <h2 class="text-xl mb-2">День с классным часом</h2>
+                            <div class="shadow overflow-hidden border-b border-gray-400 sm:rounded-lg mt-2">
+                                <table class="monday min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            №
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Начало
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Конец
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @for($i = 1; $i <= 6; $i++)
+                                        <tr class="bg-white">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                {{ $i }}
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                <input value="{{ $rings->where('type', 6)->where('number', $i)->first()->start_time ?? '' }}" type="time" name="sec_start_time_class_hour_{{ $i }}" class="ml-4 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                <input value="{{ $rings->where('type', 6)->where('number', $i)->first()->start_time ?? '' }}" type="time" name="sec_end_time_class_hour_{{ $i }}" class=" ml-4 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                            </td>
+                                        </tr>
+                                    @endfor
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="my-4">
                             <h2 class="text-xl mb-2">Понеденльник</h2>
                             <div class="shadow overflow-hidden border-b border-gray-400 sm:rounded-lg mt-2">
                                 <table class="monday min-w-full divide-y divide-gray-200">
