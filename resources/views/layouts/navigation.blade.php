@@ -175,6 +175,11 @@
                                 Обьявления
                             </x-responsive-nav-link>
                         @endif
+                            @if(Auth::user()->type >= 4)
+                                <x-responsive-nav-link :href="route('ringEdit')" :active="request()->routeIs('ringEdit')">
+                                    Расписание звонков
+                                </x-responsive-nav-link>
+                            @endif
                     @endauth
 
                     <div class="mt-3 space-y-1">

@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-container>
-        <div class="header">
+        <div class="header flex items-center justify-between">
             <h1 class="text-2xl font-semibold">Пользователи</h1>
+            <a href="{{ route('adminRegisterUserPage') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-800 transition hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900">
+                Зарегистрировать нового пользователя
+            </a>
         </div>
         <div class="crud">
             <div class="shadow overflow-auto sm:overflow-hidden border-b border-gray-400 sm:rounded-lg mt-4">

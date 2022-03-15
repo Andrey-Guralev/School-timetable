@@ -17,21 +17,21 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="Почта" />
+                <x-label for="email" value="Почта" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="" name="email" :value="old('email', $request->email)" required autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="Пароль" />
+                <x-label for="password" value="Пароль" />
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-label for="password_confirmation" :value="Подтвердите пароль" />
+                <x-label for="password_confirmation" value="Подтвердите пароль" />
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                     type="password"
