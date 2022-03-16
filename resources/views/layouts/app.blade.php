@@ -24,6 +24,8 @@
 
         <link rel="shortcut icon" href="{{ asset('favicon-white.svg') }}" type="image/x-icon">
 
+{{--        <link rel="manifest" href="{{ asset('manifest.json') }}">--}}
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>

@@ -58,7 +58,7 @@ class adminController extends Controller
             'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::default()],
             'first_name' => ['string', 'max:255'],
             'second_name' => ['string', 'max:255'],
-            'middle_name' => ['string', 'max:255'],
+            'middle_name' => ['max:255'],
         ]);
 
         $user = User::create([
@@ -67,7 +67,7 @@ class adminController extends Controller
             'second_name' => $request->second_name,
             'middle_name' => $request->middle_name,
             'email' => $request->email,
-            'class_id' => $request->class,
+            'class_id' => $request->class == 'null' ? null : $request->class,
             'type' => 2,
             'password' => Hash::make($request->password),
         ]);

@@ -8,6 +8,8 @@
                <div class="w-1/2">
                    @csrf
 
+                   <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
                    <div class="mt-4">
                        <x-label for="name" value="Имя пользователя" />
 
