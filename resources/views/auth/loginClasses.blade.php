@@ -45,34 +45,37 @@
                     </div>
                 </div>
             @endif
-        <form method="POST" action="{{ route('classesLogin') }}">
-            @csrf
-            <div>
-                <div>
-                    <label for="class" class="block text-sm font-medium text-gray-700">Класс</label>
-                    <select id="class" name="class" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-800 focus:border-blue-700 sm:text-sm rounded-md">
-                        <option value="">Выбрать</option>
-                        @foreach($classes as $class)
-                            <option value="{{ $class->id }}">{{ $class->number }}{{$class->letter}}</option>
-                        @endforeach
-                    </select>
-                </div>
+
+            <div class="flex flex-wrap">
+                @foreach($classes as $class)
+                    <form method="POST" class="m-0.5" action="{{ route('classesLogin') }}">
+                        @csrf
+                        <input type="hidden" name="class" value="{{ $class->id }}">
+                        <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition">
+                            {{ $class->getFullName() }}
+                        </button>
+                    </form>
+                @endforeach
             </div>
 
-{{--            <!-- Password -->--}}
-{{--            <div class="mt-4">--}}
-{{--                <x-label for="password" value="Пароль" />--}}
-
-{{--                <x-input id="password" class="block mt-1 w-full"--}}
-{{--                                type="password"--}}
-{{--                                name="password"--}}
-{{--                                required autocomplete="current-password" />--}}
+{{--        <form method="POST" action="{{ route('classesLogin') }}">--}}
+{{--            @csrf--}}
+{{--            <div>--}}
+{{--                <div>--}}
+{{--                    <label for="class" class="block text-sm font-medium text-gray-700">Класс</label>--}}
+{{--                    <select id="class" name="class" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-800 focus:border-blue-700 sm:text-sm rounded-md">--}}
+{{--                        <option value="">Выбрать</option>--}}
+{{--                        @foreach($classes as $class)--}}
+{{--                            <option value="{{ $class->id }}">{{ $class->number }}{{$class->letter}}</option>--}}
+{{--                        @endforeach--}}
+{{--                    </select>--}}
+{{--                </div>--}}
 {{--            </div>--}}
-            <div class="flex items-center justify-end mt-4">
-                <x-button class="ml-3">
-                    Войти
-                </x-button>
-            </div>
-        </form>
+{{--            <div class="flex items-center justify-end mt-4">--}}
+{{--                <x-button class="ml-3">--}}
+{{--                    Войти--}}
+{{--                </x-button>--}}
+{{--            </div>--}}
+{{--        </form>--}}
     </x-auth-card>
 </x-guest-layout>

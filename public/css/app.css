@@ -676,6 +676,18 @@ select {
 .m-auto {
   margin: auto;
 }
+.m-2 {
+  margin: 0.5rem;
+}
+.m-1 {
+  margin: 0.25rem;
+}
+.m-0\.5 {
+  margin: 0.125rem;
+}
+.m-0 {
+  margin: 0px;
+}
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
