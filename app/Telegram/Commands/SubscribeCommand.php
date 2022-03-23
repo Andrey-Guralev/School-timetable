@@ -9,7 +9,7 @@ class SubscribeCommand extends Command
 {
     protected $name = 'subscribe';
 
-    protected $description = 'Команда просмотра расписания для класса';
+    protected $description = 'Команда для подписку на уведомления';
 
     /**
      * {@inheritdoc}
@@ -18,7 +18,10 @@ class SubscribeCommand extends Command
     {
         $response = $this->getArguments();
 
-//        \Log::info((string)$response);
+        $args = $this->getArguments();
+
+        \Log::info($args[0]);
+
         $text = 'Данная команда пока не работает';
 
         $this->replyWithMessage(compact('text'));
