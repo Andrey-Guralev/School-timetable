@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,4 +68,9 @@ Route::prefix('announcements')->group(function () {
     Route::get('/edit/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'edit'])->middleware('auth')->name('announcementsEdit');
     Route::delete('/delete/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'delete'])->middleware('auth')->name('announcementsDelete');
 });
+
+Route::post('/615ddadc36de20ae8fe031c4af51524f/webhook', function () {
+    $update = Telegram::commandsHandler(true);
+});
+
 require __DIR__.'/auth.php';

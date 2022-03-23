@@ -12,14 +12,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-json": "*",
+        "ext-zip": "*",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "irazasyed/telegram-bot-sdk": "^3.5",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "tinymce/tinymce": "^5.10",
-        "ext-zip": "*",
-        "ext-json": "*"
+        "tinymce/tinymce": "^5.10"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

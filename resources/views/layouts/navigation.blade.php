@@ -38,7 +38,7 @@
                             @endif
                             @if(Auth::user()->type >= 2)
                                 <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
-                                    Обьявления
+                                    Объявления
                                 </x-nav-link>
                             @endif
                             @if(Auth::user()->type >= 4)
@@ -92,9 +92,9 @@
                     </div>
 
                     <div class="flex items-center">
-                        <a href="{{ route('classesLogin') }}" class="ml-4 text-sm text-gray-500">
-                            Сменить класс
-                        </a>
+{{--                        <a href="{{ route('classesLogin') }}" class="ml-4 text-sm text-gray-500">--}}
+{{--                            Сменить класс--}}
+{{--                        </a>--}}
                         <a href="{{ route('classLogout') }}" class="ml-4 text-sm text-gray-500">
                             Вернуться на главную
                         </a>
@@ -172,7 +172,7 @@
                         @endif
                         @if(Auth::user()->type >= 2)
                             <x-responsive-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
-                                Обьявления
+                                Объявления
                             </x-responsive-nav-link>
                         @endif
                             @if(Auth::user()->type >= 4)

@@ -13,7 +13,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-
+        <!-- Favicon -->
         <link rel="shortcut icon" href="{{ asset('favicon-white.svg') }}" type="image/x-icon">
 
         <!-- Scripts -->
