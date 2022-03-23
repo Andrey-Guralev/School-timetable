@@ -45,7 +45,7 @@ class SubscribeCommand extends Command
             return;
         }
 
-        $text = $response->getMessage()->chat;
+        $text = $response->getMessage()->chat->id;
 
         $this->replyWithMessage(compact('text'));
 
