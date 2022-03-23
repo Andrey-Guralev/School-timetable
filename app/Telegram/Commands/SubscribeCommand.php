@@ -39,7 +39,13 @@ class SubscribeCommand extends Command
 
         $class = Classes::where('alias', $className)->get();
 
-        $text = $class->toJson();
+        if ($class->isEmpty()) {
+            $text = 'Не удалось найти такой класс'.chr(10);
+            $this->replyWithMessage(compact('text'));
+            return;
+        }
+
+        $text = $response->getChat();
 
         $this->replyWithMessage(compact('text'));
 
