@@ -4,6 +4,7 @@ namespace App\Telegram\Commands;
 
 use App\Actions\Translit;
 use App\Models\Classes;
+use App\Models\TelegramSubscribers;
 use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use Telegram;
@@ -48,8 +49,24 @@ class SubscribeCommand extends Command
             return;
         }
 
-        $text = $response->getMessage()->chat->id;
+        $chatId = $response->getMessage()->chat->id;
 
+        $subs = TelegramSubscribers::where('chat_id', $chatId)->where('class_id', $class->id)->get();
+
+        if ($subs->isNotEmpty()) {
+            $text = 'Вы уже подписаны'.chr(10);
+            $this->replyWithMessage(compact('text'));
+            return;
+        }
+
+        $subs = new TelegramSubscribers();
+
+        $subs->chat_id = $chatId;
+        $subs->class_id = $class->id;
+
+        $subs->save();
+
+        $text = 'Вы успешно подписались на уведомления, для класса:' . $class->getFullName();
 
         $this->replyWithMessage(compact('text'));
 
