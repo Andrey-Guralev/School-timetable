@@ -16,9 +16,9 @@ class ViewTimetableCommand extends Command
      */
     public function handle()
     {
-        $response = $this->getUpdate()->text;
+        $response = $this->getArguments();
 
-        \Log::info($response);
+//        \Log::info((string)$response);
 
 
         $text = $response;
