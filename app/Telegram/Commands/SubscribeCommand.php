@@ -43,7 +43,9 @@ class SubscribeCommand extends Command
 
         $class = Classes::where('alias', $className)->get();
 
-        \Log::info($args, $className, $class->toJson());
+        \Log::info($args);
+        \Log::info($className);
+        \Log::info($class->toJson());
 
         if ($class->isEmpty()) {
             $text = 'Не удалось найти такой класс'.chr(10);
