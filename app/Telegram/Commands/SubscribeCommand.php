@@ -28,12 +28,18 @@ class SubscribeCommand extends Command
             return;
         }
 
+        if (count($args) == 1) {
+            $text = 'Необходимо указать класс (например: /subscribe 11ФМ)';
+            $this->replyWithMessage(compact('text'));
+            return;
+        }
+
         $className = Translit::translitInEn($args[1]);
 
         $class = Classes::where('alias', $className)->get();
 
-        $text = $class->toJson();
 
+        $text = $class->toJson();
 
         $this->replyWithMessage(compact('text'));
 
