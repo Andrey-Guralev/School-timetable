@@ -16,7 +16,7 @@ class SubscribeCommand extends Command
      */
     public function handle()
     {
-        $response = $this->getUpdate()->all();
+        $response = $this->getUpdate();
 
         $args = $this->getArguments();
 
