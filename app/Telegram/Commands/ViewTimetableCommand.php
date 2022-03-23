@@ -16,7 +16,7 @@ class ViewTimetableCommand extends Command
      */
     public function handle()
     {
-        $response = json_decode($this->getUpdate());
+        $response = $this->getUpdate()->text;
 
         \Log::info($response);
 
