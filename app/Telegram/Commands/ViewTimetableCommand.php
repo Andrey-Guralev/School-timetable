@@ -19,6 +19,7 @@ class ViewTimetableCommand extends Command
         $response = $this->getUpdate();
 
         $text = $response;
+        $text .= ' krw0e-jw0';
 
         $this->replyWithMessage(compact('text'));
 
