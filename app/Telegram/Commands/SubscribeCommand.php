@@ -23,7 +23,7 @@ class SubscribeCommand extends Command
         \Log::info($args[1] ?? '');
 //        \Log::info($response ?? '');
 
-        $text = '1' . $response->getMessage() ?? '132312';
+        $text = '1' . $response->getMessage()->text ?? '132312';
 
         $this->replyWithMessage(compact('text'));
 
