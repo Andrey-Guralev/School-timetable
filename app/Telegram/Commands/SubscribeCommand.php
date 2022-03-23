@@ -22,14 +22,15 @@ class SubscribeCommand extends Command
 
         $args = explode(' ', $response->getMessage()->text);
 
-        if (count($args) >= 2) {
+        if (count($args) > 2) {
             $text = 'Слишком много аргуметов';
             $this->replyWithMessage(compact('text'));
             return;
         }
 
         if (count($args) == 1) {
-            $text = 'Необходимо указать класс (например: /subscribe 11ФМ)';
+            $text = 'Необходимо указать класс'.chr(10);
+            $text .= '(например: /subscribe 11ФМ)';
             $this->replyWithMessage(compact('text'));
             return;
         }
@@ -37,7 +38,6 @@ class SubscribeCommand extends Command
         $className = Translit::translitInEn($args[1]);
 
         $class = Classes::where('alias', $className)->get();
-
 
         $text = $class->toJson();
 
