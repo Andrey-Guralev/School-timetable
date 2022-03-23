@@ -4,6 +4,7 @@ namespace App\Telegram\Commands;
 
 use App\Actions\Translit;
 use App\Models\Classes;
+use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use Telegram;
 
@@ -19,6 +20,8 @@ class SubscribeCommand extends Command
     public function handle()
     {
         $response = $this->getUpdate();
+
+        $this->replyWithChatAction(['action' => Actions::TYPING]);
 
         $args = explode(' ', $response->getMessage()->text);
 
@@ -45,7 +48,8 @@ class SubscribeCommand extends Command
             return;
         }
 
-        $text = $response->getMessage()->chat->id;
+        $id = $response->getMessage()->chat->id;
+
 
         $this->replyWithMessage(compact('text'));
 
