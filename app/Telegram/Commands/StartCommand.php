@@ -2,6 +2,7 @@
 
 namespace App\Telegram\Commands;
 
+use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use Telegram;
 
@@ -17,6 +18,8 @@ class StartCommand extends Command
     public function handle()
     {
         $response = $this->getUpdate();
+
+        $this->replyWithChatAction(['action' => Actions::TYPING]);
 
         $text = 'Привет, это бот расписания Лицея №6 "Перспектива"'.chr(10).chr(10);
         $text .= 'Также есть сайт:'.chr(10);

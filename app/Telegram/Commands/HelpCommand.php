@@ -2,6 +2,7 @@
 
 namespace App\Telegram\Commands;
 
+use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use Telegram;
 
@@ -29,9 +30,11 @@ class HelpCommand extends Command
      * {@inheritdoc}
      */
     public function handle()
-
     {
         $response = $this->getUpdate();
+
+        $this->replyWithChatAction(['action' => Actions::TYPING]);
+
 
         $text = 'Команды:'.chr(10).chr(10);
         $text .= '/start - Начало работы с ботом'.chr(10);

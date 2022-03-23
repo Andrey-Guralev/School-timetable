@@ -2,6 +2,7 @@
 
 namespace App\Telegram\Commands;
 
+use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 use Telegram;
 
@@ -17,6 +18,8 @@ class ViewTimetableCommand extends Command
     public function handle()
     {
         $response = $this->getArguments();
+
+        $this->replyWithChatAction(['action' => Actions::TYPING]);
 
 //        \Log::info((string)$response);
         $text = 'Данная команда пока не работает';
