@@ -41,7 +41,7 @@ class SubscribeCommand extends Command
 
         $className = Translit::translitInEn($args[1]);
 
-        $class = Classes::where('alias', $className)->get();
+        $class = Classes::where('alias', $className)->first();
 
         \Log::info($args);
         \Log::info($className);
