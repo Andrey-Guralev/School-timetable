@@ -16,9 +16,13 @@ class ViewTimetableCommand extends Command
      */
     public function handle()
     {
-        $response = $this->getUpdate();
+        $response = json_decode($this->getUpdate());
+
+        \Log::info($response);
+
 
         $text = $response;
+        $text .= '131231';
 
         $this->replyWithMessage(compact('text'));
 
