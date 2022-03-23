@@ -45,10 +45,11 @@ class SubscribeCommand extends Command
 
         $args = implode(' ' ,$args);
 
+        \Log::info($args);
+
         $this->replyWithMessage(compact('args'));
 
         return;
-
 
         if ($class->isEmpty()) {
             $text = 'Не удалось найти такой класс'.chr(10);
