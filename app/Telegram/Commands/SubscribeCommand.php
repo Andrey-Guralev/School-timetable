@@ -16,11 +16,11 @@ class SubscribeCommand extends Command
      */
     public function handle()
     {
-        $response = $this->getArguments();
+        $response = $this->getUpdate()->all();
 
         $args = $this->getArguments();
 
-        \Log::info($args[1] ?? '');
+        \Log::info($args[1] ?? '', $response[0]);
 
         $text = 'Данная команда пока не работает';
 
