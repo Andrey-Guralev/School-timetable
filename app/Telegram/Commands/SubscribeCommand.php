@@ -21,9 +21,9 @@ class SubscribeCommand extends Command
         $args = $this->getArguments();
 
         \Log::info($args[1] ?? '');
-        \Log::info($response ?? '');
+//        \Log::info($response ?? '');
 
-        $text = 'Данная команда пока не работает';
+        $text = '1' . $response;
 
         $this->replyWithMessage(compact('text'));
 
