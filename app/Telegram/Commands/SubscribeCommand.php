@@ -72,7 +72,7 @@ class SubscribeCommand extends Command
 
         $subs->save();
 
-        $text = 'Вы успешно подписались на уведомления, для класса:' . $class->getFullName();
+        $text = 'Вы успешно подписались на уведомления, для класса: ' . $class->getFullName();
 
         $this->replyWithMessage(compact('text'));
 
