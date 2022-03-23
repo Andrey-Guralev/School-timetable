@@ -55,7 +55,7 @@ class SubscribeCommand extends Command
 
         $chatId = $response->getMessage()->chat->id;
 
-        $subs = TelegramSubscribers::where('chat_id', $chatId)->where('class_id', $class->id)->get();
+        $subs = TelegramSubscribers::where('chat_id', $chatId)->where('class_id', $class->id)->first();
 
         if ($subs->isNotEmpty()) {
             $text = 'Вы уже подписаны'.chr(10);

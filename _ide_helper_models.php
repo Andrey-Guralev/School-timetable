@@ -132,6 +132,28 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\TelegramSubscribers
+ *
+ * @property int $id
+ * @property int $chat_id
+ * @property int $class_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\TelegramSubscribersFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers whereChatId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers whereClassId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers whereUpdatedAt($value)
+ */
+	class TelegramSubscribers extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Timetable
  *
  * @property int $id
