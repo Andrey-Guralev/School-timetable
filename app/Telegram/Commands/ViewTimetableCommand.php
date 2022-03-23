@@ -21,7 +21,7 @@ class ViewTimetableCommand extends Command
 //        \Log::info((string)$response);
 
 
-        $text = $response;
+        $text = implode('-----' ,$response);
         $text .= '131231';
 
         $this->replyWithMessage(compact('text'));
