@@ -11,9 +11,9 @@ use Telegram;
 
 class UnsubscribeCommand extends Command
 {
-    protected $name = 'subscribe';
+    protected $name = 'unsubscribe';
 
-    protected $description = 'Команда для подписку на уведомления';
+    protected $description = 'Команда для отписки от уведомлений';
 
     /**
      * {@inheritdoc}
