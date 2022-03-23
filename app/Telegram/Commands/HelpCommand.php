@@ -44,7 +44,7 @@ class HelpCommand extends Command
             $response .= sprintf('/%s - %s' . PHP_EOL, $name, $command->getDescription());
         }
 
-        $this->replyWithMessage(compact('text'));
+        $this->replyWithMessage(compact('response'));
 
     }
 }
