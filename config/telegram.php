@@ -41,6 +41,7 @@ return [
                 \App\Telegram\Commands\StartCommand::class,
                 \App\Telegram\Commands\HelpCommand::class,
                 \App\Telegram\Commands\ViewTimetableCommand::class,
+                \App\Telegram\Commands\SubscribeCommand::class
             ],
         ],
 
