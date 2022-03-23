@@ -22,19 +22,18 @@ class SubscribeCommand extends Command
 
         $args = explode(' ', $response->getMessage()->text);
 
-//        if (count($args) >= 1) {
-//            $text = 'Слишком много аргуметов';
-//            $this->replyWithMessage(compact('text'));
-//            return;
-//        }
-//
-//        $className = Translit::translitInEn($args[1]);
-//
-//        $class = Classes::where('alias', $className)->get();
-//
-//        $text = $class;
+        if (count($args) >= 2) {
+            $text = 'Слишком много аргуметов';
+            $this->replyWithMessage(compact('text'));
+            return;
+        }
 
-        $text = $args[0];
+        $className = Translit::translitInEn($args[1]);
+
+        $class = Classes::where('alias', $className)->get();
+
+        $text = $class;
+
 
         $this->replyWithMessage(compact('text'));
 
