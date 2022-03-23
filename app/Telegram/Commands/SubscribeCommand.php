@@ -41,7 +41,7 @@ class SubscribeCommand extends Command
 
         $className = Translit::translitInEn($args[1]);
 
-        $class = Classes::where('alias', $className)->first();
+        $class = Classes::where('alias', $className)->get();
 
         \Log::info($args);
         \Log::info($className);
@@ -52,6 +52,8 @@ class SubscribeCommand extends Command
             $this->replyWithMessage(compact('text'));
             return;
         }
+
+        $class = $class->first();
 
         $chatId = $response->getMessage()->chat->id;
 
