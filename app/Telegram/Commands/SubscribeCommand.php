@@ -5,9 +5,9 @@ namespace App\Telegram\Commands;
 use Telegram\Bot\Commands\Command;
 use Telegram;
 
-class ViewTimetableCommand extends Command
+class SubscribeCommand extends Command
 {
-    protected $name = 'viewTimetable';
+    protected $name = 'subscribe';
 
     protected $description = 'Команда просмотра расписания для класса';
 
