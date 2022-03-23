@@ -43,6 +43,11 @@ class SubscribeCommand extends Command
 
         $class = Classes::where('alias', $className)->get();
 
+        $this->replyWithMessage(compact('class'));
+
+        return;
+
+
         if ($class->isEmpty()) {
             $text = 'Не удалось найти такой класс'.chr(10);
             $this->replyWithMessage(compact('text'));

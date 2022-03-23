@@ -9,4 +9,8 @@ class TelegramSubscribers extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'class_id',
+        'chat_id',
+    ];
 }

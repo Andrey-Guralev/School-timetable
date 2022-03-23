@@ -1076,9 +1076,6 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-0 {
-  padding: 0px;
-}
 .p-4 {
   padding: 1rem;
 }
@@ -6426,10 +6423,6 @@ readers do not read off random characters that represent icons */
 
   .lg\:flex-wrap {
     flex-wrap: wrap;
-  }
-
-  .lg\:p-4 {
-    padding: 1rem;
   }
 
   .lg\:px-8 {
