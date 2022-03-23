@@ -33,9 +33,9 @@ class StartCommand extends Command
         $response = $this->getUpdate();
 
         $text = 'Привет, это бот расписания Лицея №6 "Перспектива"'.chr(10).chr(10);
-        $text .= 'Также есть сайт:'.chr(10).chr(10);
+        $text .= 'Также есть сайт:'.chr(10);
         $text .= env('APP_URL').chr(10).chr(10);
-
+        $text .= 'Чтобы увидеть список всех команд, надо ввести команду /help'.chr(10);
 
         $this->replyWithMessage(compact('text'));
 
