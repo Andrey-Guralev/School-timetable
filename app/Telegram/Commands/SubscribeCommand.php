@@ -34,7 +34,7 @@ class SubscribeCommand extends Command
 //
 //        $text = $class;
 
-        $text = count($args);
+        $text = $args[0];
 
         $this->replyWithMessage(compact('text'));
 
