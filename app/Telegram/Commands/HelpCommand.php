@@ -33,9 +33,9 @@ class HelpCommand extends Command
     {
         $response = $this->getUpdate();
 
-        $text = 'Команды.'.chr(10).chr(10);
-        $text .= '/start - Начало работы с ботом'.chr(10).chr(10);
-        $text .= '/help - Вывод списка всех комманд'.chr(10).chr(10);
+        $text = 'Команды:'.chr(10);
+        $text .= '/start - Начало работы с ботом'.chr(10);
+        $text .= '/help - Вывод списка всех комманд'.chr(10);
 
         $this->replyWithMessage(compact('text'));
 
