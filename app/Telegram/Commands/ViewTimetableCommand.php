@@ -9,7 +9,7 @@ class ViewTimetableCommand extends Command
 {
     protected $name = 'viewTimetable';
 
-    protected $description = 'Команда начала работы бота';
+    protected $description = 'Команда просмотра расписания для класса';
 
     /**
      * {@inheritdoc}
@@ -19,7 +19,6 @@ class ViewTimetableCommand extends Command
         $response = $this->getUpdate();
 
         $text = $response;
-        $text .= ' krw0e-jw0';
 
         $this->replyWithMessage(compact('text'));
 
