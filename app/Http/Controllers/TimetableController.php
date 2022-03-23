@@ -9,7 +9,9 @@ use App\Http\Requests\StoreFileTimetableRequest;
 use App\Http\Requests\StoreFormTimetableRequest;
 use App\Models\Classes;
 use App\Models\RingSchedule;
+use App\Models\TelegramSubscribers;
 use App\Models\Timetable;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TimetableController extends Controller
 {
@@ -54,6 +56,15 @@ class TimetableController extends Controller
         $parser = new TimetableParser();
         $parser->parseFile($class, $request->text);
 
+        $subs = TelegramSubscribers::where('class_id', $class_id)->get();
+
+        foreach ($subs as $sub) {
+            Telegram::sendMessage([
+                'chat_id' => $sub->chat_id,
+                'text' => 'У тебя изменилось расписание'
+            ]);
+        }
+
         return redirect()->back();
     }
 
@@ -66,6 +77,16 @@ class TimetableController extends Controller
 
         $parser = new TimetableParser();
         $parser->parseForm($class, $data);
+
+        $subs = TelegramSubscribers::where('class_id', $class_id)->get();
+
+        foreach ($subs as $sub) {
+            Telegram::sendMessage([
+                'chat_id' => $sub->chat_id,
+                'text' => 'У тебя изменилось расписание'
+            ]);
+        }
+
 
         return redirect()->back();
     }
