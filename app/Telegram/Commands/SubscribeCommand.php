@@ -21,7 +21,7 @@ class SubscribeCommand extends Command
         $args = $this->getArguments();
 
         \Log::info($args[1] ?? '');
-        \Log::info($response[0] ?? '');
+        \Log::info($response ?? '');
 
         $text = 'Данная команда пока не работает';
 
