@@ -43,7 +43,7 @@ class SubscribeCommand extends Command
 
         $class = Classes::where('alias', $className)->get()->toJson();
 
-        $this->replyWithMessage(compact('class'));
+        $this->replyWithMessage(compact('className'));
 
         return;
 
