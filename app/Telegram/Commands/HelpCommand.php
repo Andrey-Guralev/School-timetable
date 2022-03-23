@@ -23,7 +23,7 @@ class HelpCommand extends Command
     /**
      * @var string Command Description
      */
-    protected $description = 'Help command, Get a list of all commands';
+    protected $description = 'Команда помощи, выводит все команды';
 
     /**
      * {@inheritdoc}
@@ -33,10 +33,16 @@ class HelpCommand extends Command
     {
         $response = $this->getUpdate();
 
-        $text = 'Hey stranger, thanks for visiting me.'.chr(10).chr(10);
-        $text .= 'I am a bot and working for'.chr(10);
-        $text .= env('APP_URL').chr(10).chr(10);
-        $text .= 'Please come and visit me there.'.chr(10);
+//        $text = 'Команды:'.chr(10).chr(10);
+//        $text .= '/start - начало '
+
+        $commands = $this->getTelegram()->getCommands();
+
+        // Build the list
+        $response = '';
+        foreach ($commands as $name => $command) {
+            $response .= sprintf('/%s - %s' . PHP_EOL, $name, $command->getDescription());
+        }
 
         $this->replyWithMessage(compact('text'));
 
