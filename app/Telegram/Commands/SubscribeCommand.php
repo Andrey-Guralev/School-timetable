@@ -2,6 +2,8 @@
 
 namespace App\Telegram\Commands;
 
+use App\Actions\Translit;
+use App\Models\Classes;
 use Telegram\Bot\Commands\Command;
 use Telegram;
 
@@ -18,12 +20,19 @@ class SubscribeCommand extends Command
     {
         $response = $this->getUpdate();
 
-        $args = $this->getArguments();
+        $args = explode(' ', $response->getMessage()->text);
 
-        \Log::info($args[1] ?? '');
-//        \Log::info($response ?? '');
+        if (count($args) >= 1) {
+            $text = 'Слишком много аргуметов';
+            $this->replyWithMessage(compact('text'));
+            return;
+        }
 
-        $text = '1' . $response->getMessage()->text ?? '132312';
+        $className = Translit::translitInEn($args[1]);
+
+        $class = Classes::where('alias', $className)->get();
+
+        $text = $class;
 
         $this->replyWithMessage(compact('text'));
 
