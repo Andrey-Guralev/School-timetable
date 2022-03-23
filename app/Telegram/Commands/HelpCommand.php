@@ -36,6 +36,7 @@ class HelpCommand extends Command
         $text = 'Команды:'.chr(10);
         $text .= '/start - Начало работы с ботом'.chr(10);
         $text .= '/help - Вывод списка всех комманд'.chr(10);
+        $text .= '/viewTimetable - Вывод расписания'.chr(10);
 
         $this->replyWithMessage(compact('text'));
 
