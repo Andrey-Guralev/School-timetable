@@ -24,7 +24,7 @@ class StoreArchiveTimetableRequest extends FormRequest
     public function rules()
     {
         return [
-            'archive' => ['required']
+            'archive' => ['required', 'mimes:zip']
         ];
     }
 }

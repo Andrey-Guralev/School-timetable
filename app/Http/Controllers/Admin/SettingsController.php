@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoresettingsRequest;
+use App\Http\Requests\UpdatesettingsRequest;
+use App\Models\settings;
 
-class testController extends Controller
+class SettingsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,10 +32,10 @@ class testController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoresettingsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoresettingsRequest $request)
     {
         //
     }
@@ -40,10 +43,10 @@ class testController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\settings  $settings
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(settings $settings)
     {
         //
     }
@@ -51,10 +54,10 @@ class testController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\settings  $settings
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(settings $settings)
     {
         //
     }
@@ -62,11 +65,11 @@ class testController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdatesettingsRequest  $request
+     * @param  \App\Models\settings  $settings
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatesettingsRequest $request, settings $settings)
     {
         //
     }
@@ -74,10 +77,10 @@ class testController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\settings  $settings
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(settings $settings)
     {
         //
     }

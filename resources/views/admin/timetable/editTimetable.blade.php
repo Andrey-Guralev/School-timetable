@@ -43,7 +43,7 @@
         <div class="ml-8 mt-4">
             <form action="{{ route('storeArchiveTimetable') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="file" id="archive-input" name="archive">
+                <input type="file" id="archive-input" name="archive" required>
                 <div class="flex items-baseline">
                     <button type="submit" data-url="{{ route('storeArchiveTimetable') }}" id="archive-send" class="flex mt-4 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         Отправить

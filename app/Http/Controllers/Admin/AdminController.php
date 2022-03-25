@@ -1,14 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Classes;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use function event;
+use function redirect;
+use function response;
+use function view;
 
-class adminController extends Controller
+class AdminController extends Controller
 {
     public function indexUsers()
     {

@@ -14,7 +14,7 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\indexController::class, 'index'])->name('index');
+Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
 Route::middleware(['auth', 'manager'])->prefix('timetable')->group(function () {         //Маршруты связанные с редактированием расписания
     Route::get('/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');
@@ -42,11 +42,11 @@ Route::middleware('guest')->prefix('classes')->group(function () {              
 });
 
 Route::middleware(['auth', 'Admin'])->group(function () {
-    Route::get('/users', [\App\Http\Controllers\adminController::class, 'indexUsers'])->name('adminUsers');
-    Route::get('/user/{id}/{type}', [\App\Http\Controllers\adminController::class, 'changeUserType'])->name('changeUserType');
-    Route::post('/user/class', [\App\Http\Controllers\adminController::class, 'changeTeacherClass'])->name('changeTeacherClass');
-    Route::get('user/register', [\App\Http\Controllers\adminController::class, 'registerUserPage'])->name('adminRegisterUserPage');
-    Route::post('user/register', [\App\Http\Controllers\adminController::class, 'registerUser'])->name('adminRegisterUser');;
+    Route::get('/users', [\App\Http\Controllers\Admin\AdminController::class, 'indexUsers'])->name('adminUsers');
+    Route::get('/user/{id}/{type}', [\App\Http\Controllers\Admin\AdminController::class, 'changeUserType'])->name('changeUserType');
+    Route::post('/user/class', [\App\Http\Controllers\Admin\AdminController::class, 'changeTeacherClass'])->name('changeTeacherClass');
+    Route::get('user/register', [\App\Http\Controllers\Admin\AdminController::class, 'registerUserPage'])->name('adminRegisterUserPage');
+    Route::post('user/register', [\App\Http\Controllers\Admin\AdminController::class, 'registerUser'])->name('adminRegisterUser');;
 });
 
 Route::middleware('auth')->prefix('user')->group(function () {

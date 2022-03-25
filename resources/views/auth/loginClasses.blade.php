@@ -58,6 +58,26 @@
                 @endforeach
             </div>
 
+                {{--                @for($i = 5; $i <= 11; $i++)--}}
+{{--                    <div class="flex flex-col">--}}
+{{--                        <div>--}}
+{{--                            {{ $i }} классы:--}}
+{{--                        </div>--}}
+{{--                        <div class="flex ml-4">--}}
+{{--                            @foreach($classes->where('number', $i) as $class)--}}
+{{--                                <form method="POST" class="m-0.5" action="{{ route('classesLogin') }}">--}}
+{{--                                    @csrf--}}
+{{--                                    <input type="hidden" name="class" value="{{ $class->id }}">--}}
+{{--                                    <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition">--}}
+{{--                                        {{ $class->getFullName() }}--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endfor--}}
+{{--            </div>--}}
+
 {{--        <form method="POST" action="{{ route('classesLogin') }}">--}}
 {{--            @csrf--}}
 {{--            <div>--}}

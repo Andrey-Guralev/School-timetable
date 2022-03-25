@@ -154,17 +154,6 @@ class TimetableController extends Controller
             $parser->parseFile($class, $text);
 
             TelegramTimetableUpdateNotification::dispatch($class->id);
-
-//            if (env('APP_ENV') == 'production') {
-//                $subs = TelegramSubscribers::where('class_id', $class->id)->get();
-//
-//                foreach ($subs as $sub) {
-//                    Telegram::sendMessage([
-//                        'chat_id' => $sub->chat_id,
-//                        'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
-//                    ]);
-//                }
-//            }
         }
 
         \Storage::deleteDirectory($dirName);

@@ -5846,6 +5846,22 @@ var errorMessage = document.getElementById('error-message');
 
 function send(e) {
   e.preventDefault();
+
+  if (archiveInput.files.length === 0) {
+    error('Вы не выбрали файл');
+    return;
+  }
+
+  if (archiveInput.files.length > 1) {
+    error('Нужно только один архив');
+    return;
+  }
+
+  if (archiveInput.files[0].type !== 'application/x-zip-compressed') {
+    error('Неправильный формат файла');
+    return;
+  }
+
   var url = sendButton.dataset.url;
   var formData = new FormData();
   formData.append("archive", archiveInput.files[0]);
@@ -5859,8 +5875,19 @@ function send(e) {
     loadingFinish(response.data);
   })["catch"](function (e) {
     console.error("\u041A\u0430\u043A\u0430\u044F-\u0442\u043E \u043E\u0448\u0438\u0431\u043A\u0430: ".concat(e));
-    error = e;
+    error();
   });
+}
+
+function error() {
+  var string = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+  if (string != null) {
+    loadingMessage.innerHTML = 'Ошибка: ' + string;
+    return;
+  }
+
+  loadingMessage.innerHTML = 'Ошибка, попробуйте еще';
 }
 
 function loading() {
