@@ -32,5 +32,7 @@ class UnsubscribeCommand extends Command
 
         $this->replyWithMessage(compact('text'));
 
+
+
     }
 }

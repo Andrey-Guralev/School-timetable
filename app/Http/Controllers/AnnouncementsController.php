@@ -6,8 +6,10 @@ use App\Models\Announcements;
 use App\Http\Requests\StoreAnnouncementsRequest;
 use App\Http\Requests\UpdateAnnouncementsRequest;
 use App\Models\Classes;
+use App\Models\TelegramSubscribers;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Telegram\Bot\Laravel\Facades\Telegram;
 
 class AnnouncementsController extends Controller
 {
@@ -62,6 +64,19 @@ class AnnouncementsController extends Controller
         $announcement->author_id = \Auth::user()->id;
 
         $announcement->save();
+
+        if ($announcement->type == 1) {
+            $subs = TelegramSubscribers::all();
+        } else {
+            $subs = TelegramSubscribers::where('class_id', $announcement->class_id)->get();
+        }
+
+        foreach ($subs as $sub) {
+            Telegram::sendMessage([
+                'chat_id' => $sub->chat_id,
+                'text' => 'Новое объявление!' . chr(10) . chr(10) . 'Посмотреть: ' . env('APP_URL') . '/announcements/' . $announcement->id,
+            ]);
+        }
 
         return redirect($request->prev_url);
     }
