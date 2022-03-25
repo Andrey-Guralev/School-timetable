@@ -7,6 +7,7 @@ use App\Actions\Translit;
 use App\Http\Requests\StoreArchiveTimetableRequest;
 use App\Http\Requests\StoreFileTimetableRequest;
 use App\Http\Requests\StoreFormTimetableRequest;
+use App\Jobs\TelegramTimetableUpdateNotification;
 use App\Models\Classes;
 use App\Models\RingSchedule;
 use App\Models\TelegramSubscribers;
@@ -56,14 +57,18 @@ class TimetableController extends Controller
         $parser = new TimetableParser();
         $parser->parseFile($class, $request->text);
 
-        $subs = TelegramSubscribers::where('class_id', $class_id)->get();
+        TelegramTimetableUpdateNotification::dispatch($class_id);
 
-        foreach ($subs as $sub) {
-            Telegram::setAsyncRequest(true)->sendMessage([
-                'chat_id' => $sub->chat_id,
-                'text' => 'У тебя изменилось расписание'
-            ]);
-        }
+//        if (env('APP_ENV') == 'production') {
+//            $subs = TelegramSubscribers::where('class_id', $class_id)->get();
+//
+//            foreach ($subs as $sub) {
+//                Telegram::sendMessage([
+//                    'chat_id' => $sub->chat_id,
+//                    'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
+//                ]);
+//            }
+//        }
 
         return redirect()->back();
     }
@@ -78,15 +83,18 @@ class TimetableController extends Controller
         $parser = new TimetableParser();
         $parser->parseForm($class, $data);
 
-        $subs = TelegramSubscribers::where('class_id', $class_id)->get();
+        TelegramTimetableUpdateNotification::dispatch($class_id);
 
-        foreach ($subs as $sub) {
-            Telegram::setAsyncRequest(true)->sendMessage([
-                'chat_id' => $sub->chat_id,
-                'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
-            ]);
-        }
-
+//        if (env('APP_ENV') == 'production') {
+//            $subs = TelegramSubscribers::where('class_id', $class_id)->get();
+//
+//            foreach ($subs as $sub) {
+//                Telegram::sendMessage([
+//                    'chat_id' => $sub->chat_id,
+//                    'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
+//                ]);
+//            }
+//        }
 
         return redirect()->back();
     }
@@ -144,6 +152,19 @@ class TimetableController extends Controller
             Timetable::where('class_id', $class->id)->delete();
 
             $parser->parseFile($class, $text);
+
+            TelegramTimetableUpdateNotification::dispatch($class->id);
+
+//            if (env('APP_ENV') == 'production') {
+//                $subs = TelegramSubscribers::where('class_id', $class->id)->get();
+//
+//                foreach ($subs as $sub) {
+//                    Telegram::sendMessage([
+//                        'chat_id' => $sub->chat_id,
+//                        'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
+//                    ]);
+//                }
+//            }
         }
 
         \Storage::deleteDirectory($dirName);
@@ -153,6 +174,8 @@ class TimetableController extends Controller
         } else {
             $unknown = null;
         }
+
+
 
         return response($unknown, 200);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\TelegramAnnouncementsCreateNotification;
 use App\Models\Announcements;
 use App\Http\Requests\StoreAnnouncementsRequest;
 use App\Http\Requests\UpdateAnnouncementsRequest;
@@ -62,19 +63,23 @@ class AnnouncementsController extends Controller
 
         $announcement->save();
 
-        if ($announcement->type == 1) {
-            $subs = TelegramSubscribers::all();
-        } else {
-            $subs = TelegramSubscribers::where('class_id', $announcement->class_id)->get();
-        }
+        TelegramAnnouncementsCreateNotification::dispatch($announcement);
 
-        foreach ($subs as $sub) {
-            Telegram::setAsyncRequest(true)->sendMessage([
-                'chat_id' => $sub->chat_id,
-                'text' => 'Новое объявление!' . chr(10) . chr(10) . 'Посмотреть: ' . env('APP_URL') . '/announcements/' . $announcement->id,
-            ]);
-        }
-
+//        if (env('APP_ENV') == 'production')
+//        {
+//            if ($announcement->type == 1) {
+//                $subs = TelegramSubscribers::all();
+//            } else {
+//                $subs = TelegramSubscribers::where('class_id', $announcement->class_id)->get();
+//            }
+//
+//            foreach ($subs as $sub) {
+//                Telegram::sendMessage([
+//                    'chat_id' => $sub->chat_id,
+//                    'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
+//                ]);
+//            }
+//        }
         return redirect($request->prev_url);
     }
 
