@@ -16,7 +16,8 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
-Route::middleware(['auth', 'manager'])->prefix('timetable')->group(function () {         //Маршруты связанные с редактированием расписания
+//Маршруты связанные с редактированием расписания
+Route::middleware(['auth', 'manager'])->prefix('timetable')->group(function () {
     Route::get('/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');
     Route::get('/edit/{class_id}', [\App\Http\Controllers\TimetableController::class, 'editForm'])->name('editFormTimetable');
     Route::Post('/edit/{class_id}/file', [\App\Http\Controllers\TimetableController::class, 'storeFile'])->name('storeFileTimetable');
@@ -24,21 +25,24 @@ Route::middleware(['auth', 'manager'])->prefix('timetable')->group(function () {
     Route::Post('/edit/archive', [\App\Http\Controllers\TimetableController::class, 'storeArchive'])->name('storeArchiveTimetable');
 });
 
-Route::middleware('auth')->prefix('timetable')->group(function () {                                         // Маршруты связанные с получением расписания
+// Маршруты связанные с получением расписания
+Route::middleware('auth')->prefix('timetable')->group(function () {
     Route::get('/{id}', [\App\Http\Controllers\TimetableController::class, 'getForClass'])->name('timetableForClass');
 });
 
-Route::middleware(['auth', 'manager'])->group(function () {         //Маршруты связанные с созданием и редактированием классов
+//Маршруты связанные с созданием и редактированием классов
+Route::middleware(['auth', 'manager'])->group(function () {
     Route::post('/classes', [\App\Http\Controllers\ClassesController::class, 'store'])->name('storeClasses');
     Route::get('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'edit'])->name('editClasses');
     Route::patch('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'update'])->name('updateClasses');
     Route::delete('/classes/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('destroyClasses');
 });
 
-Route::middleware('guest')->prefix('classes')->group(function () {               //Маршруты связанные с аутентификацией в классы
-    Route::get('/login', [\App\Http\Controllers\ClassesController::class, 'loginPage'])->name('classesLoginPage');
-    Route::post('/login', [\App\Http\Controllers\ClassesController::class, 'login'])->name('classesLogin');
-    Route::get('/logout', [\App\Http\Controllers\ClassesController::class, 'logout'])->name('classLogout');
+//Маршруты связанные с аутентификацией в классы
+Route::middleware('guest')->prefix('classes')->group(function () {
+    Route::get('/login', [\App\Http\Controllers\ClassesLoginController::class, 'loginPage'])->name('classesLoginPage');
+    Route::post('/login', [\App\Http\Controllers\ClassesLoginController::class, 'login'])->name('classesLogin');
+    Route::get('/logout', [\App\Http\Controllers\ClassesLoginController::class, 'logout'])->name('classLogout');
 });
 
 Route::middleware(['auth', 'Admin'])->group(function () {
