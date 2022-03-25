@@ -24,8 +24,8 @@ class TelegramAnnouncementsCreateNotification implements ShouldQueue
 
     public function handle()
     {
-        if (env('APP_ENV') == 'production')
-        {
+//        if (env('APP_ENV') == 'production')
+//        {
             if ($this->announcement->type == 1) {
                 $subs = TelegramSubscribers::all();
             } else {
@@ -38,8 +38,8 @@ class TelegramAnnouncementsCreateNotification implements ShouldQueue
                     'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
                 ]);
             }
-        } else {
-            \Log::info("Объявления: " . $this->announcement->id);
-        }
+//        } else {
+//            \Log::info("Объявления:" . $this->announcement->id);
+//        }
     }
 }
