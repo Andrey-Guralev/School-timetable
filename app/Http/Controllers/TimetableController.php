@@ -59,7 +59,7 @@ class TimetableController extends Controller
         $subs = TelegramSubscribers::where('class_id', $class_id)->get();
 
         foreach ($subs as $sub) {
-            Telegram::sendMessage([
+            Telegram::setAsyncRequest(true)->sendMessage([
                 'chat_id' => $sub->chat_id,
                 'text' => 'У тебя изменилось расписание'
             ]);
@@ -81,7 +81,7 @@ class TimetableController extends Controller
         $subs = TelegramSubscribers::where('class_id', $class_id)->get();
 
         foreach ($subs as $sub) {
-            Telegram::sendMessage([
+            Telegram::setAsyncRequest(true)->sendMessage([
                 'chat_id' => $sub->chat_id,
                 'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
             ]);

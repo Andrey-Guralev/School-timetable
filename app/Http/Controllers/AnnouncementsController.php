@@ -51,12 +51,9 @@ class AnnouncementsController extends Controller
         $announcement->title = $request->title;
         $announcement->text = $request->main_text;
 
-        if ($request->type == 'school')
-        {
+        if ($request->type == 'school') {
             $announcement->type = '1';
-        }
-        else
-        {
+        } else {
             $announcement->type = '0';
             $announcement->class_id = $request->type;
         }
@@ -72,7 +69,7 @@ class AnnouncementsController extends Controller
         }
 
         foreach ($subs as $sub) {
-            Telegram::sendMessage([
+            Telegram::setAsyncRequest(true)->sendMessage([
                 'chat_id' => $sub->chat_id,
                 'text' => 'Новое объявление!' . chr(10) . chr(10) . 'Посмотреть: ' . env('APP_URL') . '/announcements/' . $announcement->id,
             ]);
