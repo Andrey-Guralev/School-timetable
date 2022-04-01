@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class AdminNavigationLayout extends Component
+class AdminAppLayout extends Component
 {
     /**
      * Get the view / contents that represents the component.
@@ -13,6 +13,6 @@ class AdminNavigationLayout extends Component
      */
     public function render()
     {
-        return view('layouts.admin.navigation');
+        return view('admin.layouts.adminApp');
     }
 }

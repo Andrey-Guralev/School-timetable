@@ -8,7 +8,7 @@ use App\Models\RingSchedule;
 use App\Models\Timetable;
 use Illuminate\Http\Request;
 
-class indexController extends Controller
+class IndexController extends Controller
 {
     public function index()
     {
@@ -77,6 +77,6 @@ class indexController extends Controller
         $announcements = Announcements::with('Classes')->get()->sortDesc();
 
 
-        return view('index.indexForAdmin', compact(['timetable', 'announcements', 'classes']));
+        return view('admin.indexForAdmin', compact(['timetable', 'announcements', 'classes']));
     }
 }

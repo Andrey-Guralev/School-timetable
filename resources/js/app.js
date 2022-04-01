@@ -21,6 +21,7 @@ if (window.location.pathname.indexOf('timetable/edit') === 1) {
     require('./editTimetable');
 }
 
+require('./adminNavbarHandler');
 
 import Alpine from 'alpinejs';
 
