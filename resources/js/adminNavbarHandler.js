@@ -2,23 +2,19 @@ const closeButton = document.querySelector('#closeSideBar');
 const openButton = document.querySelector('#openSideBar');
 
 
-function openAdminNav() {
+function openAdminNav(e) {
     const nav = document.getElementById('mobile-nav');
 
     nav.classList.remove('hidden');
 }
 
-function closeAdminNav() {
+function closeAdminNav(e) {
     const nav = document.getElementById('mobile-nav');
 
     nav.classList.add('hidden');
 }
 
-function init() {
-    if (closeButton && openButton) {
-        closeButton.addEventListener('click', closeAdminNav);
-        openButton.addEventListener('click', openAdminNav);
-    }
+if (closeButton && openButton) {
+    closeButton.addEventListener('click', closeAdminNav);
+    openButton.addEventListener('click', openAdminNav);
 }
-
-init();

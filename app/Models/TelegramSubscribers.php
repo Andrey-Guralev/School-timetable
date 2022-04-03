@@ -13,4 +13,9 @@ class TelegramSubscribers extends Model
         'class_id',
         'chat_id',
     ];
+
+    public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Classes::class, 'class_id');
+    }
 }

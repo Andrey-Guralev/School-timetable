@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-app-layout>
     <x-container>
         <div class="header flex items-center justify-between">
             <h1 class="text-2xl font-semibold">Регистрация нового пользователя</h1>
@@ -79,4 +79,4 @@
            </form>
        </div>
     </x-container>
-</x-app-layout>
+</x-admin-app-layout>

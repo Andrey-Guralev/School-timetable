@@ -9,30 +9,68 @@
 <div style="min-height: 700px" class="absolute z-40 lg:relative w-64 shadow bg-white hidden lg:block">
 
     <div class="h-16 w-full flex items-center px-8 text-3xl font-bold">
-        Расписание
+        <a href="/">
+            Расписание
+        </a>
     </div>
 
     <ul class="">
-        <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none">
-            <div class="flex items-center">
-                <a href="javascript:void(0)" class="ml-2">Dashboard</a>
-            </div>
-        </li>
-        <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none">
-            <div class="flex items-center">
-                <a href="javascript:void(0)" class="ml-2">Products</a>
-            </div>
-        </li>
-        <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none">
-            <div class="flex items-center">
-                <a href="javascript:void(0)" class="ml-2">Performance</a>
-            </div>
-        </li>
-        <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none">
-            <div class="flex items-center">
-                <a href="javascript:void(0)" class="ml-2">Deliverables</a>
-            </div>
-        </li>
+        <a href="javascript:void(0)" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(false) border-b border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                        Учителя
+                </div>
+            </li>
+        </a>
+        <a href="javascript:void(0)" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(false) border-b border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                        Предметы
+                </div>
+            </li>
+        </a>
+        <a href="javascript:void(0)" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(false) border-b border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                        Нагрузка
+                </div>
+            </li>
+        </a>
+        <a href="{{ route('editClasses') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('editClasses')) border-b-2 border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                    Классы
+                </div>
+            </li>
+        </a>
+        <a href="{{ route('editTimetable') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('editTimetable')) border-b-2 border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                        Расписание
+                </div>
+            </li>
+        </a>
+        <a href="{{ route('adminUsers') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('adminUsers')) border-b-2 border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                        Пользователи
+               </div>
+            </li>
+        </a>
+        <a href="{{ route('announcementsIndex') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('announcementsIndex')) brder-b-2 border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                    Объявления
+                </div>
+            </li>
+        </a>
+        <a href="{{ route('ringEdit') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('ringEdit')) border-b border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                    Расписание звонков
+                </div>
+            </li>
+        </a>
     </ul>
 </div>
 

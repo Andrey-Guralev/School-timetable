@@ -19,8 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('first_name')->nullable();
             $table->string('second_name')->nullable();
             $table->string('middle_name')->nullable();
+//            $table->enum('type', ['undefined', 'student', 'teacher', 'admin'])->default('undefined');
             $table->integer('type')->default(0);
-            $table->integer('class_id')->nullable();
+//            $table->integer('class_id')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

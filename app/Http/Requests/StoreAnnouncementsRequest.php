@@ -35,6 +35,18 @@ class StoreAnnouncementsRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'main_text.required' => 'Поле "Текст объяваления" обязательно для заполненмя',
+            'main_text.string' => 'Поле "Текст объявления должно быть строкой',
+            'title.required' => 'Поле "Заголовок" обязательно для заполнения',
+            'title.string' => 'Поле "Заголовок" должно быть строкой',
+            'type.required' => 'Поле "Класс" обязательно для заполнения',
+            'type.string' => 'Неизвестная ошибка',
+        ];
+    }
+
     protected function prepareForValidation() {
         $this->merge([
            'main_text' => strip_tags($this->main_text, '<p><strong><em><span><ol><li><ul><a>'),

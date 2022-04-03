@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .vue()
     .sass('resources/css/app.scss', 'public/css')
     .options({
         postCss: [
@@ -19,7 +20,7 @@ mix.js('resources/js/app.js', 'public/js')
             require('tailwindcss'),
         ]
     })
-    .copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
+    // .copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
 
 
 // mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
@@ -27,3 +28,7 @@ mix.js('resources/js/app.js', 'public/js')
 //     require('tailwindcss'),
 //     require('autoprefixer'),
 // ]);
+
+// mix.js('resources/js/app.js', 'public/js')
+//     .vue()
+//     .sass('resources/sass/app.scss', 'public/css');

@@ -11,7 +11,6 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "8.0",
         "ext-json": "*",
         "ext-zip": "*",
         "fruitcake/laravel-cors": "^2.0",
@@ -20,6 +19,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.4",
         "tinymce/tinymce": "^5.10"
     },
     "require-dev": {

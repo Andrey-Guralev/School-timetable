@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Announcement;
+use App\Models\Announcements;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AnnouncementsPolicy
@@ -25,10 +25,10 @@ class AnnouncementsPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcements
+     * @param  \App\Models\Announcements  $announcements
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Announcement $announcements)
+    public function view(User $user, Announcements $announcements)
     {
         //
     }
@@ -48,10 +48,10 @@ class AnnouncementsPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcements
+     * @param  \App\Models\Announcements  $announcements
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Announcement $announcements)
+    public function update(User $user, Announcements $announcements)
     {
         //
     }
@@ -60,10 +60,10 @@ class AnnouncementsPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcements
+     * @param  \App\Models\Announcements  $announcements
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Announcement $announcements)
+    public function delete(User $user, Announcements $announcements)
     {
         //
     }
@@ -72,10 +72,10 @@ class AnnouncementsPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcements
+     * @param  \App\Models\Announcements  $announcements
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Announcement $announcements)
+    public function restore(User $user, Announcements $announcements)
     {
         //
     }
@@ -84,10 +84,10 @@ class AnnouncementsPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Announcement  $announcements
+     * @param  \App\Models\Announcements  $announcements
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Announcement $announcements)
+    public function forceDelete(User $user, Announcements $announcements)
     {
         //
     }

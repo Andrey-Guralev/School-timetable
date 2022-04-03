@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-app-layout>
     <x-container>
         <div class="header flex justify-between">
             <h1 class="text-2xl">Изменение объявлений</h1>
@@ -11,5 +11,16 @@
             </form>
         </div>
     </x-container>
-    <x-tiny-mce></x-tiny-mce>
-</x-app-layout>
+    <script>
+        tinymce.init({
+            selector: '#main-text',
+            required: true,
+            plugins: 'link lists',
+            menubar: '',
+            toolbar: 'undo redo | bold italic underline | link | alignleft aligncenter alignright alignjustify | outdent indent | forecolor backcolor removeformat ',
+            height: 400,
+            toolbar_mode: 'sliding',
+            language: 'ru',
+        });
+    </script>
+</x-admin-app-layout>

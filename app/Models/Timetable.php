@@ -5,22 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Timetable extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'lesson',
+        'lesson_id',
         'teacher_id',
         'class_id',
+        'load_id',
         'number',
         'weekday',
-        'room_1',
-        'room_2'
+        'rooms',
     ];
 
     protected $table = 'timetable';
 
+    protected $casts = [
+        'rooms' => 'array'
+    ];
+
+    public function Lesson(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Lesson::class);
+    }
 
     public function Teacher(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
@@ -29,6 +38,11 @@ class Timetable extends Model
 
     public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Classes::class);
+        return $this->belongsTo(Classes::class, 'class_id');
+    }
+
+    public function LoadR(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Load::class);
     }
 }

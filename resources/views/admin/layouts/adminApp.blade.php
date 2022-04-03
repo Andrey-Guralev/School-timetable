@@ -28,14 +28,17 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <script src="{{ asset('js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+
     </head>
-    <body class=" font-sans antialiased">
-        <div class=" shadow bg-gray-100" style="height: fit-content">
+    <body class="font-sans antialiased">
+        <div class=" shadow bg-gray-100" style="height: fit-content" id="app">
             <div class="min-h-screen flex flex-no-wrap">
 
                 @include('admin.layouts.adminNavigation')
 
-                <div class="mx-auto pt-20">
+                <div class="w-full pt-20 ">
                         {{ $slot }}
                 </div>
             </div>

@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Hash;
 
 class ClassesController extends Controller
 {
+
+    public function get()
+    {
+        $classes = Classes::all();
+
+        $classes = json_encode($classes);
+
+        return response($classes,200);
+    }
+
     public function store(StoreClassesRequest $request)
     {
         $class = new Classes();
@@ -21,7 +31,6 @@ class ClassesController extends Controller
         $class->letter = $request->letter;
         $class->alias = Translit::translitInEn($request->number . mb_strtolower($request->letter));
         $class->shift = $request->shift;
-        $class->password = str_replace(['.', '/', "\\", ',', '\'', '"', ] ,'', substr(Hash::make($request->pasword), '10', '5'));
 
         $class->save();
 

@@ -17,7 +17,7 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
 //Маршруты связанные с редактированием расписания
-Route::middleware(['auth', 'manager'])->prefix('timetable')->group(function () {
+Route::middleware(['auth', 'Admin'])->prefix('timetable')->group(function () {
     Route::get('/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');
     Route::get('/edit/{class_id}', [\App\Http\Controllers\TimetableController::class, 'editForm'])->name('editFormTimetable');
     Route::Post('/edit/{class_id}/file', [\App\Http\Controllers\TimetableController::class, 'storeFile'])->name('storeFileTimetable');
@@ -27,13 +27,14 @@ Route::middleware(['auth', 'manager'])->prefix('timetable')->group(function () {
 
 // Маршруты связанные с получением расписания
 Route::middleware('auth')->prefix('timetable')->group(function () {
-    Route::get('/{id}', [\App\Http\Controllers\TimetableController::class, 'getForClass'])->name('timetableForClass');
+    Route::get('/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'getForClass'])->name('timetableForClass');
 });
 
 //Маршруты связанные с созданием и редактированием классов
-Route::middleware(['auth', 'manager'])->group(function () {
+Route::middleware(['auth', 'Admin'])->group(function () {
     Route::post('/classes', [\App\Http\Controllers\ClassesController::class, 'store'])->name('storeClasses');
     Route::get('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'edit'])->name('editClasses');
+    Route::get('/classes/get', [\App\Http\Controllers\ClassesController::class, 'get'])->name('getClasses');
     Route::patch('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'update'])->name('updateClasses');
     Route::delete('/classes/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('destroyClasses');
 });

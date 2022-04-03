@@ -47,15 +47,12 @@ namespace App\Models{
  * @property int $id
  * @property int $number
  * @property string $letter
- * @property string $password
  * @property string|null $alias
- * @property int|null $shift
+ * @property int $shift
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Announcements[] $Announcement
  * @property-read int|null $announcement_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Students[] $Students
- * @property-read int|null $students_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $Timetable
  * @property-read int|null $timetable_count
  * @method static \Database\Factories\ClassesFactory factory(...$parameters)
@@ -67,11 +64,54 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereLetter($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Classes wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereShift($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereUpdatedAt($value)
  */
 	class Classes extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Lesson
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\LessonFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lesson newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Lesson newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Lesson query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereUpdatedAt($value)
+ */
+	class Lesson extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Load
+ *
+ * @property int $id
+ * @property int $lesson_id
+ * @property int $class_id
+ * @property int $teacher_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\LoadFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Load newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Load newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Load query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Load whereClassId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Load whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Load whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Load whereLessonId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Load whereTeacherId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Load whereUpdatedAt($value)
+ */
+	class Load extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -104,30 +144,50 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * App\Models\Students
+ * App\Models\Room
  *
- * @property-read \App\Models\User|null $User
- * @method static \Database\Factories\StudentsFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Students newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Students newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Students query()
+ * @property int $id
+ * @property string $name
+ * @property int|null $class_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\RoomFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereClassId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereUpdatedAt($value)
  */
-	class Students extends \Eloquent {}
+	class Room extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
- * App\Models\Teachers
+ * App\Models\Teacher
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $Timetable
- * @property-read int|null $timetable_count
- * @property-read \App\Models\User|null $User
- * @method static \Database\Factories\TeachersFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Teachers query()
+ * @property int $id
+ * @property int $user_id
+ * @property int $lesson_id
+ * @property int $class_id
+ * @property string $type
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\TeacherFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereClassId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereLessonId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereUserId($value)
  */
-	class Teachers extends \Eloquent {}
+	class Teacher extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -157,13 +217,13 @@ namespace App\Models{
  * App\Models\Timetable
  *
  * @property int $id
- * @property string $lesson
- * @property int|null $teacher_id
+ * @property int $lesson_id
+ * @property int $teacher_id
  * @property int $class_id
+ * @property int $load_id
  * @property int $number
  * @property int $weekday
- * @property string|null $room_1
- * @property string|null $room_2
+ * @property mixed $rooms
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Classes|null $Class
@@ -175,10 +235,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereLesson($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereLessonId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereLoadId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereRoom1($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereRoom2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereRooms($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereTeacherId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereWeekday($value)
@@ -196,7 +256,6 @@ namespace App\Models{
  * @property string|null $second_name
  * @property string|null $middle_name
  * @property int $type
- * @property int|null $class_id
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
@@ -214,7 +273,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
@@ -229,17 +287,5 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\settings
- *
- * @method static \Database\Factories\settingsFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|settings newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|settings newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|settings query()
- */
-	class settings extends \Eloquent {}
 }
 

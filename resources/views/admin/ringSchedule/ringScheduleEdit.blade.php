@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-app-layout>
     <x-container>
         <div class="header">
             <h1 class="text-2xl font-semibold">Расписание звонков</h1>
@@ -277,4 +277,4 @@
             </button>
         </form>
     </x-container>
-</x-app-layout>
+</x-admin-app-layout>

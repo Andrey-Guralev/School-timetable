@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Classes extends Model
 {
     use HasFactory;
@@ -27,9 +28,19 @@ class Classes extends Model
         return $this->hasMany(Timetable::class);
     }
 
-    public function Students(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function LoadRel(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Students::class);
+        return $this->hasMany(Load::class);
+    }
+
+    public function ClassroomTeacher(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Teacher::class);
+    }
+
+    public function TelegramSubscriber(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(TelegramSubscribers::class);
     }
 
     public function getFullName(): string

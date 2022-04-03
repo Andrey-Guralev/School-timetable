@@ -2,7 +2,7 @@
     <div class="space-y-8 divide-y divide-gray-200">
         <div class="mt-6 flex flex-col">
 
-            <div class="flex flex-col mb-8 sm:w-1/2 w-full">
+            <div class="flex flex-col mb-8  w-full">
                 <label for="title" class="block text-sm font-medium text-gray-700">
                     Заголовок
                 </label>
@@ -11,7 +11,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col mb-8 sm:w-1/2 w-full">
+            <div class="flex flex-col mb-8  w-full">
                 <label for="main-text" class="block text-sm font-medium text-gray-700">
                     Текст объявления
                 </label>
@@ -22,8 +22,9 @@
                 </div>
             </div>
 
-            <div class="flex flex-col mb-8 sm:w-1/2 w-full">
+            <div class="flex flex-col mb-8 w-full">
                 <label for="type" class="block text-sm font-medium text-gray-700">
+                    Классы
                 </label>
                 <div class="mt-1">
                     @php

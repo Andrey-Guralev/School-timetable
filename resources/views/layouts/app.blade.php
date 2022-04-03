@@ -30,11 +30,14 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div  class="min-h-screen shadow bg-gray-100" style="">
+        <div  class="min-h-screen shadow bg-gray-100" style="" >
             @include('layouts.navigation')
 
             <!-- Page Content -->
-            <main>
+            <main id="app">
+                {{--              <example-component></example-component>--}}
+
+
                 {{ $slot }}
             </main>
         </div>

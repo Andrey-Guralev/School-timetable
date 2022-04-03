@@ -1,13 +1,12 @@
-<x-app-layout>
-    <x-container>
-        <div class="header flex justify-between">
-            <h1 class="text-2xl">Все обьявления</h1>
-            <a href="{{ route('announcementsCreate') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-700">Добавить обьявление</a>
-        </div>
-    </x-container>
+<x-admin-app-layout>
+
+    <x-responsive-container class="flex justify-between lg:w-9/12 sm:w-full">
+        <h1 class="text-3xl">Объявления</h1>
+        <a href="{{ route('announcementsCreate') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900">Добавить обьявление</a>
+    </x-responsive-container>
 
         @foreach($announcements as $announcement)
-            <x-container>
+            <x-responsive-container class="lg:w-9/12 sm:w-full">
                 <div class="header">
                     <h2 class="title text-xl bold">
                         {{ $announcement->title }}
@@ -44,6 +43,6 @@
                         @endif
                     @endauth
                 </div>
-            </x-container>
+            </x-responsive-container>
         @endforeach
-</x-app-layout>
+</x-admin-app-layout>

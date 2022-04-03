@@ -1,6 +1,6 @@
-<x-app-layout>
+<x-admin-app-layout>
 
-    <x-responsive-container class="lg:flex lg:flex-wrap lg:w-11/12 sm:block sm:w-full">
+    <x-responsive-container class="lg:flex lg:flex-wrap lg:w-9/12 sm:block sm:w-full">
         <div class="block w-full">
             <h2 class="text-2xl">Классы</h2>
         </div>
@@ -13,7 +13,7 @@
         </div>
     </x-responsive-container>
 
-    <x-responsive-container class="flex justify-between  lg:w-11/12 sm:w-full">
+    <x-responsive-container class="flex justify-between  lg:w-9/12 sm:w-full">
         <h1 class="text-3xl">Объявления</h1>
         <a href="{{ route('announcementsCreate') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900">Добавить обьявление</a>
     </x-responsive-container>
@@ -34,7 +34,7 @@
                 @if($announcement->type == 1)
                     Для всей школы  44
                 @else
-                    Для {{ $announcement->Classes->getFullName ?? '' }}
+                    Для {{ $announcement->Classes->first()->getFullName() ?? '' }}
                 @endif
             </div>
             <div class="buttons mt-2 flex">
@@ -58,4 +58,4 @@
             </div>
         </x-responsive-container>
     @endforeach
-</x-app-layout>
+</x-admin-app-layout>

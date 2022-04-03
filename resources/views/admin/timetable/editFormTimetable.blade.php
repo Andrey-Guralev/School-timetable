@@ -1,5 +1,5 @@
 @php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
-<x-app-layout>
+<x-admin-app-layout>
     <x-container>
         <h3 class="text-2xl mb-4">Изменения расписания, {{ $class->number }}{{ $class->letter }}</h3>
         <div class="mx-4">
@@ -79,4 +79,4 @@
         </div>
     </x-container>
 
-</x-app-layout>
+</x-admin-app-layout>

@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -25,7 +26,6 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
-        'class_id'
     ];
 
     /**
@@ -55,8 +55,8 @@ class User extends Authenticatable
         return $this->hasMany(Announcements::class);
     }
 
-    public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function Teacher(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(Classes::class);
+        return $this->hasOne(Teacher::class);
     }
 }

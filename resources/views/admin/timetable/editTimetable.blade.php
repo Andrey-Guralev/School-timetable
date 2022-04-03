@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
@@ -55,4 +55,4 @@
         <div class="explanation ml-8 mt-4 text-gray-600">* Необходимо импортироваить zip архив</div>
 
     </x-container>
-</x-app-layout>
+</x-admin-app-layout>

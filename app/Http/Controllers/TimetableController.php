@@ -16,23 +16,6 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TimetableController extends Controller
 {
-    public function getForClass($id)
-    {
-        $timetable = Timetable::where('class_id', $id)->get();
-        $classes = Classes::all();
-        $class = Classes::find($id);
-        $ringSchedule = RingSchedule::where('shift', $class->shift)->get();
-        $types = 0;
-
-        if ($class->shift == 0) {
-            $types = [0, 1, 2];
-        } elseif ($class->shift == 1) {
-            $types = [3, 4, 5, 6];
-        }
-
-        return view('timetableForClass', compact('timetable', 'class', 'classes', 'ringSchedule', 'types'));
-    }
-
     public function edit()
     {
         $classes = Classes::all()->sortByDesc('number');

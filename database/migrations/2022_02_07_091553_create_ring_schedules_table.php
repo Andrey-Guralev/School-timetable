@@ -19,6 +19,7 @@ class CreateRingSchedulesTable extends Migration
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->integer('number')->nullable();
+            $table->integer('weekday');
             $table->integer('type')->nullable();
             $table->integer('shift')->default(0);
 

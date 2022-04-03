@@ -21,6 +21,10 @@ class AnnouncementsController extends Controller
     {
         $announcements = Announcements::select(['id', 'title', 'text', 'type', 'class_id'])->with('Classes')->get()->sortDesc();
 
+        if (\Auth::user()->type == 4) {
+            return view('admin.announcements.announcementsIndex', compact('announcements'));
+        }
+
         return view('announcements.announcementsIndex', compact('announcements'));
     }
 
@@ -28,9 +32,12 @@ class AnnouncementsController extends Controller
     {
         $announcement = Announcements::find($id);
 
+        if (\Auth::user()->type == 4) {
+            return view('admin.announcements.announcementsShow', compact('announcement'));
+        }
+
         return view('announcements.announcementsShow', compact('announcement'));
     }
-
     public function create()
     {
         if (\Auth::user()->type >=3)
@@ -42,10 +49,14 @@ class AnnouncementsController extends Controller
             $classes = Classes::where('id', \Auth::user()->class_id)->get();
         }
 
+        if (\Auth::user()->type == 4) {
+            return view('admin.announcements.announcementsCreate', compact('classes'));
+        }
+
         return view('announcements.announcementsCreate', compact('classes'));
     }
 
-    public function store(StoreAnnouncementsRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(StoreAnnouncementsRequest $request)
     {
         $announcement = new Announcements();
 
@@ -65,21 +76,6 @@ class AnnouncementsController extends Controller
 
         TelegramAnnouncementsCreateNotification::dispatch($announcement);
 
-//        if (env('APP_ENV') == 'production')
-//        {
-//            if ($announcement->type == 1) {
-//                $subs = TelegramSubscribers::all();
-//            } else {
-//                $subs = TelegramSubscribers::where('class_id', $announcement->class_id)->get();
-//            }
-//
-//            foreach ($subs as $sub) {
-//                Telegram::sendMessage([
-//                    'chat_id' => $sub->chat_id,
-//                    'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
-//                ]);
-//            }
-//        }
         return redirect($request->prev_url);
     }
 
@@ -88,6 +84,10 @@ class AnnouncementsController extends Controller
         $classes = Classes::all();
 
         $announcement = Announcements::find($id);
+
+        if (\Auth::user()->type == 4) {
+            return view('admin.announcements.announcementsEdit', compact('classes', 'announcement'));
+        }
 
         return view('announcements.announcementsEdit', compact('classes', 'announcement'));
     }

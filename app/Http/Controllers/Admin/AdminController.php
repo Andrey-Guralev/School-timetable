@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classes;
+use App\Models\RingSchedule;
+use App\Models\Timetable;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -15,6 +17,23 @@ use function view;
 
 class AdminController extends Controller
 {
+    public function getForClass($id)
+    {
+        $timetable = Timetable::where('class_id', $id)->get();
+        $classes = Classes::all();
+        $class = Classes::find($id);
+        $ringSchedule = RingSchedule::where('shift', $class->shift)->get();
+        $types = 0;
+
+        if ($class->shift == 0) {
+            $types = [0, 1, 2];
+        } elseif ($class->shift == 1) {
+            $types = [3, 4, 5, 6];
+        }
+
+        return view('admin.timetableForClass', compact('timetable', 'class', 'classes', 'ringSchedule', 'types'));
+    }
+
     public function indexUsers()
     {
         $users = User::all();

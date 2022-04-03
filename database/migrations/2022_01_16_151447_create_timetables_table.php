@@ -15,18 +15,31 @@ class CreateTimetablesTable extends Migration
     {
         Schema::create('timetable', function (Blueprint $table) {
             $table->id();
-            $table->string('lesson');
-            $table->unsignedBigInteger('teacher_id')->nullable();
+
+            $table->unsignedBigInteger('lesson_id');
+            $table->unsignedBigInteger('teacher_id');
             $table->unsignedBigInteger('class_id');
+            $table->unsignedBigInteger('load_id');
             $table->integer('number');
             $table->integer('weekday');
-            $table->string('room_1')->nullable();;
-            $table->string('room_2')->nullable();
+            $table->json('rooms');
+
             $table->timestamps();
 
-//            $table->foreign('teacher_id')->references('id')->on('users');
-//            $table->foreign('class_id')->references('id')->on('classes');
+/*
+Пример json'a кабинетов:
+{
+  "room1": {
+      "room": "3-06",
+      "room_id": 1
+  },
+  "room2": {
+      "room": "2-13",
+      "room_id": 12
+  }
+}
 
+*/
         });
     }
 
