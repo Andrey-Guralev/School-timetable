@@ -11,9 +11,13 @@ class Teacher extends Model
 
     protected $fillable = [
         'user_id',
-        'lesson_id',
+        'lessons',
         'class_id',
         'type',
+    ];
+
+    protected $casts = [
+        'lessons' => 'array',
     ];
 
     public function User(): \Illuminate\Database\Eloquent\Relations\BelongsTo

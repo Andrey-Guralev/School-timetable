@@ -16,11 +16,11 @@ class CreateTeachersTable extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('lesson_id');
-            $table->unsignedBigInteger('class_id'); // Кл. рук.
-            $table->enum('type', ['undefined'])->default('undefined');
-
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->json('lessons')->nullable();
+            $table->unsignedBigInteger('class_id')->nullable(); // Кл. рук.
+//            $table->enum('type', ['undefined'])->default('undefined');
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

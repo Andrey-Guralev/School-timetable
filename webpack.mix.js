@@ -20,6 +20,7 @@ mix.js('resources/js/app.js', 'public/js')
             require('tailwindcss'),
         ]
     })
+    .disableNotifications()
     // .copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
 
 

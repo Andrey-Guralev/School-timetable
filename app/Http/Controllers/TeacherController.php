@@ -5,82 +5,118 @@ namespace App\Http\Controllers;
 use App\Models\Teacher;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function getTeachers()
+    {
+        $teachers = Teacher::with('User')->get();
+
+        $teachers = json_encode($teachers);
+
+        return response($teachers, 200);
+    }
+
+    public function getTeacher($id)
+    {
+        $teachers = Teacher::with('User')->find($id);
+
+
+        $teachers = json_encode($teachers);
+
+        return response($teachers, 200);
+    }
+
     public function index()
     {
-        //
+//        $teachers = Teacher::all();
+
+        return view('admin.teachers.teachersIndex');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTeacherRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreTeacherRequest $request)
     {
-        //
+        if ($request->formType == 0) {
+            $user = User::find($request->user_id);
+
+            if (!$user->first()) return response('Пользователь не найден', 404);
+
+            $user->first_name = $request->first_name;
+            $user->second_name = $request->second_name;
+            $user->middle_name = $request->middle_nmae;
+            $user->type = 2;
+
+            $user->save();
+
+            $teacher = new Teacher();
+
+            $teacher->user_id = $request->user_id;
+            $teacher->lessons = json_decode($request->lessons);
+            $teacher->class_id = $request->class == "null" ? null : $request->class;
+            $teacher->type = $request->type == "null" ? null : $request->type;
+
+            $teacher->save();
+        } else {
+            $user = new User();
+
+            $user->name = $request->name;
+            $user->first_name = $request->first_name;
+            $user->second_name = $request->second_name;
+            $user->middle_name = $request->middle_nmae;
+            $user->type = 2;
+            $user->password = Hash::make($request->password);
+            $user->email = $request->email;
+
+            $user->save();
+
+            $teacher = new Teacher();
+
+            $teacher->user_id = $user->id;
+            $teacher->lessons = json_decode($request->lessons);
+            $teacher->class_id = $request->class == "null" ? null : $request->class;
+            $teacher->type = $request->type == "null" ? null : $request->type;
+
+            $teacher->save();
+        }
+
+        return response('Учитель успешно создан!', 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Teacher $teacher)
+    public function update(UpdateTeacherRequest $request, $id)
     {
-        //
+        $teacher = Teacher::with('User')->find($id);
+
+        if ($teacher->count() < 1) {
+            return response('Данный учитель не существует');
+        }
+
+        $user = User::find($teacher->user_id);
+
+        $user->name = $request->name;
+        $user->first_name = $request->first_name;
+        $user->second_name = $request->second_name;
+        $user->middle_name = $request->middle_name;
+        $user->type = 2;
+
+        $user->save();
+
+        $teacher->lessons = json_decode($request->lessons);
+        $teacher->type = $request->type;
+        $teacher->class_id = $request->class == 'null' ? null : $request->class;
+
+        $teacher->save();
+
+        return response('Учитель успешно обновлен');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Teacher $teacher)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTeacherRequest  $request
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTeacherRequest $request, Teacher $teacher)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Teacher $teacher)
-    {
-        //
+        Teacher::find($id)->delete();
     }
 }

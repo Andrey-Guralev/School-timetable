@@ -53,6 +53,11 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Announcements[] $Announcement
  * @property-read int|null $announcement_count
+ * @property-read \App\Models\Teacher|null $ClassroomTeacher
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Load[] $LoadRel
+ * @property-read int|null $load_rel_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\TelegramSubscribers[] $TelegramSubscriber
+ * @property-read int|null $telegram_subscriber_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $Timetable
  * @property-read int|null $timetable_count
  * @method static \Database\Factories\ClassesFactory factory(...$parameters)
@@ -78,6 +83,12 @@ namespace App\Models{
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Load[] $LoadR
+ * @property-read int|null $load_r_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Teacher[] $Teacher
+ * @property-read int|null $teacher_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $Timetable
+ * @property-read int|null $timetable_count
  * @method static \Database\Factories\LessonFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson newQuery()
@@ -100,6 +111,9 @@ namespace App\Models{
  * @property int $teacher_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classes|null $Class
+ * @property-read \App\Models\Lesson|null $Lesson
+ * @property-read \App\Models\Teacher|null $Teacher
  * @method static \Database\Factories\LoadFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Load newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Load newQuery()
@@ -112,34 +126,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Load whereUpdatedAt($value)
  */
 	class Load extends \Eloquent {}
-}
-
-namespace App\Models{
-/**
- * App\Models\RingSchedule
- *
- * @property int $id
- * @property string|null $start_time
- * @property string|null $end_time
- * @property int|null $number
- * @property int|null $type
- * @property int $shift
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Database\Factories\RingScheduleFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule query()
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereEndTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereShift($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereStartTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereUpdatedAt($value)
- */
-	class RingSchedule extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -169,12 +155,15 @@ namespace App\Models{
  * App\Models\Teacher
  *
  * @property int $id
- * @property int $user_id
- * @property int $lesson_id
- * @property int $class_id
- * @property string $type
+ * @property int|null $user_id
+ * @property array|null $lessons
+ * @property int|null $class_id
+ * @property string|null $type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classes|null $Class
+ * @property-read \App\Models\Lesson|null $Lesson
+ * @property-read \App\Models\User|null $User
  * @method static \Database\Factories\TeacherFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newQuery()
@@ -182,7 +171,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereLessonId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereLessons($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereUserId($value)
@@ -199,6 +188,7 @@ namespace App\Models{
  * @property int $class_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classes|null $Class
  * @method static \Database\Factories\TelegramSubscribersFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TelegramSubscribers newQuery()
@@ -223,10 +213,12 @@ namespace App\Models{
  * @property int $load_id
  * @property int $number
  * @property int $weekday
- * @property mixed $rooms
+ * @property array $rooms
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Classes|null $Class
+ * @property-read \App\Models\Lesson|null $Lesson
+ * @property-read \App\Models\Load|null $LoadR
  * @property-read \App\Models\User|null $Teacher
  * @method static \Database\Factories\TimetableFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newModelQuery()
@@ -264,7 +256,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Announcements[] $Announcements
  * @property-read int|null $announcements_count
- * @property-read \App\Models\Classes|null $Class
+ * @property-read \App\Models\Teacher|null $Teacher
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens

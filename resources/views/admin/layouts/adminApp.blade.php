@@ -43,11 +43,5 @@
                 </div>
             </div>
         </div>
-
-{{--            <!-- Page Content -->--}}
-{{--            <main>--}}
-{{--                {{ $slot }}--}}
-{{--            </main>--}}
-{{--        </div>--}}
     </body>
 </html>

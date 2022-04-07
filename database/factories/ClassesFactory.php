@@ -22,7 +22,6 @@ class ClassesFactory extends Factory
         return [
             'number' => $number,
             'letter' => $letter,
-            'password' => 'jqwrneo',
             'alias' => $alias,
             'shift' => 0,
         ];

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Load;
 use Illuminate\Database\Seeder;
 
 class LoadSeeder extends Seeder
@@ -13,6 +14,6 @@ class LoadSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Load::factory()->count(100)->create();
     }
 }

@@ -33,7 +33,7 @@ class IndexController extends Controller
             return $this->indexForAdmin();
         }
 
-        return view('indexForGuest')->with('error', 'Какая-то ошибка');
+        return view('index.indexForGuest')->with('error', 'Какая-то ошибка');
     }
 
     private function indexForGuest()

@@ -16,6 +16,26 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
+//Марщруты связанные с изменением учителей
+Route::middleware(['auth', 'Admin'])->prefix('teacher')->group(function () {
+    Route::get('/', [\App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
+    Route::get('/get', [\App\Http\Controllers\TeacherController::class, 'getTeachers'])->name('teacher.get');
+    Route::get('/get/{id}', [\App\Http\Controllers\TeacherController::class, 'getTeacher'])->name('teacher.getById');
+    Route::post('/', [\App\Http\Controllers\TeacherController::class, 'store'])->name('teacher.store');
+    Route::patch('/{id}', [\App\Http\Controllers\TeacherController::class, 'update'])->name('teacher.update');
+    Route::delete('/{id}', [\App\Http\Controllers\TeacherController::class, 'destroy'])->name('teacher.destroy');
+});
+
+//Маршруты связанные с изменением уроков
+Route::middleware(['auth', 'Admin'])->prefix('lesson')->group(function () {
+    Route::get('/', [\App\Http\Controllers\LessonController::class, 'index'])->name('lesson.index');
+    Route::get('/get', [\App\Http\Controllers\LessonController::class, 'getLessons'])->name('lesson.getAll');
+});
+
+Route::get('/user/find/{login}', [\App\Http\Controllers\UserController::class, 'findUsers'])->name('user.find');
+Route::get('/user/get/{id}', [\App\Http\Controllers\UserController::class, 'getUserForCreateTeacher'])->name('user.get');
+
+
 //Маршруты связанные с редактированием расписания
 Route::middleware(['auth', 'Admin'])->prefix('timetable')->group(function () {
     Route::get('/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');

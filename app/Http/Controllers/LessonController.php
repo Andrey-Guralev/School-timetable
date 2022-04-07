@@ -8,11 +8,15 @@ use App\Http\Requests\UpdateLessonRequest;
 
 class LessonController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getLessons()
+    {
+        $lessons = Lesson::all();
+
+        $lessons = json_encode($lessons);
+
+        return response($lessons, 200);
+    }
+
     public function index()
     {
         //

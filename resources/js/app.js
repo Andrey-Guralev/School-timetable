@@ -11,10 +11,13 @@ Alpine.start();
 window.Vue = require('vue').default;
 
 
-// const files = require.context('./', true, /\.vue$/i)
+// const files = require.context('./../', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('announcements-create-component', require('./../components/AnnouncementsCreateFormComponent.vue').default);
+Vue.component('announcements-create-component', require('../components/Announcements/AnnouncementsCreateFormComponent.vue').default);
+Vue.component('teacher-index', require('../components/Teacher/TeacherIndexComponent').default);
+Vue.component('teacher-edit-modal', require('../components/Teacher/TeacherEditModalComponent').default);
+Vue.component('teacher-create-modal', require('../components/Teacher/TeacherCreateModalComponent').default);
 
 
 const app = new Vue({
