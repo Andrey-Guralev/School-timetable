@@ -18,6 +18,11 @@ Vue.component('announcements-create-component', require('../components/Announcem
 Vue.component('teacher-index', require('../components/Teacher/TeacherIndexComponent').default);
 Vue.component('teacher-edit-modal', require('../components/Teacher/TeacherEditModalComponent').default);
 Vue.component('teacher-create-modal', require('../components/Teacher/TeacherCreateModalComponent').default);
+Vue.component('teacher-create-modal', require('../components/Teacher/TeacherCreateModalComponent').default);
+
+Vue.component('lesson-index', require('../components/Lessons/LessonsIndex').default);
+Vue.component('lesson-create', require('../components/Lessons/LessonCreateModalComponent').default);
+Vue.component('lesson-edit', require('../components/Lessons/LessonEditModalComponent').default);
 
 
 const app = new Vue({

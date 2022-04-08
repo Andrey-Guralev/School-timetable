@@ -158,7 +158,7 @@
     export default {
         data() {
             return {
-                open: true,
+                open: false,
                 errors: [],
                 classes: null,
                 lessons: null,

@@ -22,7 +22,7 @@
                 </div>
             </li>
         </a>
-        <a href="javascript:void(0)" class="">
+        <a href="{{ route('lesson.index') }}" class="">
             <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(false) border-b border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                         Предметы

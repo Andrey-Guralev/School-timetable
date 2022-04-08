@@ -16,7 +16,7 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
-//Марщруты связанные с изменением учителей
+//Маршруты связанные с изменением учителей
 Route::middleware(['auth', 'Admin'])->prefix('teacher')->group(function () {
     Route::get('/', [\App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
     Route::get('/get', [\App\Http\Controllers\TeacherController::class, 'getTeachers'])->name('teacher.get');
@@ -30,11 +30,24 @@ Route::middleware(['auth', 'Admin'])->prefix('teacher')->group(function () {
 Route::middleware(['auth', 'Admin'])->prefix('lesson')->group(function () {
     Route::get('/', [\App\Http\Controllers\LessonController::class, 'index'])->name('lesson.index');
     Route::get('/get', [\App\Http\Controllers\LessonController::class, 'getLessons'])->name('lesson.getAll');
+    Route::get('/get/{id}', [\App\Http\Controllers\LessonController::class, 'getLesson'])->name('lesson.getOne');
+    Route::patch('/{id}', [\App\Http\Controllers\LessonController::class, 'update'])->name('lesson.update');
+    Route::post('/', [\App\Http\Controllers\LessonController::class, 'store'])->name('lesson.store');
+    Route::delete('/{id}', [\App\Http\Controllers\LessonController::class, 'destroy'])->name('lesson.destroy');
 });
 
-Route::get('/user/find/{login}', [\App\Http\Controllers\UserController::class, 'findUsers'])->name('user.find');
-Route::get('/user/get/{id}', [\App\Http\Controllers\UserController::class, 'getUserForCreateTeacher'])->name('user.get');
-
+//Маршруты связанные с пользователями
+Route::middleware(['auth'])->prefix('user')->group(function() {
+    Route::get('/find/{login}', [\App\Http\Controllers\UserController::class, 'findUsers'])->middleware('Admin')->name('user.find');
+    Route::get('/get/{id}', [\App\Http\Controllers\UserController::class, 'getUserForCreateTeacher'])->middleware('Admin')->name('user.get');
+    Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'indexUsers'])->middleware('Admin')->name('adminUsers');
+    Route::get('/{id}/{type}', [\App\Http\Controllers\Admin\AdminController::class, 'changeUserType'])->middleware('Admin')->name('changeUserType');
+    Route::post('/class', [\App\Http\Controllers\Admin\AdminController::class, 'changeTeacherClass'])->middleware('Admin')->name('changeTeacherClass');
+    Route::get('/register', [\App\Http\Controllers\Admin\AdminController::class, 'registerUserPage'])->middleware('Admin')->name('adminRegisterUserPage');
+    Route::post('/register', [\App\Http\Controllers\Admin\AdminController::class, 'registerUser'])->middleware('Admin')->name('adminRegisterUser');
+    Route::get('/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('userEdit');
+    Route::post('/store', [\App\Http\Controllers\UserController::class, 'store'])->name('userStore');
+});
 
 //Маршруты связанные с редактированием расписания
 Route::middleware(['auth', 'Admin'])->prefix('timetable')->group(function () {
@@ -66,24 +79,13 @@ Route::middleware('guest')->prefix('classes')->group(function () {
     Route::get('/logout', [\App\Http\Controllers\ClassesLoginController::class, 'logout'])->name('classLogout');
 });
 
-Route::middleware(['auth', 'Admin'])->group(function () {
-    Route::get('/users', [\App\Http\Controllers\Admin\AdminController::class, 'indexUsers'])->name('adminUsers');
-    Route::get('/user/{id}/{type}', [\App\Http\Controllers\Admin\AdminController::class, 'changeUserType'])->name('changeUserType');
-    Route::post('/user/class', [\App\Http\Controllers\Admin\AdminController::class, 'changeTeacherClass'])->name('changeTeacherClass');
-    Route::get('user/register', [\App\Http\Controllers\Admin\AdminController::class, 'registerUserPage'])->name('adminRegisterUserPage');
-    Route::post('user/register', [\App\Http\Controllers\Admin\AdminController::class, 'registerUser'])->name('adminRegisterUser');;
-});
-
-Route::middleware('auth')->prefix('user')->group(function () {
-    Route::get('/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('userEdit');
-    Route::post('/store', [\App\Http\Controllers\UserController::class, 'store'])->name('userStore');
-});
-
+//Маршруты связанные с расписанием звонков
 Route::middleware(['auth', 'Admin'])->prefix('ring')->group(function () {
     Route::post('/edit', [\App\Http\Controllers\RingScheduleController::class, 'update'])->name('ringUpdate');
     Route::get('/edit', [\App\Http\Controllers\RingScheduleController::class, 'edit'])->name('ringEdit');
 });
 
+//Маршруты связанные с объявлениями
 Route::prefix('announcements')->group(function () {
     Route::get('/', [\App\Http\Controllers\AnnouncementsController::class, 'index'])->middleware('auth')->name('announcementsIndex');
     Route::get('/create', [\App\Http\Controllers\AnnouncementsController::class, 'create'])->middleware('auth')->name('announcementsCreate');

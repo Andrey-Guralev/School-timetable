@@ -1,6 +1,6 @@
 <x-admin-app-layout>
 
-    <x-responsive-container class="lg:flex lg:flex-wrap lg:w-9/12 sm:block sm:w-full">
+    <x-responsive-container class="lg:flex container lg:flex-wrap lg:w-9/12 sm:block sm:w-full">
         <div class="block w-full">
             <h2 class="text-2xl">Классы</h2>
         </div>
