@@ -36,6 +36,17 @@ Route::middleware(['auth', 'Admin'])->prefix('lesson')->group(function () {
     Route::delete('/{id}', [\App\Http\Controllers\LessonController::class, 'destroy'])->name('lesson.destroy');
 });
 
+//Маршруты связанные с изменением уроков
+Route::middleware(['auth', 'Admin'])->prefix('load')->group(function () {
+    Route::get('/', [\App\Http\Controllers\LoadController::class, 'index'])->name('load.index');
+    Route::get('/get', [\App\Http\Controllers\LoadController::class, 'getAllLoad'])->name('load.getAll');
+    Route::get('/get/{id}', [\App\Http\Controllers\LoadController::class, 'getLoad'])->name('load.getOne');
+    Route::patch('/{id}', [\App\Http\Controllers\LoadController::class, 'update'])->name('load.update');
+    Route::post('/', [\App\Http\Controllers\LoadController::class, 'store'])->name('load.store');
+    Route::delete('/{id}', [\App\Http\Controllers\LoadController::class, 'destroy'])->name('load.destroy');
+});
+
+
 //Маршруты связанные с пользователями
 Route::middleware(['auth'])->prefix('user')->group(function() {
     Route::get('/find/{login}', [\App\Http\Controllers\UserController::class, 'findUsers'])->middleware('Admin')->name('user.find');

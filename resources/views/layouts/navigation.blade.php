@@ -13,39 +13,17 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-{{--                    <x-nav-link :href="route('index')" :active="request()->routeIs('index')">--}}
-{{--                        Расписание--}}
-{{--                    </x-nav-link>--}}
-{{--                    <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">--}}
-{{--                        Обьявления--}}
-{{--                    </x-nav-link>--}}
                     @auth
                         <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                             Расписание
                         </x-nav-link>
-                        @if(Auth::user()->type >= 3)
-                            <x-nav-link :href="route('editTimetable')" :active="request()->routeIs('editTimetable')">
-                                Изменить расписание
-                            </x-nav-link>
-                            <x-nav-link :href="route('editClasses')" :active="request()->routeIs('editClasses')">
-                                Изменить классы
+
+                        @if(Auth::user()->type >= 2)
+                            <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
+                                Объявления
                             </x-nav-link>
                         @endif
-                            @if(Auth::user()->type >= 4)
-                                <x-nav-link :href="route('adminUsers')" :active="request()->routeIs('adminUsers')">
-                                    Пользователи
-                                </x-nav-link>
-                            @endif
-                            @if(Auth::user()->type >= 2)
-                                <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
-                                    Объявления
-                                </x-nav-link>
-                            @endif
-                            @if(Auth::user()->type >= 4)
-                                <x-nav-link :href="route('ringEdit')" :active="request()->routeIs('ringEdit')">
-                                    Расписание звонков
-                                </x-nav-link>
-                            @endif
+
                     @endauth
                 </div>
             </div>
@@ -100,34 +78,35 @@
                         </a>
                     </div>
                 </div>
-{{--                <div class="hidden sm:flex sm:items-center sm:ml-6">--}}
-{{--                    <x-dropdown align="right" width="48">--}}
-{{--                        <x-slot name="trigger">--}}
-{{--                            <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">--}}
-{{--                                <div>--}}
-{{--                                    {{ $class->number }}{{ $class->letter }}--}}
-{{--                                </div>--}}
-{{--                                <div class="ml-1">--}}
-{{--                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">--}}
-{{--                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />--}}
-{{--                                    </svg>--}}
-{{--                                </div>--}}
-{{--                            </button>--}}
-{{--                        </x-slot>--}}
+{{--                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                <div>
+                                    {{ $class->number }}{{ $class->letter }}
+                                </div>
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
 
-{{--                        <x-slot name="content">--}}
-{{--                            <x-dropdown-link :href="route('classLogout')">--}}
-{{--                                Выйти--}}
-{{--                            </x-dropdown-link>--}}
-{{--                        </x-slot>--}}
-{{--                    </x-dropdown>--}}
-{{--                </div>            --}}
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('classLogout')">
+                                Выйти
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                </div>            --}}
             @else
                 <div class="flex justify-between items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                     <a href="{{ route('classesLogin') }}" class="pr-4">Войти в класс</a>
                     <a href="{{ route('login') }}" class="pr-4">Войти в аккаунт</a>
                 </div>
             @endauth
+
             <!-- Hamburger -->
             @if(!session('class'))
                 <div class="-mr-2 flex items-center sm:hidden">
@@ -157,29 +136,11 @@
                         Расписание
                     </x-responsive-nav-link>
                     @auth
-                        @if(Auth::user()->type >= 3)
-                            <x-responsive-nav-link :href="route('editTimetable')" :active="request()->routeIs('editTimetable')">
-                                Изменить расписание
-                            </x-responsive-nav-link>
-                            <x-responsive-nav-link :href="route('editClasses')" :active="request()->routeIs('editClasses')">
-                                Изменить классы
-                            </x-responsive-nav-link>
-                        @endif
-                        @if(Auth::user()->type >= 4)
-                            <x-responsive-nav-link :href="route('adminUsers')" :active="request()->routeIs('adminUsers')">
-                                Пользователи
-                            </x-responsive-nav-link>
-                        @endif
                         @if(Auth::user()->type >= 2)
                             <x-responsive-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
                                 Объявления
                             </x-responsive-nav-link>
                         @endif
-                            @if(Auth::user()->type >= 4)
-                                <x-responsive-nav-link :href="route('ringEdit')" :active="request()->routeIs('ringEdit')">
-                                    Расписание звонков
-                                </x-responsive-nav-link>
-                            @endif
                     @endauth
 
                     <div class="mt-3 space-y-1">
@@ -194,24 +155,25 @@
                             </x-responsive-nav-link>
                         </form>
                     </div>
+
                 </div>
             @endif
-            {{--        @elseif(session('class'))--}}
-            {{--            <div class="pt-4 pb-1 border-t border-gray-200">--}}
-            {{--                <div class="px-4">--}}
-            {{--                    <div class="font-medium text-base text-gray-800">--}}
-            {{--                        {{ $class->number }}{{ $class->letter }}--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
+           {{--     @elseif(session('class'))
+                    <div class="pt-4 pb-1 border-t border-gray-200">
+                        <div class="px-4">
+                            <div class="font-medium text-base text-gray-800">
+                                {{ $class->number }}{{ $class->letter }}
+                            </div>
+                        </div>
 
-            {{--                <div class="mt-3 space-y-1">--}}
-            {{--                    <x-responsive-nav-link :href="route('classLogout')">--}}
-            {{--                        Выйти--}}
-            {{--                    </x-responsive-nav-link>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
+                        <div class="mt-3 space-y-1">
+                            <x-responsive-nav-link :href="route('classLogout')">
+                                Выйти
+                            </x-responsive-nav-link>
+                        </div>
+                    </div>
 
-            {{--        @endif--}}
+                @endif --}}
         </div>
     @endif
 </nav>

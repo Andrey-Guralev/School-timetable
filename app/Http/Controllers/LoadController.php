@@ -5,82 +5,60 @@ namespace App\Http\Controllers;
 use App\Models\Load;
 use App\Http\Requests\StoreLoadRequest;
 use App\Http\Requests\UpdateLoadRequest;
+use Barryvdh\Debugbar\Facades\Debugbar;
+use function PHPUnit\Framework\throwException;
 
 class LoadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getAllLoad()
+    {
+        return Load::all();
+    }
+
+    public function getLoad($id)
+    {
+        return Load::find($id);
+    }
+
     public function index()
     {
-        //
+        return view('admin.load.loadIndex');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreLoadRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreLoadRequest $request)
     {
-        //
+        $load = new Load();
+
+        $load->lesson_id = $request->lessonId;
+        $load->class_id = $request->classId;
+        $load->teacher_id = $request->teacherId;
+
+        $load->save();
+
+        return response('Нагрузка успешно создана', 200);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Load  $load
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Load $load)
+    public function update(UpdateLoadRequest $request, $id)
     {
-        //
+        $load = Load::find($id);
+
+        $load->lesson_id = $request->lesson_id;
+        $load->class_id = $request->class_id;
+        $load->teacher_id = $request->teacher_id;
+
+        $load->save();
+
+        return response('Нагрузка успешно изменена', 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Load  $load
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Load $load)
+    public function destroy($id)
     {
-        //
-    }
+        $load = Load::find($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateLoadRequest  $request
-     * @param  \App\Models\Load  $load
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateLoadRequest $request, Load $load)
-    {
-        //
-    }
+        $load->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Load  $load
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Load $load)
-    {
-        //
+        return response('Нагрузка успешно удалена', 200);
     }
 }

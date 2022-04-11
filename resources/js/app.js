@@ -1,28 +1,25 @@
 require('./bootstrap');
 require('@fortawesome/fontawesome-free/js/fontawesome.min');
 
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-
-Alpine.start();
+// import Alpine from 'alpinejs';
+//
+// window.Alpine = Alpine;
+//
+// Alpine.start();
 
 
 window.Vue = require('vue').default;
 
-
-// const files = require.context('./../', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 Vue.component('announcements-create-component', require('../components/Announcements/AnnouncementsCreateFormComponent.vue').default);
+
 Vue.component('teacher-index', require('../components/Teacher/TeacherIndexComponent').default);
 Vue.component('teacher-edit-modal', require('../components/Teacher/TeacherEditModalComponent').default);
 Vue.component('teacher-create-modal', require('../components/Teacher/TeacherCreateModalComponent').default);
 Vue.component('teacher-create-modal', require('../components/Teacher/TeacherCreateModalComponent').default);
 
-Vue.component('lesson-index', require('../components/Lessons/LessonsIndex').default);
-Vue.component('lesson-create', require('../components/Lessons/LessonCreateModalComponent').default);
-Vue.component('lesson-edit', require('../components/Lessons/LessonEditModalComponent').default);
+Vue.component('load-index', require('../components/Load/LoadIndex').default);
+Vue.component('load-create-modal', require('../components/Load/LoadCreateModalComponent').default);
+Vue.component('load-edit-modal', require('../components/Load/LoadEditModalComponent').default);
 
 
 const app = new Vue({

@@ -13,7 +13,7 @@ class StoreLoadRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StoreLoadRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+//            'lessonId' => 'numeric|required|integer',
+//            'classId' => 'numeric|required|integer',
+//            'teahcerId' => 'numeric|required|integer',
         ];
     }
 }

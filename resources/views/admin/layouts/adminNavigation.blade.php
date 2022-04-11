@@ -16,21 +16,21 @@
 
     <ul class="">
         <a href="{{ route('teacher.index') }}" class="">
-            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(false) border-b border-b-blue-800 @endif">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('teacher.*')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                         Учителя
                 </div>
             </li>
         </a>
         <a href="{{ route('lesson.index') }}" class="">
-            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(false) border-b border-b-blue-800 @endif">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('lesson.*')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                         Предметы
                 </div>
             </li>
         </a>
-        <a href="javascript:void(0)" class="">
-            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(false) border-b border-b-blue-800 @endif">
+        <a href="{{ route('load.index') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('load.*')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                         Нагрузка
                 </div>
