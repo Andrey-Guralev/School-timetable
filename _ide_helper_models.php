@@ -49,11 +49,14 @@ namespace App\Models{
  * @property string $letter
  * @property string|null $alias
  * @property int $shift
+ * @property string|null $asc_xml_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Announcements[] $Announcement
  * @property-read int|null $announcement_count
  * @property-read \App\Models\Teacher|null $ClassroomTeacher
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Group[] $Groups
+ * @property-read int|null $groups_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Load[] $LoadRel
  * @property-read int|null $load_rel_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\TelegramSubscribers[] $TelegramSubscriber
@@ -65,6 +68,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Classes newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Classes query()
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereAlias($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Classes whereAscXmlId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereLetter($value)
@@ -77,10 +81,38 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Group
+ *
+ * @property int $id
+ * @property int $class_id
+ * @property string $name
+ * @property string|null $asc_xml_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classes|null $Class
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timetable[] $Timetable
+ * @property-read int|null $timetable_count
+ * @method static \Database\Factories\GroupFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Group newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Group query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereAscXmlId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereClassId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereUpdatedAt($value)
+ */
+	class Group extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Lesson
  *
  * @property int $id
  * @property string $name
+ * @property string|null $asc_xml_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Load[] $LoadR
@@ -93,6 +125,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereAscXmlId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereName($value)
@@ -109,17 +142,23 @@ namespace App\Models{
  * @property int $lesson_id
  * @property int $class_id
  * @property int $teacher_id
+ * @property int $group_id
+ * @property string|null $asc_xml_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Classes|null $Class
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Group[] $Group
+ * @property-read int|null $group_count
  * @property-read \App\Models\Lesson|null $Lesson
  * @property-read \App\Models\Teacher|null $Teacher
  * @method static \Database\Factories\LoadFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Load newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Load newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Load query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Load whereAscXmlId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Load whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Load whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Load whereGroupId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Load whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Load whereLessonId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Load whereTeacherId($value)
@@ -130,17 +169,50 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\RingSchedule
+ *
+ * @property int $id
+ * @property string|null $start_time
+ * @property string|null $end_time
+ * @property int|null $number
+ * @property int $weekday
+ * @property int|null $type
+ * @property int $shift
+ * @property string|null $asc_xml_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule query()
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereAscXmlId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereEndTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereShift($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereStartTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|RingSchedule whereWeekday($value)
+ */
+	class RingSchedule extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Room
  *
  * @property int $id
  * @property string $name
  * @property int|null $class_id
+ * @property string|null $asc_xml_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Database\Factories\RoomFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Room newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Room newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Room query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Room whereAscXmlId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Room whereId($value)
@@ -159,6 +231,8 @@ namespace App\Models{
  * @property array|null $lessons
  * @property int|null $class_id
  * @property string|null $type
+ * @property string|null $asc_xml_id
+ * @property string|null $asc_teacher_name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Classes|null $Class
@@ -168,6 +242,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereAscTeacherName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereAscXmlId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereId($value)
@@ -207,16 +283,20 @@ namespace App\Models{
  * App\Models\Timetable
  *
  * @property int $id
- * @property int $lesson_id
- * @property int $teacher_id
- * @property int $class_id
- * @property int $load_id
+ * @property int|null $lesson_id
+ * @property int|null $teacher_id
+ * @property int|null $class_id
+ * @property int|null $load_id
+ * @property int|null $group_id
  * @property int $number
  * @property int $weekday
  * @property array $rooms
+ * @property string|null $asc_xml_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Classes|null $Class
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Group[] $Group
+ * @property-read int|null $group_count
  * @property-read \App\Models\Lesson|null $Lesson
  * @property-read \App\Models\Load|null $LoadR
  * @property-read \App\Models\User|null $Teacher
@@ -224,8 +304,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereAscXmlId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereGroupId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereLessonId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Timetable whereLoadId($value)

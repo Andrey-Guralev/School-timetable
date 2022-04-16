@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLoadsTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateLoadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('loads', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('lesson_id');
             $table->unsignedBigInteger('class_id');
-            $table->unsignedBigInteger('teacher_id');
-            $table->unsignedBigInteger('group_id');
+            $table->string('name');
             $table->string('asc_xml_id')->nullable();
 
             $table->timestamps();
@@ -33,6 +31,6 @@ class CreateLoadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loads');
+        Schema::dropIfExists('groups');
     }
 }

@@ -18,6 +18,7 @@ class CreateRoomsTable extends Migration
 
             $table->string('name');
             $table->unsignedBigInteger('class_id')->nullable();
+            $table->string('asc_xml_id')->nullable();
 
             $table->timestamps();
         });

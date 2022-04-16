@@ -15,11 +15,15 @@ class CreateClassesTable extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
+
             $table->integer('number');
             $table->string('letter');
 //            $table->string('password')->unique();
             $table->string('alias')->nullable();
             $table->integer('shift')->default(0);
+            $table->string('asc_xml_id')->nullable();
+
+
             $table->timestamps();
         });
     }

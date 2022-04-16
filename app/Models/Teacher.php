@@ -14,6 +14,8 @@ class Teacher extends Model
         'lessons',
         'class_id',
         'type',
+        'asc_xml_id',
+        'asc_teacher_name'
     ];
 
     protected $casts = [

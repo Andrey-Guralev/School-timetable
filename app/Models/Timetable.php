@@ -14,10 +14,12 @@ class Timetable extends Model
         'lesson_id',
         'teacher_id',
         'class_id',
+        'group_id',
         'load_id',
         'number',
         'weekday',
         'rooms',
+        'asc_xml_id'
     ];
 
     protected $table = 'timetable';
@@ -44,5 +46,10 @@ class Timetable extends Model
     public function LoadR(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Load::class);
+    }
+
+    public function Group()
+    {
+        return $this->hasMany(Group::class);
     }
 }

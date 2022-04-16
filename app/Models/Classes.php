@@ -15,8 +15,8 @@ class Classes extends Model
         'letter',
         'alias',
         'shift',
+        'asc_xml_id'
     ];
-
 
     public function Announcement(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
@@ -43,8 +43,13 @@ class Classes extends Model
         return $this->hasMany(TelegramSubscribers::class);
     }
 
+    public function Groups(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Group::class);
+    }
+
     public function getFullName(): string
     {
-        return $this->number . $this->letter;
+        return ($this->number ?? "Ошибка") . ($this->letter ?? '');
     }
 }

@@ -11,6 +11,7 @@ class Room extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'asc_xml_id'
     ];
 }

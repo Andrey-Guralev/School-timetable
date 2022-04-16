@@ -22,6 +22,7 @@ class CreateRingSchedulesTable extends Migration
             $table->integer('weekday');
             $table->integer('type')->nullable();
             $table->integer('shift')->default(0);
+            $table->string('asc_xml_id')->nullable();
 
             $table->timestamps();
         });

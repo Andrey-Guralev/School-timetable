@@ -19,5 +19,6 @@ class RingSchedule extends Model
         'type',
         'shift',
         'weekday',
+        'asc_xml_id'
     ];
 }

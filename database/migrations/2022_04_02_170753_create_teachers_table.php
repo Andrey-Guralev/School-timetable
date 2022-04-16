@@ -21,6 +21,9 @@ class CreateTeachersTable extends Migration
             $table->unsignedBigInteger('class_id')->nullable(); // Кл. рук.
 //            $table->enum('type', ['undefined'])->default('undefined');
             $table->string('type')->nullable();
+            $table->string('asc_xml_id')->nullable();
+            $table->string('asc_teacher_name')->nullable();
+
             $table->timestamps();
         });
     }

@@ -13,6 +13,9 @@ class Load extends Model
     protected $fillable = [
         'lesson_id',
         'class_id',
+        'teacher_id',
+        'group_id',
+        'asc_xml_id'
     ];
 
     public function Lesson(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -28,5 +31,10 @@ class Load extends Model
     public function Teacher(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+    public function Group(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Group::class);
     }
 }

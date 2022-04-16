@@ -7,11 +7,16 @@ use App\Actions\Translit;
 use App\Http\Requests\StoreArchiveTimetableRequest;
 use App\Http\Requests\StoreFileTimetableRequest;
 use App\Http\Requests\StoreFormTimetableRequest;
+use App\Http\Requests\StoreXmlTimetableRequest;
 use App\Jobs\TelegramTimetableUpdateNotification;
 use App\Models\Classes;
 use App\Models\RingSchedule;
 use App\Models\TelegramSubscribers;
 use App\Models\Timetable;
+use Barryvdh\Debugbar\Facades\Debugbar;
+use File;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Storage;
 use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TimetableController extends Controller
@@ -42,17 +47,6 @@ class TimetableController extends Controller
 
         TelegramTimetableUpdateNotification::dispatch($class_id);
 
-//        if (env('APP_ENV') == 'production') {
-//            $subs = TelegramSubscribers::where('class_id', $class_id)->get();
-//
-//            foreach ($subs as $sub) {
-//                Telegram::sendMessage([
-//                    'chat_id' => $sub->chat_id,
-//                    'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
-//                ]);
-//            }
-//        }
-
         return redirect()->back();
     }
 
@@ -67,17 +61,6 @@ class TimetableController extends Controller
         $parser->parseForm($class, $data);
 
         TelegramTimetableUpdateNotification::dispatch($class_id);
-
-//        if (env('APP_ENV') == 'production') {
-//            $subs = TelegramSubscribers::where('class_id', $class_id)->get();
-//
-//            foreach ($subs as $sub) {
-//                Telegram::sendMessage([
-//                    'chat_id' => $sub->chat_id,
-//                    'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
-//                ]);
-//            }
-//        }
 
         return redirect()->back();
     }
@@ -152,4 +135,33 @@ class TimetableController extends Controller
         return response($unknown, 200);
     }
 
+    public function storeXml(StoreXmlTimetableRequest $request)
+    {
+        $path = Storage::putFile('xmls/', $request->file('xml'));
+        $xml = Storage::get($path);
+
+        $parser = new TimetableParser();
+
+        try {
+            $parser->parseXml($xml, $request->all());
+        } catch (\Throwable $throwable) {
+            switch ($throwable->getCode()) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                default:
+//                    return redirect()->back()->with();
+            }
+        }
+
+        return redirect()->back();
+        //TODO: сделать api
+    }
 }
+

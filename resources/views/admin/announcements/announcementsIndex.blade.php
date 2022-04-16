@@ -21,7 +21,7 @@
                     @if($announcement->type == 1)
                         Для всей школы
                     @else
-                        Для {{ $announcement->Classes->number . $announcement->Classes->letter }}
+                        Для {{ $announcement->Classes->getFullName() ?? ''}}
                     @endif
                 </div>
                 <div class="buttons mt-2 flex">

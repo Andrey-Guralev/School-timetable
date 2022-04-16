@@ -67,6 +67,8 @@ Route::middleware(['auth', 'Admin'])->prefix('timetable')->group(function () {
     Route::Post('/edit/{class_id}/file', [\App\Http\Controllers\TimetableController::class, 'storeFile'])->name('storeFileTimetable');
     Route::Post('/edit/{class_id}/form', [\App\Http\Controllers\TimetableController::class, 'storeForm'])->name('storeFormTimetable');
     Route::Post('/edit/archive', [\App\Http\Controllers\TimetableController::class, 'storeArchive'])->name('storeArchiveTimetable');
+    Route::Post('/edit/xml', [\App\Http\Controllers\TimetableController::class, 'storeXml'])->name('timetable.storeXml');
+
 });
 
 // Маршруты связанные с получением расписания

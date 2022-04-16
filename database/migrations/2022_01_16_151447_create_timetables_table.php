@@ -16,13 +16,15 @@ class CreateTimetablesTable extends Migration
         Schema::create('timetable', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('lesson_id');
-            $table->unsignedBigInteger('teacher_id');
-            $table->unsignedBigInteger('class_id');
-            $table->unsignedBigInteger('load_id');
+            $table->unsignedBigInteger('lesson_id')->nullable();
+            $table->unsignedBigInteger('teacher_id')->nullable();
+            $table->unsignedBigInteger('class_id')->nullable();
+            $table->unsignedBigInteger('load_id')->nullable();
+            $table->unsignedBigInteger('group_id')->nullable();
             $table->integer('number');
             $table->integer('weekday');
             $table->json('rooms');
+            $table->string('asc_xml_id')->nullable();
 
             $table->timestamps();
 

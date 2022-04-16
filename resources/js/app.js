@@ -21,6 +21,9 @@ Vue.component('load-index', require('../components/Load/LoadIndex').default);
 Vue.component('load-create-modal', require('../components/Load/LoadCreateModalComponent').default);
 Vue.component('load-edit-modal', require('../components/Load/LoadEditModalComponent').default);
 
+Vue.component('lesson-index', require('../components/Lessons/LessonsIndex').default);
+Vue.component('lesson-create-modal', require('../components/Lessons/LessonCreateModalComponent').default);
+Vue.component('lesson-edit-modal', require('../components/Lessons/LessonEditModalComponent').default);
 
 const app = new Vue({
     el: '#app',

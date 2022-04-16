@@ -17,6 +17,7 @@ class CreateLessonsTable extends Migration
             $table->id();
 
             $table->string('name');
+            $table->string('asc_xml_id')->nullable();
 
             $table->timestamps();
         });
