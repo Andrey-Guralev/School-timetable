@@ -5776,6 +5776,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'EditClassesModal',
   data: function data() {
@@ -5863,6 +5866,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return getData;
+    }(),
+    deleteClass: function () {
+      var _deleteClass = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var _this2 = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios["delete"]('/classes/' + this.id).then(function (response) {
+                  _this2.$emit('updateParent');
+
+                  _this2.closeModal();
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function deleteClass() {
+        return _deleteClass.apply(this, arguments);
+      }
+
+      return deleteClass;
     }()
   },
   mounted: function mounted() {}
@@ -34389,6 +34421,21 @@ var render = function () {
                                       [
                                         _vm._v(
                                           "\n                                    Сохранить\n                                "
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "w-1/3 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-800 text-base font-medium text-white hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600 sm:ml-3 sm:w-auto sm:text-sm",
+                                        attrs: { type: "submit" },
+                                        on: { click: _vm.deleteClass },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Удалить\n                                "
                                         ),
                                       ]
                                     ),

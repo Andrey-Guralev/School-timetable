@@ -66,7 +66,7 @@ class ClassesController extends Controller
     {
         $class = Classes::find($id);
 
-        Timetable::where('class_id', $id)->delete();
+//        Timetable::where('class_id', $id)->delete();
 
         $class->delete();
 
