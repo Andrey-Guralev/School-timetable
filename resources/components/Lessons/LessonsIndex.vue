@@ -45,9 +45,9 @@
                 </tbody>
             </table>
         </div>
+
         <lesson-create-modal-component ref="createModal" @updateParent="updateLessons"></lesson-create-modal-component>
         <lesson-edit-modal-component ref="editModal" @updateParent="updateLessons"></lesson-edit-modal-component>
-
     </div>
 </template>
 

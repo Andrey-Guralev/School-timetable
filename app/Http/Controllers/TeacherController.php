@@ -95,19 +95,19 @@ class TeacherController extends Controller
             return response('Данный учитель не существует');
         }
 
-        $user = User::find($teacher->user_id);
+        $user = User::find($request->user_id);
 
-        $user->name = $request->name;
+        $user->name = $request->name ?? 'Ошибка';
         $user->first_name = $request->first_name;
         $user->second_name = $request->second_name;
         $user->middle_name = $request->middle_name;
-        $user->type = 2;
 
         $user->save();
 
         $teacher->lessons = json_decode($request->lessons);
         $teacher->type = $request->type;
         $teacher->class_id = $request->class == 'null' ? null : $request->class;
+        $teacher->user_id = $request->user_id;
 
         $teacher->save();
 

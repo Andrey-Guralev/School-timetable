@@ -36,10 +36,17 @@
                 </div>
             </li>
         </a>
-        <a href="{{ route('editClasses') }}" class="">
+        <a href="{{ route('classes.index') }}" class="">
             <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('editClasses')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                     Классы
+                </div>
+            </li>
+        </a>
+        <a href="{{ '#' }}" class=""> {{-- TODO: Сделать кабинеты --}}
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('editClasses')) border-b-2 border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                    Кабинеты
                 </div>
             </li>
         </a>
@@ -92,7 +99,7 @@
                     </button>
                 </div>
 
-                <ul class="py-6">
+                <ul class="py-6"> {{-- TODO: Сделать ссылки --}}
                     <li class="pl-6 cursor-pointer text-white text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
                         <div class="flex items-center">
                             <a href="javascript:void(0)" class="ml-2 xl:text-base md:text-2xl text-base">Dashboard</a>

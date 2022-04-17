@@ -163,7 +163,7 @@ class TimetableParser
         //Предметы
         if (\Arr::exists($request, 'lessons'))
         {
-            Lesson::truncate();
+//            Lesson::truncate();
 
             unset($array['subjects']['@attributes']);
 
@@ -223,7 +223,7 @@ class TimetableParser
         //Кабинеты
         if (\Arr::exists($request, 'rooms'))
         {
-            Room::truncate();
+//            Room::truncate();
 
             unset($array['classrooms']['@attributes']);
 
@@ -246,7 +246,7 @@ class TimetableParser
         //Классы
         if (\Arr::exists($request, 'classes'))
         {
-            Classes::truncate();
+//            Classes::truncate();
 
             unset($array['classes']['@attributes']);
 
@@ -304,7 +304,7 @@ class TimetableParser
         //Группы
         if (\Arr::exists($request, 'groups'))
         {
-            Group::truncate();
+//            Group::truncate();
 
             unset($array['groups']['@attributes']);
 
@@ -332,7 +332,7 @@ class TimetableParser
         //Нагрузка
         if (\Arr::exists($request, 'load'))
         {
-            Load::truncate();
+//            Load::truncate();
 
             unset($array['lessons']['@attributes']);
 

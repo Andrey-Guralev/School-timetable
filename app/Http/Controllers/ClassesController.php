@@ -23,6 +23,16 @@ class ClassesController extends Controller
         return response($classes,200);
     }
 
+    public function getById($id)
+    {
+        return Classes::find($id);
+    }
+
+    public function index()
+    {
+        return view('admin.classes.editClasses');
+    }
+
     public function store(StoreClassesRequest $request)
     {
         $class = new Classes();
@@ -37,17 +47,10 @@ class ClassesController extends Controller
         return response(['rId' => $class->id, 'pass' => $class->password], '200');
     }
 
-
-    public function edit(classes $classes)
-    {
-        $classes = Classes::all()->sortByDesc('number');
-
-        return view('admin.classes.editClasses', compact('classes'));
-    }
-
     public function update(UpdateClassesRequest $request, classes $classes)
     {
         $class = Classes::find($request->id);
+
         $class->number = $request->number;
         $class->letter = $request->letter;
         $class->alias = Translit::translitInEn($request->number . mb_strtolower($request->letter));

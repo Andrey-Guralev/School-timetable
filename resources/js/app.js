@@ -25,6 +25,10 @@ Vue.component('lesson-index', require('../components/Lessons/LessonsIndex').defa
 Vue.component('lesson-create-modal', require('../components/Lessons/LessonCreateModalComponent').default);
 Vue.component('lesson-edit-modal', require('../components/Lessons/LessonEditModalComponent').default);
 
+Vue.component('classes-index', require('../components/Classes/ClassesIndex').default);
+Vue.component('edit-classes-component', require('../components/Classes/EditClassesModal').default);
+Vue.component('create-classes-component', require('../components/Classes/CreateClassesModal').default);
+
 const app = new Vue({
     el: '#app',
 });

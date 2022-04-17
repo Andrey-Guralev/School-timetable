@@ -5409,6 +5409,467 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/ClassesIndex.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/ClassesIndex.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _EditClassesModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditClassesModal */ "./resources/components/Classes/EditClassesModal.vue");
+/* harmony import */ var _CreateClassesModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreateClassesModal */ "./resources/components/Classes/CreateClassesModal.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "ClassesIndex",
+  components: {
+    EditClassesModal: _EditClassesModal__WEBPACK_IMPORTED_MODULE_1__["default"],
+    CreateClassesModal: _CreateClassesModal__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  data: function data() {
+    return {
+      classes: Object
+    };
+  },
+  methods: {
+    getData: function () {
+      var _getData = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('/classes/get').then()["catch"]();
+
+              case 2:
+                this.classes = _context.sent.data;
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getData() {
+        return _getData.apply(this, arguments);
+      }
+
+      return getData;
+    }(),
+    openEditModal: function openEditModal(e) {
+      this.$refs.editModal.open = true;
+      this.$refs.editModal.id = e;
+      this.$refs.editModal.getData();
+    },
+    openCreateModal: function openCreateModal(e) {
+      this.$refs.createModal.open = true;
+    },
+    updateClasses: function updateClasses() {
+      this.getData();
+    }
+  },
+  mounted: function mounted() {
+    this.getData();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/CreateClassesModal.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/CreateClassesModal.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'EditClassesModal',
+  data: function data() {
+    return {
+      open: false,
+      id: null,
+      Class: {
+        number: null,
+        letter: null,
+        shift: null
+      }
+    };
+  },
+  methods: {
+    sendClass: function () {
+      var _sendClass = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.getClass();
+                _context.next = 3;
+                return axios.post('/classes/', this.Class).then(function (response) {
+                  _this.$emit('updateParent');
+
+                  _this.closeModal();
+                })["catch"](function (e) {
+                  console.log(e);
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function sendClass() {
+        return _sendClass.apply(this, arguments);
+      }
+
+      return sendClass;
+    }(),
+    getClass: function getClass() {
+      var rad = document.getElementsByName('shift');
+
+      for (var i = 0; i <= rad.length; i++) {
+        if (rad[i].checked) {
+          this.Class.shift = i;
+          break;
+        }
+      }
+    },
+    closeModal: function closeModal() {
+      this.open = false;
+    }
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/EditClassesModal.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/EditClassesModal.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'EditClassesModal',
+  data: function data() {
+    return {
+      open: false,
+      id: null,
+      Class: Object,
+      updatedClass: {
+        number: null,
+        letter: null,
+        shift: null
+      }
+    };
+  },
+  methods: {
+    sendClass: function () {
+      var _sendClass = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.getChanges();
+                _context.next = 3;
+                return axios.patch('/classes/edit/' + this.id, this.updatedClass).then(function (response) {
+                  _this.$emit('updateParent');
+
+                  _this.closeModal();
+                })["catch"](function (e) {
+                  console.log(e);
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function sendClass() {
+        return _sendClass.apply(this, arguments);
+      }
+
+      return sendClass;
+    }(),
+    getChanges: function getChanges() {
+      this.updatedClass.number = document.getElementById('number').value;
+      this.updatedClass.letter = document.getElementById('letter').value;
+      var rad = document.getElementsByName('shift');
+
+      for (var i = 0; i <= rad.length; i++) {
+        if (rad[i].checked) {
+          this.updatedClass.shift = i;
+          break;
+        }
+      }
+    },
+    closeModal: function closeModal() {
+      this.open = false;
+    },
+    getData: function () {
+      var _getData = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get('/classes/get/' + this.id);
+
+              case 2:
+                this.Class = _context2.sent.data;
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getData() {
+        return _getData.apply(this, arguments);
+      }
+
+      return getData;
+    }()
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Lessons/LessonCreateModalComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Lessons/LessonCreateModalComponent.vue?vue&type=script&lang=js& ***!
@@ -6507,7 +6968,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var result = 'Ошибка';
       teachers.forEach(function (teacher) {
         if (teacher.id === id) {
-          result = teacher.user.second_name + ' ' + teacher.user.first_name + ' ' + teacher.user.middle_name;
+          if (teacher.user !== null) {
+            result = teacher.user.second_name + ' ' + teacher.user.first_name + ' ' + teacher.user.middle_name;
+          } else {
+            result = teacher.asc_teacher_name;
+          }
         }
       });
       return result;
@@ -7653,16 +8118,81 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       open: false,
       id: null,
-      errors: null,
+      userExists: false,
       teacher: null,
+      searchOpen: false,
+      userId: null,
+      users: [],
+      login: null,
+      user: {
+        "first_name": null,
+        "second_name": null,
+        "middle_name": null
+      },
+      errors: [],
       classes: null,
       lessons: null,
       changedTeacher: {
+        user_id: null,
         name: null,
         first_name: null,
         second_name: null,
@@ -7685,10 +8215,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 e.preventDefault();
                 this.getChanges();
                 _context.next = 4;
-                return axios.patch('/teacher/' + this.id, this.changedTeacher).then(function (response) {
-                  _this.$emit('updateParent');
-
-                  _this.closeModal();
+                return axios.patch('/teacher/' + this.id, this.changedTeacher).then(function () {
+                  this.$emit('updateParent');
+                  this.closeModal();
                 })["catch"](function (e) {
                   _this.error = e;
                 });
@@ -7716,6 +8245,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.changedTeacher["class"] = document.getElementById('classroom_teacher').value;
       this.changedTeacher.lessons = {};
       var i = 0;
+
+      if (this.userExists) {
+        this.changedTeacher.user_id = this.teacher.user_id;
+      } else {
+        this.changedTeacher.user_id = this.user.id;
+      }
 
       var _iterator = _createForOfIteratorHelper(document.getElementById('lesson').options),
           _step;
@@ -7770,6 +8305,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (_this2.teacher.type === "undefined") {
                     _this2.teacher.type = "Неизвестно";
                   }
+
+                  _this2.userExists = _this2.teacher.user != null;
                 });
 
               case 2:
@@ -7825,6 +8362,102 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       });
       return state;
+    },
+    findUsers: function () {
+      var _findUsers = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (this.login) {
+                  _context3.next = 2;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 2:
+                this.searchOpen = true;
+                this.errors = [];
+                _context3.next = 6;
+                return axios.get('/user/find/' + this.login);
+
+              case 6:
+                this.users = _context3.sent.data;
+
+              case 7:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function findUsers() {
+        return _findUsers.apply(this, arguments);
+      }
+
+      return findUsers;
+    }(),
+    selectUser: function () {
+      var _selectUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
+        var _this3 = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (!(id === -1)) {
+                  _context4.next = 2;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 2:
+                _context4.next = 4;
+                return axios.get("/user/get/" + id).then(function (response) {
+                  if (response.data.id === -2) {
+                    _this3.user = {
+                      "first_name": null,
+                      "second_name": null,
+                      "middle_name": null
+                    };
+
+                    _this3.errorHandler(response.data);
+
+                    return;
+                  }
+
+                  _this3.login = response.data.name;
+                  _this3.user = response.data;
+                })["catch"](function (error) {
+                  console.log(error);
+                });
+
+              case 4:
+                this.searchOpen = false;
+
+              case 5:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function selectUser(_x2) {
+        return _selectUser.apply(this, arguments);
+      }
+
+      return selectUser;
+    }(),
+    errorHandler: function errorHandler(response) {
+      if (response) {
+        if (response.id === -2) {
+          this.errors = [response];
+        }
+      }
     }
   }
 });
@@ -8152,6 +8785,9 @@ Vue.component('load-edit-modal', (__webpack_require__(/*! ../components/Load/Loa
 Vue.component('lesson-index', (__webpack_require__(/*! ../components/Lessons/LessonsIndex */ "./resources/components/Lessons/LessonsIndex.vue")["default"]));
 Vue.component('lesson-create-modal', (__webpack_require__(/*! ../components/Lessons/LessonCreateModalComponent */ "./resources/components/Lessons/LessonCreateModalComponent.vue")["default"]));
 Vue.component('lesson-edit-modal', (__webpack_require__(/*! ../components/Lessons/LessonEditModalComponent */ "./resources/components/Lessons/LessonEditModalComponent.vue")["default"]));
+Vue.component('classes-index', (__webpack_require__(/*! ../components/Classes/ClassesIndex */ "./resources/components/Classes/ClassesIndex.vue")["default"]));
+Vue.component('edit-classes-component', (__webpack_require__(/*! ../components/Classes/EditClassesModal */ "./resources/components/Classes/EditClassesModal.vue")["default"]));
+Vue.component('create-classes-component', (__webpack_require__(/*! ../components/Classes/CreateClassesModal */ "./resources/components/Classes/CreateClassesModal.vue")["default"]));
 var app = new Vue({
   el: '#app'
 });
@@ -31848,6 +32484,123 @@ component.options.__file = "resources/components/Announcements/AnnouncementsCrea
 
 /***/ }),
 
+/***/ "./resources/components/Classes/ClassesIndex.vue":
+/*!*******************************************************!*\
+  !*** ./resources/components/Classes/ClassesIndex.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ClassesIndex_vue_vue_type_template_id_270791a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ClassesIndex.vue?vue&type=template&id=270791a6&scoped=true& */ "./resources/components/Classes/ClassesIndex.vue?vue&type=template&id=270791a6&scoped=true&");
+/* harmony import */ var _ClassesIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ClassesIndex.vue?vue&type=script&lang=js& */ "./resources/components/Classes/ClassesIndex.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ClassesIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ClassesIndex_vue_vue_type_template_id_270791a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ClassesIndex_vue_vue_type_template_id_270791a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "270791a6",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/components/Classes/ClassesIndex.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/components/Classes/CreateClassesModal.vue":
+/*!*************************************************************!*\
+  !*** ./resources/components/Classes/CreateClassesModal.vue ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CreateClassesModal_vue_vue_type_template_id_715a519d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateClassesModal.vue?vue&type=template&id=715a519d&scoped=true& */ "./resources/components/Classes/CreateClassesModal.vue?vue&type=template&id=715a519d&scoped=true&");
+/* harmony import */ var _CreateClassesModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateClassesModal.vue?vue&type=script&lang=js& */ "./resources/components/Classes/CreateClassesModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateClassesModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateClassesModal_vue_vue_type_template_id_715a519d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CreateClassesModal_vue_vue_type_template_id_715a519d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "715a519d",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/components/Classes/CreateClassesModal.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/components/Classes/EditClassesModal.vue":
+/*!***********************************************************!*\
+  !*** ./resources/components/Classes/EditClassesModal.vue ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EditClassesModal_vue_vue_type_template_id_46e82b2b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditClassesModal.vue?vue&type=template&id=46e82b2b&scoped=true& */ "./resources/components/Classes/EditClassesModal.vue?vue&type=template&id=46e82b2b&scoped=true&");
+/* harmony import */ var _EditClassesModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditClassesModal.vue?vue&type=script&lang=js& */ "./resources/components/Classes/EditClassesModal.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditClassesModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditClassesModal_vue_vue_type_template_id_46e82b2b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EditClassesModal_vue_vue_type_template_id_46e82b2b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "46e82b2b",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/components/Classes/EditClassesModal.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/components/Lessons/LessonCreateModalComponent.vue":
 /*!*********************************************************************!*\
   !*** ./resources/components/Lessons/LessonCreateModalComponent.vue ***!
@@ -32293,6 +33046,54 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/components/Classes/ClassesIndex.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/components/Classes/ClassesIndex.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassesIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ClassesIndex.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/ClassesIndex.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassesIndex_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/components/Classes/CreateClassesModal.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/components/Classes/CreateClassesModal.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClassesModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateClassesModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/CreateClassesModal.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClassesModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/components/Classes/EditClassesModal.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/components/Classes/EditClassesModal.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditClassesModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditClassesModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/EditClassesModal.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditClassesModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/components/Lessons/LessonCreateModalComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************!*\
   !*** ./resources/components/Lessons/LessonCreateModalComponent.vue?vue&type=script&lang=js& ***!
@@ -32482,6 +33283,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnnouncementsCreateFormComponent_vue_vue_type_template_id_1b898445_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AnnouncementsCreateFormComponent_vue_vue_type_template_id_1b898445_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./AnnouncementsCreateFormComponent.vue?vue&type=template&id=1b898445&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Announcements/AnnouncementsCreateFormComponent.vue?vue&type=template&id=1b898445&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/components/Classes/ClassesIndex.vue?vue&type=template&id=270791a6&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/components/Classes/ClassesIndex.vue?vue&type=template&id=270791a6&scoped=true& ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassesIndex_vue_vue_type_template_id_270791a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassesIndex_vue_vue_type_template_id_270791a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ClassesIndex_vue_vue_type_template_id_270791a6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ClassesIndex.vue?vue&type=template&id=270791a6&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/ClassesIndex.vue?vue&type=template&id=270791a6&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/components/Classes/CreateClassesModal.vue?vue&type=template&id=715a519d&scoped=true&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/components/Classes/CreateClassesModal.vue?vue&type=template&id=715a519d&scoped=true& ***!
+  \********************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClassesModal_vue_vue_type_template_id_715a519d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClassesModal_vue_vue_type_template_id_715a519d_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateClassesModal_vue_vue_type_template_id_715a519d_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CreateClassesModal.vue?vue&type=template&id=715a519d&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/CreateClassesModal.vue?vue&type=template&id=715a519d&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/components/Classes/EditClassesModal.vue?vue&type=template&id=46e82b2b&scoped=true&":
+/*!******************************************************************************************************!*\
+  !*** ./resources/components/Classes/EditClassesModal.vue?vue&type=template&id=46e82b2b&scoped=true& ***!
+  \******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditClassesModal_vue_vue_type_template_id_46e82b2b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditClassesModal_vue_vue_type_template_id_46e82b2b_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditClassesModal_vue_vue_type_template_id_46e82b2b_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditClassesModal.vue?vue&type=template&id=46e82b2b&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/EditClassesModal.vue?vue&type=template&id=46e82b2b&scoped=true&");
 
 
 /***/ }),
@@ -32840,6 +33692,739 @@ var staticRenderFns = [
     ])
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/ClassesIndex.vue?vue&type=template&id=270791a6&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/ClassesIndex.vue?vue&type=template&id=270791a6&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "header flex justify-between items-center" }, [
+        _c("h3", { staticClass: "text-xl font-medium" }, [
+          _vm._v("\n            Изменение классов\n        "),
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "text-center h-8 w-2/12 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-800 hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+            on: { click: _vm.openCreateModal },
+          },
+          [_vm._v("\n            Создать класс\n        ")]
+        ),
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "ml-8 flex classes flex-wrap mt-4" },
+        _vm._l(_vm.classes, function (cl) {
+          return _c(
+            "button",
+            {
+              staticClass: "class-button text-blue-600 mr-4",
+              attrs: { type: "button" },
+              on: {
+                click: function ($event) {
+                  return _vm.openEditModal(cl.id)
+                },
+              },
+            },
+            [
+              _vm._v(
+                "\n            " +
+                  _vm._s(cl.number) +
+                  _vm._s(cl.letter) +
+                  "\n        "
+              ),
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "explanation ml-8 mt-4 text-gray-600" }, [
+        _vm._v("* Чтобы изменить или удалить класс, надо его выбрать"),
+      ]),
+      _vm._v(" "),
+      _c("edit-classes-modal", {
+        ref: "editModal",
+        on: { updateParent: _vm.updateClasses },
+      }),
+      _vm._v(" "),
+      _c("create-classes-modal", {
+        ref: "createModal",
+        on: { updateParent: _vm.updateClasses },
+      }),
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/CreateClassesModal.vue?vue&type=template&id=715a519d&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/CreateClassesModal.vue?vue&type=template&id=715a519d&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.open
+      ? _c("div", {}, [
+          _c("div", { staticClass: "fixed z-40 inset-0 overflow-y-auto" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0",
+              },
+              [
+                _c(
+                  "transition",
+                  {
+                    attrs: {
+                      "enter-active-class": "ease-out duration-300",
+                      "enter-class": "opacity-0",
+                      "enter-to-class": "opacity-100",
+                      "leave-active-class": "ease-in duration-200",
+                      "leave-class": "opacity-100",
+                      "leave-to-class": "opacity-0",
+                    },
+                  },
+                  [
+                    _vm.open
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "fixed inset-0 transition-opacity",
+                            attrs: { "aria-hidden": "true" },
+                            on: { click: _vm.closeModal },
+                          },
+                          [
+                            _c("div", {
+                              staticClass:
+                                "absolute inset-0 bg-gray-500 opacity-75",
+                            }),
+                          ]
+                        )
+                      : _vm._e(),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "hidden sm:inline-block sm:align-middle sm:h-screen",
+                    attrs: { "aria-hidden": "true" },
+                  },
+                  [_vm._v("​")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "transition",
+                  {
+                    attrs: {
+                      "enter-active-class": "ease-out duration-300",
+                      "enter-class":
+                        "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+                      "enter-to-class":
+                        "opacity-100 translate-y-0 sm:scale-100",
+                      "leave-active-class": "ease-in duration-200",
+                      "leave-class": "opacity-100 translate-y-0 sm:scale-100",
+                      "leave-to-class":
+                        "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+                    },
+                  },
+                  [
+                    _vm.open
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "lg:w-1/2 inline-block align-bottom bg-white rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full",
+                            attrs: {
+                              role: "dialog",
+                              "aria-modal": "true",
+                              "aria-labelledby": "modal-headline",
+                            },
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "bg-white rounded-lg px-4 pt-5 pb-4 sm:p-6 sm:pb-4",
+                              },
+                              [
+                                _c("div", [
+                                  _c("div", {}, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "mt-3 sm:mt-0 sm:ml-4 sm:text-left",
+                                      },
+                                      [
+                                        _c("header", [
+                                          _c("div", [
+                                            _c(
+                                              "h1",
+                                              { staticClass: "text-3xl bold" },
+                                              [_vm._v("Изменение класса")]
+                                            ),
+                                          ]),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "mt-2" }, [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "block text-sm font-medium text-gray-700",
+                                              attrs: { for: "teacher" },
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                Класс\n                                            "
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("div", { staticClass: "mt-1" }, [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.Class.number,
+                                                  expression: "Class.number",
+                                                },
+                                              ],
+                                              staticClass:
+                                                "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                              attrs: {
+                                                type: "text",
+                                                name: "type",
+                                                id: "number",
+                                                placeholder: "Номер",
+                                              },
+                                              domProps: {
+                                                value: _vm.Class.number,
+                                              },
+                                              on: {
+                                                input: function ($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.Class,
+                                                    "number",
+                                                    $event.target.value
+                                                  )
+                                                },
+                                              },
+                                            }),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", { staticClass: "mt-1" }, [
+                                            _c("input", {
+                                              directives: [
+                                                {
+                                                  name: "model",
+                                                  rawName: "v-model",
+                                                  value: _vm.Class.letter,
+                                                  expression: "Class.letter",
+                                                },
+                                              ],
+                                              staticClass:
+                                                "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                              attrs: {
+                                                type: "text",
+                                                name: "type",
+                                                id: "letter",
+                                                placeholder: "Буква",
+                                              },
+                                              domProps: {
+                                                value: _vm.Class.letter,
+                                              },
+                                              on: {
+                                                input: function ($event) {
+                                                  if ($event.target.composing) {
+                                                    return
+                                                  }
+                                                  _vm.$set(
+                                                    _vm.Class,
+                                                    "letter",
+                                                    $event.target.value
+                                                  )
+                                                },
+                                              },
+                                            }),
+                                          ]),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "mt-2" }, [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "block text-sm font-medium text-gray-700",
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                Смена\n                                            "
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "mt-1 flex flex-col",
+                                            },
+                                            [
+                                              _c("div", [
+                                                _c("input", {
+                                                  staticClass:
+                                                    "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300",
+                                                  attrs: {
+                                                    id: "first",
+                                                    name: "shift",
+                                                    type: "radio",
+                                                  },
+                                                  domProps: {
+                                                    checked:
+                                                      _vm.Class.shift === 0,
+                                                  },
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  { attrs: { for: "first" } },
+                                                  [_vm._v("1")]
+                                                ),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  staticClass:
+                                                    "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300",
+                                                  attrs: {
+                                                    id: "second",
+                                                    name: "shift",
+                                                    type: "radio",
+                                                  },
+                                                  domProps: {
+                                                    checked:
+                                                      _vm.Class.shift === 1,
+                                                  },
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  { attrs: { for: "second" } },
+                                                  [_vm._v("2")]
+                                                ),
+                                              ]),
+                                            ]
+                                          ),
+                                        ]),
+                                      ]
+                                    ),
+                                  ]),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "bg-gray-50  px-4 py-3 sm:px-6 flex justify-end",
+                                  },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "w-1/3 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm",
+                                        attrs: { type: "submit" },
+                                        on: { click: _vm.sendClass },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Сохранить\n                                "
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "ml-4 w-1/3 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm",
+                                        attrs: { type: "button" },
+                                        on: { click: _vm.closeModal },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Отмена\n                                "
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ]),
+        ])
+      : _vm._e(),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/EditClassesModal.vue?vue&type=template&id=46e82b2b&scoped=true&":
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Classes/EditClassesModal.vue?vue&type=template&id=46e82b2b&scoped=true& ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.open
+      ? _c("div", {}, [
+          _c("div", { staticClass: "fixed z-40 inset-0 overflow-y-auto" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0",
+              },
+              [
+                _c(
+                  "transition",
+                  {
+                    attrs: {
+                      "enter-active-class": "ease-out duration-300",
+                      "enter-class": "opacity-0",
+                      "enter-to-class": "opacity-100",
+                      "leave-active-class": "ease-in duration-200",
+                      "leave-class": "opacity-100",
+                      "leave-to-class": "opacity-0",
+                    },
+                  },
+                  [
+                    _vm.open
+                      ? _c(
+                          "div",
+                          {
+                            staticClass: "fixed inset-0 transition-opacity",
+                            attrs: { "aria-hidden": "true" },
+                            on: { click: _vm.closeModal },
+                          },
+                          [
+                            _c("div", {
+                              staticClass:
+                                "absolute inset-0 bg-gray-500 opacity-75",
+                            }),
+                          ]
+                        )
+                      : _vm._e(),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "hidden sm:inline-block sm:align-middle sm:h-screen",
+                    attrs: { "aria-hidden": "true" },
+                  },
+                  [_vm._v("​")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "transition",
+                  {
+                    attrs: {
+                      "enter-active-class": "ease-out duration-300",
+                      "enter-class":
+                        "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+                      "enter-to-class":
+                        "opacity-100 translate-y-0 sm:scale-100",
+                      "leave-active-class": "ease-in duration-200",
+                      "leave-class": "opacity-100 translate-y-0 sm:scale-100",
+                      "leave-to-class":
+                        "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95",
+                    },
+                  },
+                  [
+                    _vm.open
+                      ? _c(
+                          "div",
+                          {
+                            staticClass:
+                              "lg:w-1/2 inline-block align-bottom bg-white rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full",
+                            attrs: {
+                              role: "dialog",
+                              "aria-modal": "true",
+                              "aria-labelledby": "modal-headline",
+                            },
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "bg-white rounded-lg px-4 pt-5 pb-4 sm:p-6 sm:pb-4",
+                              },
+                              [
+                                _c("div", [
+                                  _c("div", {}, [
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "mt-3 sm:mt-0 sm:ml-4 sm:text-left",
+                                      },
+                                      [
+                                        _c("header", [
+                                          _c("div", [
+                                            _c(
+                                              "h1",
+                                              { staticClass: "text-3xl bold" },
+                                              [_vm._v("Изменение класса")]
+                                            ),
+                                          ]),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "mt-2" }, [
+                                          _c(
+                                            "label",
+                                            {
+                                              staticClass:
+                                                "block text-sm font-medium text-gray-700",
+                                              attrs: { for: "teacher" },
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                Класс\n                                            "
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("div", { staticClass: "mt-1" }, [
+                                            _c("input", {
+                                              staticClass:
+                                                "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                              attrs: {
+                                                type: "text",
+                                                name: "type",
+                                                id: "number",
+                                                placeholder: "Номер",
+                                              },
+                                              domProps: {
+                                                value: _vm.Class.number,
+                                              },
+                                            }),
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", { staticClass: "mt-1" }, [
+                                            _c("input", {
+                                              staticClass:
+                                                "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                              attrs: {
+                                                type: "text",
+                                                name: "type",
+                                                id: "letter",
+                                                placeholder: "Буква",
+                                              },
+                                              domProps: {
+                                                value: _vm.Class.letter,
+                                              },
+                                            }),
+                                          ]),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c("div", { staticClass: "mt-2" }, [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "block text-sm font-medium text-gray-700",
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                Смена\n                                            "
+                                              ),
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "mt-1 flex flex-col",
+                                            },
+                                            [
+                                              _c("div", [
+                                                _c("input", {
+                                                  staticClass:
+                                                    "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300",
+                                                  attrs: {
+                                                    id: "first",
+                                                    name: "shift",
+                                                    type: "radio",
+                                                  },
+                                                  domProps: {
+                                                    checked:
+                                                      _vm.Class.shift === 0,
+                                                  },
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  { attrs: { for: "first" } },
+                                                  [_vm._v("1")]
+                                                ),
+                                              ]),
+                                              _vm._v(" "),
+                                              _c("div", [
+                                                _c("input", {
+                                                  staticClass:
+                                                    "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300",
+                                                  attrs: {
+                                                    id: "second",
+                                                    name: "shift",
+                                                    type: "radio",
+                                                  },
+                                                  domProps: {
+                                                    checked:
+                                                      _vm.Class.shift === 1,
+                                                  },
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "label",
+                                                  { attrs: { for: "second" } },
+                                                  [_vm._v("2")]
+                                                ),
+                                              ]),
+                                            ]
+                                          ),
+                                        ]),
+                                      ]
+                                    ),
+                                  ]),
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "bg-gray-50  px-4 py-3 sm:px-6 flex justify-end",
+                                  },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "w-1/3 inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm",
+                                        attrs: { type: "submit" },
+                                        on: { click: _vm.sendClass },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Сохранить\n                                "
+                                        ),
+                                      ]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "ml-4 w-1/3 inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm",
+                                        attrs: { type: "button" },
+                                        on: { click: _vm.closeModal },
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Отмена\n                                "
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            ),
+                          ]
+                        )
+                      : _vm._e(),
+                  ]
+                ),
+              ],
+              1
+            ),
+          ]),
+        ])
+      : _vm._e(),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -36198,159 +37783,461 @@ var render = function () {
                                         ]),
                                       ]),
                                       _vm._v(" "),
-                                      _vm.errors
-                                        ? _c("div", { staticClass: "mt-2" }, [
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass:
-                                                  "text-red-600 text-xl font-bold",
-                                              },
-                                              [_vm._v("Какая-то ошибка!")]
-                                            ),
+                                      !_vm.userExists
+                                        ? _c("div", [
+                                            _vm.errors[0]
+                                              ? _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "mt-3 sm:mt-0 sm:ml-4 sm:text-left",
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "span",
+                                                      {
+                                                        staticClass:
+                                                          "text-red-600 text-xl font-bold",
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "Какая-то ошибка!"
+                                                        ),
+                                                      ]
+                                                    ),
+                                                    _vm._v(" "),
+                                                    _c("div", [
+                                                      _c(
+                                                        "ul",
+                                                        { staticClass: "ml-8" },
+                                                        _vm._l(
+                                                          _vm.errors,
+                                                          function (error) {
+                                                            return _c(
+                                                              "li",
+                                                              {
+                                                                staticClass:
+                                                                  "text-red-600 list-disc",
+                                                              },
+                                                              [
+                                                                _vm._v(
+                                                                  _vm._s(
+                                                                    error.name
+                                                                  )
+                                                                ),
+                                                              ]
+                                                            )
+                                                          }
+                                                        ),
+                                                        0
+                                                      ),
+                                                    ]),
+                                                  ]
+                                                )
+                                              : _vm._e(),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mt-2" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "block text-sm font-medium text-gray-700",
+                                                  attrs: { for: "login" },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Поиск по логину\n                                        "
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "mt-1" },
+                                                [
+                                                  _c("input", {
+                                                    directives: [
+                                                      {
+                                                        name: "model",
+                                                        rawName: "v-model",
+                                                        value: _vm.login,
+                                                        expression: "login",
+                                                      },
+                                                    ],
+                                                    staticClass:
+                                                      "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                                    attrs: {
+                                                      autocomplete: "none",
+                                                      type: "text",
+                                                      name: "login",
+                                                      id: "login",
+                                                      placeholder: "login",
+                                                    },
+                                                    domProps: {
+                                                      value: _vm.login,
+                                                    },
+                                                    on: {
+                                                      keyup: function ($event) {
+                                                        return _vm.findUsers()
+                                                      },
+                                                      input: function ($event) {
+                                                        if (
+                                                          $event.target
+                                                            .composing
+                                                        ) {
+                                                          return
+                                                        }
+                                                        _vm.login =
+                                                          $event.target.value
+                                                      },
+                                                    },
+                                                  }),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.searchOpen
+                                                ? _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "fixed z-10 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700",
+                                                      attrs: { id: "dropdown" },
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "ul",
+                                                        {
+                                                          staticClass:
+                                                            "py-1 text-sm text-gray-700 dark:text-gray-200",
+                                                          attrs: {
+                                                            "aria-labelledby":
+                                                              "dropdownDefault",
+                                                          },
+                                                        },
+                                                        [
+                                                          _c(
+                                                            "li",
+                                                            _vm._l(
+                                                              _vm.users,
+                                                              function (user) {
+                                                                return _c(
+                                                                  "button",
+                                                                  {
+                                                                    staticClass:
+                                                                      "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
+                                                                    attrs: {
+                                                                      type: "button",
+                                                                    },
+                                                                    on: {
+                                                                      click:
+                                                                        function (
+                                                                          $event
+                                                                        ) {
+                                                                          return _vm.selectUser(
+                                                                            user.id
+                                                                          )
+                                                                        },
+                                                                    },
+                                                                  },
+                                                                  [
+                                                                    _vm._v(
+                                                                      "\n                                                        " +
+                                                                        _vm._s(
+                                                                          user.name
+                                                                        ) +
+                                                                        "\n                                                    "
+                                                                    ),
+                                                                  ]
+                                                                )
+                                                              }
+                                                            ),
+                                                            0
+                                                          ),
+                                                        ]
+                                                      ),
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mt-2" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "block text-sm font-medium text-gray-700",
+                                                  attrs: { for: "second_name" },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Фамилия\n                                        "
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "mt-1" },
+                                                [
+                                                  _c("input", {
+                                                    staticClass:
+                                                      "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                                    attrs: {
+                                                      type: "text",
+                                                      name: "second_name",
+                                                      id: "second_name",
+                                                      placeholder: "Фамилия",
+                                                    },
+                                                    domProps: {
+                                                      value:
+                                                        _vm.user.second_name,
+                                                    },
+                                                  }),
+                                                ]
+                                              ),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mt-2" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "block text-sm font-medium text-gray-700",
+                                                  attrs: { for: "first_name" },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Имя\n                                        "
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "mt-1" },
+                                                [
+                                                  _c("input", {
+                                                    staticClass:
+                                                      "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                                    attrs: {
+                                                      type: "text",
+                                                      name: "first_name",
+                                                      id: "first_name",
+                                                      placeholder: "Имя",
+                                                    },
+                                                    domProps: {
+                                                      value:
+                                                        _vm.user.first_name,
+                                                    },
+                                                  }),
+                                                ]
+                                              ),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mt-2" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "block text-sm font-medium text-gray-700",
+                                                  attrs: { for: "middle_name" },
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Отчество\n                                        "
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                { staticClass: "mt-1" },
+                                                [
+                                                  _c("input", {
+                                                    staticClass:
+                                                      "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                                    attrs: {
+                                                      type: "text",
+                                                      name: "middle_name",
+                                                      id: "middle_name",
+                                                      placeholder: "Отчество",
+                                                    },
+                                                    domProps: {
+                                                      value:
+                                                        _vm.user.middle_name,
+                                                    },
+                                                  }),
+                                                ]
+                                              ),
+                                            ]),
                                           ])
                                         : _vm._e(),
                                       _vm._v(" "),
-                                      _c("div", { staticClass: "mt-2" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "block text-sm font-medium text-gray-700",
-                                            attrs: { for: "login" },
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                            login\n                                        "
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _vm.teacher
-                                          ? _c("div", { staticClass: "mt-1" }, [
-                                              _c("input", {
-                                                staticClass:
-                                                  "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
-                                                attrs: {
-                                                  type: "text",
-                                                  name: "login",
-                                                  id: "login",
-                                                  placeholder: "login",
+                                      _vm.userExists
+                                        ? _c("div", {}, [
+                                            _c("div", { staticClass: "mt-2" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "block text-sm font-medium text-gray-700",
+                                                  attrs: { for: "login" },
                                                 },
-                                                domProps: {
-                                                  value: _vm.teacher.user.name,
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            login\n                                        "
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.teacher
+                                                ? _c(
+                                                    "div",
+                                                    { staticClass: "mt-1" },
+                                                    [
+                                                      _c("input", {
+                                                        staticClass:
+                                                          "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                                        attrs: {
+                                                          type: "text",
+                                                          name: "login",
+                                                          id: "login",
+                                                          placeholder: "login",
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.teacher.user
+                                                              .name,
+                                                        },
+                                                      }),
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mt-2" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "block text-sm font-medium text-gray-700",
+                                                  attrs: { for: "second_name" },
                                                 },
-                                              }),
-                                            ])
-                                          : _vm._e(),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mt-2" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "block text-sm font-medium text-gray-700",
-                                            attrs: { for: "second_name" },
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                            Фамилия\n                                        "
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _vm.teacher
-                                          ? _c("div", { staticClass: "mt-1" }, [
-                                              _c("input", {
-                                                staticClass:
-                                                  "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
-                                                attrs: {
-                                                  type: "text",
-                                                  name: "second_name",
-                                                  id: "second_name",
-                                                  placeholder: "Фамилия",
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Фамилия\n                                        "
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.teacher
+                                                ? _c(
+                                                    "div",
+                                                    { staticClass: "mt-1" },
+                                                    [
+                                                      _c("input", {
+                                                        staticClass:
+                                                          "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                                        attrs: {
+                                                          type: "text",
+                                                          name: "second_name",
+                                                          id: "second_name",
+                                                          placeholder:
+                                                            "Фамилия",
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.teacher.user
+                                                              .second_name,
+                                                        },
+                                                      }),
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mt-2" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "block text-sm font-medium text-gray-700",
+                                                  attrs: { for: "first_name" },
                                                 },
-                                                domProps: {
-                                                  value:
-                                                    _vm.teacher.user
-                                                      .second_name,
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Имя\n                                        "
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.teacher
+                                                ? _c(
+                                                    "div",
+                                                    { staticClass: "mt-1" },
+                                                    [
+                                                      _c("input", {
+                                                        staticClass:
+                                                          "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                                        attrs: {
+                                                          type: "text",
+                                                          name: "first_name",
+                                                          id: "first_name",
+                                                          placeholder: "Имя",
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.teacher.user
+                                                              .first_name,
+                                                        },
+                                                      }),
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                            ]),
+                                            _vm._v(" "),
+                                            _c("div", { staticClass: "mt-2" }, [
+                                              _c(
+                                                "label",
+                                                {
+                                                  staticClass:
+                                                    "block text-sm font-medium text-gray-700",
+                                                  attrs: { for: "middle_name" },
                                                 },
-                                              }),
-                                            ])
-                                          : _vm._e(),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mt-2" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "block text-sm font-medium text-gray-700",
-                                            attrs: { for: "first_name" },
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                            Имя\n                                        "
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _vm.teacher
-                                          ? _c("div", { staticClass: "mt-1" }, [
-                                              _c("input", {
-                                                staticClass:
-                                                  "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
-                                                attrs: {
-                                                  type: "text",
-                                                  name: "first_name",
-                                                  id: "first_name",
-                                                  placeholder: "Имя",
-                                                },
-                                                domProps: {
-                                                  value:
-                                                    _vm.teacher.user.first_name,
-                                                },
-                                              }),
-                                            ])
-                                          : _vm._e(),
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("div", { staticClass: "mt-2" }, [
-                                        _c(
-                                          "label",
-                                          {
-                                            staticClass:
-                                              "block text-sm font-medium text-gray-700",
-                                            attrs: { for: "middle_name" },
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                            Отчество\n                                        "
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _vm.teacher
-                                          ? _c("div", { staticClass: "mt-1" }, [
-                                              _c("input", {
-                                                staticClass:
-                                                  "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
-                                                attrs: {
-                                                  type: "text",
-                                                  name: "middle_name",
-                                                  id: "middle_name",
-                                                  placeholder: "Отчество",
-                                                },
-                                                domProps: {
-                                                  value:
-                                                    _vm.teacher.user
-                                                      .middle_name,
-                                                },
-                                              }),
-                                            ])
-                                          : _vm._e(),
-                                      ]),
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Отчество\n                                        "
+                                                  ),
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _vm.teacher
+                                                ? _c(
+                                                    "div",
+                                                    { staticClass: "mt-1" },
+                                                    [
+                                                      _c("input", {
+                                                        staticClass:
+                                                          "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                                                        attrs: {
+                                                          type: "text",
+                                                          name: "middle_name",
+                                                          id: "middle_name",
+                                                          placeholder:
+                                                            "Отчество",
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.teacher.user
+                                                              .middle_name,
+                                                        },
+                                                      }),
+                                                    ]
+                                                  )
+                                                : _vm._e(),
+                                            ]),
+                                          ])
+                                        : _vm._e(),
                                       _vm._v(" "),
                                       _c("div", { staticClass: "mt-2" }, [
                                         _c(
@@ -36362,7 +38249,7 @@ var render = function () {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                                            Предмет\n                                        "
+                                              "\n                                        Предмет\n                                    "
                                             ),
                                           ]
                                         ),
@@ -36432,7 +38319,7 @@ var render = function () {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                                            Должность\n                                        "
+                                              "\n                                        Должность\n                                    "
                                             ),
                                           ]
                                         ),
@@ -36466,7 +38353,7 @@ var render = function () {
                                           },
                                           [
                                             _vm._v(
-                                              "\n                                            Классный руководитель\n                                        "
+                                              "\n                                        Классный руководитель\n                                    "
                                             ),
                                           ]
                                         ),
@@ -36549,7 +38436,7 @@ var render = function () {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                Сохранить\n                            "
+                                      "\n                            Сохранить\n                        "
                                     ),
                                   ]
                                 ),
@@ -36564,7 +38451,7 @@ var render = function () {
                                   },
                                   [
                                     _vm._v(
-                                      "\n                                Отмена\n                            "
+                                      "\n                            Отмена\n                        "
                                     ),
                                   ]
                                 ),
@@ -36659,7 +38546,11 @@ var render = function () {
                     [
                       _vm._v(
                         "\n                        " +
-                          _vm._s(teacher.user.name) +
+                          _vm._s(
+                            teacher.user == null
+                              ? "Пользователь не зарегистрирован"
+                              : teacher.user.name
+                          ) +
                           "\n                    "
                       ),
                     ]
@@ -36675,8 +38566,8 @@ var render = function () {
                       _vm._v(
                         "\n                        " +
                           _vm._s(
-                            teacher.user.second_name == null
-                              ? "-"
+                            teacher.user == null
+                              ? teacher.asc_teacher_name
                               : teacher.user.second_name
                           ) +
                           "\n                    "
@@ -36694,9 +38585,7 @@ var render = function () {
                       _vm._v(
                         "\n                        " +
                           _vm._s(
-                            teacher.user.first_name == null
-                              ? "-"
-                              : teacher.user.first_name
+                            teacher.user == null ? "-" : teacher.user.first_name
                           ) +
                           "\n                    "
                       ),
@@ -36713,7 +38602,7 @@ var render = function () {
                       _vm._v(
                         "\n                        " +
                           _vm._s(
-                            teacher.user.middle_name == null
+                            teacher.user == null
                               ? "-"
                               : teacher.user.middle_name
                           ) +

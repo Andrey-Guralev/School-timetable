@@ -148,7 +148,11 @@ export default {
 
             teachers.forEach(function (teacher) {
                 if (teacher.id === id) {
-                    result = teacher.user.second_name + ' ' + teacher.user.first_name + ' ' + teacher.user.middle_name;
+                    if (teacher.user !== null) {
+                        result = teacher.user.second_name + ' ' + teacher.user.first_name + ' ' + teacher.user.middle_name;
+                    } else {
+                        result = teacher.asc_teacher_name;
+                    }
                 }
             })
 

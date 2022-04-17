@@ -1,2 +1,3 @@
-application-ui
+/application-ui/*.vue
 application-ui/*
+application-ui/**/*.vue

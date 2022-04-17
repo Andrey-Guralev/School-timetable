@@ -49,16 +49,16 @@
 
                     <tr class="" v-for="teacher in teachers">
                         <td class="px-6 py-4 text-wrap text-sm font-medium text-gray-900 text-center">
-                            {{ teacher.user.name }}
+                            {{ teacher.user == null ? 'Пользователь не зарегистрирован' : teacher.user.name }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-center">
-                            {{ teacher.user.second_name == null ? '-' : teacher.user.second_name }}
+                            {{ teacher.user == null ? teacher.asc_teacher_name : teacher.user.second_name }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-center">
-                            {{ teacher.user.first_name == null ? '-' : teacher.user.first_name }}
+                            {{ teacher.user == null ? '-' : teacher.user.first_name }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-center">
-                            {{ teacher.user.middle_name == null ? '-' : teacher.user.middle_name }}
+                            {{ teacher.user == null ? '-' : teacher.user.middle_name }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-center">
                             {{ teacher.type == null ? '-' : teacher.type }}
@@ -95,7 +95,6 @@ import TeacherEditModalComponent from "./TeacherEditModalComponent";
 import TeacherCreateModalComponent from "./TeacherCreateModalComponent";
 import TeacherCreateWithAccountModalComponent from "./TeacherCreatelWithAccountModalComponent";
 import TeacherCreateWithoutAccountModalComponent from "./TeacherCreateWithoutAccountModalComponent";
-
 
 export default {
     components: {

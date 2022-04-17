@@ -46,7 +46,6 @@ Route::middleware(['auth', 'Admin'])->prefix('load')->group(function () {
     Route::delete('/{id}', [\App\Http\Controllers\LoadController::class, 'destroy'])->name('load.destroy');
 });
 
-
 //Маршруты связанные с пользователями
 Route::middleware(['auth'])->prefix('user')->group(function() {
     Route::get('/find/{login}', [\App\Http\Controllers\UserController::class, 'findUsers'])->middleware('Admin')->name('user.find');
@@ -77,12 +76,13 @@ Route::middleware('auth')->prefix('timetable')->group(function () {
 });
 
 //Маршруты связанные с созданием и редактированием классов
-Route::middleware(['auth', 'Admin'])->group(function () {
-    Route::post('/classes', [\App\Http\Controllers\ClassesController::class, 'store'])->name('storeClasses');
-    Route::get('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'edit'])->name('editClasses');
-    Route::get('/classes/get', [\App\Http\Controllers\ClassesController::class, 'get'])->name('getClasses');
-    Route::patch('/classes/edit', [\App\Http\Controllers\ClassesController::class, 'update'])->name('updateClasses');
-    Route::delete('/classes/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('destroyClasses');
+Route::middleware(['auth', 'Admin'])->prefix('classes')->group(function () {
+    Route::get('/', [\App\Http\Controllers\ClassesController::class, 'index'])->name('classes.index');
+    Route::get('/get', [\App\Http\Controllers\ClassesController::class, 'get'])->name('classes.get');
+    Route::get('/get/{id}', [\App\Http\Controllers\ClassesController::class, 'getById'])->name('classes.getById');
+    Route::post('/', [\App\Http\Controllers\ClassesController::class, 'store'])->name('classes.store');
+    Route::patch('/edit/{id}', [\App\Http\Controllers\ClassesController::class, 'update'])->name('classes.update');
+    Route::delete('/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('classes.delete');
 });
 
 //Маршруты связанные с аутентификацией в классы

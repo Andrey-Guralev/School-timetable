@@ -25,51 +25,105 @@
                                         </div>
                                     </header>
 
-                                    <div v-if="errors" class="mt-2">
-                                        <span class="text-red-600 text-xl font-bold">Какая-то ошибка!</span>
-                                    </div>
-
-                                    <div class="mt-2">
-                                        <label for="login" class="block text-sm font-medium text-gray-700">
-                                            login
-                                        </label>
-                                        <div class="mt-1" v-if="teacher">
-                                            <input type="text" name="login" id="login" v-bind:value="teacher.user.name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="login">
+                                    <div v-if="!userExists">
+                                        <div v-if="errors[0]" class="mt-3 sm:mt-0 sm:ml-4 sm:text-left">
+                                            <span class="text-red-600 text-xl font-bold">Какая-то ошибка!</span>
+                                            <div>
+                                                <ul class="ml-8">
+                                                    <li v-for="error in errors" class="text-red-600 list-disc">{{ error.name }}</li>
+                                                </ul>
+                                            </div>
                                         </div>
 
-<!--                                            <div id="dropdown" class="hidden fixed z-10 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">-->
-<!--                                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">-->
-<!--                                                    <li>-->
-<!--                                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>-->
-<!--                                                    </li>-->
-<!--                                                </ul>-->
-<!--                                            </div>-->
-                                    </div>
+                                        <div class="mt-2">
+                                            <label for="login" class="block text-sm font-medium text-gray-700">
+                                                Поиск по логину
+                                            </label>
+                                            <div class="mt-1">
+                                                <input v-model="login" v-on:keyup="findUsers()" autocomplete="none" type="text" name="login" id="login" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="login">
+                                            </div>
 
-                                    <div class="mt-2">
-                                        <label for="second_name" class="block text-sm font-medium text-gray-700">
-                                            Фамилия
-                                        </label>
-                                        <div class="mt-1" v-if="teacher">
-                                            <input type="text" name="second_name" id="second_name" v-bind:value="teacher.user.second_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Фамилия">
+                                            <div id="dropdown" v-if="searchOpen" class="fixed z-10 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">
+                                                    <li>
+                                                        <button type="button" v-for="user in users" v-on:click="selectUser(user.id)" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                            {{ user.name }}
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="second_name" class="block text-sm font-medium text-gray-700">
+                                                Фамилия
+                                            </label>
+                                            <div class="mt-1">
+                                                <input type="text" v-bind:value="user.second_name" name="second_name" id="second_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Фамилия">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="first_name" class="block text-sm font-medium text-gray-700">
+                                                Имя
+                                            </label>
+                                            <div class="mt-1">
+                                                <input type="text" v-bind:value="user.first_name" name="first_name" id="first_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Имя">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="middle_name" class="block text-sm font-medium text-gray-700">
+                                                Отчество
+                                            </label>
+                                            <div class="mt-1">
+                                                <input type="text" v-bind:value="user.middle_name" name="middle_name" id="middle_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Отчество">
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="" v-if="userExists">
+                                        <div class="mt-2">
+                                            <label for="login" class="block text-sm font-medium text-gray-700">
+                                                login
+                                            </label>
+                                            <div class="mt-1" v-if="teacher">
+                                                <input type="text" name="login" id="login" v-bind:value="teacher.user.name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="login">
+                                            </div>
 
-                                    <div class="mt-2">
-                                        <label for="first_name" class="block text-sm font-medium text-gray-700">
-                                            Имя
-                                        </label>
-                                        <div class="mt-1" v-if="teacher">
-                                            <input type="text" name="first_name" id="first_name" v-bind:value="teacher.user.first_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Имя">
+                                            <!--                                            <div id="dropdown" class="hidden fixed z-10 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">-->
+                                            <!--                                                <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefault">-->
+                                            <!--                                                    <li>-->
+                                            <!--                                                        <a href="#" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>-->
+                                            <!--                                                    </li>-->
+                                            <!--                                                </ul>-->
+                                            <!--                                            </div>-->
                                         </div>
-                                    </div>
 
-                                    <div class="mt-2">
-                                        <label for="middle_name" class="block text-sm font-medium text-gray-700">
-                                            Отчество
-                                        </label>
-                                        <div class="mt-1" v-if="teacher">
-                                            <input type="text" name="middle_name" id="middle_name" v-bind:value="teacher.user.middle_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Отчество">
+                                        <div class="mt-2">
+                                            <label for="second_name" class="block text-sm font-medium text-gray-700">
+                                                Фамилия
+                                            </label>
+                                            <div class="mt-1" v-if="teacher">
+                                                <input type="text" name="second_name" id="second_name" v-bind:value="teacher.user.second_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Фамилия">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="first_name" class="block text-sm font-medium text-gray-700">
+                                                Имя
+                                            </label>
+                                            <div class="mt-1" v-if="teacher">
+                                                <input type="text" name="first_name" id="first_name" v-bind:value="teacher.user.first_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Имя">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <label for="middle_name" class="block text-sm font-medium text-gray-700">
+                                                Отчество
+                                            </label>
+                                            <div class="mt-1" v-if="teacher">
+                                                <input type="text" name="middle_name" id="middle_name" v-bind:value="teacher.user.middle_name" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Отчество">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -132,11 +186,24 @@
             return {
                 open: false,
                 id: null,
-                errors: null,
+                userExists: false,
                 teacher: null,
+                searchOpen: false,
+                userId: null,
+                users: [],
+                login: null,
+
+                user: {
+                    "first_name": null,
+                    "second_name": null,
+                    "middle_name": null,
+                },
+
+                errors: [],
                 classes: null,
                 lessons: null,
                 changedTeacher: {
+                    user_id: null,
                     name: null,
                     first_name: null,
                     second_name: null,
@@ -155,7 +222,7 @@
                 this.getChanges();
 
                 await axios.patch('/teacher/' + this.id, this.changedTeacher)
-                   .then(response => {
+                   .then(function () {
                        this.$emit('updateParent');
                        this.closeModal()
                    })
@@ -176,6 +243,12 @@
 
                 this.changedTeacher.lessons = {};
                 let i = 0;
+
+                if (this.userExists) {
+                    this.changedTeacher.user_id = this.teacher.user_id;
+                } else {
+                    this.changedTeacher.user_id = this.user.id;
+                }
 
                 for (let option of document.getElementById('lesson').options)
                 {
@@ -219,6 +292,8 @@
                         if (this.teacher.type === "undefined") {
                             this.teacher.type = "Неизвестно"
                         }
+
+                        this.userExists = this.teacher.user != null;
                     })
 
                 if (!this.classes) {
@@ -249,7 +324,53 @@
                 });
 
                 return state;
-            }
+            },
+
+            findUsers: async function ()
+            {
+                if (!this.login) return;
+
+                this.searchOpen = true;
+                this.errors = [];
+
+                this.users = (await axios.get('/user/find/' + this.login)).data
+            },
+
+            selectUser: async function (id)
+            {
+                if (id === -1) return;
+
+                await axios.get("/user/get/" + id)
+                    .then((response) => {
+                        if (response.data.id === -2) {
+                            this.user = {
+                                "first_name": null,
+                                "second_name": null,
+                                "middle_name": null,
+                            };
+                            this.errorHandler(response.data);
+                            return;
+                        }
+
+                        this.login = response.data.name;
+                        this.user = response.data
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    });
+
+                this.searchOpen = false;
+            },
+
+            errorHandler: function (response)
+            {
+                if (response) {
+                    if (response.id === -2) {
+                        this.errors = [response];
+                    }
+                }
+            },
+
         },
     }
 </script>
