@@ -15,7 +15,9 @@
 
     <x-responsive-container class="flex justify-between  lg:w-11/12 sm:w-full">
         <h1 class="text-3xl">Объявления</h1>
-        <a href="{{ route('announcementsCreate') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900">Добавить обьявление</a>
+        <a href="{{ route('announcementsCreate') }}" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900">
+            Добавить обьявление
+        </a>
     </x-responsive-container>
 
     @foreach($announcements as $announcement)

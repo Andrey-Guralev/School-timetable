@@ -16,6 +16,13 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('index');
 
+Route::prefix('feedback')->group(function () {
+    Route::get('/', [\App\Http\Controllers\FeedbackController::class, 'index'])->middleware('auth', 'Admin')->name('feedback.index');
+    Route::get('/create', [\App\Http\Controllers\FeedbackController::class, 'create'])->name('feedback.createPage');
+    Route::post('/', [\App\Http\Controllers\FeedbackController::class, 'store'])->name('feedback.create');
+    Route::delete('/{id}', [\App\Http\Controllers\FeedbackController::class, 'destroy'])->name('feedback.destroy');
+});
+
 //Маршруты связанные с редактированием расписания
 Route::middleware(['auth', 'manager'])->prefix('timetable')->group(function () {
     Route::get('/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');

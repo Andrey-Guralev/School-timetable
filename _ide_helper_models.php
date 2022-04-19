@@ -49,7 +49,7 @@ namespace App\Models{
  * @property string $letter
  * @property string $password
  * @property string|null $alias
- * @property int|null $shift
+ * @property int $shift
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Announcements[] $Announcement
@@ -72,6 +72,33 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Classes whereUpdatedAt($value)
  */
 	class Classes extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Feedback
+ *
+ * @property int $id
+ * @property string $First_name
+ * @property string $second_name
+ * @property int $class_id
+ * @property string $text
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Classes|null $Class
+ * @method static \Database\Factories\FeedbackFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereClassId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereSecondName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Feedback whereUpdatedAt($value)
+ */
+	class Feedback extends \Eloquent {}
 }
 
 namespace App\Models{

@@ -13,9 +13,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-{{--                    <x-nav-link :href="route('index')" :active="request()->routeIs('index')">--}}
-{{--                        Расписание--}}
-{{--                    </x-nav-link>--}}
+{{--                    @if(session('class'))--}}
+                        <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                            Расписание
+                        </x-nav-link>
+                        <x-nav-link :href="route('feedback.createPage')" :active="request()->routeIs('feedback.createPage')">
+                            Отзыв
+                        </x-nav-link>
+{{--                    @endif--}}
 {{--                    <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">--}}
 {{--                        Обьявления--}}
 {{--                    </x-nav-link>--}}
@@ -23,19 +28,19 @@
                         <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                             Расписание
                         </x-nav-link>
-                        @if(Auth::user()->type >= 3)
+{{--                        @if(Auth::user()->type >= 3)--}}
                             <x-nav-link :href="route('editTimetable')" :active="request()->routeIs('editTimetable')">
                                 Изменить расписание
                             </x-nav-link>
                             <x-nav-link :href="route('editClasses')" :active="request()->routeIs('editClasses')">
                                 Изменить классы
                             </x-nav-link>
-                        @endif
-                            @if(Auth::user()->type >= 4)
+{{--                        @endif--}}
+{{--                            @if(Auth::user()->type >= 4)--}}
                                 <x-nav-link :href="route('adminUsers')" :active="request()->routeIs('adminUsers')">
                                     Пользователи
                                 </x-nav-link>
-                            @endif
+{{--                            @endif--}}
                             @if(Auth::user()->type >= 2)
                                 <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">
                                     Объявления
@@ -44,6 +49,11 @@
                             @if(Auth::user()->type >= 4)
                                 <x-nav-link :href="route('ringEdit')" :active="request()->routeIs('ringEdit')">
                                     Расписание звонков
+                                </x-nav-link>
+                            @endif
+                            @if(Auth::user()->type >= 4)
+                                <x-nav-link :href="route('feedback.index')" :active="request()->routeIs('feedback.index')">
+                                    Отзывы
                                 </x-nav-link>
                             @endif
                     @endauth
@@ -83,8 +93,10 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+
             @elseif(session('class'))
-                <div class="sm:flex sm:items-center sm:justify-between  flex items-center ml-6 items-center">
+
+                <div class="sm:flex sm:items-center sm:justify-between flex items-center">
                     <div>
                         <div class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             {{ $class->number }}{{ $class->letter }}
@@ -92,9 +104,6 @@
                     </div>
 
                     <div class="flex items-center">
-{{--                        <a href="{{ route('classesLogin') }}" class="ml-4 text-sm text-gray-500">--}}
-{{--                            Сменить класс--}}
-{{--                        </a>--}}
                         <a href="{{ route('classLogout') }}" class="ml-4 text-sm text-gray-500">
                             Вернуться на главную
                         </a>
@@ -129,8 +138,8 @@
                 </div>
             @endauth
             <!-- Hamburger -->
-            @if(!session('class'))
-                <div class="-mr-2 flex items-center sm:hidden">
+{{--            @if(session('class'))--}}
+                <div class="flex items-center sm:hidden">
                     <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                             <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -138,9 +147,30 @@
                         </svg>
                     </button>
                 </div>
-            @endif
+{{--            @endif--}}
         </div>
     </div>
+
+    <!-- Responsive Navigation Menu -->
+    @if(session('class'))
+        <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+            <!-- Responsive Settings Options -->
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="px-4">
+                </div>
+
+                <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                    Расписание
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('feedback.createPage')" :active="request()->routeIs('feedback.createPage')">
+                    Отзыв
+                </x-responsive-nav-link>
+
+
+            </div>
+        </div>
+    @endif
 
     <!-- Responsive Navigation Menu -->
     @if(!session('class'))
@@ -180,6 +210,11 @@
                                     Расписание звонков
                                 </x-responsive-nav-link>
                             @endif
+                            @if(Auth::user()->type >= 4)
+                                <x-responsive-nav-link :href="route('feedback.index')" :active="request()->routeIs('feedback.index')">
+                                    Отзывы
+                                </x-responsive-nav-link>
+                            @endif
                     @endauth
 
                     <div class="mt-3 space-y-1">
@@ -196,22 +231,6 @@
                     </div>
                 </div>
             @endif
-            {{--        @elseif(session('class'))--}}
-            {{--            <div class="pt-4 pb-1 border-t border-gray-200">--}}
-            {{--                <div class="px-4">--}}
-            {{--                    <div class="font-medium text-base text-gray-800">--}}
-            {{--                        {{ $class->number }}{{ $class->letter }}--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-
-            {{--                <div class="mt-3 space-y-1">--}}
-            {{--                    <x-responsive-nav-link :href="route('classLogout')">--}}
-            {{--                        Выйти--}}
-            {{--                    </x-responsive-nav-link>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-
-            {{--        @endif--}}
         </div>
     @endif
 </nav>

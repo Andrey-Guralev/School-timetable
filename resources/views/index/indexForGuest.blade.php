@@ -8,5 +8,9 @@
             </div>
             <h2 class="sm:mt-4 lg:mt-1.5 text-2xl text-center"><a href="{{ route('classesLogin') }}" class=" underline">Выбрать класс</a></h2>
         </x-container>
+
+        <x-container>
+            <x-feedback :classes="$classes" />
+        </x-container>
     @endif
 </x-app-layout>
