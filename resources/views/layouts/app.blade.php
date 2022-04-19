@@ -30,13 +30,28 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div  class="min-h-screen shadow bg-gray-100" style="">
-            @include('layouts.navigation')
+        <div  class="min-h-screen shadow bg-gray-100 flex flex-col justify-between" style="">
+            <div>
+                @include('layouts.navigation')
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                <!-- Page Content -->
+                <main>
+                    {{ $slot }}
+                </main>
+            </div>
+
+            <footer class="" style="">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+                    <div class="flex justify-center space-x-6 md:order-2">
+
+                    </div>
+                    <div class="mt-8 md:mt-0 md:order-1">
+                        <p class="text-center text-base text-gray-400">
+                            © 2022 <a href="https://liceum6.ru/" target="_blank" class="underline">Лицей 6 "Перспектива"</a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
         </div>
     </body>
 </html>
