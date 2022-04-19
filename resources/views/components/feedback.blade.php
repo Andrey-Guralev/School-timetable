@@ -30,7 +30,7 @@
                     <label for="second-name" class="block text-sm font-medium text-gray-700">
                         Фамилия:
                     </label>
-                    <input type="text" name="second_name" id="second-name" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
+                    <input type="text" name="second_name" id="second-name" placeholder="Фамилия" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
                 </div>
 
                 <div class="flex flex-col mt-4">
@@ -48,7 +48,7 @@
                     <label for="text" class="block text-sm font-medium text-gray-700">
                         Отзыв и предложение:
                     </label>
-                    <textarea name="text" id="text" cols="30" rows="10" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                    <textarea placeholder="Текст" name="text" id="text" cols="30" rows="10" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
                     <span class="block text-sm font-medium text-gray-700 mt-1">
                         * Напишите отзыв и несколько пожеланий для расписания
                     </span>
