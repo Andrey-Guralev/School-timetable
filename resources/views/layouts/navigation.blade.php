@@ -13,14 +13,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-{{--                    @if(session('class'))--}}
+                    @if(session('class'))
                         <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                             Расписание
                         </x-nav-link>
                         <x-nav-link :href="route('feedback.createPage')" :active="request()->routeIs('feedback.createPage')">
                             Отзыв
                         </x-nav-link>
-{{--                    @endif--}}
+                    @endif
 {{--                    <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">--}}
 {{--                        Обьявления--}}
 {{--                    </x-nav-link>--}}
