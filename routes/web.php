@@ -19,31 +19,58 @@ Route::get('/', [\App\Http\Controllers\IndexController::class, 'index'])->name('
 //Маршруты связанные с изменением учителей
 Route::middleware(['auth', 'Admin'])->prefix('teacher')->group(function () {
     Route::get('/', [\App\Http\Controllers\TeacherController::class, 'index'])->name('teacher.index');
-    Route::get('/get', [\App\Http\Controllers\TeacherController::class, 'getTeachers'])->name('teacher.get');
-    Route::get('/get/{id}', [\App\Http\Controllers\TeacherController::class, 'getTeacher'])->name('teacher.getById');
     Route::post('/', [\App\Http\Controllers\TeacherController::class, 'store'])->name('teacher.store');
     Route::patch('/{id}', [\App\Http\Controllers\TeacherController::class, 'update'])->name('teacher.update');
     Route::delete('/{id}', [\App\Http\Controllers\TeacherController::class, 'destroy'])->name('teacher.destroy');
 });
 
+//Маршуты связанные с получением учителей
+Route::prefix('teacher')->group(function () {
+    Route::get('/get', [\App\Http\Controllers\TeacherController::class, 'getTeachers'])->name('teacher.get');
+    Route::get('/get/{id}', [\App\Http\Controllers\TeacherController::class, 'getTeacher'])->name('teacher.getById');
+});
+
 //Маршруты связанные с изменением уроков
 Route::middleware(['auth', 'Admin'])->prefix('lesson')->group(function () {
     Route::get('/', [\App\Http\Controllers\LessonController::class, 'index'])->name('lesson.index');
-    Route::get('/get', [\App\Http\Controllers\LessonController::class, 'getLessons'])->name('lesson.getAll');
-    Route::get('/get/{id}', [\App\Http\Controllers\LessonController::class, 'getLesson'])->name('lesson.getOne');
     Route::patch('/{id}', [\App\Http\Controllers\LessonController::class, 'update'])->name('lesson.update');
     Route::post('/', [\App\Http\Controllers\LessonController::class, 'store'])->name('lesson.store');
     Route::delete('/{id}', [\App\Http\Controllers\LessonController::class, 'destroy'])->name('lesson.destroy');
 });
 
-//Маршруты связанные с изменением уроков
-Route::middleware(['auth', 'Admin'])->prefix('load')->group(function () {
+//Маршруты связнные с полученимем предметов
+Route::prefix('lesson')->group(function () {
+    Route::get('/get', [\App\Http\Controllers\LessonController::class, 'getLessons'])->name('lesson.getAll');
+    Route::get('/get/{id}', [\App\Http\Controllers\LessonController::class, 'getLesson'])->name('lesson.getOne');
+});
+
+//Маршруты связанные с изменением кабинетов
+Route::middleware(['auth', 'Admin'])->prefix('room')->group(function () {
+    Route::get('/', [\App\Http\Controllers\RoomController::class, 'index'])->name('room.index');
+    Route::patch('/{id}', [\App\Http\Controllers\RoomController::class, 'update'])->name('room.update');
+    Route::post('/', [\App\Http\Controllers\RoomController::class, 'store'])->name('room.store');
+    Route::delete('/{id}', [\App\Http\Controllers\RoomController::class, 'destroy'])->name('room.destroy');
+});
+
+//Иаршруты связанные с получением кабинетов
+Route::prefix('room')->group(function () {
+    Route::get('/get', [\App\Http\Controllers\RoomController::class, 'getAll'])->name('room.getAll');
+    Route::get('/get/{id}', [\App\Http\Controllers\RoomController::class, 'getById'])->name('room.getById');
+});
+
+//Маршруты связанные с изменением нагрузки
+Route::middleware(['auth'])->prefix('load')->group(function () {
     Route::get('/', [\App\Http\Controllers\LoadController::class, 'index'])->name('load.index');
-    Route::get('/get', [\App\Http\Controllers\LoadController::class, 'getAllLoad'])->name('load.getAll');
-    Route::get('/get/{id}', [\App\Http\Controllers\LoadController::class, 'getLoad'])->name('load.getOne');
     Route::patch('/{id}', [\App\Http\Controllers\LoadController::class, 'update'])->name('load.update');
     Route::post('/', [\App\Http\Controllers\LoadController::class, 'store'])->name('load.store');
     Route::delete('/{id}', [\App\Http\Controllers\LoadController::class, 'destroy'])->name('load.destroy');
+});
+
+//Марщруты связанные с получением нагрузки
+Route::prefix('load')->group(function () {
+    Route::get('/get', [\App\Http\Controllers\LoadController::class, 'getAllLoad'])->name('load.getAll');
+    Route::get('/get/class/{class_id}', [\App\Http\Controllers\LoadController::class, 'getForClass'])->name('load.getForClass');
+    Route::get('/get/{id}', [\App\Http\Controllers\LoadController::class, 'getLoad'])->name('load.getOne');
 });
 
 //Маршруты связанные с пользователями
@@ -71,18 +98,24 @@ Route::middleware(['auth', 'Admin'])->prefix('timetable')->group(function () {
 });
 
 // Маршруты связанные с получением расписания
-Route::middleware('auth')->prefix('timetable')->group(function () {
-    Route::get('/{id}', [\App\Http\Controllers\Admin\AdminController::class, 'getForClass'])->name('timetableForClass');
+Route::prefix('timetable')->group(function () {
+    Route::get('/{class}', [\App\Http\Controllers\TimetableController::class, 'getByClass'])->name('timetable.getByClass');
+    Route::get('/{id}', [\App\Http\Controllers\TimetableController::class, 'getById'])->name('timetable.getById');
+    Route::get('/', [\App\Http\Controllers\TimetableController::class, 'get'])->name('timetable.get');
 });
 
 //Маршруты связанные с созданием и редактированием классов
 Route::middleware(['auth', 'Admin'])->prefix('classes')->group(function () {
     Route::get('/', [\App\Http\Controllers\ClassesController::class, 'index'])->name('classes.index');
-    Route::get('/get', [\App\Http\Controllers\ClassesController::class, 'get'])->name('classes.get');
-    Route::get('/get/{id}', [\App\Http\Controllers\ClassesController::class, 'getById'])->name('classes.getById');
     Route::post('/', [\App\Http\Controllers\ClassesController::class, 'store'])->name('classes.store');
     Route::patch('/edit/{id}', [\App\Http\Controllers\ClassesController::class, 'update'])->name('classes.update');
     Route::delete('/{class_id}', [\App\Http\Controllers\ClassesController::class, 'destroy'])->name('classes.delete');
+});
+
+//Марщруты связанные с получением классов
+Route::prefix('classes')->group(function () {
+    Route::get('/get', [\App\Http\Controllers\ClassesController::class, 'get'])->name('classes.get');
+    Route::get('/get/{id}', [\App\Http\Controllers\ClassesController::class, 'getById'])->name('classes.getById');
 });
 
 //Маршруты связанные с аутентификацией в классы

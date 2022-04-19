@@ -21,6 +21,22 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TimetableController extends Controller
 {
+
+    public function getById($id)
+    {
+
+    }
+
+    public function getByCLass($class)
+    {
+        return Timetable::where('class_id', $class)->get();
+    }
+
+    public function get()
+    {
+        return Timetable::all();
+    }
+
     public function edit()
     {
         $classes = Classes::all()->sortByDesc('number');

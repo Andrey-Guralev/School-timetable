@@ -44,7 +44,7 @@ class ClassesController extends Controller
 
         $class->save();
 
-        return response(['rId' => $class->id, 'pass' => $class->password], '200');
+        return response(['rId' => $class->id, 'pass' => $class->password], '201');
     }
 
     public function update(UpdateClassesRequest $request, classes $classes)

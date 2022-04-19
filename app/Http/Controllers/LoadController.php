@@ -20,6 +20,11 @@ class LoadController extends Controller
         return Load::find($id);
     }
 
+    public function getForClass($class)
+    {
+        return Load::where('class_id', $class)->get();
+    }
+
     public function index()
     {
         return view('admin.load.loadIndex');

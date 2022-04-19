@@ -43,22 +43,22 @@ class IndexController extends Controller
 
     private function indexForStudent()
     {
-        $timetable = Timetable::where('class_id', session('class'))->with('Teacher')->get();
+//        $timetable = Timetable::where('class_id', session('class'))->with('Teacher')->get();
+//
+//        $announcements = Announcements::where('type', '1')->orWhere('class_id', session('class'))->get()->sortDesc();
 
-        $announcements = Announcements::where('type', '1')->orWhere('class_id', session('class'))->get()->sortDesc();
+//        $class = Classes::find(session('class'));
 
-        $class = Classes::find(session('class'));
+//        $ringSchedule = RingSchedule::where('shift', $class->shift)->get();
+//        $types = 0;
+//
+//        if ($class->shift == 0) {
+//            $types = [0, 1, 2];
+//        } elseif ($class->shift == 1) {
+//            $types = [3, 4, 5, 6];
+//        }
 
-        $ringSchedule = RingSchedule::where('shift', $class->shift)->get();
-        $types = 0;
-
-        if ($class->shift == 0) {
-            $types = [0, 1, 2];
-        } elseif ($class->shift == 1) {
-            $types = [3, 4, 5, 6];
-        }
-
-        return view('index.indexForClass', compact('timetable', 'announcements', 'ringSchedule', 'types', 'class'));
+        return view('index.indexForStudent');
     }
 
     private function indexForTeacher()

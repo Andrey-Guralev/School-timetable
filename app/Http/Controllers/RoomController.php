@@ -8,78 +8,46 @@ use App\Http\Requests\UpdateRoomRequest;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getAll()
+    {
+        return Room::all();
+    }
+
+    public function getById($id)
+    {
+        return Room::find($id);
+    }
+
     public function index()
     {
-        //
+        return view('admin.rooms.roomIndex');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreRoomRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreRoomRequest $request)
     {
-        //
+        $room = new Room;
+
+        $room->name = $request->name;
+        $room->class_id = $request->class_id;
+
+        $room->save();
+
+        return response('Кабинет создан', 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Room $room)
+    public function update(UpdateRoomRequest $request, $id)
     {
-        //
-    }
+        $room = Room::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Room $room)
-    {
-        //
-    }
+        $room->name = $request->name;
+        $room->class_id = $request->class_id;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateRoomRequest  $request
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateRoomRequest $request, Room $room)
-    {
-        //
-    }
+        $room->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Room $room)
+        return response('Кабинет обновлен', 200);
+    }
+    public function destroy($id)
     {
         //
     }

@@ -37,14 +37,14 @@
             </li>
         </a>
         <a href="{{ route('classes.index') }}" class="">
-            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('editClasses')) border-b-2 border-b-blue-800 @endif">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('classes.*')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                     Классы
                 </div>
             </li>
         </a>
-        <a href="{{ '#' }}" class=""> {{-- TODO: Сделать кабинеты --}}
-            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('editClasses')) border-b-2 border-b-blue-800 @endif">
+        <a href="{{ route('room.index') }}" class=""> {{-- TODO: Сделать кабинеты --}}
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('room.index')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                     Кабинеты
                 </div>

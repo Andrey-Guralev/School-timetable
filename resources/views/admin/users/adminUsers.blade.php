@@ -27,9 +27,6 @@
                             Тип
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Класс
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Кнопки
                         </th>
                     </tr>
@@ -60,9 +57,6 @@
                                         @case(2)
                                             Учитель
                                             @break
-                                        @case(3)
-                                            Менеджер
-                                            @break
                                         @case(4)
                                             Админ
                                             @break
@@ -70,16 +64,6 @@
                                             Какая-то ошибка
                                             @break
                                     @endswitch
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <form>
-                                        <select id="class" data-user-id="{{ $user->id }}" data-url="{{ route('changeTeacherClass') }}" name="class" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-700 focus:border-blue-700 sm:text-sm rounded-md">
-                                            <option value="null" @if($user->class_id == null) selected @endif>Нет класса</option>
-                                            @foreach($classes as $class)
-                                                <option value="{{ $class->id }}" @if($user->class_id == $class->id) selected @endif>{{ $class->number }}{{ $class->letter }}</option>
-                                            @endforeach
-                                        </select>
-                                    </form>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex">
                                     <a href="{{ route('changeUserType', ["id" => $user->id, 'type' => 2]) }}" class="mr-2">Учитель</a>

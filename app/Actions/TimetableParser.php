@@ -385,6 +385,7 @@ class TimetableParser
             $allRooms = Room::all();
 
             $dontDelete = [];
+            $classesWhereChanged = [];
 
             if ($allTimetable->isEmpty())
             {
@@ -410,6 +411,7 @@ class TimetableParser
                     $tt->save();
 
                     $dontDelete[] = $tt->id;
+                    $classesWhereChanged[] = $tt->class_id;
                 }
             }
             else
@@ -449,6 +451,7 @@ class TimetableParser
 
                         if ($tt->load_id == $load->id && $room->asc_xml_id == $card['classroomids'])
                         {
+                            $classesWhereChanged[] = $tt->class_id;
                             $dontDelete[] = $tt->id;
                             continue;
                         }
@@ -463,6 +466,7 @@ class TimetableParser
 
                             $tt->save();
 
+                            $classesWhereChanged[] = $tt->class_id;
                             $dontDelete[] = $tt->id;
                         }
                     }
@@ -471,7 +475,7 @@ class TimetableParser
 
                 foreach ($allTimetable as $tt) {
                     if (!in_array($tt->id, $dontDelete)) {
-                        $tt->delete();
+                        if (in_array($tt->class_id, $classesWhereChanged)) $tt->delete();
                     }
                 }
             }
@@ -492,30 +496,3 @@ class TimetableParser
         };
     }
 }
-
-//'lesson_id', +
-//'teacher_id',
-//'class_id', +
-//'group_id
-//'load_id',
-//'number',
-//'weekday',
-//'rooms',
-//'asc_xml_id'
-
-//"lessonid" => "71DE6A312B59E6CA"
-//"classroomids" => "2BD9F2024ECE4D24"
-//"period" => "1"
-//"weeks" => "1"
-//"terms" => "11"
-//"days" => "010000"
-
-//"id" => "71DE6A312B59E6CA"
-//"classids" => "C4EFF45549650AAD"
-//"subjectid" => "9E08545914BE61D6"
-//"teacherids" => "4F75E00C8BD88E02"
-//"classroomids" => "2BD9F2024ECE4D24"
-//"groupids" => "DBFCB1E10C2486F6"
-//"termsdefid" => "476030EA6481C6D7"
-//"weeksdefid" => "C311934E8BD5A930"
-//"daysdefid" => "DAA7F13CB2071BD3"

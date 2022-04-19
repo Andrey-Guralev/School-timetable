@@ -12,5 +12,4 @@ use Ramsey\Uuid\Type\Time;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
 }
