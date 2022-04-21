@@ -35,7 +35,7 @@
 
                 <div class="flex flex-col mt-4">
                     <label for="class" class="block text-sm font-medium text-gray-700">
-                        Класс:
+                        Пользователь:
                     </label>
                     <select name="class" id="class" class="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" required>
                         <option value="0">Учитель</option>
