@@ -1,6 +1,6 @@
 <div >
     <div>
-        <h1 class="text-4xl font-bold">Оставить отзыв</h1>
+        <h1 class="text-3xl font-bold" style="color: #003A80">Оставить отзыв</h1>
     </div>
     <div class="">
         @if ($errors->any())
