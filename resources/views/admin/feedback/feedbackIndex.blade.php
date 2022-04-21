@@ -13,7 +13,7 @@
                     {{ $fb->first_name }} {{ $fb->second_name }}
                 </div>
                 <div class="text-sm">
-                    {{ $fb->Class->getFullName() }}
+                    {{ $fb->class_id != 0 ? $fb->Class->id : "Учитель" }}
                 </div>
             </div>
             <div class="ml-4 mt-4 text-xl">
