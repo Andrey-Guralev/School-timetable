@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (\Auth::guest() && !session('class')) // Вывод для не зарегистрированных пользователей
         {
@@ -40,7 +40,11 @@ class IndexController extends Controller
     {
         $classes = Classes::all();
 
-        return view('index.indexForGuest', compact('classes'));
+        $count = 0;
+
+        $count = \DB::table('sessions')->select('*')->count();
+
+        return view('index.indexForGuest', compact('classes', 'count'));
     }
 
     private function indexForStudent()
