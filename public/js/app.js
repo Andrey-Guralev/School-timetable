@@ -9265,6 +9265,136 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      file: null,
+      xml: null,
+      settings: {
+        subjects: false,
+        teachers: false,
+        rooms: false,
+        groups: false,
+        classes: false,
+        load: false,
+        timetable: false
+      }
+    };
+  },
+  methods: {
+    getFile: function getFile(e) {
+      this.file = null;
+      this.file = e.target.files[0];
+    },
+    readFile: function readFile(e) {
+      e.preventDefault();
+
+      if (this.file) {
+        var reader = new FileReader();
+        reader.readAsText(this.file, 'CP1251');
+
+        reader.onerror = function () {
+          console.log('Ошибка чтения файла');
+        };
+
+        reader.addEventListener('load', function () {
+          this.xml = reader.result;
+          this.parseXml();
+        }.bind(this), false);
+      }
+    },
+    parseXml: function parseXml() {
+      var parser = new DOMParser();
+      var q = parser.parseFromString(this.xml, 'application/xml'); // console.log(q.getElementsByTagName('card')[0].attributes[0].value)
+    }
+  },
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Student/Timetable/StudentTimetableIndex.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Student/Timetable/StudentTimetableIndex.vue?vue&type=script&lang=js& ***!
@@ -9627,6 +9757,7 @@ __webpack_require__(/*! @fortawesome/fontawesome-free/js/fontawesome.min */ "./n
 
 
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
+Vue.config.productionTip = false; //TODO: Убрать!!!!
 
 function adminVueComponentsRequire() {
   Vue.component('announcements-create-component', (__webpack_require__(/*! ../components/Admin/Announcements/AnnouncementsCreateFormComponent.vue */ "./resources/components/Admin/Announcements/AnnouncementsCreateFormComponent.vue")["default"]));
@@ -9646,6 +9777,7 @@ function adminVueComponentsRequire() {
   Vue.component('classes-index', (__webpack_require__(/*! ../components/Admin/Classes/ClassesIndex */ "./resources/components/Admin/Classes/ClassesIndex.vue")["default"]));
   Vue.component('edit-classes-component', (__webpack_require__(/*! ../components/Admin/Classes/EditClassesModal */ "./resources/components/Admin/Classes/EditClassesModal.vue")["default"]));
   Vue.component('create-classes-component', (__webpack_require__(/*! ../components/Admin/Classes/CreateClassesModal */ "./resources/components/Admin/Classes/CreateClassesModal.vue")["default"]));
+  Vue.component('timetable-index-component', (__webpack_require__(/*! ../components/Admin/Timetable/TimetableIndexComponent */ "./resources/components/Admin/Timetable/TimetableIndexComponent.vue")["default"]));
 }
 
 function studentsVueComponentsRequire() {
@@ -33646,6 +33778,45 @@ component.options.__file = "resources/components/Admin/Teacher/TeacherIndexCompo
 
 /***/ }),
 
+/***/ "./resources/components/Admin/Timetable/TimetableIndexComponent.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/components/Admin/Timetable/TimetableIndexComponent.vue ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TimetableIndexComponent_vue_vue_type_template_id_2a60c206_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TimetableIndexComponent.vue?vue&type=template&id=2a60c206&scoped=true& */ "./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=template&id=2a60c206&scoped=true&");
+/* harmony import */ var _TimetableIndexComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TimetableIndexComponent.vue?vue&type=script&lang=js& */ "./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TimetableIndexComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TimetableIndexComponent_vue_vue_type_template_id_2a60c206_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _TimetableIndexComponent_vue_vue_type_template_id_2a60c206_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "2a60c206",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/components/Admin/Timetable/TimetableIndexComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/components/Student/Timetable/StudentTimetableIndex.vue":
 /*!**************************************************************************!*\
   !*** ./resources/components/Student/Timetable/StudentTimetableIndex.vue ***!
@@ -34012,6 +34183,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimetableIndexComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TimetableIndexComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TimetableIndexComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/components/Student/Timetable/StudentTimetableIndex.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************!*\
   !*** ./resources/components/Student/Timetable/StudentTimetableIndex.vue?vue&type=script&lang=js& ***!
@@ -34346,6 +34533,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeacherIndexComponent_vue_vue_type_template_id_2c5706ff_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TeacherIndexComponent_vue_vue_type_template_id_2c5706ff_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TeacherIndexComponent.vue?vue&type=template&id=2c5706ff&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Admin/Teacher/TeacherIndexComponent.vue?vue&type=template&id=2c5706ff&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=template&id=2a60c206&scoped=true&":
+/*!*********************************************************************************************************************!*\
+  !*** ./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=template&id=2a60c206&scoped=true& ***!
+  \*********************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TimetableIndexComponent_vue_vue_type_template_id_2a60c206_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TimetableIndexComponent_vue_vue_type_template_id_2a60c206_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TimetableIndexComponent_vue_vue_type_template_id_2a60c206_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TimetableIndexComponent.vue?vue&type=template&id=2a60c206&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=template&id=2a60c206&scoped=true&");
 
 
 /***/ }),
@@ -40494,6 +40698,465 @@ var staticRenderFns = [
     ])
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=template&id=2a60c206&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/components/Admin/Timetable/TimetableIndexComponent.vue?vue&type=template&id=2a60c206&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "h2",
+      { staticClass: "font-bold text-3xl text-gray-800 leading-tight" },
+      [_vm._v("\n        Обновление расписания\n    ")]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "ml-8 mt-4" }, [
+      _c(
+        "form",
+        {
+          attrs: {
+            action: "#",
+            method: "post",
+            enctype: "multipart/form-data",
+          },
+        },
+        [
+          _c("div", {}, [
+            _c("div", { staticClass: "text-2xl text-bold" }, [
+              _vm._v("\n                    Что обновить?\n                "),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "ml-4 mb-4" }, [
+              _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.settings.subjects,
+                      expression: "settings.subjects",
+                    },
+                  ],
+                  staticClass:
+                    "focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded",
+                  attrs: { id: "lessons", type: "checkbox", name: "lessons" },
+                  domProps: {
+                    checked: Array.isArray(_vm.settings.subjects)
+                      ? _vm._i(_vm.settings.subjects, null) > -1
+                      : _vm.settings.subjects,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = _vm.settings.subjects,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "subjects",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "subjects",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.settings, "subjects", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "lessons" } }, [
+                  _vm._v(
+                    "\n                            Предметы\n                        "
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.settings.teachers,
+                      expression: "settings.teachers",
+                    },
+                  ],
+                  staticClass:
+                    "focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded",
+                  attrs: { id: "teachers", type: "checkbox", name: "teachers" },
+                  domProps: {
+                    checked: Array.isArray(_vm.settings.teachers)
+                      ? _vm._i(_vm.settings.teachers, null) > -1
+                      : _vm.settings.teachers,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = _vm.settings.teachers,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "teachers",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "teachers",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.settings, "teachers", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "teachers" } }, [
+                  _vm._v(
+                    "\n                            Учителя\n                        "
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.settings.rooms,
+                      expression: "settings.rooms",
+                    },
+                  ],
+                  staticClass:
+                    "focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded",
+                  attrs: { id: "rooms", type: "checkbox", name: "rooms" },
+                  domProps: {
+                    checked: Array.isArray(_vm.settings.rooms)
+                      ? _vm._i(_vm.settings.rooms, null) > -1
+                      : _vm.settings.rooms,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = _vm.settings.rooms,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.settings, "rooms", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "rooms",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.settings, "rooms", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "rooms" } }, [
+                  _vm._v(
+                    "\n                            Кабинеты\n                        "
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.settings.groups,
+                      expression: "settings.groups",
+                    },
+                  ],
+                  staticClass:
+                    "focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded",
+                  attrs: { id: "groups", type: "checkbox", name: "groups" },
+                  domProps: {
+                    checked: Array.isArray(_vm.settings.groups)
+                      ? _vm._i(_vm.settings.groups, null) > -1
+                      : _vm.settings.groups,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = _vm.settings.groups,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.settings, "groups", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "groups",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.settings, "groups", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "groups" } }, [
+                  _vm._v(
+                    "\n                            Группы\n                        "
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.settings.classes,
+                      expression: "settings.classes",
+                    },
+                  ],
+                  staticClass:
+                    "focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded",
+                  attrs: { id: "classes", type: "checkbox", name: "classes" },
+                  domProps: {
+                    checked: Array.isArray(_vm.settings.classes)
+                      ? _vm._i(_vm.settings.classes, null) > -1
+                      : _vm.settings.classes,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = _vm.settings.classes,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.settings, "classes", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "classes",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.settings, "classes", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "classes" } }, [
+                  _vm._v(
+                    "\n                            Классы\n                        "
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.settings.load,
+                      expression: "settings.load",
+                    },
+                  ],
+                  staticClass:
+                    "focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded",
+                  attrs: { id: "load", type: "checkbox", name: "load" },
+                  domProps: {
+                    checked: Array.isArray(_vm.settings.load)
+                      ? _vm._i(_vm.settings.load, null) > -1
+                      : _vm.settings.load,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = _vm.settings.load,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(_vm.settings, "load", $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "load",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.settings, "load", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "load" } }, [
+                  _vm._v(
+                    "\n                            Нагрузка\n                        "
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", {}, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.settings.timetable,
+                      expression: "settings.timetable",
+                    },
+                  ],
+                  staticClass:
+                    "focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded",
+                  attrs: {
+                    id: "timetable",
+                    type: "checkbox",
+                    name: "timetable",
+                    checked: "",
+                  },
+                  domProps: {
+                    checked: Array.isArray(_vm.settings.timetable)
+                      ? _vm._i(_vm.settings.timetable, null) > -1
+                      : _vm.settings.timetable,
+                  },
+                  on: {
+                    change: function ($event) {
+                      var $$a = _vm.settings.timetable,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "timetable",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.settings,
+                              "timetable",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.settings, "timetable", $$c)
+                      }
+                    },
+                  },
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "timetable" } }, [
+                  _vm._v(
+                    "\n                            Расписание\n                        "
+                  ),
+                ]),
+              ]),
+            ]),
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            attrs: {
+              type: "file",
+              id: "archive-input",
+              name: "xml",
+              required: "",
+            },
+            on: { change: _vm.getFile },
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex items-baseline" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "flex mt-4 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500",
+                attrs: { type: "submit", "data-url": "", id: "archive-send" },
+                on: { click: _vm.readFile },
+              },
+              [_vm._v("\n                    Отправить\n                ")]
+            ),
+            _vm._v(" "),
+            _c("span", {
+              staticClass: "ml-4 ",
+              attrs: { id: "loading-message" },
+            }),
+          ]),
+        ]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "explanation ml-8 mt-4 text-gray-600" }, [
+      _vm._v("* Необходимо импортироваить xml файл"),
+    ]),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

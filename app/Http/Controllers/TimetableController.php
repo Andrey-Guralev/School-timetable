@@ -40,7 +40,7 @@ class TimetableController extends Controller
     {
         $classes = Classes::all()->sortByDesc('number');
 
-        return view('admin.timetable.editTimetable', compact('classes'));
+        return view('admin.timetable.timetableIndex', compact('classes'));
     }
 
     public function editForm($class_id)

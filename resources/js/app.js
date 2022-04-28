@@ -10,6 +10,8 @@ require('@fortawesome/fontawesome-free/js/fontawesome.min');
 
 window.Vue = require('vue').default;
 
+Vue.config.productionTip = false; //TODO: Убрать!!!!
+
 function adminVueComponentsRequire() {
     Vue.component('announcements-create-component', require('../components/Admin/Announcements/AnnouncementsCreateFormComponent.vue').default);
 
@@ -33,6 +35,8 @@ function adminVueComponentsRequire() {
     Vue.component('classes-index', require('../components/Admin/Classes/ClassesIndex').default);
     Vue.component('edit-classes-component', require('../components/Admin/Classes/EditClassesModal').default);
     Vue.component('create-classes-component', require('../components/Admin/Classes/CreateClassesModal').default);
+
+    Vue.component('timetable-index-component', require('../components/Admin/Timetable/TimetableIndexComponent').default);
 }
 
 function studentsVueComponentsRequire() {
