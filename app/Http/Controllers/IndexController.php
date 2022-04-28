@@ -24,10 +24,6 @@ class IndexController extends Controller
         {
             return $this->indexForTeacher();
         }
-        elseif (\Auth::check() && \Auth::user()->type == 3) // Вывод для диспетчера
-        {
-            //
-        }
         elseif (\Auth::check() && \Auth::user()->type == 4) // Вывод для админа
         {
             return $this->indexForAdmin();

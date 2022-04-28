@@ -9048,6 +9048,83 @@
                         return $instance->setConnectionName($name);
         }
                     /**
+         * Release a reserved job back onto the queue.
+         *
+         * @param string $queue
+         * @param \Illuminate\Queue\Jobs\DatabaseJobRecord $job
+         * @param int $delay
+         * @return mixed 
+         * @static 
+         */ 
+        public static function release($queue, $job, $delay)
+        {
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        return $instance->release($queue, $job, $delay);
+        }
+                    /**
+         * Delete a reserved job from the queue.
+         *
+         * @param string $queue
+         * @param string $id
+         * @return void 
+         * @throws \Throwable
+         * @static 
+         */ 
+        public static function deleteReserved($queue, $id)
+        {
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        $instance->deleteReserved($queue, $id);
+        }
+                    /**
+         * Delete a reserved job from the reserved queue and release it.
+         *
+         * @param string $queue
+         * @param \Illuminate\Queue\Jobs\DatabaseJob $job
+         * @param int $delay
+         * @return void 
+         * @static 
+         */ 
+        public static function deleteAndRelease($queue, $job, $delay)
+        {
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        $instance->deleteAndRelease($queue, $job, $delay);
+        }
+                    /**
+         * Delete all of the jobs from the queue.
+         *
+         * @param string $queue
+         * @return int 
+         * @static 
+         */ 
+        public static function clear($queue)
+        {
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        return $instance->clear($queue);
+        }
+                    /**
+         * Get the queue or return the default.
+         *
+         * @param string|null $queue
+         * @return string 
+         * @static 
+         */ 
+        public static function getQueue($queue)
+        {
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        return $instance->getQueue($queue);
+        }
+                    /**
+         * Get the underlying database instance.
+         *
+         * @return \Illuminate\Database\Connection 
+         * @static 
+         */ 
+        public static function getDatabase()
+        {
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
+                        return $instance->getDatabase();
+        }
+                    /**
          * Get the backoff for an object-based queue handler.
          *
          * @param mixed $job
@@ -9056,7 +9133,7 @@
          */ 
         public static function getJobBackoff($job)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
                         return $instance->getJobBackoff($job);
         }
                     /**
@@ -9068,7 +9145,7 @@
          */ 
         public static function getJobExpiration($job)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
                         return $instance->getJobExpiration($job);
         }
                     /**
@@ -9080,7 +9157,7 @@
          */ 
         public static function createPayloadUsing($callback)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        \Illuminate\Queue\SyncQueue::createPayloadUsing($callback);
+                        \Illuminate\Queue\DatabaseQueue::createPayloadUsing($callback);
         }
                     /**
          * Get the container instance being used by the connection.
@@ -9090,7 +9167,7 @@
          */ 
         public static function getContainer()
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
                         return $instance->getContainer();
         }
                     /**
@@ -9102,7 +9179,7 @@
          */ 
         public static function setContainer($container)
         {            //Method inherited from \Illuminate\Queue\Queue         
-                        /** @var \Illuminate\Queue\SyncQueue $instance */
+                        /** @var \Illuminate\Queue\DatabaseQueue $instance */
                         $instance->setContainer($container);
         }
          
@@ -12755,6 +12832,47 @@
         {
                         /** @var \Illuminate\Routing\Router $instance */
                         return $instance->macroCall($method, $parameters);
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::auth()
+         * @param mixed $options
+         * @static 
+         */ 
+        public static function auth($options = [])
+        {
+                        return \Illuminate\Routing\Router::auth($options);
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::resetPassword()
+         * @static 
+         */ 
+        public static function resetPassword()
+        {
+                        return \Illuminate\Routing\Router::resetPassword();
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::confirmPassword()
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+                        return \Illuminate\Routing\Router::confirmPassword();
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::emailVerification()
+         * @static 
+         */ 
+        public static function emailVerification()
+        {
+                        return \Illuminate\Routing\Router::emailVerification();
         }
          
     }
@@ -16878,6 +16996,139 @@
      
 }
 
+    namespace Telegram\Bot\Laravel\Facades { 
+            /**
+     * Class Telegram.
+     *
+     */ 
+        class Telegram {
+                    /**
+         * Set the IoC Container.
+         *
+         * @param $container Container instance
+         * @return \Telegram\Bot\BotsManager 
+         * @static 
+         */ 
+        public static function setContainer($container)
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->setContainer($container);
+        }
+                    /**
+         * Get the configuration for a bot.
+         *
+         * @param string|null $name
+         * @throws InvalidArgumentException
+         * @return array 
+         * @static 
+         */ 
+        public static function getBotConfig($name = null)
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->getBotConfig($name);
+        }
+                    /**
+         * Get a bot instance.
+         *
+         * @param string $name
+         * @throws TelegramSDKException
+         * @return \Telegram\Bot\Api 
+         * @static 
+         */ 
+        public static function bot($name = null)
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->bot($name);
+        }
+                    /**
+         * Reconnect to the given bot.
+         *
+         * @param string $name
+         * @throws TelegramSDKException
+         * @return \Telegram\Bot\Api 
+         * @static 
+         */ 
+        public static function reconnect($name = null)
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->reconnect($name);
+        }
+                    /**
+         * Disconnect from the given bot.
+         *
+         * @param string $name
+         * @return \Telegram\Bot\BotsManager 
+         * @static 
+         */ 
+        public static function disconnect($name = null)
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->disconnect($name);
+        }
+                    /**
+         * Get the specified configuration value for Telegram.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getConfig($key, $default = null)
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->getConfig($key, $default);
+        }
+                    /**
+         * Get the default bot name.
+         *
+         * @return string|null 
+         * @static 
+         */ 
+        public static function getDefaultBotName()
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->getDefaultBotName();
+        }
+                    /**
+         * Set the default bot name.
+         *
+         * @param string $name
+         * @return \Telegram\Bot\BotsManager 
+         * @static 
+         */ 
+        public static function setDefaultBot($name)
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->setDefaultBot($name);
+        }
+                    /**
+         * Return all of the created bots.
+         *
+         * @return \Telegram\Bot\Api[] 
+         * @static 
+         */ 
+        public static function getBots()
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->getBots();
+        }
+                    /**
+         * Builds the list of commands for the given commands array.
+         *
+         * @param array $commands
+         * @return array An array of commands which includes global and bot specific commands.
+         * @static 
+         */ 
+        public static function parseBotCommands($commands)
+        {
+                        /** @var \Telegram\Bot\BotsManager $instance */
+                        return $instance->parseBotCommands($commands);
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\Http { 
             /**
      * 
@@ -16929,6 +17180,59 @@
         public static function hasValidRelativeSignature()
         {
                         return \Illuminate\Http\Request::hasValidRelativeSignature();
+        }
+         
+    }
+     
+}
+
+    namespace Illuminate\Routing { 
+            /**
+     * 
+     *
+     * @mixin \Illuminate\Routing\RouteRegistrar
+     */ 
+        class Router {
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::auth()
+         * @param mixed $options
+         * @static 
+         */ 
+        public static function auth($options = [])
+        {
+                        return \Illuminate\Routing\Router::auth($options);
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::resetPassword()
+         * @static 
+         */ 
+        public static function resetPassword()
+        {
+                        return \Illuminate\Routing\Router::resetPassword();
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::confirmPassword()
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+                        return \Illuminate\Routing\Router::confirmPassword();
+        }
+                    /**
+         * 
+         *
+         * @see \Laravel\Ui\AuthRouteMethods::emailVerification()
+         * @static 
+         */ 
+        public static function emailVerification()
+        {
+                        return \Illuminate\Routing\Router::emailVerification();
         }
          
     }
@@ -20415,6 +20719,7 @@ namespace  {
             class View extends \Illuminate\Support\Facades\View {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
             class Flare extends \Facade\Ignition\Facades\Flare {}
+            class Telegram extends \Telegram\Bot\Laravel\Facades\Telegram {}
      
 }
 

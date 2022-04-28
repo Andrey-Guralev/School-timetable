@@ -30,7 +30,7 @@ class TelegramTimetableUpdateNotification implements ShouldQueue
             foreach ($subs as $sub) {
                 Telegram::sendMessage([
                     'chat_id' => $sub->chat_id,
-                    'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '.env('APP_URL'),
+                    'text' => 'У тебя изменилось расписание'.chr(10).chr(10).'Посмотреть: '. env('APP_URL'),
                 ]);
             }
 //        } else {

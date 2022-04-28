@@ -21,10 +21,9 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TimetableController extends Controller
 {
-
     public function getById($id)
     {
-
+        return Timetable::find($id);
     }
 
     public function getByCLass($class)
@@ -127,7 +126,7 @@ class TimetableController extends Controller
                 continue;
             }
 
-            if (mb_detect_encoding($text, 'utf-8', true) != true) {
+            if (!mb_detect_encoding($text, 'utf-8', true)) {
                 $text = mb_convert_encoding($text, 'utf-8', 'cp1251');
             }
 

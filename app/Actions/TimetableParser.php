@@ -20,7 +20,7 @@ class TimetableParser
      * @param $text
      * @return void
      */
-    public function parseFile($class, $text)
+    public function parseFile($class, $text): bool
     {
         $text = str_replace(array("\r\n", "\r", "\n"), '  ', $text);
         $text = explode('  ', $text);
@@ -69,14 +69,16 @@ class TimetableParser
 
             $col->save();
         }
+
+        return true;
     }
 
     /**
      * @param $class
      * @param $data
-     * @return void
+     * @return bool
      */
-    public function parseForm($class, $data)
+    public function parseForm($class, $data): bool
     {
         unset($data["_method"]);
         unset($data["_token"]);
@@ -146,9 +148,16 @@ class TimetableParser
                 $col->save();
             }
         }
+
+        return true;
     }
 
-
+    /**
+     * @param $xml
+     * @param $request
+     * @return bool
+     * @throws Exception
+     */
     public function parseXml($xml, $request): bool
     {
         try {
@@ -157,6 +166,7 @@ class TimetableParser
         catch (\Throwable $throwable) {
             throw new Exception('Xml laod error' . $throwable->getMessage(), 0);
         }
+
         $json = json_encode($xml);
         $array = json_decode($json, true);
 
@@ -202,13 +212,14 @@ class TimetableParser
 
                 if (strpos($nameArray[0], '.')) $name = $nameArray[1];
 
-                $user = User::where('second_name', $name)->orWhere('first_name', $name)->orWhere('middle_name', $name)->first();
+                $user = User::where('second_name', $name)->orWhere('first_name', $name)->orWhere('middle_name', $name)->orWhere('asc_teacher_name', $name)->first();
+                $teacher = Teacher::where('asc_teacher_name', $name)->first();
 
-                if (!$user) {
+                if (!$teacher) {
                     $teacher = new Teacher();
-                } else {
-                    $teacher = Teacher::where('user_id', $user)->firstOrNew();
+                }
 
+                if ($user) {
                     $teacher->user_id = $user->id;
                 }
 
@@ -484,6 +495,10 @@ class TimetableParser
         return true;
     }
 
+    /**
+     * @param $days
+     * @return int
+     */
     private function convertDays($days): int
     {
         return match ($days) {
