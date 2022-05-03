@@ -79,7 +79,7 @@ namespace App\Models{
  * App\Models\Feedback
  *
  * @property int $id
- * @property string $First_name
+ * @property string $first_name
  * @property string $second_name
  * @property int $class_id
  * @property string $text

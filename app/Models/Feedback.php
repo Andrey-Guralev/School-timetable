@@ -15,6 +15,7 @@ class Feedback extends Model
         'second_name',
         'class_id',
         'text',
+        'status'
     ];
 
     public function Class()

@@ -41,10 +41,7 @@
             </div>
 
             <footer class="" style="">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-                    <div class="flex justify-center space-x-6 md:order-2">
-
-                    </div>
+                <div class="flex justify-center max-w-7xl mx-auto py-6 px-4">
                     <div class="mt-8 md:mt-0 md:order-1">
                         <p class="text-center text-base text-gray-400">
                             © 2022 <a href="https://liceum6.ru/" target="_blank" class="underline">Лицей 6 "Перспектива"</a>

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Announcements;
 use App\Models\Classes;
+use App\Models\Feedback;
 use App\Models\RingSchedule;
+use App\Models\TelegramSubscribers;
 use App\Models\Timetable;
 use Illuminate\Http\Request;
 
@@ -44,7 +46,9 @@ class IndexController extends Controller
 
         $count = \DB::table('sessions')->select('*')->count();
 
-        return view('index.indexForGuest', compact('classes', 'count'));
+        $feedback = Feedback::with('Class')->where('status', 1)->limit(4)->get();
+
+        return view('index.indexForGuest', compact('classes', 'count', 'feedback'));
     }
 
     private function indexForStudent()
@@ -82,7 +86,13 @@ class IndexController extends Controller
         $classes = Classes::all();
         $announcements = Announcements::with('Classes')->get()->sortDesc();
 
+        $count = 0;
 
-        return view('admin.indexForAdmin', compact(['timetable', 'announcements', 'classes']));
+        $count = \DB::table('sessions')->select('*')->count();
+
+        $telegramSubsCount = TelegramSubscribers::count();
+
+
+        return view('admin.indexForAdmin', compact(['timetable', 'announcements', 'classes', 'count', 'telegramSubsCount']));
     }
 }

@@ -20,7 +20,16 @@
                 {{ $fb->text }}
             </div>
             <div class="flex justify-between mt-4">
-                <div class="">
+                <div class="flex">
+                    @if($fb->status == 0)
+                        <form action="{{ route('feedback.approve', ['id' => $fb->id]) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button class="mr-4 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-green-800 hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-900">
+                                Подтвердить
+                            </button>
+                        </form>
+                    @endif
                     <form action="{{ route('feedback.destroy', ['id' => $fb->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')

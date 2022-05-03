@@ -20,6 +20,7 @@ class CreateFeedbackTable extends Migration
             $table->string('second_name');
             $table->unsignedBigInteger('class_id');
             $table->longText('text');
+            $table->integer('status')->default(0);
 
             $table->timestamps();
         });

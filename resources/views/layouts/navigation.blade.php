@@ -17,8 +17,8 @@
                         <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                             Расписание
                         </x-nav-link>
-                        <x-nav-link :href="route('feedback.createPage')" :active="request()->routeIs('feedback.createPage')">
-                            Отзыв
+                        <x-nav-link :href="route('feedback.all')" :active="request()->routeIs('feedback.all')">
+                            Отзывы
                         </x-nav-link>
                     @endif
 {{--                    <x-nav-link :href="route('announcementsIndex')" :active="request()->routeIs('announcementsIndex')">--}}
@@ -105,7 +105,7 @@
 
                     <div class="flex items-center">
                         <a href="{{ route('classLogout') }}" class="ml-4 text-sm text-gray-500">
-                            Вернуться на главную
+                            Вернуться к выбору
                         </a>
                     </div>
                 </div>
@@ -163,8 +163,8 @@
                     Расписание
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link :href="route('feedback.createPage')" :active="request()->routeIs('feedback.createPage')">
-                    Отзыв
+                <x-responsive-nav-link :href="route('feedback.all')" :active="request()->routeIs('feedback.all')">
+                    Отзывы
                 </x-responsive-nav-link>
 
 

@@ -11,6 +11,10 @@
                 </a>
             @endforeach
         </div>
+        <div class="flex flex-col mt-8">
+            <h3 class="mt-4">За последние двое суток сайт посетило: {{ $count }} {{ trans_choice('[0,1] человек|[2,4] человека|[5,*] человек', $count) }}</h3>
+            <h3 class="mt-4">На телеграм бота подписано: {{ $telegramSubsCount }} {{ trans_choice('[0,1] человек|[2,4] человека|[5,*] человек', $telegramSubsCount) }}</h3>
+        </div>
     </x-responsive-container>
 
     <x-responsive-container class="flex justify-between  lg:w-11/12 sm:w-full">
