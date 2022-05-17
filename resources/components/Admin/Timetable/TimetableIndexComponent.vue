@@ -77,13 +77,13 @@ export default {
             file: null,
             xml: null,
             settings: {
-                subjects: false,
-                teachers: false,
-                rooms: false,
-                groups: false,
-                classes: false,
-                load: false,
-                timetable: false,
+                subjects: true,
+                teachers: true,
+                rooms: true,
+                groups: true,
+                classes: true,
+                load: true,
+                timetable: true,
             },
         };
     },
@@ -121,7 +121,62 @@ export default {
             let parser = new DOMParser();
             let q = parser.parseFromString(this.xml, 'application/xml');
 
-            // console.log(q.getElementsByTagName('card')[0].attributes[0].value)
+            // console.log(q.getElementsByTagName('card')[0].attributes[0].value);
+
+            if(this.settings.subjects)
+                this.parseSubjects(q.getElementsByTagName('subject'));
+            if(this.settings.rooms)
+                this.parseRooms(q.getElementsByTagName('classroom'));
+            if(this.settings.classes)
+                this.parseClasses(q.getElementsByTagName('class'));
+            if(this.settings.groups)
+                this.parseGroups(q.getElementsByTagName('group'));
+            if(this.settings.teachers)
+                this.parseTeachers(q.getElementsByTagName('teacher'));
+            if(this.settings.load)
+                this.parseLoad(q.getElementsByTagName('lesson'));
+            if(this.settings.timetable)
+                this.parseTimetable(q.getElementsByTagName('card'));
+        },
+
+        parseSubjects: function (subjects)
+        {
+            for (let i = 0; i < subjects.length; i++)
+            {
+                let subject = subjects[i];
+
+                console.log(subject)
+            }
+        },
+
+        parseRooms: function (rooms)
+        {
+
+        },
+
+        parseClasses: function (classes)
+        {
+
+        },
+
+        parseGroups: function (groups)
+        {
+
+        },
+
+        parseTeachers: function (teachers)
+        {
+
+        },
+
+        parseLoad: function (load)
+        {
+
+        },
+
+        parseTimetable: function (timetable)
+        {
+
         },
     },
 

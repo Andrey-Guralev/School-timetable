@@ -9353,13 +9353,13 @@ __webpack_require__.r(__webpack_exports__);
       file: null,
       xml: null,
       settings: {
-        subjects: false,
-        teachers: false,
-        rooms: false,
-        groups: false,
-        classes: false,
-        load: false,
-        timetable: false
+        subjects: true,
+        teachers: true,
+        rooms: true,
+        groups: true,
+        classes: true,
+        load: true,
+        timetable: true
       }
     };
   },
@@ -9387,8 +9387,28 @@ __webpack_require__.r(__webpack_exports__);
     },
     parseXml: function parseXml() {
       var parser = new DOMParser();
-      var q = parser.parseFromString(this.xml, 'application/xml'); // console.log(q.getElementsByTagName('card')[0].attributes[0].value)
-    }
+      var q = parser.parseFromString(this.xml, 'application/xml'); // console.log(q.getElementsByTagName('card')[0].attributes[0].value);
+
+      if (this.settings.subjects) this.parseSubjects(q.getElementsByTagName('subject'));
+      if (this.settings.rooms) this.parseRooms(q.getElementsByTagName('classroom'));
+      if (this.settings.classes) this.parseClasses(q.getElementsByTagName('class'));
+      if (this.settings.groups) this.parseGroups(q.getElementsByTagName('group'));
+      if (this.settings.teachers) this.parseTeachers(q.getElementsByTagName('teacher'));
+      if (this.settings.load) this.parseLoad(q.getElementsByTagName('lesson'));
+      if (this.settings.timetable) this.parseTimetable(q.getElementsByTagName('card'));
+    },
+    parseSubjects: function parseSubjects(subjects) {
+      for (var i = 0; i < subjects.length; i++) {
+        var subject = subjects[i];
+        console.log(subject);
+      }
+    },
+    parseRooms: function parseRooms(rooms) {},
+    parseClasses: function parseClasses(classes) {},
+    parseGroups: function parseGroups(groups) {},
+    parseTeachers: function parseTeachers(teachers) {},
+    parseLoad: function parseLoad(load) {},
+    parseTimetable: function parseTimetable(timetable) {}
   },
   mounted: function mounted() {}
 });

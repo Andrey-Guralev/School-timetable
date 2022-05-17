@@ -161,17 +161,9 @@ class TimetableController extends Controller
             $parser->parseXml($xml, $request->all());
         } catch (\Throwable $throwable) {
             switch ($throwable->getCode()) {
-                case 0:
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 7:
-                case 8:
                 default:
-//                    return redirect()->back()->with();
+                    dd($throwable);
+                    return redirect()->back()->with('error', 'Неизвестная ошибка');
             }
         }
 

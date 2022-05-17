@@ -843,6 +843,9 @@ select {
 .ml-2 {
   margin-left: 0.5rem;
 }
+.mr-4 {
+  margin-right: 1rem;
+}
 .mt-6 {
   margin-top: 1.5rem;
 }
@@ -863,9 +866,6 @@ select {
 }
 .-mt-px {
   margin-top: -1px;
-}
-.mr-4 {
-  margin-right: 1rem;
 }
 .mr-8 {
   margin-right: 2rem;
@@ -1197,14 +1197,14 @@ select {
 .max-w-7xl {
   max-width: 80rem;
 }
+.max-w-lg {
+  max-width: 32rem;
+}
 .max-w-xl {
   max-width: 36rem;
 }
 .max-w-6xl {
   max-width: 72rem;
-}
-.max-w-lg {
-  max-width: 32rem;
 }
 .max-w-full {
   max-width: 100%;
@@ -1418,15 +1418,15 @@ select {
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
-.space-y-8 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
-}
 .space-y-6 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
+.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
 }
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1737,6 +1737,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.bg-gray-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+}
 .bg-blue-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
@@ -1768,6 +1772,10 @@ select {
 .bg-blue-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity));
+}
+.bg-green-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 101 52 / var(--tw-bg-opacity));
 }
 .bg-red-800 {
   --tw-bg-opacity: 1;
@@ -1855,10 +1863,6 @@ select {
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
-}
-.bg-gray-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 .bg-gray-700 {
   --tw-bg-opacity: 1;
@@ -2061,6 +2065,9 @@ select {
 .pr-10 {
   padding-right: 2.5rem;
 }
+.pt-2 {
+  padding-top: 0.5rem;
+}
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -2099,9 +2106,6 @@ select {
 }
 .pb-20 {
   padding-bottom: 5rem;
-}
-.pt-2 {
-  padding-top: 0.5rem;
 }
 .pb-8 {
   padding-bottom: 2rem;
@@ -2367,13 +2371,13 @@ select {
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
 .text-indigo-700 {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
+}
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 .text-green-500 {
   --tw-text-opacity: 1;
@@ -10522,6 +10526,10 @@ readers do not read off random characters that represent icons */
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
+.hover\:bg-green-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(20 83 45 / var(--tw-bg-opacity));
+}
 .hover\:bg-red-900:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(127 29 29 / var(--tw-bg-opacity));
@@ -10807,6 +10815,10 @@ readers do not read off random characters that represent icons */
 .focus\:ring-blue-200:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(191 219 254 / var(--tw-ring-opacity));
+}
+.focus\:ring-green-900:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(20 83 45 / var(--tw-ring-opacity));
 }
 .focus\:ring-red-900:focus {
   --tw-ring-opacity: 1;
@@ -11200,6 +11212,10 @@ readers do not read off random characters that represent icons */
     width: 100%;
   }
 
+  .sm\:w-1\/2 {
+    width: 50%;
+  }
+
   .sm\:w-auto {
     width: auto;
   }
@@ -11224,16 +11240,16 @@ readers do not read off random characters that represent icons */
     min-width: 0px;
   }
 
+  .sm\:max-w-xs {
+    max-width: 20rem;
+  }
+
   .sm\:max-w-md {
     max-width: 28rem;
   }
 
   .sm\:max-w-lg {
     max-width: 32rem;
-  }
-
-  .sm\:max-w-xs {
-    max-width: 20rem;
   }
 
   .sm\:max-w-xl {
@@ -11533,20 +11549,20 @@ readers do not read off random characters that represent icons */
     padding-bottom: 0px;
   }
 
-  .sm\:pt-0 {
-    padding-top: 0px;
-  }
-
-  .sm\:pb-4 {
-    padding-bottom: 1rem;
-  }
-
   .sm\:pt-5 {
     padding-top: 1.25rem;
   }
 
   .sm\:pt-2 {
     padding-top: 0.5rem;
+  }
+
+  .sm\:pt-0 {
+    padding-top: 0px;
+  }
+
+  .sm\:pb-4 {
+    padding-bottom: 1rem;
   }
 
   .sm\:pb-16 {
@@ -11996,12 +12012,12 @@ readers do not read off random characters that represent icons */
     margin-top: 0.25rem;
   }
 
-  .lg\:mt-20 {
-    margin-top: 5rem;
-  }
-
   .lg\:mt-0 {
     margin-top: 0px;
+  }
+
+  .lg\:mt-20 {
+    margin-top: 5rem;
   }
 
   .lg\:ml-4 {
