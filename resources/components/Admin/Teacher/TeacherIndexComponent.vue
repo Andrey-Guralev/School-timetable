@@ -84,8 +84,10 @@
         </div>
         <teacher-edit-modal ref="editModal" @updateParent="updateTeachers"></teacher-edit-modal>
         <teacher-create-modal ref="createModal" @openCreateModals="openCreateModal"></teacher-create-modal>
-        <TeacherCreateWithAccountModalComponent ref="withAccModal" @updateParent="updateTeachers"></TeacherCreateWithAccountModalComponent>
-        <TeacherCreateWithoutAccountModalComponent ref="withoutAccModal" @updateParent="updateTeachers"></TeacherCreateWithoutAccountModalComponent>
+        <teacher-create-with-account-modal-component ref="withAccModal" @updateParent="updateTeachers"></teacher-create-with-account-modal-component>
+        <teacher-create-without-account-modal-component ref="withoutAccModal" @updateParent="updateTeachers"></teacher-create-without-account-modal-component>
+<!--        <TeacherCreateWithAccountModalComponent ref="withAccModal" @updateParent="updateTeachers"></TeacherCreateWithAccountModalComponent>-->
+<!--        <TeacherCreateWithoutAccountModalComponent ref="withoutAccModal" @updateParent="updateTeachers"></TeacherCreateWithoutAccountModalComponent>-->
     </div>
 </template>
 

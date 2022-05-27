@@ -21,29 +21,34 @@ use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TimetableController extends Controller
 {
-    public function getById($id)
+    public function getById($id): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|array|Timetable|null
     {
         return Timetable::find($id);
     }
 
-    public function getByCLass($class)
+    public function getByCLass($class): \Illuminate\Database\Eloquent\Collection|array
     {
-        return Timetable::where('class_id', $class)->get();
+        return Timetable::with('Class', 'Lesson', 'Group', 'Teacher', 'Teacher.User')->where('class_id', $class)->get();
     }
 
-    public function get()
+    public function getByTeacher($teacher_id): \Illuminate\Database\Eloquent\Collection|array
     {
-        return Timetable::all();
+        return Timetable::with('Class', 'Lesson', 'Group', 'Teacher', 'Teacher.User')->where('teacher_id', $teacher_id)->get();
     }
 
-    public function edit()
+    public function get(): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return Timetable::with('Class', 'Lesson', 'Group', 'Teacher.User')->get();
+    }
+
+    public function edit(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $classes = Classes::all()->sortByDesc('number');
 
         return view('admin.timetable.timetableIndex', compact('classes'));
     }
 
-    public function editForm($class_id)
+    public function editForm($class_id): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $tt = Timetable::where('class_id', $class_id)->get();
         $class = Classes::find($class_id);
@@ -80,7 +85,7 @@ class TimetableController extends Controller
         return redirect()->back();
     }
 
-    public function storeArchive(StoreArchiveTimetableRequest $request)
+    public function storeArchive(StoreArchiveTimetableRequest $request): \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
     {
         $zip = new \ZipArchive();
         $res = $zip->open($request->archive);
@@ -150,7 +155,7 @@ class TimetableController extends Controller
         return response($unknown, 200);
     }
 
-    public function storeXml(StoreXmlTimetableRequest $request)
+    public function storeXml(StoreXmlTimetableRequest $request): \Illuminate\Http\RedirectResponse
     {
         $path = Storage::putFile('xmls/', $request->file('xml'));
         $xml = Storage::get($path);
@@ -161,8 +166,9 @@ class TimetableController extends Controller
             $parser->parseXml($xml, $request->all());
         } catch (\Throwable $throwable) {
             switch ($throwable->getCode()) {
+                case 1:
+                    break;
                 default:
-                    dd($throwable);
                     return redirect()->back()->with('error', 'Неизвестная ошибка');
             }
         }

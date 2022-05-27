@@ -35,7 +35,7 @@ class Timetable extends Model
 
     public function Teacher(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     public function Class(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -50,6 +50,6 @@ class Timetable extends Model
 
     public function Group()
     {
-        return $this->hasMany(Group::class);
+        return $this->belongsTo(Group::class);
     }
 }

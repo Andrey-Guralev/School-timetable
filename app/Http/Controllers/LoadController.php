@@ -25,6 +25,11 @@ class LoadController extends Controller
         return Load::where('class_id', $class)->get();
     }
 
+    public function getForTeacher($teacher_id)
+    {
+        return Load::where('teacher_id', $teacher_id)->get();
+    }
+
     public function index()
     {
         return view('admin.load.loadIndex');

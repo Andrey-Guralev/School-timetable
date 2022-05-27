@@ -70,6 +70,7 @@ Route::middleware(['auth'])->prefix('load')->group(function () {
 Route::prefix('load')->group(function () {
     Route::get('/get', [\App\Http\Controllers\LoadController::class, 'getAllLoad'])->name('load.getAll');
     Route::get('/get/class/{class_id}', [\App\Http\Controllers\LoadController::class, 'getForClass'])->name('load.getForClass');
+    Route::get('/get/teacher/{teahcer_id}', [\App\Http\Controllers\LoadController::class, 'getForTeacher'])->name('load.getForTeacher');
     Route::get('/get/{id}', [\App\Http\Controllers\LoadController::class, 'getLoad'])->name('load.getOne');
 });
 
@@ -100,7 +101,8 @@ Route::middleware(['auth', 'Admin'])->prefix('timetable')->group(function () {
 // Маршруты связанные с получением расписания
 Route::prefix('timetable')->group(function () {
     Route::get('/{class}', [\App\Http\Controllers\TimetableController::class, 'getByClass'])->name('timetable.getByClass');
-    Route::get('/{id}', [\App\Http\Controllers\TimetableController::class, 'getById'])->name('timetable.getById');
+    Route::get('/teacher/{teacher_id}', [\App\Http\Controllers\TimetableController::class, 'getByTeacher'])->name('timetable.getByTeacher');
+    Route::get('/id/{id}', [\App\Http\Controllers\TimetableController::class, 'getById'])->name('timetable.getById');
     Route::get('/', [\App\Http\Controllers\TimetableController::class, 'get'])->name('timetable.get');
 });
 

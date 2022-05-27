@@ -73,8 +73,6 @@ import LoadCreateModalComponent from "./LoadCreateModalComponent";
 import LoadEditModalComponent from "./LoadEditModalComponent";
 
 export default {
-    name: "LessonsIndex",
-
     components: {
         LoadCreateModalComponent,
         LoadEditModalComponent,

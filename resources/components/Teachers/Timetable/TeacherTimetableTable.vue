@@ -1,5 +1,5 @@
 <template>
-    <div class="my-2 inline-block w-full lg:w-1/2 lg:p-4 sm:p-0 sm:p-0">
+    <div class="my-2 inline-block w-1/2 p-4">
         <table class="min-w-full divide-y divide-gray-200 shadow border-b border-gray-300">
             <thead class="bg-gray-100">
             <tr>
@@ -13,13 +13,13 @@
             <tr class="bg-white" v-for="number in m">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     <div class="flex justify-between">
-                        <span class="lesson">{{ getLessons(number) }}</span>
+                        <span class="lesson">{{ number }}. {{ getLessons(number) }}</span>
                         <span class="rooms">{{ getRooms(number) }}</span>
                     </div>
                     <div class="ml-3 text-gray-600">
-                        {{ getTeacher(number) }}
+                        {{  getClass(number) }}
                     </div>
-<!--&lt;!&ndash;                    Расписание звонков&ndash;&gt;-->
+<!--                   Расписание звонков-->
 <!--                    <div class="ml-3 text-gray-600">-->
 <!--                    </div>-->
                 </td>
@@ -76,7 +76,7 @@ export default {
 
         getLessons: function (number) {
 
-            let i = this.timetable.filter(function (val) {
+           let i = this.timetable.filter(function (val) {
                 return val.number === number;
             })
 
@@ -129,61 +129,6 @@ export default {
             return response;
         },
 
-        getTeacher: function(number) {
-            let i = this.timetable.filter(function (val) {
-                return val.number === number;
-            })
-
-            let response = '';
-
-            if (i.length === 1) {
-                if (i[0].teacher.user) {
-                    let p =  i[0].teacher.user;
-                    response = p.second_name + ' ';
-                    response += p.first_name + ' ';
-                    response += p.middle_name;
-                    return response;
-                } else {
-                    return  i[0].teacher.asc_teacher_name + ' ';
-                }
-            } else {
-                i.forEach((val, key) => {
-                    if (key === 0 ) {
-
-                        if (val.teacher.user) {
-                            let p = val.teacher.user;
-
-                            response = p.second_name + ' ';
-                            response += p.first_name + ' ';
-                            response += p.middle_name;
-
-                            response += ' / ';
-                        } else {
-                            response = val.teacher.asc_teacher_name + ' ';
-                            response += ' / ';
-                        }
-
-                    } else {
-
-                        if (val.teacher.user) {
-                            let p = val.teacher.user;
-
-                            response = p.second_name + ' ';
-                            response += p.first_name + ' ';
-                            response += p.middle_name;
-
-                        } else {
-                            response += val.teacher.asc_teacher_name + ' ';
-                        }
-                        // response += this.teachers.find(teacher => teacher.id === val.teacher_id);
-                    }
-                })
-
-            }
-
-            return response;
-        }
-
         // getTeacher: function(number) {
         //     let i = this.timetable.filter(function (val) {
         //         return val.number === number;
@@ -191,12 +136,14 @@ export default {
         //
         //     let response = '';
         //
+        //     console.log(i);
+        //
         //     if (i.length === 1) {
         //         if (this.teachers.find(teahcer => teahcer.id === i[0].teacher_id).user) {
-        //             let p =  this.teachers.find(teahcer => teahcer.id === i[0].teacher_id).user;
-        //             response = p.second_name + ' ';
-        //             response += p.first_name + ' ';
-        //             response += p.middle_name;
+        //             let i =  this.teachers.find(teahcer => teahcer.id === i[0].teacher_id).user;
+        //             response = i.second_name + ' ';
+        //             response += i.first_name + ' ';
+        //             response += i.middle_name;
         //             return response;
         //         } else {
         //             return  this.teachers.find(teahcer => teahcer.id === i[0].teacher_id).asc_teacher_name + ' ';
@@ -206,11 +153,11 @@ export default {
         //             if (key === 0 ) {
         //
         //                 if (this.teachers.find(teacher => teacher.id === val.teacher_id).user) {
-        //                     let p = this.teachers.find(teacher => teacher.id === val.teacher_id).user;
+        //                     let i = this.teachers.find(teacher => teacher.id === val.teacher_id).user;
         //
-        //                     response = p.second_name + ' ';
-        //                     response += p.first_name + ' ';
-        //                     response += p.middle_name;
+        //                     response = i.second_name + ' ';
+        //                     response += i.first_name + ' ';
+        //                     response += i.middle_name;
         //
         //                     response += ' / ';
         //                 } else {
@@ -221,11 +168,11 @@ export default {
         //             } else {
         //
         //                 if (this.teachers.find(teacher => teacher.id === val.teacher_id).user) {
-        //                     let p = this.teachers.find(teacher => teacher.id === val.teacher_id).user;
+        //                     let i = this.teachers.find(teacher => teacher.id === val.teacher_id).user;
         //
-        //                     response = p.second_name + ' ';
-        //                     response += p.first_name + ' ';
-        //                     response += p.middle_name;
+        //                     response = i.second_name + ' ';
+        //                     response += i.first_name + ' ';
+        //                     response += i.middle_name;
         //
         //                 } else {
         //                     response += this.teachers.find(teacher => teacher.id === val.teacher_id).asc_teacher_name + ' ';
@@ -237,7 +184,23 @@ export default {
         //     }
         //
         //     return response;
-        // }
+        // },
+
+        getClass: function (number) {
+            let i = this.timetable.filter(function (val) {
+                return val.number === number;
+            })
+
+            let response = '';
+
+            if (i.length === 1) {
+                response = 'В '
+                response += i[0].class.number;
+                response += i[0].class.letter;
+            }
+
+            return response;
+        }
     },
 
     watch: {

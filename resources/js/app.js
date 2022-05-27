@@ -18,7 +18,8 @@ function adminVueComponentsRequire() {
     Vue.component('teacher-index', require('../components/Admin/Teacher/TeacherIndexComponent').default);
     Vue.component('teacher-edit-modal', require('../components/Admin/Teacher/TeacherEditModalComponent').default);
     Vue.component('teacher-create-modal', require('../components/Admin/Teacher/TeacherCreateModalComponent').default);
-    Vue.component('teacher-create-modal', require('../components/Admin/Teacher/TeacherCreateModalComponent').default);
+    Vue.component('teacher-create-with-account-modal', require('../components/Admin/Teacher/TeacherCreatelWithAccountModalComponent').default);
+    Vue.component('teacher-create-without-account-modal', require('../components/Admin/Teacher/TeacherCreateWithoutAccountModalComponent').default);
 
     Vue.component('load-index', require('../components/Admin/Load/LoadIndex').default);
     Vue.component('load-create-modal', require('../components/Admin/Load/LoadCreateModalComponent').default);
@@ -44,7 +45,13 @@ function studentsVueComponentsRequire() {
     Vue.component('student-timetable-table', require('../components/Student/Timetable/StudentTimetableTable').default);
 }
 
+function teacherVueComponentsRequire() {
+    Vue.component('teacher-timetable-index', require('../components/Teachers/Timetable/TeahcerTimetableIndex').default);
+    Vue.component('teacher-timetable-table', require('../components/Teachers/Timetable/TeacherTimetableTable').default);
+}
 
+
+teacherVueComponentsRequire();
 studentsVueComponentsRequire();
 adminVueComponentsRequire();
 

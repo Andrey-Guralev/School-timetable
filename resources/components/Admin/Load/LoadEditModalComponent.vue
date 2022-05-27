@@ -62,7 +62,7 @@
                                             <div class="mt-1">
                                                 <select name="lesson" id="teacher" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                                     <option v-for="teacher in teachers" v-bind:value="teacher.id" :selected="teacher.id === load.teacher_id">
-                                                        {{ teacher.user.second_name }} {{ teacher.user.first_name }} {{ teacher.user.middle_name }}
+                                                        {{ getFullName(teacher) }}
                                                     </option>
                                                 </select>
                                             </div>
@@ -100,7 +100,11 @@ export default {
             classes: Object,
             teachers: Object,
 
-            load: Object,
+            load: {
+                lessonId: null,
+                classId: null,
+                teacherId: null,
+            },
 
             name: null,
         }
@@ -153,6 +157,14 @@ export default {
             };
             this.open = false;
         },
+
+        getFullName: function (teacher) {
+            if (!teacher.user) {
+                return teacher.asc_teacher_name;
+            } else {
+                return teacher.user.second_name + ' ' + teacher.user.first_name + ' ' + teacher.user.middle_name;
+            }
+        }
     },
 }
 </script>

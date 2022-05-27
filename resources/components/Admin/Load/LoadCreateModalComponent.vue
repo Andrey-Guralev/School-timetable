@@ -56,7 +56,9 @@
                                             </label>
                                             <div class="mt-1">
                                                 <select v-model="load.teacherId" name="lesson" id="teacher" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="Название">
-                                                    <option v-for="teacher in teachers" v-bind:value="teacher.id">{{ teacher.user.second_name }} {{ teacher.user.first_name }} {{ teacher.user.middle_name }}</option>
+                                                    <option v-for="teacher in teachers" v-bind:value="teacher.id">
+                                                        {{ getFullName(teacher) }}
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -89,9 +91,9 @@
             return {
                 open: false,
 
-                lessons: Object,
-                classes: Object,
-                teachers: Object,
+                lessons: null,
+                classes: null,
+                teachers: null,
 
                 load: {
                     lessonId: null,
@@ -145,6 +147,14 @@
                 };
                 this.open = false;
             },
+
+            getFullName: function (teacher) {
+                if (!teacher.user) {
+                    return teacher.asc_teacher_name;
+                } else {
+                    return teacher.user.second_name + ' ' + teacher.user.first_name + ' ' + teacher.user.middle_name;
+                }
+            }
         },
     }
 </script>
