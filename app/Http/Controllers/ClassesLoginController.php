@@ -42,6 +42,6 @@ class ClassesLoginController extends Controller
     public function logout()
     {
         session()->forget('class');
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('classesLoginPage');
     }
 }
