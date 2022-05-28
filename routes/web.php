@@ -144,6 +144,15 @@ Route::prefix('announcements')->group(function () {
     Route::delete('/delete/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'delete'])->middleware('auth')->name('announcementsDelete');
 });
 
+Route::prefix('feedback')->group(function () {
+    Route::get('/', [\App\Http\Controllers\FeedbackController::class, 'index'])->middleware('auth', 'Admin')->name('feedback.index');
+    Route::get('/all', [\App\Http\Controllers\FeedbackController::class, 'all'])->name('feedback.all');
+    Route::get('/create', [\App\Http\Controllers\FeedbackController::class, 'create'])->name('feedback.createPage');
+    Route::patch('/aprove/{id}', [\App\Http\Controllers\FeedbackController::class, 'approve'])->middleware('auth', 'Admin')->name('feedback.approve');
+    Route::post('/', [\App\Http\Controllers\FeedbackController::class, 'store'])->name('feedback.create');
+    Route::delete('/{id}', [\App\Http\Controllers\FeedbackController::class, 'destroy'])->name('feedback.destroy');
+});
+
 Route::post('/615ddadc36de20ae8fe031c4af51524f/webhook', function () {
     $update = Telegram::commandsHandler(true);
 });
