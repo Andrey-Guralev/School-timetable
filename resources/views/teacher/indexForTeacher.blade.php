@@ -15,18 +15,18 @@
             </x-responsive-container>
         @endif
 
-{{--        <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">--}}
-{{--            <div class="block w-full">--}}
-{{--                <h2 class="text-3xl">Классы</h2>--}}
-{{--            </div>--}}
-{{--            <div class="ml-4 flex flex-wrap">--}}
-{{--                @foreach($classes as $class)--}}
-{{--                    <a href="{{ route('tim') }}" class="mb-2 mx-1 bg-blue-600 block h-8 px-2 flex justify-center items-center rounded text-white hover:bg-blue-700 transition">--}}
-{{--                        {{ $class->number }}{{ $class->letter }}--}}
-{{--                    </a>--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
-{{--        </x-responsive-container>--}}
+        <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">
+            <div class="block w-full">
+                <h2 class="text-3xl">Расписание по классас</h2>
+            </div>
+            <div class="ml-4 flex flex-wrap">
+                @foreach($classes as $class)
+                    <a href="{{ route('timetable.forClass', ['id' => $class->id]) }}" class="mb-2 mx-1 bg-blue-600 block h-8 px-2 flex justify-center items-center rounded text-white hover:bg-blue-700 transition">
+                        {{ $class->number }}{{ $class->letter }}
+                    </a>
+                @endforeach
+            </div>
+        </x-responsive-container>
     @endauth
 
         <x-container class="flex justify-between">

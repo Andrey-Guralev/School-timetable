@@ -13,6 +13,7 @@ use App\Models\Classes;
 use App\Models\RingSchedule;
 use App\Models\TelegramSubscribers;
 use App\Models\Timetable;
+use App\Providers\RouteServiceProvider;
 use Barryvdh\Debugbar\Facades\Debugbar;
 use File;
 use Illuminate\Support\Facades\Password;
@@ -39,6 +40,21 @@ class TimetableController extends Controller
     public function get(): \Illuminate\Database\Eloquent\Collection|array
     {
         return Timetable::with('Class', 'Lesson', 'Group', 'Teacher.User')->get();
+    }
+
+    public function getPageForClass($id)
+    {
+        $classes = Classes::all();
+        $class = $classes->find($id);
+
+
+        if (\Auth::user()->type == 2) {
+            return view('teacher.timetableForClass', compact('class', 'classes'));
+        } elseif (\Auth::user()->type == 4) {
+            return view('admin.timetableForClass', compact('class', 'classes'));
+        } else {
+            return redirect(RouteServiceProvider::HOME);
+        }
     }
 
     public function edit(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

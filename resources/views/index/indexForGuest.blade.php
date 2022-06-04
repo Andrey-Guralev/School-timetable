@@ -8,7 +8,7 @@
             </div>
             <h2 class="sm:mt-4 lg:mt-1.5 text-2xl text-center"><a href="{{ route('classesLogin') }}" class=" underline">Выбрать класс</a></h2>
             <h2 class="sm:mt-4 lg:mt-1.5 text-2xl text-center"><a href="{{ route('feedback.all') }}" class=" underline">Отзывы</a></h2>
-            <h3 class="mt-4 text-center">За последние двое суток сайт посетило: {{ $count }} {{ trans_choice('[0,1] человек|[2,4] человека|[5,*] человек', $count) }}</h3>
+{{--            <h3 class="mt-4 text-center">За последние двое суток сайт посетило: {{ $count }} {{ trans_choice('[0,1] человек|[2,4] человека|[5,*] человек', $count) }}</h3>--}}
         </x-container>
 
 

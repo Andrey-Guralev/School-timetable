@@ -100,6 +100,7 @@ Route::middleware(['auth', 'Admin'])->prefix('timetable')->group(function () {
 
 // Маршруты связанные с получением расписания
 Route::prefix('timetable')->group(function () {
+    Route::get('/class/{id}', [\App\Http\Controllers\TimetableController::class, 'getPageForClass'])->middleware('auth')->name('timetable.forClass');
     Route::get('/{class}', [\App\Http\Controllers\TimetableController::class, 'getByClass'])->name('timetable.getByClass');
     Route::get('/teacher/{teacher_id}', [\App\Http\Controllers\TimetableController::class, 'getByTeacher'])->name('timetable.getByTeacher');
     Route::get('/id/{id}', [\App\Http\Controllers\TimetableController::class, 'getById'])->name('timetable.getById');

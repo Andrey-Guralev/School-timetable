@@ -11,66 +11,12 @@
         </div>
         <div class="ml-4 flex flex-wrap w-full my-4">
             @foreach($classes as $Class)
-                <a href="{{ route('timetableForClass', ['id' => $Class->id]) }}" class="@if($Class->id == $class->id) bg-blue-700  @else bg-blue-600 @endif mb-2 mx-1 block h-8 px-2 flex justify-center items-center rounded text-white hover:bg-blue-700 transition ">
+                <a href="{{ route('timetable.forClass', ['id' => $Class->id]) }}" class="@if($Class->id == $class->id) bg-blue-700  @else bg-blue-600 @endif mb-2 mx-1 block h-8 px-2 flex justify-center items-center rounded text-white hover:bg-blue-700 transition ">
                     {{ $Class->getFullName() }}
                 </a>
             @endforeach
         </div>
-        @php($weekdays = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'])
-        @for($i = 0; $i < 6; $i++)
 
-            <div class="my-2 inline-block w-full lg:w-1/2 p-4">
-                <table class="min-w-full divide-y divide-gray-200 shadow border-b border-gray-300 ">
-                    <thead class="bg-gray-100">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            {{ $weekdays[$i] }}
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200" >
-                        <?php $s = 1?>
-                        @foreach($timetable->where('weekday', $i) as $t)
-
-                            <?php
-                                if ($class->shift == 0) {
-                                    if($i == 0) {
-                                        $type = $types[0];
-                                    } elseif ($i == 5) {
-                                        $type = $types[2];
-                                    } else {
-                                        $type = $types[1];
-                                    }
-                                } elseif($class->shift == 1) {
-                                    if ($i == 0) {
-                                        $type = $types[0];
-                                    } elseif ($i == 5) {
-                                        $type = $types[2];
-                                    } elseif ($i == 4) {
-                                        $type = $types[3];
-                                    } else {
-                                        $type = $types[1];
-                                    }
-                                }
-                            ?>
-                            <tr class="bg-white">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    <div class="flex justify-between">
-                                        <span class="lesson">{{$s}}. {{ $t->lesson }}</span>
-                                        <span class="rooms">{{ $t->room_1 }}{{ $t->room_2 != null ? '/' . $t->room_2 : null}}</span>
-                                    </div>
-                                    @if($ringSchedule)
-                                        <div class="ml-3 text-gray-600">
-                                            {{ substr($ringSchedule->where('type', $type)->where('number', $s)->first()->start_time ?? '', 0, 5) }}-{{ substr($ringSchedule->where('type', $type)->where('number', $s)->first()->end_time ?? '', 0, 5) }}
-                                        </div>
-                                    @endif
-                                </td>
-                            </tr>
-                            <?php $s++ ?>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @endfor
+        <class-timetable-index class-id="{{ $class->id }}"></class-timetable-index>
     </x-responsive-container>
 </x-admin-app-layout>

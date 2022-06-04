@@ -50,10 +50,15 @@ function teacherVueComponentsRequire() {
     Vue.component('teacher-timetable-table', require('../components/Teachers/Timetable/TeacherTimetableTable').default);
 }
 
+function classVueComponentRequire () {
+    Vue.component('class-timetable-index', require('../components/Timetable/ClassTimetableIndex').default);
+    Vue.component('class-timetable-table', require('../components/Timetable/ClassTimetableTable').default);
+}
 
 teacherVueComponentsRequire();
 studentsVueComponentsRequire();
 adminVueComponentsRequire();
+classVueComponentRequire();
 
 const app = new Vue({
     el: '#app',
