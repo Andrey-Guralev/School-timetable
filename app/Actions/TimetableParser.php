@@ -563,6 +563,7 @@ class TimetableParser
         foreach(array_unique($classWhereNotify) as $class) {
             TelegramTimetableUpdateNotification::dispatch($class);
         }
+
     }
 
     /**

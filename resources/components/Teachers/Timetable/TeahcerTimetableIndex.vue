@@ -3,7 +3,7 @@
         <div class="text-xl">
             1-я смена
         </div>
-        <div class="flex justify-between flex-wrap">
+        <div class="flex flex-wrap">
             <teacher-timetable-table ref="timetableTable0" :weekdayTitle="weekdays[0]" weekday="0" shift="0"></teacher-timetable-table>
             <teacher-timetable-table ref="timetableTable1" :weekdayTitle="weekdays[1]" weekday="1" shift="0"></teacher-timetable-table>
             <teacher-timetable-table ref="timetableTable2" :weekdayTitle="weekdays[2]" weekday="2" shift="0"></teacher-timetable-table>
@@ -14,7 +14,7 @@
         <div class="text-xl">
             2-я смена
         </div>
-        <div class="flex justify-between flex-wrap">
+        <div class="flex flex-wrap">
             <teacher-timetable-table ref="timetableTable6" :weekdayTitle="weekdays[0]" weekday="0" shift="1"></teacher-timetable-table>
             <teacher-timetable-table ref="timetableTable7" :weekdayTitle="weekdays[1]" weekday="1" shift="1"></teacher-timetable-table>
             <teacher-timetable-table ref="timetableTable8" :weekdayTitle="weekdays[2]" weekday="2" shift="1"></teacher-timetable-table>
@@ -53,7 +53,6 @@ export default {
 
     methods: {
         getData: async function () {
-            console.log(this.$props)
 
             // this.allClasses = (await axios.get('/classes/get')).data
             // this.allLoad = (await axios.get('/load/get/teacher/' + this.teacherId)).data;

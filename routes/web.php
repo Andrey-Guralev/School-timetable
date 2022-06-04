@@ -153,6 +153,7 @@ Route::prefix('feedback')->group(function () {
     Route::delete('/{id}', [\App\Http\Controllers\FeedbackController::class, 'destroy'])->name('feedback.destroy');
 });
 
+
 Route::post('/615ddadc36de20ae8fe031c4af51524f/webhook', function () {
     $update = Telegram::commandsHandler(true);
 });

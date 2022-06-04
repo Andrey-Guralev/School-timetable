@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-app-layout>
     <x-container>
         <div>
             <h1 class="text-4xl font-bold">
@@ -44,4 +44,4 @@
             </div>
         </x-container>
     @endforeach
-</x-app-layout>
+</x-admin-app-layout>

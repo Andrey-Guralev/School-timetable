@@ -9,30 +9,30 @@
 <div style="min-height: 700px" class="absolute z-40 lg:relative w-64 shadow bg-white hidden lg:block">
 
     <div class="h-16 w-full flex items-center px-8 text-3xl font-bold">
-        <a href="/">
+        <span>
             Расписание
-        </a>
+        </span>
     </div>
 
     <ul class="">
-        <a href="{{ route('teacher.index') }}" class="">
-            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('teacher.*')) border-b-2 border-b-blue-800 @endif">
+        <a href="{{ route('index') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('index')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
-                        Учителя
+                    Главная
                 </div>
             </li>
         </a>
         <a href="{{ route('lesson.index') }}" class="">
             <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('lesson.*')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
-                        Предметы
+                    Предметы
                 </div>
             </li>
         </a>
-        <a href="{{ route('load.index') }}" class="">
-            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('load.*')) border-b-2 border-b-blue-800 @endif">
+        <a href="{{ route('teacher.index') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('teacher.*')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
-                        Нагрузка
+                    Учителя
                 </div>
             </li>
         </a>
@@ -40,6 +40,13 @@
             <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('classes.*')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                     Классы
+                </div>
+            </li>
+        </a>
+        <a href="{{ route('load.index') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('load.*')) border-b-2 border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                    Нагрузка
                 </div>
             </li>
         </a>
@@ -53,14 +60,14 @@
         <a href="{{ route('editTimetable') }}" class="">
             <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('editTimetable')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
-                        Расписание
+                    Расписание
                 </div>
             </li>
         </a>
         <a href="{{ route('adminUsers') }}" class="">
             <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('adminUsers')) border-b-2 border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
-                        Пользователи
+                    Пользователи
                </div>
             </li>
         </a>
@@ -75,6 +82,13 @@
             <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('ringEdit')) border-b border-b-blue-800 @endif">
                 <div class="flex items-center ml-2">
                     Расписание звонков
+                </div>
+            </li>
+        </a>
+        <a href="{{ route('feedback.index') }}" class="">
+            <li class="pl-6 text-gray-600 pt-3 pb-3 hover:text-blue-800 hover:bg-blue-100 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('feedback.index')) border-b border-b-blue-800 @endif">
+                <div class="flex items-center ml-2">
+                    Отзывы
                 </div>
             </li>
         </a>
@@ -100,25 +114,69 @@
                 </div>
 
                 <ul class="py-6"> {{-- TODO: Сделать ссылки --}}
-                    <li class="pl-6 cursor-pointer text-white text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('index')) text-indigo-700 @endif">
                         <div class="flex items-center">
-                            <a href="javascript:void(0)" class="ml-2 xl:text-base md:text-2xl text-base">Dashboard</a>
+                            <a href="{{ route('index') }}" class="ml-2 xl:text-base md:text-2xl text-base">Главная</a>
                         </div>
                     </li>
-                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-4 mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                        <div class="flex items-center">
-                            <a href="javascript:void(0)" class="ml-2 xl:text-base md:text-2xl text-base">Products</a>
-                        </div>
-                    </li>
-                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                        <div class="flex items-center">
-                            <a href="javascript:void(0)" class="ml-2 xl:text-base md:text-2xl text-base">Performance</a>
-                        </div>
-                    </li>
-                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-                        <div class="flex items-center">
 
-                            <a href="javascript:void(0)" class="ml-2 xl:text-base md:text-2xl text-base">Deliverables</a>
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('lesson.index')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('lesson.index') }}" class="ml-2 xl:text-base md:text-2xl text-base">Предметы</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('teacher.index')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('teacher.index') }}" class="ml-2 xl:text-base md:text-2xl text-base">Учителя</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('classes.index')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('classes.index') }}" class="ml-2 xl:text-base md:text-2xl text-base">Классы</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('load.index')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('load.index') }}" class="ml-2 xl:text-base md:text-2xl text-base">Нагрузка</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('room.index')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('room.index') }}" class="ml-2 xl:text-base md:text-2xl text-base">Кабинеты</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('editTimetable')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('editTimetable') }}" class="ml-2 xl:text-base md:text-2xl text-base">Расписание</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('adminUsers')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('adminUsers')}}" class="ml-2 xl:text-base md:text-2xl text-base">Пользователи</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('announcementsIndex')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('announcementsIndex') }}" class="ml-2 xl:text-base md:text-2xl text-base">Объявления</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('ringEdit')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('ringEdit') }}" class="ml-2 xl:text-base md:text-2xl text-base">Расписание звонков</a>
+                        </div>
+                    </li>
+
+                    <li class="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none @if(request()->routeIs('feedback.index')) text-indigo-700 @endif">
+                        <div class="flex items-center">
+                            <a href="{{ route('feedback.index')}}" class="ml-2 xl:text-base md:text-2xl text-base">Отзывы</a>
                         </div>
                     </li>
                 </ul>
@@ -130,7 +188,7 @@
                     <div class="w-full flex items-center justify-between px-6 pt-1">
                         <div class="flex items-center">
                             <p class="md:text-xl text-gray-800 text-base leading-4 ml-2">
-                                {{ Auth::user()->first_name ?? Auth::user()->name }}{{ Auth::user()->second_name ?? '' }}
+                                {{ Auth::user()->first_name ?? Auth::user()->name }} {{ Auth::user()->second_name ?? '' }}
                             </p>
                         </div>
                         <ul class="flex">
@@ -205,7 +263,7 @@
         </div>
 
         <button aria-label="Main Menu" class="text-gray-600 mr-8 visible lg:hidden relative focus:outline-none focus:ring-2 focus:ring-gray-600" onclick="openAdminNav()" id="openSideBar">
-            <i class="fa-solid fa-bars text-2xl text-gray-800"></i>
+            <i class="fa-solid fa-bars text-2xl text-gray-400 focus:text-gray-900"></i>
         </button>
 
     </nav>

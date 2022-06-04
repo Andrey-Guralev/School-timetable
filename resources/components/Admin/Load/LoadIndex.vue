@@ -3,7 +3,7 @@
         <header>
             <div class="flex items-center justify-between">
                 <div class="text-3xl font-bold">
-                    Нагрзка
+                    Нагрузка
                 </div>
                 <div>
                     <button type="button" v-on:click="openCreateModal()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900 transition">

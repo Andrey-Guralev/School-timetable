@@ -3,15 +3,17 @@
 
     @auth
 
-        <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">
-            <div class="block w-full">
-                <h2 class="text-3xl">Здраствуйте, {{ (Auth::user()->first_name ?? Auth::user()->name) . ' ' . (Auth::user()->middle_name ?? '')  }}</h2>
-                <h2 class="text-2xl">Расписание для вас</h2>
-            </div>
+        @if(Auth::user()->Teacher)
+            <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">
 
-            <teacher-timetable-index teacher-id="{{ Auth::user()->Teacher->id }}"></teacher-timetable-index>
+                    <div class="block w-full">
+                        <h2 class="text-3xl">Здраствуйте, {{ (Auth::user()->first_name ?? Auth::user()->name) . ' ' . (Auth::user()->middle_name ?? '')  }}</h2>
+                        <h2 class="text-2xl">Расписание для вас</h2>
+                    </div>
 
-        </x-responsive-container>
+                    <teacher-timetable-index teacher-id="{{ Auth::user()->Teacher->id }}"></teacher-timetable-index>
+            </x-responsive-container>
+        @endif
 
 {{--        <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">--}}
 {{--            <div class="block w-full">--}}

@@ -1,5 +1,5 @@
 <template>
-    <div class="my-2 inline-block w-1/2 p-4">
+    <div class="my-2 inline-block w-full lg:w-1/2 p-4">
         <table class="min-w-full divide-y divide-gray-200 shadow border-b border-gray-300">
             <thead class="bg-gray-100">
             <tr>

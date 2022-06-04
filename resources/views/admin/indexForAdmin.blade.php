@@ -1,5 +1,21 @@
 <x-admin-app-layout>
 
+
+        <x-responsive-container class="flex flex-wrap sm:w-full lg:w-9/12">
+
+            <div class="block w-full">
+                <h2 class="text-3xl">Здраствуйте, {{ (Auth::user()->first_name ?? Auth::user()->name) . ' ' . (Auth::user()->middle_name ?? '')  }}</h2>
+                @if(Auth::user()->Teacher)
+                    <h2 class="text-2xl">Расписание для вас</h2>
+                @endif
+            </div>
+
+            @if(Auth::user()->Teacher)
+                <teacher-timetable-index teacher-id="{{ Auth::user()->Teacher->id }}"></teacher-timetable-index>
+            @endif
+
+        </x-responsive-container>
+
 {{--    <x-responsive-container class="lg:flex container lg:flex-wrap lg:w-9/12 sm:block sm:w-full">--}}
 {{--        <div class="block w-full">--}}
 {{--            <h2 class="text-2xl">Классы</h2>--}}

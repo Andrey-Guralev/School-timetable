@@ -39,7 +39,7 @@ export default {
             // this.allLoad = (await axios.get('/load/get/class/' + this.classId)).data;
             // this.allLessons = (await axios.get('/lesson/get')).data;
             // this.allTeachers = (await axios.get('/teacher/get')).data;
-            // this.allRooms = (await axios.get('room/get')).data;
+            // this.allRoomsco = (await axios.get('room/get')).data;
             await axios.get('/timetable/' + this.classId).then((response) => {
                 this.allTimetable = response.data;
 

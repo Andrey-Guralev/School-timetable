@@ -171,6 +171,8 @@ class TimetableController extends Controller
                 default:
                     return redirect()->back()->with('error', 'Неизвестная ошибка');
             }
+        } finally {
+            Storage::deleteDirectory('xmls');
         }
 
         return redirect()->back();
