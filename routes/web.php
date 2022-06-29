@@ -129,10 +129,28 @@ Route::middleware('guest')->prefix('classes')->group(function () {
 });
 
 //Маршруты связанные с расписанием звонков
-Route::middleware(['auth', 'Admin'])->prefix('ring')->group(function () {
-    Route::post('/edit', [\App\Http\Controllers\RingScheduleController::class, 'update'])->name('ringUpdate');
-    Route::get('/edit', [\App\Http\Controllers\RingScheduleController::class, 'edit'])->name('ringEdit');
+
+Route::prefix('ring')->group(function () {
+    Route::get('/types', [\App\Http\Controllers\RingSchedule\RingScheduleTypesController::class, 'all'])->name('ring-schedule-types.all');
+    Route::get('/event/{date?}', [\App\Http\Controllers\RingSchedule\RingScheduleEventsController::class, 'all'])->name('ring-schedule-events.all');
+    Route::get('/', [App\Http\Controllers\RingSchedule\RingScheduleController::class, 'all'])->name('ring-schedule.all');
+
+    Route::middleware(['auth', 'Admin'])->group(function () {
+        Route::get('/edit', [\App\Http\Controllers\RingSchedule\RingScheduleController::class, 'edit'])->name('ringEdit');
+
+        Route::patch('/update', [\App\Http\Controllers\RingSchedule\RingScheduleTypesController::class, 'update'])->name('ring-schedule-types.update');
+        Route::post('/store', [\App\Http\Controllers\RingSchedule\RingScheduleTypesController::class, 'store'])->name('ring-schedule-types.store');
+        Route::delete('/delete/{id}', [\App\Http\Controllers\RingSchedule\RingScheduleTypesController::class, 'destroy'])->name('ring-schedule-types.destroy');
+
+        Route::post('/event', [\App\Http\Controllers\RingSchedule\RingScheduleEventsController::class, 'store'])->name('ring-schedule-events.store');
+        Route::patch('/event', [\App\Http\Controllers\RingSchedule\RingScheduleEventsController::class, 'update'])->name('ring-schedule-events.update');
+        Route::delete('/event/{id}', [\App\Http\Controllers\RingSchedule\RingScheduleEventsController::class, 'destroy'])->name('ring-schedule-events.destroy');
+
+
+    });
 });
+
+
 
 //Маршруты связанные с объявлениями
 Route::prefix('announcements')->group(function () {
@@ -145,6 +163,7 @@ Route::prefix('announcements')->group(function () {
     Route::delete('/delete/{id}', [\App\Http\Controllers\AnnouncementsController::class, 'delete'])->middleware('auth')->name('announcementsDelete');
 });
 
+//Маршруты связанные с отзывами
 Route::prefix('feedback')->group(function () {
     Route::get('/', [\App\Http\Controllers\FeedbackController::class, 'index'])->middleware('auth', 'Admin')->name('feedback.index');
     Route::get('/all', [\App\Http\Controllers\FeedbackController::class, 'all'])->name('feedback.all');
@@ -154,7 +173,7 @@ Route::prefix('feedback')->group(function () {
     Route::delete('/{id}', [\App\Http\Controllers\FeedbackController::class, 'destroy'])->name('feedback.destroy');
 });
 
-
+//Маршрут связанный с телеграм ботом
 Route::post('/615ddadc36de20ae8fe031c4af51524f/webhook', function () {
     $update = Telegram::commandsHandler(true);
 });

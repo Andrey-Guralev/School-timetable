@@ -11,6 +11,7 @@
 
 <script>
 import StudentTimetableTable from "./StudentTimetableTable";
+import moment from "moment";
 
 export default {
 
@@ -27,110 +28,109 @@ export default {
             weekdays: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
 
             allTimetable: null,
-            allLoad: null,
-            allLessons: null,
-            allRooms: null,
-            allTeachers: null
+            allRingSchedule: null,
+            cl: null
         };
     },
 
     methods: {
         getData: async function () {
-            // this.allLoad = (await axios.get('/load/get/class/' + this.classId)).data;
-            // this.allLessons = (await axios.get('/lesson/get')).data;
-            // this.allTeachers = (await axios.get('/teacher/get')).data;
-            // this.allRoomsco = (await axios.get('room/get')).data;
+            this.allRingSchedule = (await axios.get('/ring/')).data
+            this.cl = (await axios.get('/classes/get/' + this.classId)).data
             await axios.get('/timetable/' + this.classId).then((response) => {
                 this.allTimetable = response.data;
 
                 this.sendDataInTables(response.data)
             });
+
+
         },
 
         sendDataInTables: function (q) {
+
+            let date = new moment;
+            let weekday = date.format('e');
+
+
+            this.$refs.timetableTable0.timetable = this.generateTimetableArray(q, 0)
+            this.$refs.timetableTable0.ringSchedule = this.generateRingScheduleArray(0)
+
+            this.$refs.timetableTable1.timetable = this.generateTimetableArray(q, 1)
+            this.$refs.timetableTable1.ringSchedule = this.generateRingScheduleArray(1)
+
+            this.$refs.timetableTable2.timetable = this.generateTimetableArray(q,2)
+            this.$refs.timetableTable2.ringSchedule = this.generateRingScheduleArray(2)
+
+            this.$refs.timetableTable3.timetable = this.generateTimetableArray(q, 3)
+            this.$refs.timetableTable3.ringSchedule = this.generateRingScheduleArray(3)
+
+            this.$refs.timetableTable4.timetable = this.generateTimetableArray(q, 4);
+            this.$refs.timetableTable4.ringSchedule = this.generateRingScheduleArray(4)
+
+            this.$refs.timetableTable5.timetable = this.generateTimetableArray(q, 5);
+            this.$refs.timetableTable5.ringSchedule = this.generateRingScheduleArray(5)
+
+        },
+
+        generateTimetableArray(timetable, weekday) {
             let tt = [];
 
-            q.forEach((v) => {
-                if (v.weekday === 0) {
+            timetable.forEach((v) => {
+                if (v.weekday === weekday) {
                     tt.push(v);
                 }
             })
 
-            this.$refs.timetableTable0.timetable = tt;
-            this.$refs.timetableTable0.lessons = this.allLessons;
-            this.$refs.timetableTable0.rooms = this.allRooms;
-            this.$refs.timetableTable0.teachers = this.allTeachers;
-            this.$refs.timetableTable0.load = this.allLoad;
+            return tt;
+        },
 
-            tt = [];
+        generateRingScheduleArray: function (weekday) {
+            weekday = weekday + 1;
+            let z = [];
+            this.allRingSchedule.ringScheduleEvents.forEach(function (value, index)
+            {
+                let a = moment(weekday, 'e');
+                let b = moment(value.date);
 
-            q.forEach((v) => {
-                if (v.weekday === 1) {
-                    tt.push(v);
+                if(a.isSame(b, 'day'))
+                {
+                    if (this.cl.shift === 0 && value.ring_schedule_type.shift === 1)
+                    {
+                        z.push(value.ring_schedule_type.ring_schedule)
+                    }
+                    else if (this.cl.shift === 1 && value.ring_schedule_type.shift === 2)
+                    {
+                        z.push(value.ring_schedule_type.ring_schedule)
+                    }
                 }
-            })
 
-            this.$refs.timetableTable1.timetable = tt;
-            this.$refs.timetableTable1.lessons = this.allLessons;
-            this.$refs.timetableTable1.rooms = this.allRooms;
-            this.$refs.timetableTable1.teachers = this.allTeachers;
-            this.$refs.timetableTable1.load = this.allLoad;
+            }.bind(this).bind(z).bind(weekday));
 
-            tt = [];
+            if(weekday === 6 && z.length === 0) {
+                let saturdayType = this.allRingSchedule.ringScheduleTypes.find(type => type.type === 'saturday' && type.shift === this.cl.shift + 1);
 
-            q.forEach((v) => {
-                if (v.weekday === 2) {
-                    tt.push(v);
+                if (saturdayType) {
+                    if (this.cl.shift === 0 && saturdayType.shift === 1) {
+                        z.push(saturdayType.ring_schedule)
+                    } else if (this.cl.shift === 1 && saturdayType.shift === 2) {
+                        z.push(saturdayType.ring_schedule)
+                    }
                 }
-            })
+            }
 
-            this.$refs.timetableTable2.timetable = tt;
-            this.$refs.timetableTable2.lessons = this.allLessons;
-            this.$refs.timetableTable2.rooms = this.allRooms;
-            this.$refs.timetableTable2.teachers = this.allTeachers;
-            this.$refs.timetableTable2.load = this.allLoad;
+            if (weekday !== 6 && z.length === 0) {
+                let regularType = this.allRingSchedule.ringScheduleTypes.find(type => type.type === 'regular' && type.shift === this.cl.shift + 1);
 
-            tt = [];
-
-            q.forEach((v) => {
-                if (v.weekday === 3) {
-                    tt.push(v);
+                if (regularType) {
+                    if (this.cl.shift === 0 && regularType.shift === 1) {
+                        z.push(regularType.ring_schedule)
+                    } else if (this.cl.shift === 1 && regularType.shift === 2) {
+                        z.push(regularType.ring_schedule)
+                    }
                 }
-            })
+            }
 
-            this.$refs.timetableTable3.timetable = tt;
-            this.$refs.timetableTable3.lessons = this.allLessons;
-            this.$refs.timetableTable3.rooms = this.allRooms;
-            this.$refs.timetableTable3.teachers = this.allTeachers;
-            this.$refs.timetableTable3.load = this.allLoad;
-
-            tt = [];
-
-            q.forEach((v) => {
-                if (v.weekday === 4) {
-                    tt.push(v);
-                }
-            })
-
-            this.$refs.timetableTable4.timetable = tt;
-            this.$refs.timetableTable4.lessons = this.allLessons;
-            this.$refs.timetableTable4.rooms = this.allRooms;
-            this.$refs.timetableTable4.teachers = this.allTeachers;
-            this.$refs.timetableTable4.load = this.allLoad;
-
-            tt = [];
-
-            q.forEach((v) => {
-                if (v.weekday === 5) {
-                    tt.push(v);
-                }
-            })
-
-            this.$refs.timetableTable5.timetable = tt;
-            this.$refs.timetableTable5.lessons = this.allLessons;
-            this.$refs.timetableTable5.rooms = this.allRooms;
-            this.$refs.timetableTable5.teachers = this.allTeachers;
-            this.$refs.timetableTable5.load = this.allLoad;
+            return z;
         }
     },
 

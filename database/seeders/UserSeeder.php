@@ -2,10 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\RingSchedule;
-use App\Models\Teacher;
-use App\Models\User;
-use Database\Factories\UserFactoryPrev;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;

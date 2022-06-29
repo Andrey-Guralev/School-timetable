@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\RingSchedule\ringSchedule;
+use App\Models\RingSchedule\RingScheduleTypes;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class RingSchedulePolicy
+class RingScheduleTypesPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class RingSchedulePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\RingSchedule\ringSchedule  $ringSchedule
+     * @param  \App\Models\RingSchedule\RingScheduleTypes  $ringScheduleTypes
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, ringSchedule $ringSchedule)
+    public function view(User $user, RingScheduleTypes $ringScheduleTypes)
     {
         //
     }
@@ -48,10 +48,10 @@ class RingSchedulePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\RingSchedule\ringSchedule  $ringSchedule
+     * @param  \App\Models\RingSchedule\RingScheduleTypes  $ringScheduleTypes
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, ringSchedule $ringSchedule)
+    public function update(User $user, RingScheduleTypes $ringScheduleTypes)
     {
         //
     }
@@ -60,10 +60,10 @@ class RingSchedulePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\RingSchedule\ringSchedule  $ringSchedule
+     * @param  \App\Models\RingSchedule\RingScheduleTypes  $ringScheduleTypes
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, ringSchedule $ringSchedule)
+    public function delete(User $user, RingScheduleTypes $ringScheduleTypes)
     {
         //
     }
@@ -72,10 +72,10 @@ class RingSchedulePolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\RingSchedule\ringSchedule  $ringSchedule
+     * @param  \App\Models\RingSchedule\RingScheduleTypes  $ringScheduleTypes
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, ringSchedule $ringSchedule)
+    public function restore(User $user, RingScheduleTypes $ringScheduleTypes)
     {
         //
     }
@@ -84,10 +84,10 @@ class RingSchedulePolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\RingSchedule\ringSchedule  $ringSchedule
+     * @param  \App\Models\RingSchedule\RingScheduleTypes  $ringScheduleTypes
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, ringSchedule $ringSchedule)
+    public function forceDelete(User $user, RingScheduleTypes $ringScheduleTypes)
     {
         //
     }

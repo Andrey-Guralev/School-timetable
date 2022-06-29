@@ -2,10 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\RingSchedule;
-use App\Models\Teacher;
-use App\Models\User;
-use Database\Factories\UserFactoryPrev;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -29,15 +25,15 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$o81ENcyZxXB11TrZiXMFwulzT..3rd4fI1neIk2jAikbd8/LeazTm', // password
             'remember_token' => Str::random(10),
         ]);
-
-        $this->call([
-            ClassesSeeder::class,
-            AnnouncementSeeder::class,
-            LessonSeeder::class,
-            LoadSeeder::class,
-            RoomSeeder::class,
-            TeacherSeeder::class,
-        ]);
+//
+//        $this->call([
+//            ClassesSeeder::class,
+//            AnnouncementSeeder::class,
+//            LessonSeeder::class,
+//            LoadSeeder::class,
+//            RoomSeeder::class,
+//            TeacherSeeder::class,
+//        ]);
 
     }
 }

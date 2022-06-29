@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\RingSchedule;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,9 +16,11 @@ class RingSchedule extends Model
         'start_time',
         'end_time',
         'number',
-        'type',
-        'shift',
-        'weekday',
-        'asc_xml_id'
+        'ring_schedule_type_id',
     ];
+
+    public function RingScheduleType(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(RingScheduleTypes::class);
+    }
 }

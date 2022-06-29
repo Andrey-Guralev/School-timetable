@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Announcements;
 use App\Models\Classes;
 use App\Models\Feedback;
-use App\Models\RingSchedule;
 use App\Models\TelegramSubscribers;
-use App\Models\Timetable;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller

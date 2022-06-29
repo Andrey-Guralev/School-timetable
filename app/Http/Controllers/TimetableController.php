@@ -10,15 +10,9 @@ use App\Http\Requests\StoreFormTimetableRequest;
 use App\Http\Requests\StoreXmlTimetableRequest;
 use App\Jobs\TelegramTimetableUpdateNotification;
 use App\Models\Classes;
-use App\Models\RingSchedule;
-use App\Models\TelegramSubscribers;
 use App\Models\Timetable;
 use App\Providers\RouteServiceProvider;
-use Barryvdh\Debugbar\Facades\Debugbar;
-use File;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Storage;
-use Telegram\Bot\Laravel\Facades\Telegram;
 
 class TimetableController extends Controller
 {

@@ -1,5 +1,6 @@
 require('./bootstrap');
 require('@fortawesome/fontawesome-free/js/fontawesome.min');
+let moment = require('moment/moment');
 
 // import Alpine from 'alpinejs';
 //
@@ -7,6 +8,8 @@ require('@fortawesome/fontawesome-free/js/fontawesome.min');
 //
 // Alpine.start();
 
+// import Calendar from 'v-calendar/lib/components/calendar.umd'
+// import DatePicker from 'v-calendar/lib/components/date-picker.umd'
 
 window.Vue = require('vue').default;
 
@@ -38,6 +41,18 @@ function adminVueComponentsRequire() {
     Vue.component('create-classes-component', require('../components/Admin/Classes/CreateClassesModal').default);
 
     Vue.component('timetable-index-component', require('../components/Admin/Timetable/TimetableIndexComponent').default);
+
+    Vue.component('ring-schedule-index', require('../components/Admin/RingSchedule/RingScheduleIndex').default);
+    Vue.component('ring-schedule-select-modal', require('../components/Admin/RingSchedule/RingScheduleSelectModal').default);
+    Vue.component('ring-schedule-edit-modal', require('../components/Admin/RingSchedule/RingScheduleEditModal').default);
+    Vue.component('ring-schedule-create-modal', require('../components/Admin/RingSchedule/RingScheduleCreateModal').default);
+    Vue.component('ring-schedule-events-modal', require('../components/Admin/RingSchedule/RingScheduleEventsModal').default);
+    Vue.component('ring-schedule-events-create-modal', require('../components/Admin/RingSchedule/RingScheduleEventsCreateModal').default);
+    Vue.component('ring-schedule-events-edit-modal', require('../components/Admin/RingSchedule/RingScheduleEventsEditModal').default);
+
+
+    Vue.component('v-calendar', require('v-calendar/lib/components/calendar.umd'));
+    Vue.component('v-date-picker', require('v-calendar/lib/components/date-picker.umd'));
 }
 
 function studentsVueComponentsRequire() {

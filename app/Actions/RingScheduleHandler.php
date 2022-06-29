@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use App\Models\RingSchedule;
+use App\Models\RingSchedule\RingSchedule;
 
 class RingScheduleHandler
 {
