@@ -56,7 +56,7 @@ export default {
         },
 
         getEvents: async function () {
-            this.events = (await axios.get('/ring/event/')).data;
+            this.events = (await axios.get('/ring/event')).data;
 
 
             let d = [];

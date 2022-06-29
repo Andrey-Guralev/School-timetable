@@ -35,7 +35,7 @@ export default {
 
     methods: {
         getData: async function () {
-            this.allRingSchedule = (await axios.get('/ring/')).data
+            this.allRingSchedule = (await axios.get('/ring')).data
             this.cl = (await axios.get('/classes/get/' + this.classId)).data
             await axios.get('/timetable/' + this.classId).then((response) => {
                 this.allTimetable = response.data;
