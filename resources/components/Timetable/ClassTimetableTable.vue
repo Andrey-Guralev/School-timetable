@@ -12,16 +12,16 @@
 
             <tr class="bg-white" v-for="number in m">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <div class="text-gray-600 text-sm">
+                        {{ getRingSchedule(number) }}
+                    </div>
                     <div class="flex justify-between">
-                        <span class="lesson">{{ getLessons(number) }}</span>
+                        <span class="lesson">{{ number }}. {{ getLessons(number) }}</span>
                         <span class="rooms">{{ getRooms(number) }}</span>
                     </div>
                     <div class="ml-3 text-gray-600">
                         {{ getTeacher(number) }}
                     </div>
-<!--&lt;!&ndash;                    Расписание звонков&ndash;&gt;-->
-<!--                    <div class="ml-3 text-gray-600">-->
-<!--                    </div>-->
                 </td>
             </tr>
 
@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import moment from "moment";
+
 export default {
     props: [
         'weekday',
@@ -41,12 +43,10 @@ export default {
         return {
             updated: false,
 
-            Class: null,
-            lessons: null,
+
             timetable: null,
-            rooms: null,
-            teachers: null,
-            load: null,
+
+            ringSchedule: null,
 
             max: null,
             m: [],
@@ -182,62 +182,14 @@ export default {
             }
 
             return response;
-        }
+        },
 
-        // getTeacher: function(number) {
-        //     let i = this.timetable.filter(function (val) {
-        //         return val.number === number;
-        //     })
-        //
-        //     let response = '';
-        //
-        //     if (i.length === 1) {
-        //         if (this.teachers.find(teahcer => teahcer.id === i[0].teacher_id).user) {
-        //             let p =  this.teachers.find(teahcer => teahcer.id === i[0].teacher_id).user;
-        //             response = p.second_name + ' ';
-        //             response += p.first_name + ' ';
-        //             response += p.middle_name;
-        //             return response;
-        //         } else {
-        //             return  this.teachers.find(teahcer => teahcer.id === i[0].teacher_id).asc_teacher_name + ' ';
-        //         }
-        //     } else {
-        //         i.forEach((val, key) => {
-        //             if (key === 0 ) {
-        //
-        //                 if (this.teachers.find(teacher => teacher.id === val.teacher_id).user) {
-        //                     let p = this.teachers.find(teacher => teacher.id === val.teacher_id).user;
-        //
-        //                     response = p.second_name + ' ';
-        //                     response += p.first_name + ' ';
-        //                     response += p.middle_name;
-        //
-        //                     response += ' / ';
-        //                 } else {
-        //                     response = this.teachers.find(teacher => teacher.id === val.teacher_id).asc_teacher_name + ' ';
-        //                     response += ' / ';
-        //                 }
-        //
-        //             } else {
-        //
-        //                 if (this.teachers.find(teacher => teacher.id === val.teacher_id).user) {
-        //                     let p = this.teachers.find(teacher => teacher.id === val.teacher_id).user;
-        //
-        //                     response = p.second_name + ' ';
-        //                     response += p.first_name + ' ';
-        //                     response += p.middle_name;
-        //
-        //                 } else {
-        //                     response += this.teachers.find(teacher => teacher.id === val.teacher_id).asc_teacher_name + ' ';
-        //                 }
-        //                 // response += this.teachers.find(teacher => teacher.id === val.teacher_id);
-        //             }
-        //         })
-        //
-        //     }
-        //
-        //     return response;
-        // }
+        getRingSchedule: function (number) {
+            if (this.ringSchedule.length !== 0) {
+                let rs = this.ringSchedule[0].find(rs => rs.number === number)
+                return moment(rs.start_time, 'HH:mm:ss').format('HH:mm') + ' - ' + moment(rs.end_time, 'HH:mm:ss').format('HH:mm');
+            }
+        }
     },
 
     watch: {
