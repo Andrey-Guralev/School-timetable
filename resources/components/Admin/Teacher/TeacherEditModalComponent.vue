@@ -91,7 +91,7 @@
                                                 <div class="mt-1" v-if="classes">
                                                     <select type="text" name="classroom_teacher" id="classroom_teacher" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                                         <option value="null">Нет</option>
-                                                        <option v-bind:value="cl.id" v-for="cl in classes" v-bind:selected="cl.id === teacher.class ">{{ cl.number }}{{ cl.letter }}</option>
+                                                        <option v-bind:value="cl.id" v-for="cl in classes" v-bind:selected="cl.id === teacher.class_id">{{ cl.number }}{{ cl.letter }}</option>
                                                     </select>
                                                 </div>
                                             </div>

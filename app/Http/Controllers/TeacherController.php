@@ -71,7 +71,7 @@ class TeacherController extends Controller
         $teacher->middle_name = $request->middle_name;
         $teacher->user_id = $request->user_id ?? null;
         $teacher->lessons = json_decode($request->lessons);
-        $teacher->class_id = $request->class == "null" ? null : $request->class;
+        $teacher->class_id = $request->class == "null" ? null : $request->class_id;
         $teacher->type = $request->type == "null" ? null : $request->type;
 
         $teacher->save();

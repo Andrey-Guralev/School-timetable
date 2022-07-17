@@ -89,7 +89,7 @@
                                                     Классный руководитель
                                                 </label>
                                                 <div class="mt-1" v-if="classes">
-                                                    <select v-model="teacher.class" type="text" name="classroom_teacher" id="classroom_teacher" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                                    <select v-model="teacher.class_id" type="text" name="classroom_teacher" id="classroom_teacher" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                                                         <option value="null" selected>Нет</option>
                                                         <option v-bind:value="cl.id" v-for="cl in classes">{{ cl.number }}{{ cl.letter }}</option>
                                                     </select>
@@ -161,7 +161,7 @@
 
                     lessons: null,
                     type: null,
-                    class: null,
+                    class_id: null,
                 },
             }
         },
