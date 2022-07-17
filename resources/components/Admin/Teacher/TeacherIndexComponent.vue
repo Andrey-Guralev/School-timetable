@@ -6,7 +6,7 @@
                     Учителя
                 </div>
                 <div>
-                    <button type="button" v-on:click="openCreateChooseModal()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900 transition">
+                    <button type="button" v-on:click="openCreateModal()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-800 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900 transition">
                         Создать
                     </button>
                 </div>
@@ -17,7 +17,7 @@
                 <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Login
+                        Прикрепленный пользователь
                     </th>
                     <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Фамилия
@@ -49,16 +49,16 @@
 
                     <tr class="" v-for="teacher in teachers">
                         <td class="px-6 py-4 text-wrap text-sm font-medium text-gray-900 text-center">
-                            {{ teacher.user == null ? 'Пользователь не зарегистрирован' : teacher.user.name }}
+                            {{ teacher.user == null ? 'К этому учителю не прикреплен пользователь' : teacher.user.name }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-center">
-                            {{ teacher.user == null ? teacher.asc_teacher_name : teacher.user.second_name }}
+                            {{ teacher.second_name == null ? teacher.asc_teacher_second_name : teacher.second_name }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-center">
-                            {{ teacher.user == null ? '-' : teacher.user.first_name }}
+                            {{ teacher.first_name == null ? '-' : teacher.first_name }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-center">
-                            {{ teacher.user == null ? '-' : teacher.user.middle_name }}
+                            {{ teacher.middle_name == null ? '-' : teacher.middle_name }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 text-center">
                             {{ teacher.type == null ? '-' : teacher.type }}
@@ -73,7 +73,7 @@
                             {{ getCLass(teacher.class_id) }}
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-right text-sm font-medium">
-                            <button class="text-blue-800 hover:text-blue-900" v-bind:data-id="teacher.id" v-on:click="openEditModal">Изменить</button>
+                            <button class="text-blue-800 hover:text-blue-900" v-on:click="openEditModal(teacher.id)" v-bind:data-id="teacher.id">Изменить</button>
                         </td>
                         <td class="px-6 py-4 whitespace-normal text-right text-sm font-medium">
                             <button class="text-red-600 hover:text-red-900"  v-on:click="deleteTeacher(teacher.id)">Удалить</button>
@@ -82,28 +82,20 @@
                 </tbody>
             </table>
         </div>
-        <teacher-edit-modal ref="editModal" @updateParent="updateTeachers"></teacher-edit-modal>
-        <teacher-create-modal ref="createModal" @openCreateModals="openCreateModal"></teacher-create-modal>
-        <teacher-create-with-account-modal-component ref="withAccModal" @updateParent="updateTeachers"></teacher-create-with-account-modal-component>
-        <teacher-create-without-account-modal-component ref="withoutAccModal" @updateParent="updateTeachers"></teacher-create-without-account-modal-component>
-<!--        <TeacherCreateWithAccountModalComponent ref="withAccModal" @updateParent="updateTeachers"></TeacherCreateWithAccountModalComponent>-->
-<!--        <TeacherCreateWithoutAccountModalComponent ref="withoutAccModal" @updateParent="updateTeachers"></TeacherCreateWithoutAccountModalComponent>-->
+        <teacher-create-modal-component ref="createModal" @updateParent="updateTeachers"></teacher-create-modal-component>
+        <teacher-edit-modal-component ref="editModal" @updateParent="updateTeachers"></teacher-edit-modal-component>
     </div>
 </template>
 
 <script>
 
-import TeacherEditModalComponent from "./TeacherEditModalComponent";
 import TeacherCreateModalComponent from "./TeacherCreateModalComponent";
-import TeacherCreateWithAccountModalComponent from "./TeacherCreatelWithAccountModalComponent";
-import TeacherCreateWithoutAccountModalComponent from "./TeacherCreateWithoutAccountModalComponent";
+import TeacherEditModalComponent from "./TeacherEditModalComponent";
 
 export default {
     components: {
-        TeacherEditModalComponent,
         TeacherCreateModalComponent,
-        TeacherCreateWithAccountModalComponent,
-        TeacherCreateWithoutAccountModalComponent,
+        TeacherEditModalComponent,
     },
 
     data() {
@@ -114,7 +106,8 @@ export default {
         };
     },
     methods: {
-        getData: async function () {
+        getData: async function ()
+        {
             this.teachers = (await axios.get('/teacher/get')).data;
                 // .then(response => {this.teachers = response.data});
             this.classes = (await axios.get('/classes/get')).data;
@@ -123,32 +116,25 @@ export default {
                 // .then(response => {this.lessons = response.data});
         },
 
-        openEditModal: function (e) {
-            this.$refs.editModal.id = e.target.dataset.id;
-            this.$refs.editModal.open = true;
-            this.$refs.editModal.getData();
-        },
-
-        openCreateChooseModal: function () {
+        openCreateModal: function ()
+        {
             this.$refs.createModal.open = true;
             // this.$refs.createModal.getData();
         },
 
-        openCreateModal: function (e) {
-            if (e === 1) {
-                this.$refs.withAccModal.open = true;
-                // this.$refs.createModal.getData();
-            } else {
-                this.$refs.withoutAccModal.open = true;
-                // this.$refs.createModal.getData();
-            }
+        openEditModal: function (id) {
+            this.$refs.editModal.id = id;
+            this.$refs.editModal.getData();
+            this.$refs.editModal.open = true;
         },
 
-        updateTeachers: async function() {
+        updateTeachers: async function()
+        {
             await axios.get('/teacher/get').then(response => {this.teachers = response.data});
         },
 
-        deleteTeacher: function (id) {
+        deleteTeacher: function (id)
+        {
             axios.delete('/teacher/' + id)
                 .then(response => {this.updateTeachers()})
                 .catch(e => {
@@ -156,7 +142,8 @@ export default {
                 });
         },
 
-        getCLass: function (id) {
+        getCLass: function (id)
+        {
             if (this.classes === null) {
                 return;
             }

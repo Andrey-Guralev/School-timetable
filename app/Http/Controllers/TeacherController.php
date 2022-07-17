@@ -41,75 +41,19 @@ class TeacherController extends Controller
 
     public function store(StoreTeacherRequest $request)
     {
-        if ($request->formType == 0) {
-            $user = User::find($request->user_id);
+        $teacher = new Teacher();
 
-            if (!$user->first()) return response('Пользователь не найден', 404);
+        $this->saveTeacher($request, $teacher);
 
-            $user->first_name = $request->first_name;
-            $user->second_name = $request->second_name;
-            $user->middle_name = $request->middle_nmae;
-            $user->type = 2;
-
-            $user->save();
-
-            $teacher = new Teacher();
-
-            $teacher->user_id = $request->user_id;
-            $teacher->lessons = json_decode($request->lessons);
-            $teacher->class_id = $request->class == "null" ? null : $request->class;
-            $teacher->type = $request->type == "null" ? null : $request->type;
-
-            $teacher->save();
-        } else {
-            $user = new User();
-
-            $user->name = $request->name;
-            $user->first_name = $request->first_name;
-            $user->second_name = $request->second_name;
-            $user->middle_name = $request->middle_nmae;
-            $user->type = 2;
-            $user->password = Hash::make($request->password);
-            $user->email = $request->email;
-
-            $user->save();
-
-            $teacher = new Teacher();
-
-            $teacher->user_id = $user->id;
-            $teacher->lessons = json_decode($request->lessons);
-            $teacher->class_id = $request->class == "null" ? null : $request->class;
-            $teacher->type = $request->type == "null" ? null : $request->type;
-
-            $teacher->save();
-        }
 
         return response('Учитель успешно создан!', 200);
     }
 
-    public function update(UpdateTeacherRequest $request, $id)
+    public function update(UpdateTeacherRequest $request, $id): \Illuminate\Http\Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory
     {
-        $teacher = Teacher::with('User')->find($id);
+        $teacher = Teacher::find($id);
 
-        if ($teacher->count() < 1) {
-            return response('Данный учитель не существует');
-        }
-
-        $user = User::find($request->user_id);
-
-        $user->name = $request->name ?? 'Ошибка';
-        $user->first_name = $request->first_name;
-        $user->second_name = $request->second_name;
-        $user->middle_name = $request->middle_name;
-
-        $user->save();
-
-        $teacher->lessons = json_decode($request->lessons);
-        $teacher->type = $request->type;
-        $teacher->class_id = $request->class == 'null' ? null : $request->class;
-        $teacher->user_id = $request->user_id;
-
-        $teacher->save();
+        $this->saveTeacher($request, $teacher);
 
         return response('Учитель успешно обновлен');
     }
@@ -118,5 +62,18 @@ class TeacherController extends Controller
     public function destroy($id)
     {
         Teacher::find($id)->delete();
+    }
+
+    private function saveTeacher($request, $teacher): void
+    {
+        $teacher->first_name = $request->first_name;
+        $teacher->second_name = $request->second_name;
+        $teacher->middle_name = $request->middle_name;
+        $teacher->user_id = $request->user_id ?? null;
+        $teacher->lessons = json_decode($request->lessons);
+        $teacher->class_id = $request->class == "null" ? null : $request->class;
+        $teacher->type = $request->type == "null" ? null : $request->type;
+
+        $teacher->save();
     }
 }

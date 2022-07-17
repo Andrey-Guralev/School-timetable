@@ -307,7 +307,10 @@ namespace App\Models{
  * @property int|null $class_id
  * @property string|null $type
  * @property string|null $asc_xml_id
- * @property string|null $asc_teacher_name
+ * @property string|null $first_name
+ * @property string|null $middle_name
+ * @property string|null $second_name
+ * @property string|null $asc_teacher_second_name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Classes|null $Class
@@ -317,12 +320,15 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher query()
- * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereAscTeacherName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereAscTeacherSecondName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereAscXmlId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereClassId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereLessons($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereMiddleName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereSecondName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Teacher whereUserId($value)

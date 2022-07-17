@@ -22,7 +22,11 @@ class CreateTeachersTable extends Migration
 //            $table->enum('type', ['undefined'])->default('undefined');
             $table->string('type')->nullable();
             $table->string('asc_xml_id')->nullable();
-            $table->string('asc_teacher_name')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('middle_name')->nullable();
+            $table->string('second_name')->nullable();
+
+            $table->string('asc_teacher_second_name')->nullable();
 
             $table->timestamps();
         });
