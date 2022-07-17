@@ -135,11 +135,13 @@ export default {
 
         deleteTeacher: function (id)
         {
-            axios.delete('/teacher/' + id)
-                .then(response => {this.updateTeachers()})
-                .catch(e => {
-                    console.log('Какая-то ошибка!')
-                });
+            if (confirm("Точно удалить этого учителя")) {
+                axios.delete('/teacher/' + id)
+                    .then(response => {this.updateTeachers()})
+                    .catch(e => {
+                        console.log('Какая-то ошибка!')
+                    });
+            }
         },
 
         getCLass: function (id)

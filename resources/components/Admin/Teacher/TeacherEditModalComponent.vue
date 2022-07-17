@@ -232,7 +232,10 @@
             findUsers: async function ()
             {
                 this.login = document.getElementById('edit-login').value;
-                if (!this.login) return;
+                if (!this.login) {
+                    this.teacher.user_id = null;
+                    return;
+                }
 
                 this.searchOpen = true;
                 this.errors = [];
