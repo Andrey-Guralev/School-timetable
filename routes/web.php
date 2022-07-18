@@ -91,9 +91,6 @@ Route::middleware(['auth'])->prefix('user')->group(function() {
 Route::middleware(['auth', 'Admin'])->prefix('timetable')->group(function () {
     Route::get('/edit', [\App\Http\Controllers\TimetableController::class, 'edit'])->name('editTimetable');
     Route::get('/edit/{class_id}', [\App\Http\Controllers\TimetableController::class, 'editForm'])->name('editFormTimetable');
-    Route::Post('/edit/{class_id}/file', [\App\Http\Controllers\TimetableController::class, 'storeFile'])->name('storeFileTimetable');
-    Route::Post('/edit/{class_id}/form', [\App\Http\Controllers\TimetableController::class, 'storeForm'])->name('storeFormTimetable');
-    Route::Post('/edit/archive', [\App\Http\Controllers\TimetableController::class, 'storeArchive'])->name('storeArchiveTimetable');
     Route::Post('/edit/xml', [\App\Http\Controllers\TimetableController::class, 'storeXml'])->name('timetable.storeXml');
 
 });

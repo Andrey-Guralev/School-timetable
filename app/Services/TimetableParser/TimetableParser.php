@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Actions;
+namespace App\Services\TimetableParser;
 
-use App\Http\Middleware\PreventRequestsDuringMaintenance;
+use App\Contracts\TimetableParser\TimetableXmlParser;
+use App\Contracts\Translit\Translit;
 use App\Jobs\TelegramTimetableUpdateNotification;
 use App\Models\Classes;
 use App\Models\Group;
@@ -12,44 +13,79 @@ use App\Models\Room;
 use App\Models\Teacher;
 use App\Models\Timetable;
 use App\Models\User;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Exception;
-use function React\Promise\all;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-
-class TimetableParser
+class TimetableParser implements TimetableXmlParser
 {
+    private $translit;
+
+    public function __construct()
+    {
+        $this->translit = app(Translit::class);
+    }
+
     /**
-     * @param $xml
-     * @param $request
-     * @return bool
      * @throws Exception
      */
-    public function parseXml($xml, $request): void
+    public function parseXml($file, $parametrs)
     {
-        try {
+        $path = Storage::putFile('xmls/', $file);
+
+        try
+        {
+            $xml = Storage::get($path);
+        }
+        catch (\Throwable $throwable)
+        {
+            throw new Exception('Xml laod error');
+        }
+
+        try
+        {
             $xml = simplexml_load_string($xml);
         }
-        catch (\Throwable $throwable) {
-            throw new Exception('Xml laod error' . $throwable->getMessage(), 0);
+        catch (\Throwable $throwable)
+        {
+            throw new Exception('Xml laod error');
         }
 
-        $json = json_encode($xml);
-        $array = json_decode($json, true);
+        $xml = json_decode(json_encode($xml), true);
 
-        if (array_key_exists('lessons', $request)) $this->parseLessons($array['subjects']['subject']);
-        if (array_key_exists('rooms', $request)) $this->parseRooms($array['classrooms']['classroom']);
-        if (array_key_exists('classes', $request)) {
-            $this->parseClasses($array['classes']['class']);
-            $this->parseGroups($array['groups']['group']);
+        try
+        {
+            $this->checkXml($xml, $parametrs);
         }
-//        if (array_key_exists('groups', $request)) $this->parseGroups($array['groups']['group']);
-        if (array_key_exists('teachers', $request)) $this->parseTeachers($array['teachers']['teacher']);
-//        if (array_key_exists('load', $request)) $this->parseLoad($array['lessons']['lesson']);
-        if (array_key_exists('timetable', $request)) {
-            $this->parseLoad($array['lessons']['lesson']);
-            $this->parseTimetable($array['cards']['card']);
+        catch (Exception $exception)
+        {
+            throw new Exception('Incorrect xml structure');
+        }
 
+        if (array_key_exists('lessons', $parametrs))
+            $this->parseLessons($xml['subjects']['subject']);
+
+        if (array_key_exists('rooms', $parametrs))
+            $this->parseRooms($xml['classrooms']['classroom']);
+
+        if (array_key_exists('classes', $parametrs))
+        {
+            $this->parseClasses($xml['classes']['class']);
+            $this->parseGroups($xml['groups']['group']);
         }
+
+        if (array_key_exists('teachers', $parametrs))
+            $this->parseTeachers($xml['teachers']['teacher']);
+
+        if (array_key_exists('timetable', $parametrs))
+        {
+            $this->parseLoad($xml['lessons']['lesson']);
+            $this->parseTimetable($xml['cards']['card']);
+        }
+
+        Storage::deleteDirectory('xmls');
+
     }
 
     private function parseLessons($lessons): void
@@ -121,7 +157,7 @@ class TimetableParser
 
             $className = str_replace(' ', '', $class['name']);
 
-            $existingClass = $allClasses->where('alias', Translit::translitInEn($className));
+            $existingClass = $allClasses->where('alias', $this->translit->translitInEn($className));
 
             if (mb_strpos($className, '10') !== false || mb_strpos($className, '11') !== false)
             {
@@ -158,7 +194,7 @@ class TimetableParser
 
                 $newClass->number = $number;
                 $newClass->letter = $letter;
-                $newClass->alias = Translit::translitInEn($className);
+                $newClass->alias = $this->translit->translitInEn($className);
                 $newClass->shift = 0;
                 $newClass->asc_xml_id = $class['id'];
 
@@ -228,21 +264,13 @@ class TimetableParser
                 {
                     $newTeacher = new Teacher;
 
-                    $newTeacher->asc_xml_id = $teacher['id'];
-                    $newTeacher->asc_teacher_second_name = $name;
-                    $existingTeacher->second_name = $name;
-
-                    $newTeacher->save();
+                    $this->saveTeacher($newTeacher, ['asc_xml_id' => $teacher['id'], 'user_id' => null, 'second_name' => $name]);
                 }
                 else
                 {
                     $existingTeacher = $existingTeacher->first();
 
-                    $existingTeacher->asc_xml_id = $teacher['id'];
-                    $existingTeacher->asc_teacher_second_name = $name;
-                    $existingTeacher->second_name = $name;
-
-                    $existingTeacher->save();
+                    $this->saveTeacher($existingTeacher, ['asc_xml_id' => $teacher['id'], 'user_id' => null, 'second_name' => $name]);
                 }
             }
             else
@@ -255,25 +283,27 @@ class TimetableParser
                 {
                     $newTeacher = new Teacher;
 
-                    $newTeacher->user_id = $existingUser->id;
-                    $newTeacher->asc_xml_id = $teacher['id'];
-                    $newTeacher->asc_teacher_second_name = $name;
-                    $newTeacher->second_name = $name;
-
-                    $newTeacher->save();
+                    $this->saveTeacher($newTeacher, ['asc_xml_id' => $teacher['id'], 'user_id' => $existingUser->id, 'second_name' => $name]);
                 }
                 else
                 {
                     $existingTeacher = $existingTeacher->first();
 
-                    $existingTeacher->asc_xml_id = $teacher['id'];
-                    $existingTeacher->asc_teacher_second_name = $name;
-                    $existingTeacher->second_name = $name;
-
-                    $existingTeacher->save();
+                    $this->saveTeacher($existingTeacher, ['asc_xml_id' => $teacher['id'], 'user_id' => null, 'second_name' => $name]);
                 }
             }
         }
+    }
+
+    private function saveTeacher($teacher, $data = ['asc_xml_id' => null, 'user_id' => null, 'second_name' => null])
+    {
+        $teacher->asc_xml_id = $data['asc_xml_id'];
+        $teacher->user_id = $data['user_id'];
+        $teacher->asc_teacher_second_name = $data['second_name'];
+        $teacher->second_name = $data['second_name'];
+
+        $teacher->save();
+
     }
 
     private function parseLoad($xmlAllLoad): void
@@ -368,16 +398,7 @@ class TimetableParser
 
                 $newTT = new Timetable();
 
-                $newTT->lesson_id = $load->lesson_id;
-                $newTT->teacher_id = $load->teacher_id;
-                $newTT->class_id = $load->class_id;
-                $newTT->group_id = $load->group_id;
-                $newTT->load_id = $load->id;
-                $newTT->number = $tt['period'];
-                $newTT->weekday = $weekday;
-                $newTT->rooms = ['room1' => ['room' => $room->name ?? 'Ошибка', 'room_id' => $room->id ?? 0]];
-
-                $newTT->save();
+                $this->saveTimetable($newTT, $load, $tt, $weekday, $room);
 
                 $dontDelete[] = $newTT->id;
                 $classWhereUpdated[] = $class->id;
@@ -395,20 +416,9 @@ class TimetableParser
                 }
                 else
                 {
-//                    dd($existingTT, $load, $tt);
-
                     $room = $allRooms->find($tt->rooms['room1']['room_id'] ?? -1);
 
-                    $existingTT->lesson_id = $load->lesson_id;
-                    $existingTT->teacher_id = $load->teacher_id;
-                    $existingTT->class_id = $load->class_id;
-                    $existingTT->group_id = $load->group_id;
-                    $existingTT->load_id = $load->id;
-                    $existingTT->number = $tt['period'];
-                    $existingTT->weekday = $weekday;
-                    $existingTT->rooms = ['room1' => ['room' => $room->name ?? 'Ошибка', 'room_id' => $room->id ?? 0]];
-
-                    $existingTT->save();
+                    $this->saveTimetable($existingTT, $load, $tt, $weekday, $room);
 
                     $dontDelete[] = $existingTT->id;
                     $classWhereUpdated[] = $class->id;
@@ -433,10 +443,48 @@ class TimetableParser
 
     }
 
+    private function saveTimetable($timetable, $load, $tt, $weekday, $room)
+    {
+        $timetable->lesson_id = $load->lesson_id;
+        $timetable->teacher_id = $load->teacher_id;
+        $timetable->class_id = $load->class_id;
+        $timetable->group_id = $load->group_id;
+        $timetable->load_id = $load->id;
+        $timetable->number = $tt['period'];
+        $timetable->weekday = $weekday;
+        $timetable->rooms = ['room1' => ['room' => $room->name ?? 'Ошибка', 'room_id' => $room->id ?? 0]];
+
+        $timetable->save();
+    }
+
     /**
-     * @param $days
-     * @return int
+     * @throws Exception
      */
+    private function checkXml($xml, $parametrs): void
+    {
+        if (!$xml['subjects']['subject'] && array_key_exists('lessons', $parametrs))
+            throw new Exception('Lesson doesn\'t exist in xml');
+
+        if (!$xml['teachers']['teacher'] && array_key_exists('teachers', $parametrs))
+            throw new Exception('Teachers doesn\'t exist in xml');
+
+        if (!$xml['classrooms']['classroom'] && array_key_exists('rooms', $parametrs))
+            throw new Exception('Classrooms doesn\'t exist in xml');
+
+        if (!$xml['classes']['class'] && array_key_exists('classes', $parametrs))
+            throw new Exception('Classes doesn\'t exist in xml');
+
+        if (!$xml['groups']['group'] && array_key_exists('classes', $parametrs))
+            throw new Exception('Groups doesn\'t exist in xml');
+
+        if (!$xml['lessons']['lesson'] && array_key_exists('load', $parametrs))
+            throw new Exception('Lesson doesn\'t exist in xml');
+
+        if (!$xml['cards']['card'] && array_key_exists('timetable', $parametrs))
+            throw new Exception('Cards doesn\'t exist in xml');
+
+    }
+
     private function convertDays($days): int
     {
         return match ($days) {
@@ -449,12 +497,3 @@ class TimetableParser
         };
     }
 }
-
-
-
-//"id" => "71DE6A312B59E6CA"
-//"classids" => "C4EFF45549650AAD"
-//"subjectid" => "9E08545914BE61D6"
-//"teacherids" => "4F75E00C8BD88E02"
-//"classroomids" => "2BD9F2024ECE4D24"
-//"groupids" => "DBFCB1E10C2486F6"

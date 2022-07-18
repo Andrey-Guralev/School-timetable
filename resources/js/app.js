@@ -22,7 +22,6 @@ function adminVueComponentsRequire() {
     Vue.component('teacher-create-modal', require('../components/Admin/Teacher/TeacherCreateModalComponent').default);
     Vue.component('teacher-edit-modal', require('../components/Admin/Teacher/TeacherEditModalComponent').default);
 
-
     Vue.component('load-index', require('../components/Admin/Load/LoadIndex').default);
     Vue.component('load-create-modal', require('../components/Admin/Load/LoadCreateModalComponent').default);
     Vue.component('load-edit-modal', require('../components/Admin/Load/LoadEditModalComponent').default);
@@ -40,6 +39,10 @@ function adminVueComponentsRequire() {
     Vue.component('create-classes-component', require('../components/Admin/Classes/CreateClassesModal').default);
 
     Vue.component('timetable-index-component', require('../components/Admin/Timetable/TimetableIndexComponent').default);
+    Vue.component('timetable-load-modal', require('../components/Admin/Timetable/TimetableLoadModal').default);
+    Vue.component('timetable-load-error-modal', require('../components/Admin/Timetable/TimetableLoadErrorModal').default);
+    Vue.component('timetable-load-ok-modal', require('../components/Admin/Timetable/TimetableLoadOkModal').default);
+
 
     Vue.component('ring-schedule-index', require('../components/Admin/RingSchedule/RingScheduleIndex').default);
     Vue.component('ring-schedule-select-modal', require('../components/Admin/RingSchedule/RingScheduleSelectModal').default);
